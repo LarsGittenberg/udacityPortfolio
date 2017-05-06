@@ -65,9 +65,9 @@ box-shadow: 2px 2px 3px rgba(0, 0, 0, .4);
 }
 
 .container {
-width: 20%;
+width: 33.3%;
 float: left;
-height: 33%;
+height: 50%;
 opacity: .7;
 }
 
@@ -88,7 +88,7 @@ background-size: 10px;
 
 .container-4 {
 background-image: url(images/yellow_lines_hor.png);
-background-size: 15px;
+background-size: 35px;
 }
 
 .container-5 {
