@@ -10,6 +10,10 @@ background-color: #363636;
 height: 100%;
 color: #febe15;
 font-size:16px;
+max-width: 1200px;
+margin-left: auto;
+margin-right: auto;
+display: block;
 }
 
 header {
@@ -44,11 +48,11 @@ font-family: 'Lato', 'arial', sans-serif;
 .source-code-pro {
 font-family: 'Source Code Pro', monospace, sans-serif;
 }
-
+/* comment out but not delete in case need this code snippet for tab design again
 .circle-tab {
 width: 100px;
 height: 100px;
-background-color: #febe15;/*#2AFE9F#1167fe*/
+background-color: #febe15;
 position: absolute;
 left: -50px;
 bottom: -50px;
@@ -60,14 +64,21 @@ cursor: pointer;
 }
 
 .circle-tab:hover {
-background-color: #00bcd4;/*#0041b1*/
+background-color: #00bcd4;
 box-shadow: 2px 2px 3px rgba(0, 0, 0, .4);
+}*/
+
+
+.main-flex-container {
+	display: flex;
+	flex-wrap: wrap;
+	max-width: 1200px;
+
 }
 
 .container {
 width: 33.3%;
-float: left;
-height: 50%;
+height: 300px;
 opacity: .7;
 }
 
