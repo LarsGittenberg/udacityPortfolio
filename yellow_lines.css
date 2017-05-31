@@ -107,6 +107,22 @@ section.hero-container img {
 	opacity: 1;
 }
 
+section.featured-projects-bar {
+	background-image: url(images/yellow_dots_stagger.png);
+background-size: 5px;
+width: 100%;
+height: 100px;
+position: relative;
+}
+section.featured-projects-bar h2 {
+	line-height: 100px;
+	background: #363636;
+	padding: 5px;
+	display:inline;
+	margin-left:25px;
+
+}
+
 .main-flex-container {
 	display: flex;
 	flex-wrap: wrap;
