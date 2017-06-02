@@ -4,20 +4,20 @@
 	padding: 0;
 }
 html {
-height: 100%;
+	height: 100%;
 }
 
 
 body {
-background-color: #363636;
-height: 100%;
-color: #febe15;
-font-size:16px;
-max-width: 1280px;
-margin-left: auto;
-margin-right: auto;
-display: block;
-font-family: 'Montserrat', sans-serif;
+	background-color: #363636;
+	height: 100%;
+	color: #febe15;
+	font-size:16px;
+	max-width: 1280px;
+	margin-left: auto;
+	margin-right: auto;
+	display: block;
+	font-family: 'Montserrat', sans-serif;
 }
 
 .montserrat {
@@ -37,14 +37,13 @@ font-family: 'Montserrat', sans-serif;
 }
 
 header {
-background-image: url(images/yellow_lines_up.png);
-background-size: 12px;
-width: 100%;
-height: 130px;
-position: relative;
-display: flex;
-flex-direction: row-reverse;
-
+	background-image: url(images/yellow_lines_up.png);
+	background-size: 12px;
+	width: 100%;
+	height: 130px;
+	position: relative;
+	display: flex;
+	flex-direction: row-reverse;
 }
 
 .header-container {
@@ -56,6 +55,7 @@ flex-direction: row-reverse;
 	padding-right: 25px;
 
 }
+
 .header-container h1 {
 	line-height: 50px;
 	background: #363636;
@@ -63,11 +63,13 @@ flex-direction: row-reverse;
 	padding: 5px;
 	font-size: 2.3em;
 }
+
 .header-container p {
 	background: #363636;
 	display: block;
 	padding: 5px;
-	margin-top: 15px;}
+	margin-top: 15px;
+}
 
 
 /* comment out but not delete in case need this code snippet for tab design again
@@ -92,10 +94,10 @@ box-shadow: 2px 2px 3px rgba(0, 0, 0, .4);
 
 section.hero-container {
 	width: 100%;
-	background-image: url(images/yellow_lines_vert.png);
     background-size: 10px;
     background-repeat: repeat;
 }
+
 section.hero-container img {
 	max-width: 100%;
 	height: auto;
@@ -105,19 +107,20 @@ section.hero-container img {
 
 section.featured-projects-bar {
 	background-image: url(images/yellow_dots_stagger.png);
-background-size: 5px;
-width: 100%;
-height: 100px;
-position: relative;
+	background-size: 5px;
+	width: 100%;
+	height: 100px;
+	position: relative;
 }
+
 section.featured-projects-bar h2 {
 	line-height: 100px;
 	background: #363636;
 	padding: 5px;
 	display:inline;
 	margin-left:25px;
-
 }
+
 .featured-project-box {
 width: 80%; 
 height: 80%; 
@@ -134,7 +137,6 @@ section.featured-project-box img {
 	height: auto;
 }
 
-
 .main-flex-container {
 	display: flex;
 	flex-wrap: wrap;
@@ -148,27 +150,27 @@ section.featured-project-box img {
 	opacity: .7;
 }
 
-.container-1 {
+.pattern-diagonal-up {
 	background-image: url(images/yellow_lines_up.png);
 	background-size: 25px;
 }
 
-.container-2 {
+.pattern-diagonal-down {
 	background-image: url(images/yellow_lines_down.png);
 	background-size: 25px;
 }
 
-.container-3 {
+.pattern-dots-stagger {
 	background-image: url(images/yellow_dots_stagger.png);
 	background-size: 10px;
 }
 
-.container-4 {
+.pattern-horizontal {
 	background-image: url(images/yellow_lines_hor.png);
 	background-size: 10px;
 }
 
-.container-5 {
+.pattern-vertical {
 	background-image: url(images/yellow_lines_vert.png);
 	background-size: 10px;
 }
