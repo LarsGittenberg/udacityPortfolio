@@ -1,12 +1,60 @@
+.resume-animate {
+	width: 250px; 
+	height: 150px;
+	background-image: url(images/resume_no_animate.png);
+	background-size: 250px;
+	display: block;
+	margin-right: auto;
+	margin-left: auto;
+	position: relative;
+	top: -35px;
+}
+
+div.main-flex-container-child:hover .resume-animate {
+	background-image: url(images/resume_animate.gif);
+}
+
+.keyboard-animate {
+	width: 250px; 
+	height: 150px;
+	background-image: url(images/keyboard_no_animate.png);
+	background-size: 250px;
+	display: block;
+	margin-right: auto;
+	margin-left: auto;
+	position: relative;
+	top: -35px;
+}
+
+div.main-flex-container-child:hover .keyboard-animate {
+	background-image: url(images/keyboard_animate.gif);
+}
+
+.cards-animate {
+	width: 250px; 
+	height: 150px;
+	background-image: url(images/cards_no_animate.png);
+	background-size: 250px;
+	display: block;
+	margin-right: auto;
+	margin-left: auto;
+	position: relative;
+	top: -35px;
+}
+
+div.main-flex-container-child:hover .cards-animate {
+	background-image: url(images/cards_animate.gif);
+}
+
 * {
 	box-sizing: border-box;
 	margin: 0;
 	padding: 0;
 }
+
 html {
 	height: 100%;
 }
-
 
 body {
 	background-color: #363636;
@@ -122,7 +170,8 @@ section.hero-container img {
 	transform: translateX(-50%) translateY(-50%);
 	padding: 10px; 
 	z-index: -10; 
-	text-align: center;
+	text-align: left;
+
 
 }
 
@@ -133,7 +182,6 @@ section.hero-container img {
 	margin: 25px;
 	font-size: 1.5em;
 	box-shadow: 5px 5px 5px rgba(0, 0, 0, .3);
-
 }
 
 
@@ -202,11 +250,14 @@ footer {
 	height:200px;
 }
 /*layout helper classes*/
-h3.margin-bottom {
+.margin-bottom {
 	margin-bottom: 10px;
 }
 .text-center {
 	text-align: center;
+}
+.header-text-color {
+	color: #e6e6e6;
 }
 
 /*visibility classes*/
@@ -276,6 +327,7 @@ h3.margin-bottom {
 }
 
 .color-offwhite {
+	background-color: #e6e6e6;
 
 }
 
