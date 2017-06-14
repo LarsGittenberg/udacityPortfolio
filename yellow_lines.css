@@ -1,50 +1,3 @@
-.resume-animate {
-	width: 250px; 
-	height: 150px;
-	background-image: url(images/resume_no_animate.png);
-	background-size: 250px;
-	display: block;
-	margin-right: auto;
-	margin-left: auto;
-	position: relative;
-	top: -35px;
-}
-
-div.main-flex-container-child:hover .resume-animate {
-	background-image: url(images/resume_animate.gif);
-}
-
-.keyboard-animate {
-	width: 250px; 
-	height: 150px;
-	background-image: url(images/keyboard_no_animate.png);
-	background-size: 250px;
-	display: block;
-	margin-right: auto;
-	margin-left: auto;
-	position: relative;
-	top: -35px;
-}
-
-div.main-flex-container-child:hover .keyboard-animate {
-	background-image: url(images/keyboard_animate.gif);
-}
-
-.cards-animate {
-	width: 250px; 
-	height: 150px;
-	background-image: url(images/cards_no_animate.png);
-	background-size: 250px;
-	display: block;
-	margin-right: auto;
-	margin-left: auto;
-	position: relative;
-	top: -35px;
-}
-
-div.main-flex-container-child:hover .cards-animate {
-	background-image: url(images/cards_animate.gif);
-}
 
 * {
 	box-sizing: border-box;
@@ -70,6 +23,18 @@ body {
 
 ul {
 	margin-left: 20px;
+}
+
+a {
+	color: mediumaquamarine;
+}
+
+a:hover {
+	color: darkcyan;
+}
+
+a:visited {
+	color: #e6e6e6;
 }
 
 /*typography*/
@@ -115,6 +80,7 @@ header {
 	display: inline;
 	padding: 5px;
 	font-size: 2.3em;
+	box-shadow: 5px 5px 3px rgba(0, 0, 0, .2);
 }
 
 .header-container p {
@@ -122,6 +88,7 @@ header {
 	display: block;
 	padding: 5px;
 	margin-top: 15px;
+	box-shadow: 5px 5px 3px rgba(0, 0, 0, .2);
 }
 
 
@@ -136,7 +103,7 @@ left: -50px;
 bottom: -50px;
 border-radius: 50%;
 z-index: 1;
-box-shadow: 5px 5px 5px rgba(0, 0, 0, .2);
+box-shadow: 5px 5px 3px rgba(0, 0, 0, .2);
 transition: 200ms ease-in-out;
 cursor: pointer;
 }
@@ -181,7 +148,7 @@ section.hero-container img {
 	display: inline-block;
 	margin: 25px;
 	font-size: 1.5em;
-	box-shadow: 5px 5px 5px rgba(0, 0, 0, .3);
+	box-shadow: 5px 5px 3px rgba(0, 0, 0, .2);
 }
 
 
@@ -200,6 +167,7 @@ section.featured-projects-bar h2 {
 	padding: 5px;
 	display:inline;
 	margin-left:25px;
+	box-shadow: 5px 5px 3px rgba(0, 0, 0, .2);
 }
 
 .main-flex-container {
@@ -231,7 +199,7 @@ background-color: #363636;
 display: block; margin-right: 
 auto; margin-left: auto; 
 margin-top: 10%; 
-box-shadow: 5px 5px 5px rgba(0, 0, 0, .3); 
+box-shadow: 5px 5px 3px rgba(0, 0, 0, .2); 
 padding: 10px;
 }
 
@@ -307,7 +275,7 @@ footer {
 }
 
 .color-light-yellow {
-
+	background-color: #fed361;
 }
 
 .color-mustard-brown {
@@ -340,9 +308,58 @@ footer {
 /*hover effects*/
 .main-flex-container-child {
 	opacity: .8;
-	}	
+	}
+
 .main-flex-container-child:hover {
 	opacity: 1;
+}
+
+.resume-animate {
+	width: 250px; 
+	height: 150px;
+	background-image: url(images/resume_no_animate.png);
+	background-size: 250px;
+	display: block;
+	margin-right: auto;
+	margin-left: auto;
+	position: relative;
+	top: -35px;
+}
+
+div.main-flex-container-child:hover .resume-animate {
+	background-image: url(images/resume_animate.gif);
+}
+
+.keyboard-animate {
+	width: 250px; 
+	height: 150px;
+	background-image: url(images/keyboard_no_animate.png);
+	background-size: 250px;
+	display: block;
+	margin-right: auto;
+	margin-left: auto;
+	position: relative;
+	top: -35px;
+}
+
+div.main-flex-container-child:hover .keyboard-animate {
+	background-image: url(images/keyboard_animate.gif);
+}
+
+.cards-animate {
+	width: 250px; 
+	height: 150px;
+	background-image: url(images/cards_no_animate.png);
+	background-size: 250px;
+	display: block;
+	margin-right: auto;
+	margin-left: auto;
+	position: relative;
+	top: -35px;
+}
+
+div.main-flex-container-child:hover .cards-animate {
+	background-image: url(images/cards_animate.gif);
 }
 
 
@@ -364,9 +381,4 @@ footer {
 		display: block;
 	}	
 }/*end medidaQ*/
-
-
-
-
-
 
