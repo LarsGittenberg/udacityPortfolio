@@ -62,6 +62,7 @@ header {
 	position: relative;
 	display: flex;
 	flex-direction: row-reverse;
+	font-size:.8em;
 }
 
 .header-container {
@@ -221,6 +222,35 @@ footer {
 	display: none;
 }
 
+/*media queries*/
+@media only screen and (min-width: 500px) {
+	.featured-project-card {
+		width: 350px; 
+		display: block; 
+		margin-right: auto; 
+		margin-left: auto; 
+		box-shadow: 5px 5px 5px rgba(0, 0, 0, .3); 
+	}
+}/*end mediaQ*/
+
+
+@media only screen and (min-width: 800px) {
+	header {
+		font-size:1em;
+	}	.main-flex-container-child {
+	    width: 50%;
+	}
+}/*end mediaQ*/
+
+@media only screen and (min-width: 1100px) {
+	.main-flex-container-child {
+		width: 33.3%;
+	}
+	.visible-desktop {
+		display: block;
+	}	
+}/*end medidaQ*/
+
 
 /*pattern and background color classes*/
 .pattern-diagonal-up {
@@ -293,10 +323,26 @@ footer {
 
 /*hover effects*/
 .main-flex-container-child {
-	opacity: .8;
+	opacity: .9;
 	}	
 .main-flex-container-child:hover {
 	opacity: 1;
+}
+
+.cards-animate {
+	width: 250px; 
+	height: 150px;
+	background-image: url(images/cards_no_animate.png);
+	background-size: 250px;
+	display: block;
+	margin-right: auto;
+	margin-left: auto;
+	position: relative;
+	top: -35px;
+}
+
+div.main-flex-container-child:hover .cards-animate {
+	background-image: url(images/cards_animate.gif);
 }
 
 .resume-animate {
@@ -331,10 +377,10 @@ div.main-flex-container-child:hover .keyboard-animate {
 	background-image: url(images/keyboard_animate.gif);
 }
 
-.cards-animate {
+.bird-animate {
 	width: 250px; 
 	height: 150px;
-	background-image: url(images/cards_no_animate.png);
+	background-image: url(images/bird_no_animate.png);
 	background-size: 250px;
 	display: block;
 	margin-right: auto;
@@ -343,34 +389,12 @@ div.main-flex-container-child:hover .keyboard-animate {
 	top: -35px;
 }
 
-div.main-flex-container-child:hover .cards-animate {
-	background-image: url(images/cards_animate.gif);
+div.main-flex-container-child:hover .bird-animate {
+	background-image: url(images/bird_animate.gif);
 }
 
 
-@media only screen and (min-width: 500px) {
-.featured-project-card {
-width: 350px; 
-display: block; 
-margin-right: auto; 
-margin-left: auto; 
-box-shadow: 5px 5px 5px rgba(0, 0, 0, .3); 
-}
-}/*end mediaQ*/
 
 
-@media only screen and (min-width: 800px) {
-	.main-flex-container-child {
-	    width: 50%;
-	}
-}/*end mediaQ*/
 
-@media only screen and (min-width: 1100px) {
-	.main-flex-container-child {
-		width: 33.3%;
-	}
-	.visible-desktop {
-		display: block;
-	}	
-}/*end medidaQ*/
 
