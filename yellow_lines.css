@@ -56,7 +56,6 @@ a:visited {
 
 /*header styles*/
 header {
-	background-size: 12px;
 	width: 100%;
 	height: 130px;
 	position: relative;
@@ -66,13 +65,9 @@ header {
 }
 
 .header-container {
-	background-color: /*#febe15*/;
-	/*height: 100%;*/
-	/*display: inline-table;*/
 	margin-top: 15px;
 	text-align: right;
 	padding-right: 25px;
-
 }
 
 .header-container h1 {
@@ -116,8 +111,10 @@ box-shadow: 2px 2px 3px rgba(0, 0, 0, .4);
 
 /*hero area styles*/
 section.hero-container {
+	position: relative;
 	width: 100%;
     height: auto;
+    z-index: 1;
 }
 
 section.hero-container img {
@@ -125,23 +122,22 @@ section.hero-container img {
 	max-width: 1280px;
 	height: auto;
 	display: block;/*somehow, this gets rid of the bottom gap*/
-	opacity: 1;
+	position: relative;/*somehow, this fixes stacking order so that zindex 100 is obeyed, without this sibling (hero-greeting-box) with zindex 10 still remains on top*/
+	z-index: 100;
 }
 
 .hero-greeting-box {
+	position: absolute; 
 	width:75%; 
 	height: 40%; 
-	position: absolute; 
 	top: 40%; 
 	bottom:auto; 
 	left: 50%; 
 	right: auto;
 	transform: translateX(-50%) translateY(-50%);
 	padding: 10px; 
-	z-index: -10; 
+	z-index: 10; 
 	text-align: left;
-
-
 }
 
 .hero-greeting-box h2 {
@@ -172,13 +168,13 @@ section.featured-projects-bar h2 {
 	box-shadow: 5px 5px 3px rgba(0, 0, 0, .3);
 }
 
-.main-flex-container {
+.flex-container-projects {
 	display: flex;
 	flex-wrap: wrap;
 	max-width: 1280px;
 }
 
-.main-flex-container-child {
+.flex-container-projects-child {
 	width: 100%;
 	height: 600px;
 }
@@ -211,9 +207,10 @@ footer {
  footer p {   background-color: #363636;
     display: inline-table;
     padding: 10px;
-    margin: 5px;
+    margin: 10px 25px 10px 25px;
 	box-shadow: 5px 5px 3px rgba(0, 0, 0, .3);
 }
+
 
 /*layout helper classes*/
 .margin-bottom {
@@ -246,7 +243,7 @@ footer {
 @media only screen and (min-width: 800px) {
 	header {
 		font-size:1em;
-	}	.main-flex-container-child {
+	}	.flex-container-projects-child {
 	    width: 50%;
 	}
 	.visible-tablet {
@@ -255,7 +252,7 @@ footer {
 }/*end mediaQ*/
 
 @media only screen and (min-width: 1100px) {
-	.main-flex-container-child {
+	.flex-container-projects-child {
 		width: 33.3%;
 	}
 	.visible-desktop {
@@ -271,8 +268,8 @@ footer {
 }
 
 .pattern-diagonal-up-var {
-	background-image: url(images/yellow_lines_up2.png);
-	background-size: 35px;
+	background-image: url(images/yellow_lines_up_var.png);
+	background-size: 8px;
 }
 
 .pattern-diagonal-down {
@@ -290,8 +287,13 @@ footer {
 	background-size: 10px;
 }
 
-.pattern-dots-grid {
+.pattern-dots-grid-dense {
 	background-image: url(images/yellow_dots_grid.png);
+	background-size: 3px;
+}
+
+.pattern-dots-grid-sparse {
+	background-image: url(images/yellow_dots_grid3.png);
 	background-size: 3px;
 }
 
@@ -339,7 +341,7 @@ footer {
 }
 
 /*hover effects*/
-div.main-flex-container-child:hover  section.featured-project-card {
+div.flex-container-projects-child:hover  section.featured-project-card {
 	box-shadow: 0px 0px 0px rgba(0, 0, 0, 0); 
 
 }
@@ -356,7 +358,7 @@ div.main-flex-container-child:hover  section.featured-project-card {
 	top: -35px;
 }
 
-div.main-flex-container-child:hover .cards-animate {
+div.flex-container-projects-child:hover .cards-animate {
 	background-image: url(images/cards_animate.gif);
 }
 
@@ -372,7 +374,7 @@ div.main-flex-container-child:hover .cards-animate {
 	top: -35px;
 }
 
-div.main-flex-container-child:hover .resume-animate {
+div.flex-container-projects-child:hover .resume-animate {
 	background-image: url(images/resume_animate.gif);
 }
 
@@ -388,7 +390,7 @@ div.main-flex-container-child:hover .resume-animate {
 	top: -35px;
 }
 
-div.main-flex-container-child:hover .keyboard-animate {
+div.flex-container-projects-child:hover .keyboard-animate {
 	background-image: url(images/keyboard_animate.gif);
 }
 
@@ -404,7 +406,7 @@ div.main-flex-container-child:hover .keyboard-animate {
 	top: -35px;
 }
 
-div.main-flex-container-child:hover .bird-animate {
+div.flex-container-projects-child:hover .bird-animate {
 	background-image: url(images/bird_animate.gif);
 }
 
