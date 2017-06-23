@@ -227,6 +227,9 @@ footer {
 .visible-desktop {
 	display: none;
 }
+.visible-tablet {
+	display:none;
+}
 
 /*media queries*/
 @media only screen and (min-width: 500px) {
@@ -288,12 +291,12 @@ footer {
 }
 
 .pattern-dots-grid-dense {
-	background-image: url(images/yellow_dots_grid.png);
+	background-image: url(images/yellow_dots_grid_dense.png);
 	background-size: 3px;
 }
 
 .pattern-dots-grid-sparse {
-	background-image: url(images/yellow_dots_grid3.png);
+	background-image: url(images/yellow_dots_grid_sparse.png);
 	background-size: 3px;
 }
 
