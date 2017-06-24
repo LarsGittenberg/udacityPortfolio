@@ -429,6 +429,20 @@ div.flex-container-projects-child:hover .holiday-animate {
 	background-image: url(images/holiday_animate.gif);
 }
 
+.leaders-animate {
+	width: 250px; 
+	height: 150px;
+	background-image: url(images/leaders_no_animate.png);
+	background-size: 250px;
+	display: block;
+	margin-right: auto;
+	margin-left: auto;
+	position: relative;
+	top: -35px;
+}
 
+div.flex-container-projects-child:hover .leaders-animate {
+	background-image: url(images/leaders_animate.gif);
+}
 
 
