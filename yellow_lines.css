@@ -267,9 +267,6 @@ footer {
 
 
 /*hover effects*/
-div.flex-container-projects-child:hover  section.featured-project-card {
-	box-shadow: 0px 0px 0px rgba(0, 0, 0, 0); 
-
 }
 
 .cards-animate {
