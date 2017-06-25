@@ -26,16 +26,16 @@ ul {
 }
 
 a {
-	color: mediumaquamarine;
+	color: darkcyan;
 }
 
 a:hover {
-	color: darkcyan!important;
+	color: mediumaquamarine!important;
 }
 
-a:visited {
+/*a:visited {
 	color: darkorange;
-}
+}*/
 
 /*typography*/
 .montserrat {
@@ -122,7 +122,7 @@ section.hero-container img {
 	max-width: 1280px;
 	height: auto;
 	display: block;/*somehow, this gets rid of the bottom gap*/
-	position: relative;/*somehow, this fixes stacking order so that zindex 100 is obeyed, without this sibling (hero-greeting-box) with zindex 10 still remains on top*/
+	position: relative;/*somehow, this fixes stacking order so that zindex 100 is obeyed, without this, its sibling (hero-greeting-box) with zindex 10 still remains on top*/
 	z-index: 100;
 }
 
@@ -176,16 +176,15 @@ section.featured-projects-bar h2 {
 
 .flex-container-projects-child {
 	width: 100%;
-	height: 600px;
+	height: 650px;
 }
 
 .featured-project-card {
 	width: 100%; 
-	height: 515px; 
+	height: 575px; 
 	background-color: #363636; 
 	margin-top: 45px; 
 	padding: 12px;
-	cursor: pointer;
 	transition: 200ms ease-in-out;
 }
 
@@ -216,9 +215,11 @@ footer {
 .margin-bottom {
 	margin-bottom: 10px;
 }
+
 .text-center {
 	text-align: center;
 }
+
 .header-text-color {
 	color: #e6e6e6;
 }
@@ -227,6 +228,7 @@ footer {
 .visible-desktop {
 	display: none;
 }
+
 .visible-tablet {
 	display:none;
 }
@@ -263,85 +265,6 @@ footer {
 	}	
 }/*end medidaQ*/
 
-
-/*pattern and background color classes*/
-.pattern-diagonal-up {
-	background-image: url(images/yellow_lines_up.png);
-	background-size: 25px;
-}
-
-.pattern-diagonal-up-var {
-	background-image: url(images/yellow_lines_up_var.png);
-	background-size: 8px;
-}
-
-.pattern-diagonal-down {
-	background-image: url(images/yellow_lines_down.png);
-	background-size: 25px;
-}
-
-.pattern-horizontal {
-	background-image: url(images/yellow_lines_hor.png);
-	background-size: 10px;
-}
-
-.pattern-vertical {
-	background-image: url(images/yellow_lines_vert.png);
-	background-size: 10px;
-}
-
-.pattern-dots-grid-dense {
-	background-image: url(images/yellow_dots_grid_dense.png);
-	background-size: 3px;
-}
-
-.pattern-dots-grid-sparse {
-	background-image: url(images/yellow_dots_grid_sparse.png);
-	background-size: 3px;
-}
-
-.pattern-dots-grid-var {
-	background-image: url(images/yellow_dots_grid2.png);
-	background-size: 3px;
-}
-
-.pattern-dots-stagger {
-	background-image: url(images/yellow_dots_stagger.png);
-	background-size: 10px;
-}
-
-.color-yellow {
-	background-color: #febe13;
-}
-
-.color-light-yellow {
-	background-color: #fed361;
-}
-
-.color-mustard-brown {
-	background-color: #cb9811;
-}
-
-.color-bright-brown {
-	background-color: #7f5f0a;
-}
-
-.color-dull-brown {
-
-}
-
-.color-dark-brown {
-	background-color: #423208;
-}
-
-.color-offwhite {
-	background-color: #e6e6e6;
-
-}
-
-.color-charcoal {
-	background-color: #363636;
-}
 
 /*hover effects*/
 div.flex-container-projects-child:hover  section.featured-project-card {
@@ -444,5 +367,101 @@ div.flex-container-projects-child:hover .holiday-animate {
 div.flex-container-projects-child:hover .leaders-animate {
 	background-image: url(images/leaders_animate.gif);
 }
+
+/*ui, buttons*/
+
+.btn {
+	background-color: darkcyan;
+	padding:10px;
+	color: white;
+	display: inline-block;
+	margin: 15px 15px 15px 0px;
+	border-radius: 2px 2px;
+}
+
+.btn:hover {
+	background-color: mediumaquamarine;
+}
+
+
+/*pattern and background color classes*/
+.pattern-diagonal-up {
+	background-image: url(images/yellow_lines_up.png);
+	background-size: 25px;
+}
+
+.pattern-diagonal-up-var {
+	background-image: url(images/yellow_lines_up_var.png);
+	background-size: 8px;
+}
+
+.pattern-diagonal-down {
+	background-image: url(images/yellow_lines_down.png);
+	background-size: 25px;
+}
+
+.pattern-horizontal {
+	background-image: url(images/yellow_lines_hor.png);
+	background-size: 10px;
+}
+
+.pattern-vertical {
+	background-image: url(images/yellow_lines_vert.png);
+	background-size: 10px;
+}
+
+.pattern-dots-grid-dense {
+	background-image: url(images/yellow_dots_grid_dense.png);
+	background-size: 3px;
+}
+
+.pattern-dots-grid-sparse {
+	background-image: url(images/yellow_dots_grid_sparse.png);
+	background-size: 3px;
+}
+
+.pattern-dots-grid-var {
+	background-image: url(images/yellow_dots_grid2.png);
+	background-size: 3px;
+}
+
+.pattern-dots-stagger {
+	background-image: url(images/yellow_dots_stagger.png);
+	background-size: 10px;
+}
+
+.color-yellow {
+	background-color: #febe13;
+}
+
+.color-light-yellow {
+	background-color: #fed361;
+}
+
+.color-mustard-brown {
+	background-color: #cb9811;
+}
+
+.color-bright-brown {
+	background-color: #7f5f0a;
+}
+
+.color-dull-brown {
+
+}
+
+.color-dark-brown {
+	background-color: #423208;
+}
+
+.color-offwhite {
+	background-color: #e6e6e6;
+
+}
+
+.color-charcoal {
+	background-color: #363636;
+}
+
 
 
