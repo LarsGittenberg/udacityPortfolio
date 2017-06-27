@@ -269,6 +269,11 @@ footer {
 
 /*hover effects*/
 
+a, .btn{
+	-webkit-transition:300ms ease-in-out;
+	transition:300ms ease-in-out;
+}
+
 .cards-animate {
 	width: 250px; 
 	height: 150px;
