@@ -33,6 +33,10 @@ a:hover {
 	color: mediumaquamarine!important;
 }
 
+.color-orange {
+	color: #ff7f00;
+}
+
 /*a:visited {
 	color: darkorange;
 }*/
@@ -185,7 +189,6 @@ section.featured-projects-bar h2 {
 	background-color: #363636; 
 	margin-top: 45px; 
 	padding: 12px;
-	transition: 200ms ease-in-out;
 }
 
 section.featured-project-card img {
@@ -373,6 +376,8 @@ div.flex-container-projects-child:hover .leaders-animate {
 	display: inline-block;
 	margin: 15px 15px 15px 0px;
 	border-radius: 2px 2px;
+	transition: 200ms ease-in-out;
+
 }
 
 .btn:hover {
@@ -458,6 +463,8 @@ div.flex-container-projects-child:hover .leaders-animate {
 .color-charcoal {
 	background-color: #363636;
 }
+
+
 
 
 
