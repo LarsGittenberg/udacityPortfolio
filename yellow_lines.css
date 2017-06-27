@@ -156,8 +156,6 @@ section.hero-container img {
 
 /*featured projects area styles*/
 section.featured-projects-bar {
-	background-image: url(images/yellow_dots_stagger.png);
-	background-size: 5px;
 	width: 100%;
 	height: 100px;
 	position: relative;
