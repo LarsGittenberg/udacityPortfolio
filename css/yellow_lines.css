@@ -277,7 +277,7 @@ a, .btn{
 .cards-animate {
 	width: 250px; 
 	height: 150px;
-	background-image: url(images/cards_no_animate.png);
+	background-image: url(../images/cards_no_animate.png);
 	background-size: 250px;
 	display: block;
 	margin-right: auto;
@@ -287,13 +287,13 @@ a, .btn{
 }
 
 div.flex-container-projects-child:hover .cards-animate {
-	background-image: url(images/cards_animate.gif);
+	background-image: url(../images/cards_animate.gif);
 }
 
 .resume-animate {
 	width: 250px; 
 	height: 150px;
-	background-image: url(images/resume_no_animate.png);
+	background-image: url(../images/resume_no_animate.png);
 	background-size: 250px;
 	display: block;
 	margin-right: auto;
@@ -303,13 +303,13 @@ div.flex-container-projects-child:hover .cards-animate {
 }
 
 div.flex-container-projects-child:hover .resume-animate {
-	background-image: url(images/resume_animate.gif);
+	background-image: url(../images/resume_animate.gif);
 }
 
 .keyboard-animate {
 	width: 250px; 
 	height: 150px;
-	background-image: url(images/keyboard_no_animate.png);
+	background-image: url(../images/keyboard_no_animate.png);
 	background-size: 250px;
 	display: block;
 	margin-right: auto;
@@ -319,13 +319,13 @@ div.flex-container-projects-child:hover .resume-animate {
 }
 
 div.flex-container-projects-child:hover .keyboard-animate {
-	background-image: url(images/keyboard_animate.gif);
+	background-image: url(../images/keyboard_animate.gif);
 }
 
 .bird-animate {
 	width: 250px; 
 	height: 150px;
-	background-image: url(images/bird_no_animate.png);
+	background-image: url(../images/bird_no_animate.png);
 	background-size: 250px;
 	display: block;
 	margin-right: auto;
@@ -335,13 +335,13 @@ div.flex-container-projects-child:hover .keyboard-animate {
 }
 
 div.flex-container-projects-child:hover .bird-animate {
-	background-image: url(images/bird_animate.gif);
+	background-image: url(../images/bird_animate.gif);
 }
 
 .holiday-animate {
 	width: 250px; 
 	height: 150px;
-	background-image: url(images/holiday_no_animate.png);
+	background-image: url(../images/holiday_no_animate.png);
 	background-size: 250px;
 	display: block;
 	margin-right: auto;
@@ -351,13 +351,13 @@ div.flex-container-projects-child:hover .bird-animate {
 }
 
 div.flex-container-projects-child:hover .holiday-animate {
-	background-image: url(images/holiday_animate.gif);
+	background-image: url(../images/holiday_animate.gif);
 }
 
 .leaders-animate {
 	width: 250px; 
 	height: 150px;
-	background-image: url(images/leaders_no_animate.jpg);
+	background-image: url(../images/leaders_no_animate.jpg);
 	background-size: 250px;
 	display: block;
 	margin-right: auto;
@@ -367,7 +367,7 @@ div.flex-container-projects-child:hover .holiday-animate {
 }
 
 div.flex-container-projects-child:hover .leaders-animate {
-	background-image: url(images/leaders_animate.gif);
+	background-image: url(../images/leaders_animate.gif);
 }
 
 /*ui, buttons*/
@@ -390,47 +390,47 @@ div.flex-container-projects-child:hover .leaders-animate {
 
 /*pattern and background color classes*/
 .pattern-diagonal-up {
-	background-image: url(images/yellow_lines_up.png);
+	background-image: url(../images/yellow_lines_up.png);
 	background-size: 25px;
 }
 
 .pattern-diagonal-up-var {
-	background-image: url(images/yellow_lines_up_var.png);
+	background-image: url(../images/yellow_lines_up_var.png);
 	background-size: 8px;
 }
 
 .pattern-diagonal-down {
-	background-image: url(images/yellow_lines_down.png);
+	background-image: url(../images/yellow_lines_down.png);
 	background-size: 25px;
 }
 
 .pattern-horizontal {
-	background-image: url(images/yellow_lines_hor.png);
+	background-image: url(../images/yellow_lines_hor.png);
 	background-size: 10px;
 }
 
 .pattern-vertical {
-	background-image: url(images/yellow_lines_vert.png);
+	background-image: url(../images/yellow_lines_vert.png);
 	background-size: 10px;
 }
 
 .pattern-dots-grid-dense {
-	background-image: url(images/yellow_dots_grid_dense.png);
+	background-image: url(../images/yellow_dots_grid_dense.png);
 	background-size: 3px;
 }
 
 .pattern-dots-grid-sparse {
-	background-image: url(images/yellow_dots_grid_sparse.png);
+	background-image: url(../images/yellow_dots_grid_sparse.png);
 	background-size: 3px;
 }
 
 .pattern-dots-grid-var {
-	background-image: url(images/yellow_dots_grid2.png);
+	background-image: url(../images/yellow_dots_grid2.png);
 	background-size: 3px;
 }
 
 .pattern-dots-stagger {
-	background-image: url(images/yellow_dots_stagger.png);
+	background-image: url(../images/yellow_dots_stagger.png);
 	background-size: 10px;
 }
 
