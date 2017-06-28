@@ -202,14 +202,6 @@ footer {
 	color: #e6e6e6;
 }
 
-/*visibility classes*/
-.visible-desktop {
-	display: none;
-}
-
-.visible-tablet {
-	display:none;
-}
 
 /*media queries*/
 @media only screen and (min-width: 500px) {
