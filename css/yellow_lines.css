@@ -130,29 +130,6 @@ section.hero-container img {
 	z-index: 100;
 }
 
-.hero-greeting-box {
-	position: absolute; 
-	width:75%; 
-	height: 40%; 
-	top: 40%; 
-	bottom:auto; 
-	left: 50%; 
-	right: auto;
-	transform: translateX(-50%) translateY(-50%);
-	padding: 10px; 
-	z-index: 10; 
-	text-align: left;
-}
-
-.hero-greeting-box h2 {
-	padding: 5px;
-	background-color: #363636;
-	display: inline-block;
-	margin: 20px;
-	font-size: 1.5em;
-	box-shadow: 5px 5px 3px rgba(0, 0, 0, .2);
-}
-
 
 /*featured projects area styles*/
 section.featured-projects-bar {
