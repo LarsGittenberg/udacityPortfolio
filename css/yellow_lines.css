@@ -56,6 +56,13 @@ a {
 }
 
 /*header styles*/
+img#logo {
+	position: absolute;
+	top: 0; 
+	left:0;
+	width:80px;
+}
+
 header {
 	width: 100%;
 	height: 130px;
@@ -202,6 +209,10 @@ footer {
 
 /*media queries*/
 @media only screen and (min-width: 500px) {
+	img#logo {
+		width: 180px;
+	}
+
 	.header-container {
 		padding-right: 25px;
 
@@ -218,7 +229,8 @@ footer {
 @media only screen and (min-width: 800px) {
 	header {
 		font-size:1em;
-	}	.flex-container-projects-child {
+	}
+		.flex-container-projects-child {
 	    width: 50%;
 	}
 }/*end mediaQ*/
