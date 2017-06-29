@@ -155,6 +155,7 @@ section.featured-projects-bar h2 {
 	display: flex;
 	flex-wrap: wrap;
 	max-width: 1280px;
+	line-height: 22px;
 }
 
 
@@ -164,7 +165,7 @@ section.featured-projects-bar h2 {
 
 .flex-container-projects-child {
 	width: 100%;
-	height: 650px;
+	height: 625px;
 	border: 2px solid #363636;/*still on the fence with this effect 
 	- this rule helps delineate the sections, enhancing the "card" 
 	material concept and seems like good visual design*/
@@ -172,7 +173,7 @@ section.featured-projects-bar h2 {
 
 .featured-project-card {
 	width: 100%; 
-	height: 575px; 
+	height: 550px; 
 	background-color: #363636; 
 	margin-top: 45px; 
 	padding: 12px;
