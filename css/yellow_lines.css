@@ -157,6 +157,11 @@ section.featured-projects-bar h2 {
 	max-width: 1280px;
 }
 
+
+.headline-text-color {
+	color: #e6e6e6;
+}
+
 .flex-container-projects-child {
 	width: 100%;
 	height: 650px;
@@ -203,10 +208,6 @@ footer {
 
 .text-center {
 	text-align: center;
-}
-
-.header-text-color {
-	color: #e6e6e6;
 }
 
 
