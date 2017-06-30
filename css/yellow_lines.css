@@ -118,14 +118,14 @@ box-shadow: 2px 2px 3px rgba(0, 0, 0, .4);
 }*/
 
 /*hero area styles*/
-section.hero-container {
+div.hero-container {
 	position: relative;
 	width: 100%;
     height: auto;
     z-index: 1;
 }
 
-section.hero-container img {
+div.hero-container img {
 	width: 100%;
 	max-width: 1280px;
 	height: auto;
@@ -136,14 +136,14 @@ section.hero-container img {
 
 
 /*featured projects area styles*/
-section.featured-projects-bar {
+div.featured-projects-bar {
 	width: 100%;
 	height: 100px;
 	position: relative;
 	border: 2px solid #363636;
 }
 
-section.featured-projects-bar h2 {
+div.featured-projects-bar h2 {
 	line-height: 100px;
 	background: #363636;
 	padding: 5px;
