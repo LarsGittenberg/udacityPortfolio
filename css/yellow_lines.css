@@ -11,7 +11,7 @@ html {
 }
 
 body {
-	background-color: #363636;
+	background-color: #3c3c3c;
 	height: 100%;
 	color: #febe15;
 	font-size:16px;
@@ -80,7 +80,7 @@ header {
 
 .header-container h1 {
 	line-height: 50px;
-	background: #363636;
+	background: #3c3c3c;
 	display: inline;
 	padding: 5px;
 	font-size: 2.3em;
@@ -88,7 +88,7 @@ header {
 }
 
 .header-container p {
-	background: #363636;
+	background: #3c3c3c;
 	display: block;
 	padding: 5px;
 	margin-top: 15px;
@@ -140,12 +140,12 @@ section.featured-projects-bar {
 	width: 100%;
 	height: 100px;
 	position: relative;
-	border: 2px solid #363636;
+	border: 2px solid #3c3c3c;
 }
 
 section.featured-projects-bar h2 {
 	line-height: 100px;
-	background: #363636;
+	background: #3c3c3c;
 	padding: 5px;
 	display:inline;
 	margin-left:25px;
@@ -167,7 +167,7 @@ section.featured-projects-bar h2 {
 .flex-container-projects-child {
 	width: 100%;
 	height: 625px;
-	border: 2px solid #363636;/*still on the fence with this effect 
+	border: 2px solid #3c3c3c;/*still on the fence with this effect 
 	- this rule helps delineate the sections, enhancing the "card" 
 	material concept and seems like good visual design*/
 }
@@ -175,7 +175,7 @@ section.featured-projects-bar h2 {
 .featured-project-card {
 	width: 100%; 
 	height: 550px; 
-	background-color: #363636; 
+	background-color: #3c3c3c; 
 	margin-top: 45px; 
 	padding: 12px;
 }
@@ -195,7 +195,7 @@ footer {
 	height:200px;
 }
 
- footer p {   background-color: #363636;
+ footer p {   background-color: #3c3c3c;
     display: inline-table;
     padding: 10px;
     margin: 10px 25px 10px 25px;
@@ -454,7 +454,7 @@ div.flex-container-projects-child:hover .leaders-animate {
 }
 
 .color-charcoal {
-	background-color: #363636;
+	background-color: #3c3c3c;
 }
 
 
