@@ -175,13 +175,18 @@ div.featured-projects-bar h2 {
 	background-color: #363636;
 	margin-top: 45px;
 	padding: 12px;
+	transition: 300ms all ease-in-out;
+}
+
+.flex-container-projects-child:hover  .featured-project-card{
+	box-shadow: none;
 }
 
 section.featured-project-card img {
 	width: 250px;
-	height: auto;
+	height: 150px;
 	position: relative;
-	top: -30px;
+	top: 0;
 	margin-left: auto;
 	margin-right: auto;
 	display: block;
@@ -269,7 +274,7 @@ a:hover {
 	background-color: mediumaquamarine;
 }
 
-.cards-animate {
+.img-container {
 	width: 250px;
 	height: 150px;
 	background-image: url(../images/cards_no_animate.png);
@@ -281,89 +286,6 @@ a:hover {
 	top: -35px;
 }
 
-div.flex-container-projects-child:hover .cards-animate {
-	background-image: url(../images/cards_animate.gif);
-}
-
-.resume-animate {
-	width: 250px;
-	height: 150px;
-	background-image: url(../images/resume_no_animate.png);
-	background-size: 250px;
-	display: block;
-	margin-right: auto;
-	margin-left: auto;
-	position: relative;
-	top: -35px;
-}
-
-div.flex-container-projects-child:hover .resume-animate {
-	background-image: url(../images/resume_animate.gif);
-}
-
-.keyboard-animate {
-	width: 250px;
-	height: 150px;
-	background-image: url(../images/keyboard_no_animate.png);
-	background-size: 250px;
-	display: block;
-	margin-right: auto;
-	margin-left: auto;
-	position: relative;
-	top: -35px;
-}
-
-div.flex-container-projects-child:hover .keyboard-animate {
-	background-image: url(../images/keyboard_animate.gif);
-}
-
-.bird-animate {
-	width: 250px;
-	height: 150px;
-	background-image: url(../images/bird_no_animate.png);
-	background-size: 250px;
-	display: block;
-	margin-right: auto;
-	margin-left: auto;
-	position: relative;
-	top: -35px;
-}
-
-div.flex-container-projects-child:hover .bird-animate {
-	background-image: url(../images/bird_animate.gif);
-}
-
-.holiday-animate {
-	width: 250px;
-	height: 150px;
-	background-image: url(../images/holiday_no_animate.png);
-	background-size: 250px;
-	display: block;
-	margin-right: auto;
-	margin-left: auto;
-	position: relative;
-	top: -35px;
-}
-
-div.flex-container-projects-child:hover .holiday-animate {
-	background-image: url(../images/holiday_animate.gif);
-}
-
-.leaders-animate {
-	width: 250px;
-	height: 150px;
-	background-image: url(../images/leaders_no_animate.jpg);
-	background-size: 250px;
-	display: block;
-	margin-right: auto;
-	margin-left: auto;
-	position: relative;
-	top: -35px;
-}
-
-div.flex-container-projects-child:hover .leaders-animate {
-	background-image: url(../images/leaders_animate.gif);
-}
 
 /*ui, buttons*/
 .btn {
