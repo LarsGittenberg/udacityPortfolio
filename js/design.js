@@ -9,6 +9,8 @@ $('.flex-container-projects-child').on('mouseenter', swapToAnimate);
 //to static/non-moving jpg
 $('.flex-container-projects-child').on('mouseleave', swapToStatic);
 
+// when page loads - hero animation triggered
+$( window ).on( "load", assembleImgLayers);
 
 /* function declarations */
 function swapToAnimate() {
@@ -33,6 +35,11 @@ function swapToStatic() {
 	//set the src of the target img
 	targetImg.attr('src', imgSrc_mouseleave);
 } // end swapToStatic
+
+function assembleImgLayers() {
+	// code to assemble hero elements
+	$('.img-layer-absolute').addClass('img-layer-assembled');
+}
 
 
 

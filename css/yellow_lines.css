@@ -121,15 +121,90 @@ box-shadow: 2px 2px 3px rgba(0, 0, 0, 0.4);
 div.hero-container {
 	position: relative;
 	width: 100%;
-    height: auto;
+	max-width: 1280px;
+	height: auto;
+    display: flex;
+    flex-wrap: wrap;
 }
 
+.hero-left,
+.hero-middle,
+.hero-right {
+	width: 33%;
+	max-width: 427px;
+	height: 400px;
+	position: relative;
+	display: block;
+}
+
+@media only screen and (min-width: 1100px) {
+	.hero-left,
+	.hero-middle,
+	.hero-right {
+		width: 33%;
+		max-width: 427px;
+		height: 700px;
+		position: relative;
+		display: block;
+	}
+}
+
+.img-layer-absolute {
+	position: absolute;
+	width:100%;
+}
+
+
+.start-transparent {
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+	opacity:0;
+	transition: 5000ms all ease;
+}
+
+.start-left {
+	top: 50%;
+	left: 50%;
+	transform: translate(-125%, -50%);
+	transition: 3000ms all ease-in-out;
+}
+
+.start-right {
+	top: 50%;
+	left: 50%;
+	transform: translate(100%, -50%);
+	transition: 2500ms all ease-in-out;
+}
+
+.start-top {
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -100%);
+	transition: 4000ms all ease-in-out;
+}
+
+.start-bottom {
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, 25%);
+	transition: 3000ms all ease-in-out;
+	opacity: 0;
+}
+
+.img-layer-assembled{
+	transform: translate(-50%, -50%);
+	opacity: 1;
+}
+
+/*
 div.hero-container img {
 	width: 100%;
 	max-width: 1280px;
 	height: auto;
-	display: block;/*somehow, this gets rid of the bottom gap*/
+	display: block;/*somehow, this gets rid of the bottom gap
 }
+*/
 
 
 /*featured projects area styles*/
