@@ -103,6 +103,8 @@ div.hero-container {
 	height: auto;
     display: flex;
     flex-wrap: wrap;
+    background-image:url(../images/black_grid.png);
+    background-size: 3px;
 }
 
 .hero-left,

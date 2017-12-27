@@ -4,8 +4,8 @@
     cursor: pointer;
     background-color: darkcyan;
     padding: 5px;
-    width: 50px;
-    height: 50px;
+    width: 51px;
+    height: 51px;
     text-align: center;
     box-sizing: border-box;
     border-radius: 2px 2px;
@@ -60,6 +60,9 @@
     overflow-x: hidden; /* Disable horizontal scroll */
     transition: 500ms ease-in-out; /* 0.3 second transition effect to slide in
     the overlay (height or width, depending on reveal) */
+    background-image: url(../images/yellow_grid.png);
+    background-repeat: repeat;
+    background-size: 3px;
 }
 
 /* Position the content inside the overlay */

@@ -1,6 +1,7 @@
 /* jQuery functionality for Lawrence Getubig Portfolio*/
 
 /* event listeners*/
+
 // when user hovers/mouseenters area (flex-container-projects-child), switch img
 //to animated gif
 $('.flex-container-projects-child').on('mouseenter', swapToAnimate);
