@@ -1,0 +1,142 @@
+/* menu icon/navigation styles*/
+.menu-icon-container {
+    display: inline-block;
+    cursor: pointer;
+    background-color: darkcyan;
+    padding: 5px;
+    width: 50px;
+    height: 50px;
+    text-align: center;
+    box-sizing: border-box;
+    border-radius: 2px 2px;
+    z-index: 100;/* will always be clickable since highest in stack order*/
+
+    position: fixed;
+    top: 15px;
+    left: 15px;
+    transition: 300ms all ease-in-out;
+}
+
+.menu-icon-container:hover {
+    background-color: mediumaquamarine;
+
+}
+
+.bar1, .bar2, .bar3 {
+    width: 40px;
+    height: 3px;
+    background-color: #f0f0f0;
+    margin: 8px 0;
+    transition: 300ms all ease-in-out;
+
+}
+
+.change.bar1 {
+    -webkit-transform: rotate(-45deg) translate(-9px, 6px);
+    transform: rotate(-45deg) translate(-7px, 8px);
+}
+
+.change.bar2 {opacity: 0;}
+
+.change.bar3 {
+    -webkit-transform: rotate(45deg) translate(-8px, -8px);
+    transform: rotate(45deg) translate(-7px, -8px);
+}
+
+
+/* menu overlay background styles */
+.overlay {
+    /* Height & width depends on how you want to reveal the overlay (see JS below) */
+    height: 100%;
+    width: 0;
+    position: fixed; /* Stay in place */
+    z-index: 1; /* Sit on top */
+    left: 0;
+    top: 0;
+    background-color: rgb(0,0,0); /* Black fallback color */
+    background-color: rgba(0,0,0, 0.9); /* Black w/opacity */
+    background-image: url();
+    overflow-x: hidden; /* Disable horizontal scroll */
+    transition: 500ms ease-in-out; /* 0.3 second transition effect to slide in
+    the overlay (height or width, depending on reveal) */
+}
+
+/* Position the content inside the overlay */
+.overlay-content {
+    position: relative;
+    top: 25%; /* 25% from the top */
+    width: 100%; /* 100% width */
+    text-align: center; /* Centered text/links */
+    margin-top: 30px; /* 30px top margin to avoid conflict with the close button on smaller
+    screens */
+}
+
+/* The navigation links inside the overlay */
+.overlay a {
+    padding: 8px;
+    text-decoration: none;
+    font-size: 36px;
+    color: darkcyan;
+    display: block; /* Display block instead of inline */
+    transition: 0.3s; /* Transition effects on hover (color) */
+}
+
+/* When you mouse over the navigation links, change their color */
+.overlay a:hover, .overlay a:focus {
+    color: mediumaquamarine;
+}
+
+/* When the height of the screen is less than 450 pixels, change the font-size of the links and
+position the close button again, so they don't overlap */
+@media screen and (max-height: 450px) {
+    .overlay a {font-size: 20px}
+    .overlay .closebtn {
+        font-size: 40px;
+        top: 15px;
+        right: 35px;
+    }
+}
+
+#myNav {
+    width: 0;
+}
+
+#myNav.open-nav {
+    width: 100%!important;
+}
+
+/*ui, buttons*/
+.btn {
+    background-color: darkcyan;
+    padding:10px;
+    color: white;
+    display: inline-block;
+    margin: 15px 15px 15px 0;
+    border-radius: 2px 2px;
+}
+
+.btn:hover {
+    background-color: mediumaquamarine;
+}
+
+/*anchor-link styles, btn hover effects*/
+a {
+    color: darkcyan;
+}
+
+a:hover {
+    color: mediumaquamarine;
+}
+
+a, .btn {
+    transition:300ms ease-in-out;
+}
+
+
+
+
+
+
+
+
+

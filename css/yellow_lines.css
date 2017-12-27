@@ -26,9 +26,6 @@ ul {
 	margin-left: 20px;
 }
 
-a {
-	color: darkcyan;
-}
 
 .highlight-orange {
 	color: #ff7f00;
@@ -63,47 +60,7 @@ img#logo {
 	width:80px;
 }
 
-/* menu icon/nagigation styles*/
-.menu-icon-container {
-    display: inline-block;
-    cursor: pointer;
-    background-color: darkcyan;
-    padding: 5px;
-    width: 50px;
-    height: 50px;
-    text-align: center;
-    box-sizing: border-box;
-    border-radius: 2px 2px;
-    z-index: 100;/* will always be clickable since highest in stack order*/
 
-    position: absolute;
-	top: 50%;
-	bottom: auto;
-	-ms-transform: translateY(-50%);
-	-webkit-transform: translateY(-50%);
-	transform: translateY(-50%);
-	left: 25px;
-}
-
-.bar1, .bar2, .bar3 {
-    width: 40px;
-    height: 3px;
-    background-color: #f0f0f0;
-    margin: 8px 0;
-    transition: 300ms all ease-in-out;
-}
-
-.change.bar1 {
-    -webkit-transform: rotate(-45deg) translate(-9px, 6px);
-    transform: rotate(-45deg) translate(-7px, 8px);
-}
-
-.change.bar2 {opacity: 0;}
-
-.change.bar3 {
-    -webkit-transform: rotate(45deg) translate(-8px, -8px);
-    transform: rotate(45deg) translate(-7px, -8px);
-}
 
 header {
 	width: 100%;
@@ -137,27 +94,6 @@ header {
 	box-shadow: 5px 5px 3px rgba(0, 0, 0, 0.2);
 }
 
-
-/* comment out but not delete in case need this code snippet for
-tab design again
-.circle-tab {
-width: 100px;
-height: 100px;
-background-color: #febe15;
-position: absolute;
-left: -50px;
-bottom: -50px;
-border-radius: 50%;
-z-index: 1;
-box-shadow: 5px 5px 3px rgba(0, 0, 0, 0.2);
-transition: 200ms ease-in-out;
-cursor: pointer;
-}
-
-.circle-tab:hover {
-background-color: #00bcd4;
-box-shadow: 2px 2px 3px rgba(0, 0, 0, 0.4);
-}*/
 
 /*hero area styles*/
 div.hero-container {
@@ -193,7 +129,7 @@ div.hero-container {
 
 .img-layer-absolute {
 	position: absolute;
-	width:100%;
+	width:85%;
 }
 
 
@@ -296,9 +232,6 @@ div.featured-projects-bar h2 {
 	transition: 300ms all ease-in-out;
 }
 
-.flex-container-projects-child:hover  .featured-project-card{
-	box-shadow: none;
-}
 
 section.featured-project-card img {
 	width: 250px;
@@ -379,18 +312,9 @@ footer {
 }/*end medidaQ*/
 
 
-/*hover effects*/
-a, .btn {
-	transition:300ms ease-in-out;
-}
 
-a:hover {
-	color: mediumaquamarine;
-}
 
-.btn:hover {
-	background-color: mediumaquamarine;
-}
+
 
 .img-container {
 	width: 250px;
@@ -401,18 +325,6 @@ a:hover {
 	margin-left: auto;
 	position: relative;
 	top: -35px;
-}
-
-
-/*ui, buttons*/
-.btn {
-	background-color: darkcyan;
-	padding:10px;
-	color: white;
-	display: inline-block;
-	margin: 15px 15px 15px 0;
-	border-radius: 2px 2px;
-	transition: 200ms ease-in-out;
 }
 
 

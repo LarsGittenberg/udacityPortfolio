@@ -13,7 +13,7 @@ $('.flex-container-projects-child').on('mouseleave', swapToStatic);
 $( window ).on( "load", assembleImgLayers);
 
 // when user clicks menu navigation icon
-$('.menu-icon-container').on('click', changeToX);
+$('.menu-icon-container').on('click', changeToX_openNav);
 
 /* function declarations */
 function swapToAnimate() {
@@ -46,13 +46,14 @@ function assembleImgLayers() {
 }// end assembleImgLayers
 
 
-function changeToX() {
+function changeToX_openNav() {
 	//code to change pancake to X
-
 	var targetBars = $('.menu-icon-container').children();
-
 	targetBars.toggleClass('change');
-	console.log(targetBars);
+
+	// code to open/close Nav overlay
+	var targetNav = $('#myNav');
+	targetNav.toggleClass('open-nav');
 }// end changeToX
 
 
