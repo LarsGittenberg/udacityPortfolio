@@ -63,6 +63,48 @@ img#logo {
 	width:80px;
 }
 
+/* menu icon/nagigation styles*/
+.menu-icon-container {
+    display: inline-block;
+    cursor: pointer;
+    background-color: darkcyan;
+    padding: 5px;
+    width: 50px;
+    height: 50px;
+    text-align: center;
+    box-sizing: border-box;
+    border-radius: 2px 2px;
+    z-index: 100;/* will always be clickable since highest in stack order*/
+
+    position: absolute;
+	top: 50%;
+	bottom: auto;
+	-ms-transform: translateY(-50%);
+	-webkit-transform: translateY(-50%);
+	transform: translateY(-50%);
+	left: 25px;
+}
+
+.bar1, .bar2, .bar3 {
+    width: 40px;
+    height: 5px;
+    background-color: #f0f0f0;
+    margin: 6px 0;
+    transition: 0.4s;
+}
+
+.change.bar1 {
+    -webkit-transform: rotate(-45deg) translate(-9px, 6px);
+	transform: rotate(-45deg) translate(-9px, 6px);
+}
+
+.change.bar2 {opacity: 0;}
+
+.change.bar3 {
+    -webkit-transform: rotate(45deg) translate(-8px, -8px);
+    transform: rotate(45deg) translate(-8px, -8px);
+}
+
 header {
 	width: 100%;
 	height: 130px;
@@ -352,7 +394,6 @@ a:hover {
 .img-container {
 	width: 250px;
 	height: 150px;
-	background-image: url(../images/cards_no_animate.png);
 	background-size: 250px;
 	display: block;
 	margin-right: auto;

@@ -12,6 +12,9 @@ $('.flex-container-projects-child').on('mouseleave', swapToStatic);
 // when page loads - hero animation triggered
 $( window ).on( "load", assembleImgLayers);
 
+// when user clicks menu navigation icon
+$('.menu-icon-container').on('click', changeToX);
+
 /* function declarations */
 function swapToAnimate() {
 	// set the target img as a variable
@@ -36,10 +39,21 @@ function swapToStatic() {
 	targetImg.attr('src', imgSrc_mouseleave);
 } // end swapToStatic
 
+
 function assembleImgLayers() {
 	// code to assemble hero elements
 	$('.img-layer-absolute').addClass('img-layer-assembled');
-}
+}// end assembleImgLayers
+
+
+function changeToX() {
+	//code to change pancake to X
+
+	var targetBars = $('.menu-icon-container').children();
+
+	targetBars.toggleClass('change');
+	console.log(targetBars);
+}// end changeToX
 
 
 
