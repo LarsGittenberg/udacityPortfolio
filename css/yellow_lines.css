@@ -138,7 +138,7 @@ div.hero-container {
 	left: 50%;
 	transform: translate(-50%, -50%);
 	opacity:0;
-	transition: 5000ms all ease;
+	transition: 2500ms all ease;
 	transition-delay: 2500ms;
 }
 
@@ -160,7 +160,8 @@ div.hero-container {
 	top: 50%;
 	left: 50%;
 	transform: translate(-50%, -100%);
-	transition: 4000ms all ease-in-out;
+	transition: 4600ms all ease;
+	transition-delay: 400ms;
 }
 
 .start-bottom {
