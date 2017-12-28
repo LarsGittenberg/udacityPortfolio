@@ -11,8 +11,8 @@ $('.flex-container-projects-child').on('mouseenter', swapToAnimate);
 $('.flex-container-projects-child').on('mouseleave', swapToStatic);
 
 // when page loads - hero animation triggered
-$( window ).on( "load", assembleImgLayers);
-
+//$( window ).on( "load", assembleImgLayers);
+$(document).ready(assembleImgLayers);
 // when user clicks menu navigation icon
 $('.menu-icon-container').on('click', changeToX_openNav);
 
