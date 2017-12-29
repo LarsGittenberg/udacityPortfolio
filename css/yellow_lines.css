@@ -148,6 +148,7 @@ div.hero-container {
 	left: 50%;
 	transform: translate(-125%, -50%);
 	transition: 3000ms all ease-in-out;
+	opacity: 0;
 }
 
 .start-right {
@@ -155,13 +156,15 @@ div.hero-container {
 	left: 50%;
 	transform: translate(100%, -50%);
 	transition: 2500ms all ease-in-out;
+	opacity: 0;
 }
 
 .start-right-fast {
 	top: 50%;
 	left: 50%;
 	transform: translate(75%, -50%);
-	transition: 1700ms all ease-in-out;
+	transition: 2300ms all cubic-bezier(0.27, 0.86, 0.4, 1.26);
+	opacity: 0;
 }
 
 
@@ -171,6 +174,7 @@ div.hero-container {
 	transform: translate(-50%, -100%);
 	transition: 4600ms all ease;
 	transition-delay: 400ms;
+	opacity: 0;
 }
 
 .start-bottom {
