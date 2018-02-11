@@ -2,28 +2,28 @@
 
 /* event listeners*/
 
-// when user hovers/mouseenters area (flex-container-projects-child), switch img
+// when user hovers/mouseenters area (featured-project-card), switch img
 //to animated gif
-$('.flex-container-projects-child').on('mouseenter', swapToAnimate);
+$('.featured-project-card').on('mouseenter', swapToAnimate);
 
-// when user exits/mouseleaves area (flex-container-projects-child), switch img
+// when user exits/mouseleaves area (flex-container-child-projects), switch img
 //to static/non-moving jpg
-$('.flex-container-projects-child').on('mouseleave', swapToStatic);
+$('.featured-project-card').on('mouseleave', swapToStatic);
 
-// when page loads - hero animation triggered
-//$( window ).on( "load", assembleImgLayers);
-$(document).ready(assembleImgLayers);
+// when page hero/home page loads - hero animation triggered
+$( window ).on( 'load', assembleImgLayers);
+//$(document).ready(assembleImgLayers); //what is the diff between this and window-on-load method?
 // when user clicks menu navigation icon
 $('.menu-icon-container').on('click', changeToX_openNav);
 
 /* function declarations */
 function swapToAnimate() {
 	// set the target img as a variable
-	var targetImg = $(this).find('img');//in this case, 'this' is div.flex-container-projects-child
+	var targetImg = $(this).find('img');//in this case, 'this' is div.flex-container-child-projects
 	// get target img id
 	var imgId = targetImg.attr('id');
 	// create src string based on target id, eg images/bird_animate.gif
-	var imgSrc_mouseenter = 'images/' + imgId + '_animate.gif';
+	var imgSrc_mouseenter = 'images/animate/' + imgId + '_animate.gif';
 	//set the src of the target img
 	targetImg.attr('src', imgSrc_mouseenter);
 }// end swapToAnimate
@@ -35,7 +35,7 @@ function swapToStatic() {
 	// get target img id
 	var imgId = targetImg.attr('id');
 	// create src string based on target id, eg images/bird_static.jpg
-	var imgSrc_mouseleave = 'images/' + imgId + '_static.jpg';
+	var imgSrc_mouseleave = 'images/animate/' + imgId + '_static.jpg';
 	//set the src of the target img
 	targetImg.attr('src', imgSrc_mouseleave);
 } // end swapToStatic
