@@ -1,4 +1,4 @@
-
+ 
 * {
 	box-sizing: border-box;
 	margin: 0;
@@ -277,6 +277,7 @@ div.project-header-bar h2 {
 	display: block;
 }
 
+/*this can apply to gifs or imgs - the style allows graphic to be 320px wide*/
 .gallery-icon-gif {
 	width: 320px;
 	height: auto;
@@ -542,6 +543,10 @@ div.project-header-bar h2 {
 
 .piday-instagram-ad {
 	background-image: url(../images/ads/piday_instagram.png);
+}
+
+.dogyear-instagram-ad {
+	background-image: url(../images/ads/dogyear_instagram.png);
 }
 
 .mynctm-ad {
