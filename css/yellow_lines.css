@@ -283,6 +283,7 @@ div.project-header-bar h2 {
 	height: auto;
 	margin: 50px auto 10px auto;
 	display: block;
+	box-shadow: 5px 5px 3px rgba(0, 0, 0, 0.2);
 }
 
 .gallery-print-img {
@@ -290,6 +291,7 @@ div.project-header-bar h2 {
 	height: auto;
 	margin: 50px auto 10px auto;
 	display: block;
+	box-shadow: 5px 5px 3px rgba(0, 0, 0, 0.2);
 }
 
 /*cutout photography portfolio styles*/
