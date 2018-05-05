@@ -98,9 +98,9 @@ div.hero-container {
     flex-wrap: wrap;
 }
 
-.hero-left,
-.hero-middle,
-.hero-right {
+.hero-web,
+.hero-graphic,
+.hero-photo {
 	width: 33%;
 	max-width: 427px;
 	height: 200px;
@@ -109,17 +109,17 @@ div.hero-container {
 }
 
 @media only screen and (min-width: 800px) {
-	.hero-left,
-	.hero-middle,
-	.hero-right {
+	.hero-web,
+	.hero-graphic,
+	.hero-photo {
 		height: 400px;
 	}
 }
 
 @media only screen and (min-width: 1100px) {
-	.hero-left,
-	.hero-middle,
-	.hero-right {
+	.hero-web,
+	.hero-graphic,
+	.hero-photo {
 		height: 700px;
 	}
 }
