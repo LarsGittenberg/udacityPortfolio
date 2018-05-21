@@ -1,0 +1,848 @@
+
+* {
+	box-sizing: border-box;
+	margin: 0;
+	padding: 0;
+}
+
+html {
+	width: 100%;
+	position: relative;
+}
+
+body {
+	background-color: #363636;
+	height: 100%;
+	color: #febe15;
+	font-size:16px;
+	max-width: 1280px;
+	margin-left: auto;
+	margin-right: auto;
+	display: block;
+	font-family: 'Montserrat', sans-serif;
+}
+
+ul {
+	margin-left: 20px;
+}
+
+
+.highlight-orange {
+	color: #ff7f00;
+}
+
+/*a:visited {
+	color: darkorange;
+}*/
+
+/*typography options*/
+.montserrat {
+	font-family: 'Montserrat', sans-serif;
+}
+
+.source-code-pro {
+	font-family: 'Source Code Pro', 'Arial', sans-serif!important;
+}
+
+.source-code-pro-light {
+	font-weight: 300;
+}
+
+.source-code-pro-regular {
+	font-weight: 400;
+}
+
+/*header styles*/
+header {
+	width: 100%;
+	height: 130px;
+	position: relative;
+	display: flex;
+	flex-direction: row-reverse;
+	font-size:.8em;
+}
+
+.header-container {
+	margin-top: 15px;
+	text-align: right;
+	padding-right: 0;
+}
+
+
+
+.header-container h1 {
+	line-height: 50px;
+	background: #363636;
+	display: inline;
+	padding: 5px 10px 5px 10px;
+	font-size: 2.0em;
+	box-shadow: 5px 5px 3px rgba(0, 0, 0, 0.2);
+}
+
+.header-container p {
+	background: #363636;
+	display: block;
+	padding: 5px;
+	margin-top: 15px;
+	box-shadow: 5px 5px 3px rgba(0, 0, 0, 0.2);
+}
+
+
+/*hero area styles*/
+div.hero-container {
+	position: relative;
+	width: 100%;
+	max-width: 1280px;
+	height: auto;
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.hero-web,
+.hero-graphic,
+.hero-photo {
+	width: 33%;
+	max-width: 427px;
+	height: 200px;
+	position: relative;
+	display: block;
+}
+
+@media only screen and (min-width: 800px) {
+	.hero-web,
+	.hero-graphic,
+	.hero-photo {
+		height: 400px;
+	}
+}
+
+@media only screen and (min-width: 1100px) {
+	.hero-web,
+	.hero-graphic,
+	.hero-photo {
+		height: 700px;
+	}
+}
+
+.img-layer-absolute {
+	position: absolute;
+	width:85%;
+}
+
+
+.start-transparent {
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+	opacity:0;
+	transition: 2500ms all ease;
+	transition-delay: 2400ms;
+}
+
+.start-left {
+	top: 50%;
+	left: 50%;
+	transform: translate(-125%, -50%);
+	transition: 3000ms all ease-in-out;
+	/*transition-delay: 500ms;*/
+	opacity: 0;
+}
+
+.start-right {
+	top: 50%;
+	left: 50%;
+	transform: translate(100%, -50%);
+	transition: 2500ms all ease-in-out;
+	/*transition-delay: 500ms;*/
+	opacity: 0;
+}
+
+.start-right-fast {
+	top: 50%;
+	left: 50%;
+	transform: translate(75%, -50%);
+	transition: 2300ms all cubic-bezier(0.27, 0.86, 0.4, 1.26);
+	/*transition-delay: 500ms;*/
+	opacity: 0;
+}
+
+
+.start-top {
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -100%);
+	transition: 4600ms all ease;
+	transition-delay: 400ms;
+	opacity: 0;
+}
+
+.start-bottom {
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, 25%);
+	transition: 3000ms all ease-in-out;
+	/*transition-delay: 500ms;*/
+	opacity: 0;
+}
+
+.img-layer-assembled{
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+	opacity: 1;
+}
+
+/* project header bar/header */
+div.project-header-bar {
+	width: 100%;
+	height: 100px;
+	position: relative;
+	border: 2px solid #363636;
+}
+
+div.project-header-bar h2 {
+	line-height: 100px;
+	background: #363636;
+	padding: 5px;
+	display:inline;
+	margin-left:25px;
+	box-shadow: 5px 5px 3px rgba(0, 0, 0, 0.2);
+	font-size: 1.1em;
+}
+
+/*featured projects main and subcategories pages styles*/
+.flex-container-main {
+	display: flex;
+	flex-wrap: wrap;
+	max-width: 1280px;
+	line-height: 22px;
+}
+
+.flex-container-main p {
+	width: 100%;
+	padding: 5px 25px 5px 25px;
+}
+
+/* info box and info box p provided as area to explain gallery materials */
+.info-box {
+	padding: 25px;
+	width: 100%;
+}
+
+.info-box p {
+	max-width: 400px;
+}
+
+.flex-container-child-projects p {
+	padding: 5px 0 5px 0;
+}
+
+.headline-text-color {
+	color: #e6e6e6;
+}
+
+.flex-container-child-gallery {
+	width: 100%;
+	height: 400px;
+
+}
+
+/* for size of retouch photos ...*/
+.gallery-photo {
+	width: 300px;
+	height: 300px;
+}
+
+/* for nctm ad sizes*/
+.gallery-ad {
+	width: 300px;
+	height: 250px;
+}
+
+.gallery-item {
+	border-radius: 3px 3px;
+	margin-left: auto;
+	margin-right: auto;
+	display: block;
+	margin-top:50px;
+	background-size: 300px;
+	background-repeat: no-repeat;
+	box-shadow: 5px 5px 3px rgba(0, 0, 0, 0.2);
+}
+
+.gallery-icon-img {
+	width: 250px;
+	height: auto;
+	margin: 50px auto 10px auto;
+	display: block;
+}
+
+/*this can apply to gifs or imgs - the style allows graphic to be 320px wide*/
+.gallery-icon-gif {
+	width: 320px;
+	height: auto;
+	margin: 50px auto 10px auto;
+	display: block;
+	box-shadow: 5px 5px 3px rgba(0, 0, 0, 0.2);
+}
+
+.gallery-print-img {
+	width: 300px;
+	height: auto;
+	margin: 50px auto 10px auto;
+	display: block;
+	box-shadow: 5px 5px 3px rgba(0, 0, 0, 0.2);
+}
+
+/*cutout photography portfolio styles*/
+.kansas-cutout {
+	background-image: url(../images/cutouts/kansas.jpg);
+}
+
+.dragon-cutout {
+	background-image: url(../images/cutouts/dragon.jpg);
+}
+
+.cowboy-cutout {
+	background-image: url(../images/cutouts/cowboy.jpg);
+}
+
+.batman-cutout {
+	background-image: url(../images/cutouts/batman.jpg);
+}
+
+.picnic-cutout {
+	background-image: url(../images/cutouts/picnic.jpg);
+}
+
+.cloudcity-cutout {
+	background-image: url(../images/cutouts/cloudcity.jpg);
+}
+
+.house-cutout {
+	background-image: url(../images/cutouts/house.jpg);
+}
+
+.ship-cutout {
+	background-image: url(../images/cutouts/ship.jpg);
+}
+
+.snowwhite-cutout {
+	background-image: url(../images/cutouts/snowwhite.jpg);
+}
+
+.archie-cutout {
+	background-image: url(../images/cutouts/archie.jpg);
+}
+
+.bond-cutout {
+	background-image: url(../images/cutouts/bond.jpg);
+}
+
+.tatooine-cutout {
+	background-image: url(../images/cutouts/tatooine.jpg);
+}
+
+.midnight-cutout {
+	background-image: url(../images/cutouts/midnight.jpg);
+}
+
+.nobility-cutout {
+	background-image: url(../images/cutouts/nobility.jpg);
+}
+
+.heman-cutout {
+	background-image: url(../images/cutouts/heman.jpg);
+}
+
+.skeletor-cutout {
+	background-image: url(../images/cutouts/skeletor.jpg);
+}
+
+.grayskull-cutout {
+	background-image: url(../images/cutouts/grayskull.jpg);
+}
+
+.forest-cutout {
+	background-image: url(../images/cutouts/forest.jpg);
+}
+
+.flash-cutout {
+	background-image: url(../images/cutouts/flash.jpg);
+}
+
+
+/* posed encounters series photo portfolio page styles*/
+.jeannie-posed {
+	background-image: url(../images/posed/jeannie.jpg);
+}
+
+.vasia-posed {
+	background-image: url(../images/posed/vasia.jpg);
+}
+
+.andrea-posed {
+	background-image: url(../images/posed/andrea.jpg);
+}
+
+.winnie-posed {
+	background-image: url(../images/posed/winnie.jpg);
+}
+
+.gretchen-posed {
+	background-image: url(../images/posed/gretchen.jpg);
+}
+
+.matt-posed {
+	background-image: url(../images/posed/matt.jpg);
+}
+
+.todd-posed {
+	background-image: url(../images/posed/todd.jpg);
+}
+
+.chuck-posed {
+	background-image: url(../images/posed/chuck.jpg);
+}
+
+.chuck2-posed {
+	background-image: url(../images/posed/chuck2.jpg);
+}
+
+.bonnie-posed {
+	background-image: url(../images/posed/bonnie.jpg);
+}
+
+.david-posed {
+	background-image: url(../images/posed/david.jpg);
+}
+
+.nick-posed {
+	background-image: url(../images/posed/nick.jpg);
+}
+
+.hoffman-posed {
+	background-image: url(../images/posed/hoffman.jpg);
+}
+
+.katie-posed {
+	background-image: url(../images/posed/katie.jpg);
+}
+
+.shirin-posed {
+	background-image: url(../images/posed/shirin.jpg);
+}
+
+
+
+/* photo retouch portfolio styles */
+.gallery-retouch-photo {
+	width: 300px;
+	height: 300px;
+	background-size: 600px!important;
+	background-position: 0;
+}
+
+.gallery-retouch-photo:hover {
+	background-position: -300px;
+}
+.anika-retouch {
+	background-image: url(../images/retouch/anika.jpg);
+}
+
+.julia-retouch {
+	background-image: url(../images/retouch/julia.jpg);
+}
+
+.stephanie-retouch {
+	background-image: url(../images/retouch/stephanie.jpg);
+}
+
+.nico-retouch {
+	background-image: url(../images/retouch/nico.jpg);
+}
+
+.kathy-retouch {
+	background-image: url(../images/retouch/kathy.jpg);
+}
+
+.wedding-retouch {
+	background-image: url(../images/retouch/wedding.jpg);
+}
+
+.juris-retouch {
+	background-image: url(../images/retouch/juris.jpg);
+}
+
+.kevin-retouch {
+	background-image: url(../images/retouch/kevin.jpg);
+}
+
+.hobbes-retouch {
+	background-image: url(../images/retouch/hobbes.jpg);
+}
+
+.apa-retouch {
+	background-image: url(../images/retouch/apa.jpg);
+}
+
+.sujo-retouch {
+	background-image: url(../images/retouch/sujo.jpg);
+}
+
+.boxer1-retouch {
+	background-image: url(../images/retouch/boxer1.jpg);
+}
+
+.aiden-retouch {
+	background-image: url(../images/retouch/aiden.jpg);
+}
+
+.shannon-retouch {
+	background-image: url(../images/retouch/shannon.jpg);
+}
+
+.family-retouch {
+	background-image: url(../images/retouch/family.jpg);
+}
+
+.boxer2-retouch {
+	background-image: url(../images/retouch/boxer2.jpg);
+}
+
+.tron-retouch {
+	background-image: url(../images/retouch/tron.jpg);
+}
+
+.jack-retouch {
+	background-image: url(../images/retouch/jack.jpg);
+}
+
+.aiden2-retouch {
+	background-image: url(../images/retouch/aiden2.jpg);
+}
+
+.milette-retouch {
+	background-image: url(../images/retouch/milette.jpg);
+}
+
+.dad-retouch {
+	background-image: url(../images/retouch/dad.jpg);
+}
+
+/*web ads graphic design portfolio styles*/
+.ilovemath-ad {
+	background-image: url(../images/ads/ilovemath.png);
+}
+
+.ilovemath-instagram-ad {
+	background-image: url(../images/ads/ilovemath_instagram.gif);
+}
+
+.euler-instagram-ad {
+	background-image: url(../images/ads/euler_instagram.gif);
+}
+
+.piday-instagram-ad {
+	background-image: url(../images/ads/piday_instagram.png);
+}
+
+.dogyear-instagram-ad {
+	background-image: url(../images/ads/dogyear_instagram.png);
+}
+
+.mynctm-ad {
+	background-image: url(../images/ads/mynctm.png);
+}
+
+.summer-ad {
+	background-image: url(../images/ads/summer.png);
+}
+
+.webinar-ad {
+	background-image: url(../images/ads/webinar.png);
+}
+
+.dr-ad {
+	background-image: url(../images/ads/dr.png);
+}
+
+.leaders-ad {
+	background-image: url(../images/ads/leaders.png);
+}
+
+.books-ad {
+	background-image: url(../images/ads/books.png);
+}
+
+.met-ad {
+	background-image: url(../images/ads/met.png);
+}
+
+.blog-ad {
+	background-image: url(../images/ads/blog.png);
+}
+
+.onlineevents-ad {
+	background-image: url(../images/ads/onlineevents.png);
+}
+
+.flex-container-child-projects {
+	width: 100%;
+	height: auto;
+	border: 2px solid #363636;/*still on the fence with this effect
+	- this rule helps delineate the sections, enhancing the "card"
+	material concept and seems like good visual design*/
+}
+
+.featured-project-card {
+	width: 100%;
+	height: auto;
+	background-color: #363636;
+	margin-top: 45px;
+	padding: 12px;
+	transition: 300ms all ease-in-out;
+}
+
+
+section.featured-project-card img {
+	width: 250px;
+	height: 150px;
+	position: relative;
+	top: 0;
+	margin-left: auto;
+	margin-right: auto;
+	display: block;
+}
+
+footer {
+	width:100%;
+	height:200px;
+}
+
+ footer p {   background-color: #363636;
+    display: inline-table;
+    padding: 10px;
+    margin: 10px 25px 10px 25px;
+	box-shadow: 5px 5px 3px rgba(0, 0, 0, 0.2);
+}
+
+.copyright {
+	float: right;
+}
+
+
+/*layout helper classes*/
+.margin-bottom {
+	margin-bottom: 10px;
+}
+
+.text-center {
+	text-align: center;
+}
+
+
+/*media queries*/
+@media only screen and (min-width: 500px) {
+	.header-container {
+		padding-right: 25px;
+	}
+
+	.header-container h1 {
+		font-size: 2.3em;
+	}
+
+	.flex-container-child-projects {
+		height: 625px;
+	}
+
+
+	.featured-project-card {
+		width: 350px;
+		height: 550px;
+		display: block;
+		margin-right: auto;
+		margin-left: auto;
+		box-shadow: 5px 5px 5px rgba(0, 0, 0, 0.3);
+	}
+}/*end mediaQ*/
+
+@media only screen and (min-width: 800px) {
+
+	.header-container {
+		font-size: 1em;
+	}
+
+	div.project-header-bar h2 {
+		font-size: 1.5em;
+	}
+
+	.flex-container-child-projects {
+ 	   width: 50%;
+	}
+
+	.flex-container-child-gallery {
+		width: 50%;
+	/*for photo gallery*/
+	}
+}/*end mediaQ*/
+
+@media only screen and (min-width: 1100px) {
+	.flex-container-child-projects {
+		width: 33.3%;
+	}
+	.flex-container-child-gallery {
+	width: 33.3%;
+	/*for photo gallery*/
+	}
+}/*end medidaQ*/
+
+
+.img-container {
+	width: 250px;
+	height: 150px;
+	background-size: 250px;
+	display: block;
+	margin-right: auto;
+	margin-left: auto;
+	position: relative;
+	top: -35px;
+}
+
+
+/*pattern and background color classes*/
+.pattern-diagonal-up {
+	background-image: url(../images/pattern/yellow_lines_up.png);
+	background-size: 25px;
+}
+
+.pattern-diagonal-up-var {
+	background-image: url(../images/pattern/yellow_lines_up_var.png);
+	background-size: 8px;
+}
+
+.pattern-diagonal-down {
+	background-image: url(../images/pattern/yellow_lines_down.png);
+	background-size: 25px;
+}
+
+.pattern-horizontal {
+	background-image: url(../images/pattern/yellow_lines_hor.png);
+	background-size: 10px;
+}
+
+.pattern-vertical {
+	background-image: url(../images/pattern/yellow_lines_vert.png);
+	background-size: 10px;
+}
+
+.pattern-dots-grid-dense {
+	background-image: url(../images/pattern/yellow_dots_grid_dense.png);
+	background-size: 3px;
+}
+
+.pattern-dots-grid-sparse {
+	background-image: url(../images/pattern/yellow_dots_grid_sparse.png);
+	background-size: 3px;
+}
+
+.pattern-dots-grid-var {
+	background-image: url(../images/pattern/yellow_dots_grid2.png);
+	background-size: 3px;
+}
+
+.pattern-dots-stagger {
+	background-image: url(../images/pattern/yellow_dots_stagger.png);
+	background-size: 10px;
+}
+
+.pattern-grid-black {
+	background-image:url(../images/pattern/black_grid.png);
+	background-size: 3px;
+}
+
+.pattern-grid-dark-yellow {
+    background-image: url(../images/pattern/yellow_grid.png);
+    background-repeat: repeat;
+    background-size: 3px;
+}
+
+/* NEW Gray pattern and background color classes*/
+.gray-pattern-diagonal-up {
+	background-image: url(../images/pattern/gray_lines_up.png);
+	background-size: 25px;
+}
+
+.gray-pattern-diagonal-up-var {
+	background-image: url(../images/pattern/gray_lines_up_var.png);
+	background-size: 8px;
+}
+
+.gray-pattern-diagonal-down {
+	background-image: url(../images/pattern/gray_lines_down.png);
+	background-size: 25px;
+}
+
+.gray-pattern-horizontal {
+	background-image: url(../images/pattern/gray_lines_hor.png);
+	background-size: 10px;
+}
+
+.gray-pattern-vertical {
+	background-image: url(../images/pattern/gray_lines_vert.png);
+	background-size: 10px;
+}
+
+.gray-pattern-dots-grid-dense {
+	background-image: url(../images/pattern/gray_dots_grid_dense.png);
+	background-size: 3px;
+}
+
+.gray-pattern-dots-grid-sparse {
+	background-image: url(../images/pattern/gray_dots_grid_sparse.png);
+	background-size: 3px;
+}
+
+.gray-pattern-dots-grid-var {
+	background-image: url(../images/pattern/gray_dots_grid2.png);
+	background-size: 3px;
+}
+
+.gray-pattern-dots-stagger {
+	background-image: url(../images/pattern/gray_dots_stagger.png);
+	background-size: 10px;
+}
+
+.color-yellow {
+	background-color: #febe13;
+}
+
+.color-light-yellow {
+	background-color: #fed361;
+}
+
+.color-mustard-brown {
+	background-color: #cb9811;
+}
+
+.color-bright-brown {
+	background-color: #7f5f0a;
+}
+
+.color-dull-brown {
+	background-color: #785d2f;
+}
+
+.color-dark-brown {
+	background-color: #423208;
+}
+
+.color-offwhite {
+	background-color: #e6e6e6;
+}
+
+.color-charcoal {
+	background-color: #363636;
+}
+
+
