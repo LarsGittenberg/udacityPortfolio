@@ -3,6 +3,7 @@ $(window).on('load', checkCookie);
 
 function setCookie() {
     Cookies.set('heroAssembled', 'true');
+    console.log('cookie set');
 }
 
 function checkCookie() {
@@ -11,9 +12,10 @@ function checkCookie() {
         // cookie exists, don't do animation
         var targetImg = $('.hero-container').find('img');
         $(targetImg).removeClass('start-transparent start-bottom start-left start-right start-top start-right-fast');
-        // cookie exists, don't do menu signal anymore
-        var targetMenu = $('.menu-signal');
-        targetMenu.removeClass('signal');
+
+        // cookie exists, don't do menu signal anymore - remove the entire structure/element
+        $('.menu-signal').remove();
+    }
     else {
         // cookie doesn't exist, do animation, then set cookie
         setCookie();
