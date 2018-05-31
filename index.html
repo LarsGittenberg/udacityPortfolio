@@ -14,6 +14,8 @@
 	<script src="https://use.fontawesome.com/1004343e7e.js"></script>
 	<!-- script for jquery on google's cd network -->
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+	<script src="js/noframework.waypoints.min.js"></script>
+
 </head>
 
 <body>
@@ -43,7 +45,7 @@
 	</div><!--end header container-->
 </header>
 
-<div class="hero-container pattern-grid-black">
+<div class="hero-container pattern-grid-black" id="waypointSignal">
 	<div class="hero-web">
 		<img src="images/hero/circle_web.png" class="start-transparent img-layer-absolute ">
 		<img src="images/hero/shadow_web.png" class="start-bottom img-layer-absolute ">
@@ -248,6 +250,27 @@
 	<p class="copyright"><small>Copyright Lawrence Getubig 2018</small></p>
 </footer>
 
+
+
+
+
+<script>
+//waypoint
+var waypoint = new Waypoint({
+  element: document.getElementById('waypointSignal'),//cannot use jquery $('#waypointSignal')
+  handler: function() {
+  	//do something
+    console.log('waypoint active')
+    $('.menu-signal').addClass('signal');
+  }
+})
+</script>
+<script src="js/design.js"></script>
+<script src="js/cookie_2.js"></script>
+</body>
+
+
+
 <!-- Start of StatCounter Code for Default Guide -->
 <script type="text/javascript">
 var sc_project=5156734;
@@ -263,9 +286,5 @@ class="statcounter"
 src="//c.statcounter.com/5156734/0/8c976dcb/1/" alt="site
 stats"></a></div></noscript>
 <!-- End of StatCounter Code for Default Guide -->
-
-</body>
-<script src="js/design.js"></script>
-<script src="js/cookie_2.js"></script>
 </html>
 

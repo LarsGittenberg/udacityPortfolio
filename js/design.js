@@ -12,12 +12,11 @@ $('.featured-project-card').on('mouseleave', swapToStatic);
 
 // when page hero/home page loads - hero animation triggered
 $( window ).on( 'load', assembleImgLayers);
+
+
 //$(document).ready(assembleImgLayers); //what is the diff between this and window-on-load method?
 // when user clicks menu navigation icon
 $('.menu-icon-container').on('click', changeToX_openNav);
-
-/* menu callout signal: so users realize there'a a clickable menu button*/
-$( window ).on( 'scroll', menuSignal);
 
 
 /* function declarations */
@@ -66,16 +65,20 @@ function menuSignal() {
 	console.log('signal class added')
 	$('.menu-signal').addClass('signal');
 }
+/*
+
+var waypointTrigger = $('#myNav');
+
+//make a waypoint object
+var waypoint = new Waypoint({
+	element: waypointTrigger,
+	handler: function() {
+		//do something
+		$('.menu-signal').addClass('signal');
+	}
+})
+
+*/
 
 
 
-
-
-
-
-
-
-
-
-
-/**/

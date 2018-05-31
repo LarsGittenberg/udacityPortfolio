@@ -3,7 +3,6 @@ $(window).on('load', checkCookie);
 
 function setCookie() {
     Cookies.set('heroAssembled', 'true');
-    console.log('cookie set');
 }
 
 function checkCookie() {
@@ -15,6 +14,7 @@ function checkCookie() {
 
         // cookie exists, don't do menu signal anymore - remove the entire structure/element
         $('.menu-signal').remove();
+        console.log('removed nav-menu-signal!')
     }
     else {
         // cookie doesn't exist, do animation, then set cookie
