@@ -11,7 +11,9 @@ function checkCookie() {
         // cookie exists, don't do animation
         var targetImg = $('.hero-container').find('img');
         $(targetImg).removeClass('start-transparent start-bottom start-left start-right start-top start-right-fast');
-    }
+        // cookie exists, don't do menu signal anymore
+        var targetMenu = $('.menu-signal');
+        targetMenu.removeClass('signal');
     else {
         // cookie doesn't exist, do animation, then set cookie
         setCookie();

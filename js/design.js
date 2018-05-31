@@ -16,6 +16,10 @@ $( window ).on( 'load', assembleImgLayers);
 // when user clicks menu navigation icon
 $('.menu-icon-container').on('click', changeToX_openNav);
 
+/* menu callout signal: so users realize there'a a clickable menu button*/
+$( window ).on( 'scroll', menuSignal);
+
+
 /* function declarations */
 function swapToAnimate() {
 	// set the target img as a variable
@@ -56,6 +60,14 @@ function changeToX_openNav() {
 	var targetNav = $('#myNav');
 	targetNav.toggleClass('open-nav');
 }// end changeToX
+
+
+function menuSignal() {
+	console.log('signal class added')
+	$('.menu-signal').addClass('signal');
+}
+
+
 
 
 
