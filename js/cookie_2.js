@@ -14,7 +14,6 @@ function checkCookie() {
 
         // cookie exists, don't do menu signal anymore - remove the entire structure/element
         $('.menu-signal').remove();
-        console.log('removed nav-menu-signal!')
     }
     else {
         // cookie doesn't exist, do animation, then set cookie
