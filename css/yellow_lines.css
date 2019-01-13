@@ -371,6 +371,26 @@ div.project-header-bar h2 {
 	background-image: url(../images/cutouts/flash.jpg);
 }
 
+.tiptoe-cutout {
+	background-image: url(../images/cutouts/tiptoe.jpg);
+}
+
+.arrival-cutout {
+	background-image: url(../images/cutouts/arrival.jpg);
+}
+
+.campfire-cutout {
+	background-image: url(../images/cutouts/campfire.jpg);
+}
+
+.loneranger-cutout {
+	background-image: url(../images/cutouts/loneranger.jpg);
+}
+
+.ambush-cutout {
+	background-image: url(../images/cutouts/ambush.jpg);
+}
+
 
 /* posed encounters series photo portfolio page styles*/
 .jeannie-posed {
