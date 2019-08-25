@@ -210,6 +210,16 @@ div.project-header-bar h2 {
 	font-size: 1.1em;
 }
 
+div.project-header-bar h3 {
+	line-height: 100px;
+	background: #363636;
+	padding: 5px;
+	display:inline;
+	margin-left:25px;
+	box-shadow: 5px 5px 3px rgba(0, 0, 0, 0.2);
+	font-size: 0.9em;
+}
+
 /*featured projects main and subcategories pages styles*/
 .flex-container-main {
 	display: flex;
@@ -695,6 +705,10 @@ footer {
 
 	div.project-header-bar h2 {
 		font-size: 1.5em;
+	}
+
+	div.project-header-bar h3 {
+		font-size: 1.2em;
 	}
 
 	.flex-container-child-projects {
