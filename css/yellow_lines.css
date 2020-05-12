@@ -26,6 +26,10 @@ ul {
 	margin-left: 20px;
 }
 
+img {
+	display: block;
+	width: 100%;
+}
 
 .highlight-orange {
 	color: #ff7f00;
@@ -239,8 +243,16 @@ div.project-header-bar h3 {
 	width: 100%;
 }
 
-.info-box p {
+p.info-box-left {
 	max-width: 400px;
+	float: left;
+	text-align: left;
+}
+
+p.info-box-right {
+	max-width: 400px;
+	float: right;
+	text-align: left;
 }
 
 .flex-container-child-projects p {
@@ -698,6 +710,18 @@ footer {
 }/*end mediaQ*/
 
 @media only screen and (min-width: 800px) {
+
+	img.two-thirds {
+		width: 66%;
+	}
+
+	img.tablet-float-left {
+		float: left;
+	}
+
+	img.tablet-float-right {
+		float: right;
+	}
 
 	.header-container {
 		font-size: 1em;
