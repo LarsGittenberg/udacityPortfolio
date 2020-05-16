@@ -235,6 +235,7 @@ div.project-header-bar h3 {
 .flex-container-main p {
 	width: 100%;
 	padding: 5px 25px 5px 25px;
+	line-height: 1.7em;
 }
 
 /* info box and info box p provided as area to explain gallery materials */
