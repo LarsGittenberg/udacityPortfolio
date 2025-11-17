@@ -13,7 +13,7 @@ html {
 body {
 	background-color: #363636;
 	height: 100%;
-	color: #febe15;
+	color: #FFFFFF;
 	font-size:16px;
 	max-width: 1280px;
 	margin-left: auto;
@@ -29,6 +29,10 @@ ul {
 img {
 	display: block;
 	width: 100%;
+}
+
+figure {
+	width:100%;
 }
 
 .highlight-orange {
@@ -232,7 +236,10 @@ div.project-header-bar h3 {
 	line-height: 22px;
 }
 
-.flex-container-main p {
+.flex-container-main p, 
+.flex-container-main h1, 
+.flex-container-main h2, 
+.flex-container-main h3 {
 	width: 100%;
 	padding: 5px 25px 5px 25px;
 
@@ -242,20 +249,17 @@ div.project-header-bar h3 {
 .info-box {
 	padding: 25px;
 	width: 100%;
-}
-
-.info-box p {
 	line-height: 1.7em;
 }
 
-p.info-box-left {
-	max-width: 400px;
+.info-box-left {
+	max-width: 500px;
 	float: left;
 	text-align: left;
 }
 
-p.info-box-right {
-	max-width: 400px;
+.info-box-right {
+	max-width: 500px;
 	float: right;
 	text-align: left;
 }
@@ -665,7 +669,8 @@ section.featured-project-card img {
 
 footer {
 	width:100%;
-	height:200px;
+	height:345px;
+	position: relative;
 }
 
  footer p {   background-color: #363636;
@@ -676,7 +681,10 @@ footer {
 }
 
 .copyright {
-	float: right;
+    position: absolute;
+    right: 0;
+    bottom: 10px;
+    display: inline-block;
 }
 
 
@@ -713,12 +721,35 @@ footer {
 		margin-left: auto;
 		box-shadow: 5px 5px 5px rgba(0, 0, 0, 0.3);
 	}
+
+	footer {
+		height:245px;
+	}
+
 }/*end mediaQ*/
 
 @media only screen and (min-width: 800px) {
 
+	.tablet-margin-right-1 {
+		margin-right:100px;
+	}
+
 	img.two-thirds {
 		width: 66%;
+	}
+
+	img.one-thirds {
+		width:33%;
+	}
+
+	img.one-half {
+		width: 50%;
+	}
+
+	img.center {
+		display: block;
+		margin-left: auto;
+		margin-right: auto;
 	}
 
 	img.tablet-float-left {

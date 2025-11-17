@@ -2,7 +2,7 @@
 .menu-icon-container {
     display: inline-block;
     cursor: pointer;
-    background-color: darkcyan;
+    background-color: #0E7C7C;
     padding: 5px;
     width: 51px;
     height: 51px;
@@ -115,14 +115,14 @@
     padding: 8px;
     text-decoration: none;
     font-size: 36px;
-    color: darkcyan;
+    color: #66cdaa;
     display: block; /* Display block instead of inline */
     transition: 0.3s; /* Transition effects on hover (color) */
 }
 
 /* When you mouse over the navigation links, change their color */
 .overlay a:hover, .overlay a:focus {
-    color: mediumaquamarine;
+    color: darkcyan;
 }
 
 /* When the height of the screen is less than 450 pixels, change the font-size of the links and
@@ -146,28 +146,31 @@ position the close button again, so they don't overlap */
 
 /*ui, buttons*/
 .btn {
-    background-color: darkcyan;
+    background-color: #0E7C7C;
     padding:10px;
     color: white;
     display: inline-block;
     margin: 15px 15px 15px 0;
     border-radius: 2px 2px;
     text-decoration: none;
+    position: absolute;
+    bottom: 0;
 }
 
 .btn:hover {
     background-color: mediumaquamarine;
-    color: white;
+    color: #363636;
 }
 
 
 /*anchor-link styles, btn hover effects*/
 a {
-    color: darkcyan;
+    color: #66cdaa;
+    /*color: #00fffa;*/
 }
 
 a:hover {
-    color: mediumaquamarine;
+    color: darkcyan;
 }
 
 a, .btn {
