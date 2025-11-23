@@ -178,7 +178,8 @@ position the close button again, so they don't overlap */
 /*anchor-link styles, btn hover effects*/
 a {
     color: #66cdaa;
-    /*color: #00fffa;*/
+    text-underline-offset: 0.5em;
+    font-weight: bold;
 }
 
 a:hover {
@@ -188,5 +189,6 @@ a:hover {
 a, .btn {
     transition:300ms ease-in-out;
 }
+
 
 
