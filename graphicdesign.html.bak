@@ -1,0 +1,136 @@
+<!doctype html>
+
+<html lang="en">
+<head>
+	<title>Graphic Design + Illustration</title>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta name="theme-color" content="#feb013">
+	<link rel="stylesheet" href="css/yellow_lines.css">
+	<link rel="stylesheet" href="css/ui.css">
+	<link href="https://fonts.googleapis.com/css?family=Montserrat:400,600|Source+Code+Pro:300,400" rel="stylesheet">
+	<!-- script for font awesome-->
+	<script src="https://use.fontawesome.com/1004343e7e.js"></script>
+	<!-- script for jquery on google's cd network -->
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+</head>
+
+<body>
+
+	<div class="menu-icon-container">
+		<div class="bar1"></div>
+		<div class="bar2"></div>
+		<div class="bar3"></div>
+	</div>
+
+	<div id="myNav" class="overlay pattern-grid-dark-yellow">
+		<!-- Overlay content -->
+		<div class="overlay-content ">
+			<a href="index.html">Home</a>
+			<a href="webdesign.html">Web Design</a>
+			<a href="graphicdesign.html">Graphic Design</a>
+			<a href="photography.html">Photography</a>
+		</div>
+	</div>
+
+<header class="pattern-diagonal-up-var">
+	<div class="header-container">
+		<h1 class="source-code-pro source-code-pro-light">Lawrence Getubig</h1>
+		<p class="source-code-pro">Front-End Web Design, Visual Design, Photography</p>
+	</div><!--end header container-->
+</header>
+
+<div class="project-header-bar pattern-dots-grid-sparse">
+	<h2 class="source-code-pro source-code-pro-light">Graphic Design + Illustration</h2>
+</div>
+
+<div class="flex-container-main">
+
+<!-- icons -->
+	<div class="flex-container-child-projects pattern-dots-grid-dense">
+		<section class="featured-project-card">
+			<div class="img-container">
+				<img id="icons" class="project-image" src="images/animate/icons_static.jpg" alt="Web Icons">
+			</div>
+			<h3 class="margin-bottom headline-text-color"><strong><span class="highlight-orange">Graphic Design:</span><br>Web Icon Illustration</strong></h3>
+			<p>Role:</p>
+			<ul>
+				<li>Craft thoughtful, brand-aware web icon sets for use in interactive UI on web landing pages that support marketing initiatives</li>
+				<li>Coordinate branding of assets with social media graphics intended to resonate with audience and drive member engagement</li>
+				<li>Skills and Technologies: Illustrator CC, Photoshop CC</li>
+			</ul>
+			<p><a href="icons.html" class="btn">View Icons</a></p>
+		</section>
+	</div>
+
+<!-- ads -->
+	<div class="flex-container-child-projects pattern-horizontal">
+		<section class="featured-project-card">
+			<div class="img-container">
+				<img id="ads" class="project-image" src="images/animate/ads_static.jpg" alt="Web Ads">
+			</div>
+			<h3 class="margin-bottom headline-text-color"><strong><span class="highlight-orange">Graphic Design:</span><br>Digital Ads + Gifs</strong></h3>
+			<p>Role:</p>
+			<ul>
+				<li>Design digital graphic assets both static and animated (gifs) to support marketing initiatives</li>
+				<li>Adhere to guidelines and company style guides</li>
+				<li>Deploy variants across a spectrum of digital platforms, including Instagram, Twitter, to email blasts</li>
+				<li>Skills and Technologies: Photoshop CC, Illustrator CC, After Effects CC</li>
+			</ul>
+			<p><a href="ads.html" class="btn">View Ads</a></p>
+		</section>
+	</div>
+
+<!-- drom printed material -->
+	<div class="flex-container-child-projects pattern-diagonal-down">
+		<section class="featured-project-card">
+			<div class="img-container">
+				<img id="drom" class="project-image" src="images/animate/drom_static.jpg" alt="Drom Peppercorns">
+			</div>
+			<h3 class="margin-bottom headline-text-color"><strong><span class="highlight-orange">Graphic Design</span><br>Drøm Printed and Marketing Materials</strong></h3>
+				<p>Role:</p>
+				<ul>
+					<li>Design visuals inline with Drøm's marketing initiatives</li>
+					<li>Prep and send files for CMYK offset printing</li>
+					<li>Develop a consistent visual language across all touch points of the Drøm brand</li>
+					<li>Skills and Technologies: Illustrator CC, Photoshop CC, Product Photography</li>
+				</ul>
+			<p><a href="print.html" class="btn">View Samples</a></p>
+		</section>
+	</div>
+
+</div><!--end main flex container-->
+
+<footer class="pattern-dots-grid-dense">
+	<p>Find me in:</p><br>
+	<a href="https://github.com/LarsGittenberg"><p class="test"><i class="fa fa-github"></i> Github</p></a><br>
+	
+	<a href="https://www.linkedin.com/in/lawrence-getubig"><p class="test"><i class="fa fa-linkedin-square"></i> LinkedIn</p></a><br>
+
+	<a href="https://www.instagram.com/ljgetubig/"><p class="test"><i class="fa fa-instagram"></i> Instagram</p></a><br>
+	<p class="copyright"><small>Copyright Lawrence Getubig 2026</small></p>
+	<!--  want to change the copyright date for all html files? use: perl -pi -w -e 's/Getubig\ 2018/Getubig\ 2019/g;' *.html -->
+</footer>
+
+
+</body>
+<script src="js/design.js"></script>
+
+<!-- Start of StatCounter Code for Default Guide -->
+<script type="text/javascript">
+var sc_project=5156734;
+var sc_invisible=1;
+var sc_security="8c976dcb";
+</script>
+<script type="text/javascript"
+src="https://www.statcounter.com/counter/counter.js"
+async></script>
+<noscript><div class="statcounter"><a title="site stats"
+href="http://statcounter.com/" target="_blank"><img
+class="statcounter"
+src="//c.statcounter.com/5156734/0/8c976dcb/1/" alt="site
+stats"></a></div></noscript>
+<!-- End of StatCounter Code for Default Guide -->
+
+</html>
+

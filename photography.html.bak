@@ -1,0 +1,128 @@
+<!doctype html>
+
+<html lang="en">
+<head>
+	<title>Photography</title>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta name="theme-color" content="#feb013">
+	<link rel="stylesheet" href="css/yellow_lines.css">
+	<link rel="stylesheet" href="css/ui.css">
+	<link href="https://fonts.googleapis.com/css?family=Montserrat:400,600|Source+Code+Pro:300,400" rel="stylesheet">
+	<!-- script for font awesome-->
+	<script src="https://use.fontawesome.com/1004343e7e.js"></script>
+	<!-- script for jquery on google's cd network -->
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+</head>
+
+<body>
+
+	<div class="menu-icon-container">
+		<div class="bar1"></div>
+		<div class="bar2"></div>
+		<div class="bar3"></div>
+	</div>
+
+	<div id="myNav" class="overlay pattern-grid-dark-yellow">
+		<!-- Overlay content -->
+		<div class="overlay-content ">
+			<a href="index.html">Home</a>
+			<a href="webdesign.html">Web Design</a>
+			<a href="graphicdesign.html">Graphic Design</a>
+			<a href="photography.html">Photography</a>
+		</div>
+	</div>
+
+<header class="pattern-diagonal-up-var">
+	<div class="header-container">
+		<h1 class="source-code-pro source-code-pro-light">Lawrence Getubig</h1>
+		<p class="source-code-pro">Front-End Web Design, Visual Design, Photography</p>
+	</div><!--end header container-->
+</header>
+
+<div class="hero-container pattern-grid-black">
+</div>
+
+
+<div class="project-header-bar pattern-dots-grid-sparse">
+	<h2 class="source-code-pro source-code-pro-light">Photography Portfolio</h2>
+</div>
+
+<div class="flex-container-main">
+
+<!--cutouts-->
+	<div class="flex-container-child-projects pattern-dots-stagger">
+		<section class="featured-project-card">
+			<div class="img-container">
+				<img id="cutout" class="project-image" src="images/animate/cutout_static.jpg" alt="abstract silhouete image of cowboy western landscape">
+			</div>
+			<h3 class="margin-bottom headline-text-color"><strong><span class="highlight-orange"> Studio Photography:</span><br> Cutout Figures Series</strong></h3>
+			<p><strong>Artist Statement</strong>: American science fiction movies, television shows, cartoons and superhero comic book escapades were regular imports growing up in the Philippines. Thanks to action figure toys, the stories continued well beyond the screen and comic pages. These photographs of paper cut-outs revisit those toys and boyhood narratives, while addressing cultural hegemonies and American hero tropes.</p>
+			<p><a href="cutouts.html" class="btn">View Series</a></p>
+		</section>
+	</div>
+
+<!--retouch-->
+	<div class="flex-container-child-projects pattern-horizontal">
+		<section class="featured-project-card">
+			<div class="img-container">
+				<img id="retouch" class="project-image" src="images/animate/retouch_static.jpg" alt="image of retouched photo of todler in a photo studio">
+			</div>
+			<h3 class="margin-bottom headline-text-color"><strong><span class="highlight-orange">Photography Portraiture:</span><br> Photoshop Retouching</strong></h3>
+			<p>Role:</p>
+			<ul>
+				<li>Professionally photograph engaging portraits for clients using high-end strobe kits and state-of-the-art studio equipment</li>
+				<li>Composite and retouch digital photography using industry standard retouching techniques</li>
+				<li>Skills and Technologies used: Bowens lighting systems, large format/digital format cameras, Photoshop CC</li>
+			</ul>
+			<p><a href="retouch.html" class="btn">View Samples</a></p>
+		</section>
+	</div>
+<!--posed-->
+	<div class="flex-container-child-projects pattern-diagonal-down">
+		<section class="featured-project-card">
+			<div class="img-container">
+				<img id="posed" class="project-image" src="images/animate/posed_static.jpg" alt="image of woman in pajamas in a dark kitchen">
+			</div>
+			<h3 class="margin-bottom headline-text-color"><strong><span class="highlight-orange">Photography:</span><br> Posed Encouters Series</strong></h3>
+			<p><strong>Artist Statement</strong>: I am interested in particular cinematic gestures in movies. From Spielberg reels to Godzilla camp, there's a certain reaction shot that is reitereated over and over, employed perhaps to mirror, augment and tap into collective anxieties. I use my own brand of camp and noir-like effect to explore this idea of anxiety and of the sublime.</p>
+			<p><a href="posed.html" class="btn">View Series</a></p>
+		</section>
+	</div>
+
+
+
+</div><!--end main flex container-->
+
+<footer class="pattern-dots-grid-dense">
+	<p>Find me in:</p><br>
+	<a href="https://github.com/LarsGittenberg"><p class="test"><i class="fa fa-github"></i> Github</p></a><br>
+	
+	<a href="https://www.linkedin.com/in/lawrence-getubig"><p class="test"><i class="fa fa-linkedin-square"></i> LinkedIn</p></a><br>
+
+	<a href="https://www.instagram.com/ljgetubig/"><p class="test"><i class="fa fa-instagram"></i> Instagram</p></a><br>
+	<p class="copyright"><small>Copyright Lawrence Getubig 2026</small></p>
+	<!--  want to change the copyright date for all html files? use: perl -pi -w -e 's/Getubig\ 2018/Getubig\ 2019/g;' *.html -->
+</footer>
+
+</body>
+
+<script src="js/design.js"></script>
+
+<!-- Start of StatCounter Code for Default Guide -->
+<script type="text/javascript">
+var sc_project=5156734;
+var sc_invisible=1;
+var sc_security="8c976dcb";
+</script>
+<script type="text/javascript"
+src="https://www.statcounter.com/counter/counter.js"
+async></script>
+<noscript><div class="statcounter"><a title="site stats"
+href="http://statcounter.com/" target="_blank"><img
+class="statcounter"
+src="//c.statcounter.com/5156734/0/8c976dcb/1/" alt="site
+stats"></a></div></noscript>
+<!-- End of StatCounter Code for Default Guide -->
+</html>
+

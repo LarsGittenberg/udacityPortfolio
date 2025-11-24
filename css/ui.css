@@ -145,13 +145,48 @@ position the close button again, so they don't overlap */
 }
 
 /*ui, buttons*/
+
 .btn {
-    background-color: #0E7C7C;
-    padding:10px;
+    /* use a gradient even in the default state */
+    background: linear-gradient(to top right, #0E7C7C, #0E7C7C);
+    padding: 8px 20px;
     color: white;
     display: inline-block;
     margin: 15px 15px 15px 0;
-    border-radius: 2px 2px;
+    border-radius: 25px;
+    text-decoration: none;
+    position: absolute;
+    bottom: 0;
+    transition: background 0.6s ease, color 0.4s ease;
+    background-size: 200% 200%;
+    background-position: 0% 100%;
+}
+
+/* Hover state */
+.btn:hover {
+    color: #363636;
+    background: linear-gradient(to top right, #66CDAA, #FFCC00);
+    background-size: 200% 200%;
+    animation: gradientShift 3s ease infinite;
+}
+
+/* Keyframes for animation */
+@keyframes gradientShift {
+    0%   { background-position: 0% 100%; }
+    50%  { background-position: 100% 0%; }
+    100% { background-position: 0% 100%; }
+}
+
+
+/*
+
+.btn {
+    background-color: #0E7C7C;
+    padding:8px 20px;
+    color: white;
+    display: inline-block;
+    margin: 15px 15px 15px 0;
+    border-radius: 25px;
     text-decoration: none;
     position: absolute;
     bottom: 0;
@@ -159,11 +194,11 @@ position the close button again, so they don't overlap */
 
 .btn-disabled {
     background-color: gray;
-    padding:10px;
+    padding:8px 20px;
     color: #d9d9d9;
     display: inline-block;
     margin: 15px 15px 15px 0;
-    border-radius: 2px 2px;
+    border-radius: 25px;
     text-decoration: none;
     position: absolute;
     bottom: 0;
@@ -173,6 +208,10 @@ position the close button again, so they don't overlap */
     background-color: mediumaquamarine;
     color: #363636;
 }
+
+
+*/
+
 
 
 /*anchor-link styles, btn hover effects*/
@@ -188,6 +227,10 @@ a:hover {
 
 a, .btn {
     transition:300ms ease-in-out;
+}
+
+p.breadcrumb {
+    padding-left: 0px;
 }
 
 

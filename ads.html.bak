@@ -1,13 +1,16 @@
 <!doctype html>
 
-<html>
+<html lang="en">
 <head>
-	<title>Photography - Posed Encounters</title>
+	<title>Graphic Design - Web Ads</title>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<meta name="theme-color" content="#feb013">
+	<link rel="preload" href="css/yellow_lines.css" as="style">
 	<link rel="stylesheet" href="css/yellow_lines.css">
 	<link rel="stylesheet" href="css/ui.css">
+	<link rel="preload" href="css/yellow_lines.css" as="style">
+	<link rel="preload" href="css/ui.css" as="style">
 	<link href="https://fonts.googleapis.com/css?family=Montserrat:400,600|Source+Code+Pro:300,400" rel="stylesheet">
 	<!-- script for font awesome-->
 	<script src="https://use.fontawesome.com/1004343e7e.js"></script>
@@ -43,75 +46,94 @@
 
 
 <div class="project-header-bar pattern-dots-grid-sparse">
-	<h2 class="source-code-pro source-code-pro-light">Photography - Posed Encounters</h2>
-
+	<h2 class="source-code-pro source-code-pro-light">Graphic Design - Web Ads</h2>
 </div>
 
 <div class="flex-container-main pattern-grid-black">
 
-	<div class="info-box">
-		<p class="breadcrumb"><a href="index.html">Home</a> > <a href="photography.html">Photography</a> > Posed Encounters</p>
-	</div><!--end info box-->
+<div class="info-box">
+	<p><a href="index.html">Home</a> > <a href="graphicdesign.html">Graphic Design</a> > Digital Ads and GIFs</p>
+</div><!--end info box-->
+
+<div class="info-box">
+	<div class="info-box-left">
+		<h3>Role</h3><!--section 1--->
+		<ul>
+			<li>Illustrator</li>
+			<li>Graphic Designer</li>
+			<li>Brand Designer</li>
+			<li>After Effects-Motion Graphics Designer</li>
+		</ul>
+	</div><!--end info box left-->
+</div><!--end info box-->
+
+<div class="info-box">
+	<p class="info-box-left">These visual assets were designed as part of the National Council of Teachers of Mathematics' marketing campaign. These samples and variants were plugged into web banner ads, social media ads such as in Facebook, as well as deployed into their social media feeds in Twitter, Instagram and LinkedIn.</p>
+</div><!--end info box-->
+
 
 	<div class="flex-container-child-gallery ">
-		<div class="gallery-item gallery-photo jeannie-posed"></div>
+		<div class="gallery-item gallery-photo ilovemath-instagram-ad"></div>
 	</div>
 
 	<div class="flex-container-child-gallery ">
-		<div class="gallery-item gallery-photo vasia-posed"></div>
+		<div class="gallery-item gallery-ad mynctm-ad"></div>
 	</div>
 
 	<div class="flex-container-child-gallery ">
-		<div class="gallery-item gallery-photo andrea-posed"></div>
+		<img src="images/ads/fall_twitter.gif" class="gallery-icon-gif" alt="ads">
 	</div>
 
 	<div class="flex-container-child-gallery ">
-		<div class="gallery-item gallery-photo winnie-posed"></div>
+		<div class="gallery-item gallery-ad summer-ad"></div>
 	</div>
 
 	<div class="flex-container-child-gallery ">
-		<div class="gallery-item gallery-photo gretchen-posed"></div>
+		<div class="gallery-item gallery-photo piday-instagram-ad"></div>
 	</div>
 
 	<div class="flex-container-child-gallery ">
-		<div class="gallery-item gallery-photo matt-posed"></div>
+		<div class="gallery-item gallery-ad dr-ad"></div>
 	</div>
 
 	<div class="flex-container-child-gallery ">
-		<div class="gallery-item gallery-photo todd-posed"></div>
+		<img src="images/ads/dogyear_twitter.png" class="gallery-icon-gif" alt="ads">
 	</div>
 
 	<div class="flex-container-child-gallery ">
-		<div class="gallery-item gallery-photo chuck-posed"></div>
+		<div class="gallery-item gallery-ad leaders-ad"></div>
 	</div>
 
 	<div class="flex-container-child-gallery ">
-		<div class="gallery-item gallery-photo bonnie-posed"></div>
+		<div class="gallery-item gallery-ad webinar-ad"></div>
 	</div>
 
 	<div class="flex-container-child-gallery ">
-		<div class="gallery-item gallery-photo david-posed"></div>
+		<div class="gallery-item gallery-ad met-ad"></div>
 	</div>
 
 	<div class="flex-container-child-gallery ">
-		<div class="gallery-item gallery-photo nick-posed"></div>
+		<div class="gallery-item gallery-photo euler-instagram-ad"></div>
 	</div>
 
 	<div class="flex-container-child-gallery ">
-		<div class="gallery-item gallery-photo hoffman-posed"></div>
+		<div class="gallery-item gallery-ad blog-ad"></div>
 	</div>
 
 	<div class="flex-container-child-gallery ">
-		<div class="gallery-item gallery-photo katie-posed"></div>
+		<div class="gallery-item gallery-ad onlineevents-ad"></div>
 	</div>
 
 	<div class="flex-container-child-gallery ">
-		<div class="gallery-item gallery-photo chuck2-posed"></div>
+		<div class="gallery-item gallery-ad books-ad"></div>
 	</div>
 
 	<div class="flex-container-child-gallery ">
-		<div class="gallery-item gallery-photo shirin-posed"></div>
+		<img src="images/ads/march_twitter.png" class="gallery-icon-gif" alt="ads">
 	</div>
+
+
+	<p style="text-align: center; padding-bottom: 25px;"><a href="index.html">Back to Home</a></p>
 
 
 </div><!--end main flex container-->
@@ -128,6 +150,7 @@
 </footer>
 
 </body>
+
 <script src="js/design.js"></script>
 
 <!-- Start of StatCounter Code for Default Guide -->
@@ -145,6 +168,5 @@ class="statcounter"
 src="//c.statcounter.com/5156734/0/8c976dcb/1/" alt="site
 stats"></a></div></noscript>
 <!-- End of StatCounter Code for Default Guide -->
-
 </html>
 

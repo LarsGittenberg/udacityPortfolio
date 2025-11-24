@@ -50,7 +50,7 @@
 <div class="flex-container-main pattern-grid-black">
 
 	<div class="info-box">
-		<p class="breadcrumb"><a href="index.html">Home</a> > <a href="photography.html">Photography</a> > Posed Encounters</p>
+		<p><a href="index.html">Home</a> > <a href="photography.html">Photography</a> > Posed Encounters</p>
 	</div><!--end info box-->
 
 	<div class="flex-container-child-gallery ">

@@ -2,7 +2,7 @@
 
 <html>
 <head>
-	<title>Photography - Posed Encounters</title>
+	<title>Graphic Design - Print</title>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<meta name="theme-color" content="#feb013">
@@ -43,75 +43,60 @@
 
 
 <div class="project-header-bar pattern-dots-grid-sparse">
-	<h2 class="source-code-pro source-code-pro-light">Photography - Posed Encounters</h2>
-
+	<h2 class="source-code-pro source-code-pro-light">DRØM Print Samples</h2>
 </div>
 
 <div class="flex-container-main pattern-grid-black">
 
 	<div class="info-box">
-		<p class="breadcrumb"><a href="index.html">Home</a> > <a href="photography.html">Photography</a> > Posed Encounters</p>
+		<p><a href="index.html">Home</a> > <a href="graphicdesign.html">Graphic Design</a> > Drøm Printed and Marketing Materials</p>
+	</div><!--end info box-->
+
+	<div class="info-box">
+		<div class="info-box-left">
+			<h3>Role</h3><!--section 1--->
+			<ul>
+				<li>Illustrator</li>
+				<li>Graphic Designer</li>
+				<li>Brand Designer</li>
+			</ul>
+		</div><!--end info box left-->
+	</div><!--end info box-->
+
+	<div class="info-box">
+		<div class="info-box-left">
+			<p>DRØM Peppercorns was an online mercantile of boutique Kampot Peppercorns, regarded as one of the finest peppercorns in the world. The Shopify based store ran from 2016 to early 2018. The following is a catalogue of print materials designed for their marketing initiatives, developed in conjuction with their online branding, packaging and visual assets from their email campaigns.</p>	
+		</div><!--end info box left-->
 	</div><!--end info box-->
 
 	<div class="flex-container-child-gallery ">
-		<div class="gallery-item gallery-photo jeannie-posed"></div>
+		<img src="images/print/drom_original_600.jpg" class="gallery-print-img" alt="Drøm Print Material">
 	</div>
 
 	<div class="flex-container-child-gallery ">
-		<div class="gallery-item gallery-photo vasia-posed"></div>
+		<img src="images/print/drom_infographic_600.jpg" class="gallery-print-img" alt="Drøm Print Material">
 	</div>
 
 	<div class="flex-container-child-gallery ">
-		<div class="gallery-item gallery-photo andrea-posed"></div>
+		<img src="images/print/drom_bike_600.jpg" class="gallery-print-img" alt="Drøm Print Material">
 	</div>
 
 	<div class="flex-container-child-gallery ">
-		<div class="gallery-item gallery-photo winnie-posed"></div>
+		<img src="images/print/drom_news_600.jpg" class="gallery-print-img" alt="Drøm Print Material">
 	</div>
 
 	<div class="flex-container-child-gallery ">
-		<div class="gallery-item gallery-photo gretchen-posed"></div>
+		<img src="images/print/drom_boxes_600.jpg" class="gallery-print-img" alt="Drøm Print Material">
 	</div>
 
 	<div class="flex-container-child-gallery ">
-		<div class="gallery-item gallery-photo matt-posed"></div>
+		<img src="images/print/drom_sniff_600.jpg" class="gallery-print-img" alt="Drøm Print Material">
 	</div>
+	<p style="text-align: center; padding-bottom: 25px;"><a href="index.html">Back to Home</a></p>
 
-	<div class="flex-container-child-gallery ">
-		<div class="gallery-item gallery-photo todd-posed"></div>
-	</div>
 
-	<div class="flex-container-child-gallery ">
-		<div class="gallery-item gallery-photo chuck-posed"></div>
-	</div>
 
-	<div class="flex-container-child-gallery ">
-		<div class="gallery-item gallery-photo bonnie-posed"></div>
-	</div>
 
-	<div class="flex-container-child-gallery ">
-		<div class="gallery-item gallery-photo david-posed"></div>
-	</div>
-
-	<div class="flex-container-child-gallery ">
-		<div class="gallery-item gallery-photo nick-posed"></div>
-	</div>
-
-	<div class="flex-container-child-gallery ">
-		<div class="gallery-item gallery-photo hoffman-posed"></div>
-	</div>
-
-	<div class="flex-container-child-gallery ">
-		<div class="gallery-item gallery-photo katie-posed"></div>
-	</div>
-
-	<div class="flex-container-child-gallery ">
-		<div class="gallery-item gallery-photo chuck2-posed"></div>
-	</div>
-
-	<div class="flex-container-child-gallery ">
-		<div class="gallery-item gallery-photo shirin-posed"></div>
-	</div>
 
 
 </div><!--end main flex container-->
@@ -145,6 +130,5 @@ class="statcounter"
 src="//c.statcounter.com/5156734/0/8c976dcb/1/" alt="site
 stats"></a></div></noscript>
 <!-- End of StatCounter Code for Default Guide -->
-
 </html>
 

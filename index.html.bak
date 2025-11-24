@@ -1,0 +1,255 @@
+<!doctype html>
+
+<html lang="en">
+<head>
+	<title>Portfolio Home</title>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta name="theme-color" content="#feb013"/>
+	<meta name="description" content="Web, visual and front-end designer crafting digital experiences that engage, delight and convert.">
+	<link rel="preload" href="css/ui.css" as="style">
+	<link rel="stylesheet" href="css/ui.css">
+	<link rel="stylesheet" href="css/yellow_lines.css">
+	<link href="https://fonts.googleapis.com/css?family=Montserrat:400,600|Source+Code+Pro:300,400" rel="stylesheet">
+	<!--script for js cookie framework more details: https://github.com/js-cookie/js-cookie -->
+	<script src="https://cdn.jsdelivr.net/npm/js-cookie@2/src/js.cookie.min.js"></script>
+	<!-- script for font awesome-->
+	<script src="https://use.fontawesome.com/1004343e7e.js"></script>
+	<!-- script for jquery on google's cd network -->
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+	<script src="js/noframework.waypoints.min.js"></script>
+
+</head>
+<style>
+#myNav {
+    width: 0;
+}
+</style>
+
+<body>
+
+	<div class="menu-icon-container">
+		<div class="bar1"></div>
+		<div class="bar2"></div>
+		<div class="bar3"></div>
+	</div>
+
+	<div class="menu-signal"></div>
+
+	<div id="myNav" class="overlay pattern-grid-dark-yellow">
+		<!-- Overlay content -->
+		<div class="overlay-content ">
+			<a href="index.html">Home</a>
+			<a href="webdesign.html">Web Design</a>
+			<a href="graphicdesign.html">Graphic Design</a>
+			<a href="photography.html">Photography</a>
+		</div>
+	</div>
+
+<header class="pattern-dots-grid-sparse">
+	<div class="header-container">
+		<h1 class="source-code-pro source-code-pro-light">Lawrence Getubig</h1>
+		<p class="source-code-pro">Front-End Web Design, Visual Design, Photography</p>
+	</div><!--end header container-->
+</header>
+
+<div class="hero-container pattern-grid-black" id="waypointSignal">
+	<div class="hero-web">
+		<img src="images/hero/circle_web.png" class="start-transparent img-layer-absolute " alt="illustration of a computer">
+		<img src="images/hero/shadow_web.png" class="start-bottom img-layer-absolute " alt="illustration of a computer">
+		<img src="images/hero/bottom_layer_web.png" class="bottom-layer-right start-bottom img-layer-absolute  " alt="illustration of a computer">
+		<img src="images/hero/middle_layer_web.png" class="middle-layer-right start-right-fast img-layer-absolute  " alt="illustration of a computer">
+		<img src="images/hero/top_layer_web.png" class="top-layer-right start-top img-layer-absolute  " alt="illustration of a computer">
+	</div>
+
+	<div class="hero-graphic" >
+		<img src="images/hero/circle_graphic.png" class="start-transparent img-layer-absolute " alt="illustration of three pens">
+		<img src="images/hero/shadow_graphic.png" class="start-bottom img-layer-absolute " alt="illustration of three pens">
+		<img src="images/hero/bottom_layer_graphic.png" class="bottom-layer-middle start-bottom img-layer-absolute  " alt="illustration of three pens">
+		<img src="images/hero/middle_layer_graphic.png" class="middle-layer-middle start-right img-layer-absolute  " alt="illustration of three pens">
+		<img src="images/hero/top_layer_graphic.png" class="top-layer-middle start-left img-layer-absolute  " alt="illustration of three pens">
+	</div>
+
+	<div class="hero-photo">
+		<img src="images/hero/circle_photo.png" class="start-transparent img-layer-absolute " alt="illustration of a camera">
+		<img src="images/hero/shadow_photo.png" class="start-bottom img-layer-absolute " alt="illustration of a camera">
+		<img src="images/hero/bottom_layer_photo.png" class="bottom-layer-left start-left img-layer-absolute  " alt="illustration of a camera">
+		<img src="images/hero/middle_layer_photo.png" class="middle-layer-left start-top img-layer-absolute  " alt="illustration of a camera">
+		<img src="images/hero/top_layer_photo.png" class="top-layer-left start-right-fast img-layer-absolute  " alt="illustration of a camera">
+	</div>
+
+</div>
+
+<div class="project-header-bar pattern-dots-grid-sparse">
+	<h2 class="source-code-pro source-code-pro-light">Home: Featured Projects</h2>
+</div>
+
+<div class="flex-container-main">
+
+
+
+
+<!-- 45th -->
+	<div class="flex-container-child-projects pattern-diagonal-up">
+		<section class="featured-project-card">
+			<div class="img-container">
+				<img id="45th" class="project-image" src="images/animate/45th_static.jpg" alt="45th Parallel Wines">
+
+			</div>
+			<h3 class="margin-bottom headline-text-color"><strong><span class="highlight-orange">Web + Brand + Visual Design:</span><br> 45th Parallel Wines</strong></h3>
+			<p>Role:</p>
+				<ul>
+					<li>Conceptualize identity and branding, from logo through all visual assets</li>
+					<li>Collaborate with stakeholders throughout lifecycle of product</li>
+					<li>Modify Squarespace template to fit branding needs</li>
+					<li>Skills and Technologies used: HTML5, CSS3, Adobe Photoshop CC, Adobe Illustrator CC, Squarespace Admin UX</li>
+				</ul>
+			<p><a href="45.html" class="btn">View Design Examples</a></p>
+		</section>
+	</div>
+
+<!-- styleguide -->
+	<div class="flex-container-child-projects pattern-dots-stagger">
+		<section class="featured-project-card">
+			<div class="img-container">
+				<img id="styleguide" class="project-image" src="images/animate/styleguide_static.jpg" alt="Ashoka Style Guide and Branding">
+			</div>
+			<h3 class="margin-bottom headline-text-color"><strong><span class="highlight-orange">Visual + Brand Identity Design:</span><br>Ashoka Style Guide</strong></h3>
+			<p>Role:</p>
+			<ul>
+				<li>As Ashoka visual designer lead, researched and gathered company branding material</li>
+				<li>Assembled and co-led multinational team of communications leads</li>
+				<li>Designed consensus-built Ashoka Branding and Style Guide</li>
+				<li>Skills and Technologies: InDesign, Illustrator CC</li>
+			</ul>
+			<p><a href="styleguide.html" class="btn">See My Process</a></p>
+		</section>
+	</div>
+
+<!-- newsletter -->
+	<div class="flex-container-child-projects pattern-dots-grid-sparse">
+		<section class="featured-project-card">
+			<div class="img-container">
+				<img id="newsletter" class="project-image" src="images/animate/newsletter_static.jpg" alt="Ashoka Newsletter">
+			</div>
+			<h3 class="margin-bottom headline-text-color"><strong><span class="highlight-orange">Visual Design + UI/UX:</span><br> Ashoka Marketing Newsletter</strong></h3>
+			<ul>
+				<li>Challenge: design an up-to-date Ashoka brand newsletter from an older template</li>
+				<li>Create a library of brand refresh visual assets for future donation newsletters</li>
+				<li>Optimized email template for DotDigital platform</li>
+				<li>Skills and Technologies: HTML5, CSS3, UI/UX, DotDigital email platform</li>
+			</ul>
+			<p><a href="newsletter.html" class="btn">View the Case Study</a></p>
+		</section>
+	</div>
+
+
+<!-- drom printed material -->
+	<div class="flex-container-child-projects pattern-diagonal-down">
+		<section class="featured-project-card">
+			<div class="img-container">
+				<img id="drom" class="project-image" src="images/animate/drom_static.jpg" alt="Drom Peppercorns">
+			</div>
+			<h3 class="margin-bottom headline-text-color"><strong><span class="highlight-orange">Graphic Design</span><br>Drøm Printed and Marketing Materials</strong></h3>
+				<p>Role:</p>
+				<ul>
+					<li>Design visuals inline with Drøm's marketing initiatives</li>
+					<li>Prep and send files for CMYK offset printing</li>
+					<li>Develop a consistent visual language across all touch points of the Drøm brand</li>
+					<li>Skills and Technologies: Illustrator CC, Photoshop CC, Product Photography</li>
+				</ul>
+			<p><a href="print.html" class="btn">View Design Samples</a></p>
+		</section>
+	</div>
+
+
+<!-- swisspost -->
+	<div class="flex-container-child-projects pattern-dots-grid-sparse">
+		<section class="featured-project-card">
+			<div class="img-container">
+				<img id="cards" class="project-image" src="images/animate/cards_static.jpg" alt="Swiss Post AI Tool">
+			</div>
+			<h3 class="margin-bottom headline-text-color"><strong><span class="highlight-orange">Product Design</span><br> Swiss Post AI Tool GUI</strong></h3>
+			<ul>
+				<li>AI proof‑of‑concept enabling Swiss Post to generate real‑time business insights.</li>
+				<li>Combines UX/UI design with atomic design systems for scalability and clarity.</li>
+				<li>Visual persona inspired by Swiss design principles, balancing warmth and reliability.</li>
+				<li>Skills and Technologies: Figma, Prototyping, UI/UX, Product Design</li>
+			</ul>
+			<p><a href="swisspost.html" class="btn">View the Case Study</a></p>
+		</section>
+	</div>
+
+<!-- ads -->
+	<div class="flex-container-child-projects pattern-dots-stagger">
+		<section class="featured-project-card">
+			<div class="img-container">
+				<img id="ads" class="project-image" src="images/animate/ads_static.jpg" alt="Web Ads">
+			</div>
+			<h3 class="margin-bottom headline-text-color"><strong><span class="highlight-orange">Graphic Design + Marketing:</span><br>Digital Ads + Gifs</strong></h3>
+			<p>Role:</p>
+			<ul>
+				<li>Design digital graphic assets both static and animated (gifs) to support marketing initiatives</li>
+				<li>Adhere to guidelines and company style guides</li>
+				<li>Deploy variants across a spectrum of digital platforms, including Instagram, Twitter, to email blasts</li>
+				<li>Skills and Technologies: Photoshop CC, Illustrator CC, After Effects CC</li>
+			</ul>
+			<p><a href="ads.html" class="btn">View Sample Ads</a></p>
+		</section>
+	</div>
+
+
+
+
+
+
+</div><!--end main flex container-->
+
+<footer class="pattern-dots-grid-dense">
+	<p>Find me in:</p><br>
+	<a href="https://github.com/LarsGittenberg"><p class="test"><i class="fa fa-github"></i> Github</p></a><br>
+	
+	<a href="https://www.linkedin.com/in/lawrence-getubig"><p class="test"><i class="fa fa-linkedin-square"></i> LinkedIn</p></a><br>
+
+	<a href="https://www.instagram.com/ljgetubig/"><p class="test"><i class="fa fa-instagram"></i> Instagram</p></a><br>
+	<p class="copyright"><small>Copyright Lawrence Getubig 2026</small></p>
+	<!--  want to change the copyright date for all html files? use: perl -pi -w -e 's/Getubig\ 2018/Getubig\ 2019/g;' *.html -->
+</footer>
+
+
+
+
+
+<script>
+//waypoint
+var waypoint = new Waypoint({
+  element: document.getElementById('waypointSignal'),//cannot use jquery $('#waypointSignal')
+  handler: function() {
+  	//do something
+    console.log('waypoint active')
+    $('.menu-signal').addClass('signal');
+  }
+})
+</script>
+<script src="js/design.js"></script>
+<script src="js/cookie_2.js"></script>
+
+<!-- Start of StatCounter Code for Default Guide -->
+<script type="text/javascript">
+var sc_project=5156734;
+var sc_invisible=1;
+var sc_security="8c976dcb";
+</script>
+<script type="text/javascript"
+src="https://www.statcounter.com/counter/counter.js"
+async></script>
+<noscript><div class="statcounter"><a title="site stats"
+href="http://statcounter.com/" target="_blank"><img
+class="statcounter"
+src="//c.statcounter.com/5156734/0/8c976dcb/1/" alt="site
+stats"></a></div></noscript>
+<!-- End of StatCounter Code for Default Guide -->
+</body>
+
+</html>
+
