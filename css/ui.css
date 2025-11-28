@@ -217,7 +217,7 @@ position the close button again, so they don't overlap */
 /*anchor-link styles, btn hover effects*/
 a {
     color: #66cdaa;
-    text-underline-offset: 0.5em;
+    text-underline-offset: 0.4em;
     font-weight: bold;
 }
 
