@@ -105,6 +105,7 @@ div.hero-container {
 	height: auto;
     display: flex;
     flex-wrap: wrap;
+    overflow: hidden;/*so part of the star image is hidden*/
 }
 
 .hero-web,
@@ -115,6 +116,16 @@ div.hero-container {
 	height: 200px;
 	position: relative;
 	display: block;
+	z-index: 2;
+}
+
+.hero-face {
+	width: 33%;
+	max-width: 427px;
+	height: 200px;
+	position: relative;
+	display: block;
+	z-index: 2;
 }
 
 @media only screen and (min-width: 800px) {
@@ -195,7 +206,7 @@ div.hero-container {
 }
 
 .img-layer-assembled{
-	top: 50%;
+	top: 225%;/*lg note original is top: 50%; */
 	left: 50%;
 	transform: translate(-50%, -50%);
 	opacity: 1;
@@ -861,6 +872,42 @@ footer {
     background-image: url(../images/pattern/yellow_grid.png);
     background-repeat: repeat;
     background-size: 5px;
+}
+
+/* star element */
+.spinning-star {
+  position: absolute;
+  bottom: -100%;              /* center aligned with bottom edge */
+  left: 50%;
+  transform: translateX(-50%);
+  width: 100%;
+  height: auto;
+  background: url('../images/hero/star.svg') no-repeat center/contain;
+  z-index: 1;
+
+  /* start invisible */
+  opacity: 0;
+
+  /* spin + fade in */
+  animation: spin 30s linear infinite, fadeIn 2s ease forwards;
+  animation-delay: 0s, 4s; /* spin starts immediately, fade starts after 3s */
+}
+
+@keyframes spin {
+  from { transform: translateX(-50%) rotate(0deg); }
+  to   { transform: translateX(-50%) rotate(360deg); }
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to   { opacity: 0.5; } /* semi-transparent */
+}
+
+
+.spinning-star img {
+  width: 100%;   /* scales to container width */
+  height: auto;  /* keeps aspect ratio */
+  display: block;
 }
 
 .color-yellow {
