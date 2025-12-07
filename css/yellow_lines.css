@@ -110,17 +110,11 @@ div.hero-container {
 
 .hero-web,
 .hero-graphic,
-.hero-photo {
-	width: 33%;
-	max-width: 427px;
-	height: 200px;
-	position: relative;
-	display: block;
-	z-index: 2;
-}
-
+.hero-photo,
 .hero-face {
 	width: 33%;
+	margin-right: auto;
+	margin-left: auto;
 	max-width: 427px;
 	height: 200px;
 	position: relative;
@@ -131,7 +125,8 @@ div.hero-container {
 @media only screen and (min-width: 800px) {
 	.hero-web,
 	.hero-graphic,
-	.hero-photo {
+	.hero-photo,
+	.hero-face {
 		height: 400px;
 	}
 }
@@ -139,8 +134,9 @@ div.hero-container {
 @media only screen and (min-width: 1180px) {
 	.hero-web,
 	.hero-graphic,
-	.hero-photo {
-		height: 700px;
+	.hero-photo,
+	.hero-face {
+		height: 600px;
 	}
 }
 
@@ -206,7 +202,7 @@ div.hero-container {
 }
 
 .img-layer-assembled{
-	top: 225%;/*lg note original is top: 50%; */
+	top: 66%;/*lg note original is top: 50%; */
 	left: 50%;
 	transform: translate(-50%, -50%);
 	opacity: 1;
@@ -877,7 +873,7 @@ footer {
 /* star element */
 .spinning-star {
   position: absolute;
-  bottom: -100%;              /* center aligned with bottom edge */
+  bottom: -115%;              /* center aligned with bottom edge */
   left: 50%;
   transform: translateX(-50%);
   width: 100%;
