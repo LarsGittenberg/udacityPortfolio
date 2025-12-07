@@ -10,7 +10,7 @@ function checkCookie() {
     if (cValue === "true") {
         // cookie exists, don't do animation
         var targetImg = $('.hero-container').find('img');
-        $(targetImg).removeClass('start-transparent start-bottom start-left start-right start-top start-right-fast');
+        // $(targetImg).removeClass('start-transparent start-bottom start-left start-right start-top start-right-fast');
 
         // cookie exists, don't do menu signal anymore - remove the entire structure/element
         $('.menu-signal').remove();
