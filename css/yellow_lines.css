@@ -873,12 +873,11 @@ footer {
 /* star element */
 .spinning-star {
   position: absolute;
-  bottom: -115%;              /* center aligned with bottom edge */
+  bottom: -115%; /* approx center aligned with bottom edge */
   left: 50%;
   transform: translateX(-50%);
   width: 100%;
   height: auto;
-  background: url('../images/hero/star.svg') no-repeat center/contain;
   z-index: 1;
 
   /* start invisible */
