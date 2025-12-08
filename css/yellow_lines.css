@@ -116,7 +116,7 @@ div.hero-container {
 	margin-right: auto;
 	margin-left: auto;
 	max-width: 427px;
-	height: 200px;
+	height: 260px;
 	position: relative;
 	display: block;
 	z-index: 2;
@@ -131,7 +131,16 @@ div.hero-container {
 	}
 }
 
+/* At 500px or below, hide it */
+@media (max-width: 500px) {
+  #tagline {
+    display: none;
+  }
+}
+
 @media only screen and (min-width: 1180px) {
+
+	
 	.hero-web,
 	.hero-graphic,
 	.hero-photo,
@@ -704,7 +713,6 @@ footer {
 .text-center {
 	text-align: center;
 }
-
 
 /*media queries*/
 @media only screen and (min-width: 500px) {

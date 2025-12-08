@@ -19,11 +19,50 @@
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 	<script src="js/noframework.waypoints.min.js"></script>
 
+<!--vanilla Flapper -->
+<script>
+document.addEventListener("DOMContentLoaded", function(){
+  const el = document.getElementById('tagline');
+  const finalText = el.textContent;
+  const chars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz!@#$%^&*() ,.-';
+  let frame = 0;
+
+  const interval = setInterval(() => {
+    let out = '';
+    for (let i = 0; i < finalText.length; i++) {
+      out += (i < frame) ? finalText[i] : chars[Math.floor(Math.random() * chars.length)];
+    }
+    el.textContent = out;
+    frame++;
+    if (frame > finalText.length) {
+      clearInterval(interval);
+      el.textContent = finalText;
+    }
+  }, 70);
+});
+</script>
+
+
 </head>
 <style>
 #myNav {
     width: 0;
 }
+
+.text-highlight-gray {
+	  background: #363636;
+    display: block;
+    padding: 5px;
+    margin-top: 15px;
+    box-shadow: 5px 5px 3px rgba(0, 0, 0, 0.2);
+    z-index: 3;
+    margin-left: 25px;
+}
+
+.absolute {
+	position: absolute;
+}
+
 </style>
 
 <body>
@@ -54,7 +93,8 @@
 </header>
 
 <div class="hero-container pattern-grid-black" id="waypointSignal">
-
+<!-- tagline element -->
+<h3 id="tagline" class="source-code-pro source-code-pro-light text-highlight-gray absolute">Assembling the unexpected into something unmistakable.</h3>
 	<div class="spinning-star">
   	<img src="images/hero/star3.svg" alt="spinning star">
 	</div>
