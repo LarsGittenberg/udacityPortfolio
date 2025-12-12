@@ -19,7 +19,7 @@
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 	<script src="js/noframework.waypoints.min.js"></script>
 
-<!--vanilla Flapper -->
+<!--vanilla Text Flapper -->
 <script>
 document.addEventListener("DOMContentLoaded", function(){
   const el = document.getElementById('tagline');
@@ -38,7 +38,7 @@ document.addEventListener("DOMContentLoaded", function(){
       clearInterval(interval);
       el.textContent = finalText;
     }
-  }, 70);
+  }, 90);
 });
 </script>
 
@@ -47,16 +47,7 @@ document.addEventListener("DOMContentLoaded", function(){
 <style>
 #myNav {
     width: 0;
-}
-
-.text-highlight-gray {
-	  background: #363636;
-    display: block;
-    padding: 5px;
-    margin-top: 15px;
-    box-shadow: 5px 5px 3px rgba(0, 0, 0, 0.2);
-    z-index: 3;
-    margin-left: 25px;
+    z-index: 5;
 }
 
 .absolute {
@@ -94,7 +85,7 @@ document.addEventListener("DOMContentLoaded", function(){
 
 <div class="hero-container pattern-grid-black" id="waypointSignal">
 <!-- tagline element -->
-<h3 id="tagline" class="source-code-pro source-code-pro-light text-highlight-gray absolute">Assembling the unexpected into something unmistakable.</h3>
+<h2 id="tagline" class="source-code-pro source-code-pro-light absolute hero-text">From Clutter To Clarity: Playful by Design</h2>
 	<div class="spinning-star">
   	<img src="images/hero/star3.svg" alt="spinning star">
 	</div>

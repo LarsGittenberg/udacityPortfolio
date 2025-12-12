@@ -77,8 +77,6 @@ header {
 	padding-right: 0;
 }
 
-
-
 .header-container h1 {
 	line-height: 50px;
 	background: #363636;
@@ -131,11 +129,43 @@ div.hero-container {
 	}
 }
 
+
+
+.absolute {
+	position: absolute;
+}
+
+.hero-text {
+	top: 80px;
+	left: 50%;
+	transform: translateX(-50%);
+	white-space: nowrap;
+	background: #363636;
+	display: inline-block;
+	padding: 5px;
+	box-shadow: 5px 5px 3px rgba(0, 0, 0, 0.2);
+	z-index: 10;
+	width: 870px;
+	text-align: left;
+	font-size:2em;
+}
+
+/*hero text tagline sizing*/
+@media (max-width: 900px) {
+	.hero-text {
+		top: 54px;
+		font-size: 1.2em;
+		width: 530px;
+	}
+}
+
 /* At 500px or below, hide it */
-@media (max-width: 500px) {
-  #tagline {
-    display: none;
-  }
+@media (max-width: 525px) {
+	.hero-text {
+		top: 32px;
+		font-size: .85em;
+		width: 390px;
+	}
 }
 
 @media only screen and (min-width: 1180px) {
@@ -439,7 +469,6 @@ div.project-header-bar h3 {
 	background-image: url(../images/cutouts/ambush.jpg);
 }
 
-
 /* posed encounters series photo portfolio page styles*/
 .jeannie-posed {
 	background-image: url(../images/posed/jeannie.jpg);
@@ -500,8 +529,6 @@ div.project-header-bar h3 {
 .shirin-posed {
 	background-image: url(../images/posed/shirin.jpg);
 }
-
-
 
 /* photo retouch portfolio styles */
 .gallery-retouch-photo {
