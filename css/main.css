@@ -523,6 +523,12 @@ section.featured-project-card img {
 	background-color: #363636;
 }
 
+  footer {
+    height: 380px;
+    width:100%;
+ 		position: relative;
+  }
+
  footer p {   background-color: #363636;
     display: inline-table;
     padding: 10px;
@@ -554,9 +560,7 @@ section.featured-project-card img {
   }
 
   footer {
-    height: 245px;
-    width:100%;
- 		position: relative;
+    height: 254px;
   }
 
   .hero-text {
@@ -650,9 +654,6 @@ section.featured-project-card img {
 	/*for photo gallery*/
 	}
 
-	footer {
-		height:345px;
-	}
 }
 
 
