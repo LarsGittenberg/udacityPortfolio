@@ -367,7 +367,7 @@ div.project-header-bar h3 {
 .featured-project-card {
 	height: 560px;
 	background-color: #363636;
-	margin-top: 54px;
+	margin-top: 40px;
 	padding: 12px;
 	transition: 300ms all ease-in-out;
 	position: relative;
@@ -564,7 +564,6 @@ section.featured-project-card img {
   }
 
   .hero-text {
-    top: 44px;
     font-size: 1.2em;
     max-width: 530px;
   }
