@@ -1,4 +1,4 @@
-/* menu icon/navigation styles*/
+/* menu icon/navigation styles for lawrencegetubig.com */
 .menu-icon-container {
     display: inline-block;
     cursor: pointer;
@@ -19,7 +19,6 @@
 
 .menu-icon-container:hover {
     background-color: mediumaquamarine;
-
 }
 
 .bar1,

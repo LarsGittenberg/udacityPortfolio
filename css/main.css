@@ -1,5 +1,5 @@
 
-/*main styles for lawrencegetubig.com*/
+/*main styles for lawrencegetubig.com creative design portfolio*/
 
 /* Base (mobile-first) */
 
@@ -160,10 +160,10 @@ div.hero-container {
 
 .hero-text {
   top: 32px;
-  font-size: 0.85em;
+  font-size: 12px;
   width: 100%;          /* let it shrink naturally */
-  max-width: 390px;     /* cap width for small screens */
-  text-align: left;
+  max-width: 399px;      /*cap width for small screens */
+  text-align: center;
 	left: 50%;
 	transform: translateX(-50%);
 	white-space: nowrap;
@@ -365,9 +365,10 @@ div.project-header-bar h3 {
 }
 
 .featured-project-card {
-	height: 560px;
+	height: 660px!important;
 	background-color: #363636;
 	margin-top: 40px;
+	margin-bottom: 40px;
 	padding: 12px;
 	transition: 300ms all ease-in-out;
 	position: relative;
@@ -529,13 +530,15 @@ section.featured-project-card img {
  		position: relative;
   }
 
- footer p {   background-color: #363636;
+ footer p {   
+ 		background-color: #363636;
     display: inline-table;
     padding: 10px;
     margin: 10px 25px 10px 25px;
-	box-shadow: 5px 5px 3px rgba(0, 0, 0, 0.2);
+		box-shadow: 5px 5px 3px rgba(0, 0, 0, 0.2);
 }
 
+/* BREAKPOINT CSS BREAKPOINT CSS BREAKPOINT CSS BREAKPOINT CSS BREAKPOINT CSS BREAKPOINT CSS BREAKPOINT CSS */
 /* ≥530px */
 @media (min-width: 530px) {
   .header-container {
@@ -555,6 +558,10 @@ section.featured-project-card img {
     height: 625px;
   }
 
+  .featured-project-card {
+	height: 560px!important;
+}
+
  .featured-project-card {
     width: 375px;
   }
@@ -569,6 +576,7 @@ section.featured-project-card img {
   }
 }
 
+/* BREAKPOINT CSS BREAKPOINT CSS BREAKPOINT CSS BREAKPOINT CSS BREAKPOINT CSS BREAKPOINT CSS BREAKPOINT CSS */
 /* ≥800px */
 @media (min-width: 890px) {
   .hero-web,
@@ -599,7 +607,9 @@ section.featured-project-card img {
     top: 60px;
     font-size: 2em;
     max-width: 870px;
+    text-align: left;
   }
+
 
 /* from original @media only screen and (min-width: 800px)  */
 	.tablet-margin-right-1 {
@@ -655,7 +665,7 @@ section.featured-project-card img {
 
 }
 
-
+/* BREAKPOINT CSS BREAKPOINT CSS BREAKPOINT CSS BREAKPOINT CSS BREAKPOINT CSS BREAKPOINT CSS BREAKPOINT CSS */
 /* ≥1180px */
 @media (min-width: 1180px) {
   .hero-web,
