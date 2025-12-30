@@ -38,6 +38,7 @@ img {
 
 figure {
 	width:100%;
+	display: flow-root;
 }
 
 .highlight-orange {
@@ -101,9 +102,6 @@ figure {
 	opacity: 0;
 }
 /*transition-delay: 500ms; original transition: 2300ms all cubic-bezier(0.27, 0.86, 0.4, 1.26);*/
-
-
-
 
 .start-top {
 	top: 50%;
@@ -184,6 +182,41 @@ div.hero-container {
   height: 260px;
 }
 
+/* star element */
+.spinning-star {
+  position: absolute;
+  bottom: -50%; /* approx center aligned with bottom edge */
+  left: 50%;
+  transform: translateX(-50%);
+  width: 90%;
+  height: auto;
+  z-index: 1;
+
+  /* start invisible */
+  opacity: 0;
+
+  /* spin + fade in */
+  animation: spin 50s linear infinite, fadeIn 2s ease forwards;
+  animation-delay: 0s, 4s; /* spin starts immediately, fade starts after 3s */
+}
+
+@keyframes spin {
+  from { transform: translateX(-50%) rotate(0deg); }
+  to   { transform: translateX(-50%) rotate(360deg); }
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to   { opacity: 0.4; } /* semi-transparent */
+}
+
+
+.spinning-star img {
+  width: 100%;   /* scales to container width */
+  height: auto;  /* keeps aspect ratio */
+  display: block;
+}
+
 /*layout helper classes*/
 .margin-bottom {
 	margin-bottom: 10px;
@@ -191,6 +224,11 @@ div.hero-container {
 
 .text-center {
 	text-align: center;
+}
+
+.center {
+	margin-left: auto;
+	margin-right: auto;
 }
 
 .absolute {
@@ -287,16 +325,17 @@ div.project-header-bar h3 {
 	padding: 25px;
 	width: 100%;
 	line-height: 1.7em;
+	margin-bottom:40px;
 }
 
 .info-box-left {
-	max-width: 500px;
+	max-width: 620px;
 	float: left;
 	text-align: left;
 }
 
 .info-box-right {
-	max-width: 500px;
+	max-width: 620px;
 	float: right;
 	text-align: left;
 }
@@ -460,41 +499,6 @@ section.featured-project-card img {
     background-size: 5px;
 }
 
-/* star element */
-.spinning-star {
-  position: absolute;
-  bottom: -50%; /* approx center aligned with bottom edge */
-  left: 50%;
-  transform: translateX(-50%);
-  width: 90%;
-  height: auto;
-  z-index: 1;
-
-  /* start invisible */
-  opacity: 0;
-
-  /* spin + fade in */
-  animation: spin 30s linear infinite, fadeIn 2s ease forwards;
-  animation-delay: 0s, 4s; /* spin starts immediately, fade starts after 3s */
-}
-
-@keyframes spin {
-  from { transform: translateX(-50%) rotate(0deg); }
-  to   { transform: translateX(-50%) rotate(360deg); }
-}
-
-@keyframes fadeIn {
-  from { opacity: 0; }
-  to   { opacity: 0.5; } /* semi-transparent */
-}
-
-
-.spinning-star img {
-  width: 100%;   /* scales to container width */
-  height: auto;  /* keeps aspect ratio */
-  display: block;
-}
-
 .color-yellow {
 	background-color: #febe13;
 }
@@ -615,7 +619,7 @@ section.featured-project-card img {
 
 
 /* from original @media only screen and (min-width: 800px)  */
-	.tablet-margin-right-1 {
+	.margin-right-tablet {
 		margin-right:100px;
 	}
 
@@ -639,10 +643,28 @@ section.featured-project-card img {
 
 	img.tablet-float-left {
 		float: left;
+		margin-left: 60px;
 	}
 
 	img.tablet-float-right {
 		float: right;
+		margin-right: 60px;
+	}
+
+	.tablet-float-left {
+		float: left;
+	}
+
+	.tablet-float-right {
+		float: right;
+	}
+
+  .margin-left-tablet {
+	margin-left: 60px;
+	}
+
+.margin-right-tablet {
+	margin-right: 60px;
 	}
 
 	.header-container {
@@ -682,11 +704,24 @@ section.featured-project-card img {
   .flex-container-child-gallery {
     width: 33.3%;
   }
+
  .hero-text {
     top: 80px;
     font-size: 2em;
     max-width: 870px;
   }
+
+  .margin-left-desktop {
+	margin-left: 100px;
+	}
+
+.margin-right-desktop {
+	margin-right: 100px;
+	}
+
+figcaption {
+	width:66%;
+}
 
 }
 
