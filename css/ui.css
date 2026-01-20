@@ -181,10 +181,13 @@ position the close button again, so they don't overlap */
 /* Labels */
 #styleToggle .label-textures,
 #styleToggle .label-no-textures {
-  font-size: 0.85rem;
-  letter-spacing: 0.02em;
-  opacity: 0.7;
-  transition: opacity 0.25s ease;
+    display: inline-block; 
+    width: 90px;
+    text-align: center;
+    font-size: 0.85rem;
+    letter-spacing: 0.02em;
+    opacity: 0.7;
+    transition: opacity 0.25s ease;
 }
 
 /* Button */
