@@ -1,48 +1,76 @@
 <!doctype html>
 
-<html lang="en">
+<html>
 <head>
-	<title>Portfolio Home</title>
-	<meta charset="UTF-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<meta name="theme-color" content="#feb013"/>
-	<meta name="description" content="Web, visual and front-end designer crafting digital experiences that engage, delight and convert.">
-	<link rel="preload" href="css/ui.css" as="style">
-	<link rel="stylesheet" href="css/ui.css">
-	<link rel="stylesheet" href="css/main.css">
-	<link href="https://fonts.googleapis.com/css?family=Montserrat:400,600|Source+Code+Pro:300,400" rel="stylesheet">
-	<!--script for js cookie framework more details: https://github.com/js-cookie/js-cookie -->
-	<script src="https://cdn.jsdelivr.net/npm/js-cookie@2/src/js.cookie.min.js"></script>
-	<!-- script for font awesome-->
-	<script src="https://use.fontawesome.com/1004343e7e.js"></script>
-	<!-- script for jquery on google's cd network -->
-	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-	<script src="js/noframework.waypoints.min.js"></script>
+  <!-- Load saved preference BEFORE CSS loads -->
+  <script>
+    (function() {
+      const saved = localStorage.getItem('styleMode');
+      if (saved === 'no-textures') {
+        document.documentElement.classList.add('no-textures');
+      } else {
+        document.documentElement.classList.add('textures');
+      }
+    })();
+  </script>
 
+  <title>Lawrence Getubig Portfolio</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#feb013">
+  <meta name="description" content="Web, visual and front-end designer crafting digital experiences that engage, delight and convert.">
 
-	<!--vanilla JS Text Flapper -->
-	<script>
-	document.addEventListener("DOMContentLoaded", function(){
-	  const el = document.getElementById('tagline');
-	  const finalText = el.textContent;
-	  const chars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz!@#$%^&*() ,.-';
-	  let frame = 0;
+  <!-- CSS -->
+  <link rel="preload" href="css/ui.css" as="style">
+  <link rel="stylesheet" href="css/ui.css">
+  <link rel="stylesheet" href="css/main.css">
+  <link href="https://fonts.googleapis.com/css?family=Montserrat:400,600|Source+Code+Pro:300,400" rel="stylesheet">
 
-	  const interval = setInterval(() => {
-	    let out = '';
-	    for (let i = 0; i < finalText.length; i++) {
-	      out += (i < frame) ? finalText[i] : chars[Math.floor(Math.random() * chars.length)];
-	    }
-	    el.textContent = out;
-	    frame++;
-	    if (frame > finalText.length) {
-	      clearInterval(interval);
-	      el.textContent = finalText;
-	    }
-	  }, 110);
-	});
-	</script>
+  <!-- JS libraries -->
+  <script src="https://cdn.jsdelivr.net/npm/js-cookie@2/src/js.cookie.min.js"></script>
+  <script src="https://use.fontawesome.com/1004343e7e.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  <script src="js/noframework.waypoints.min.js"></script>
 
+  <!-- Text Scramble -->
+  <script>
+    document.addEventListener("DOMContentLoaded", function() {
+      const el = document.getElementById('tagline');
+      const finalText = el.textContent;
+      const chars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz!@#$%^&*() ,.-';
+      let frame = 0;
+
+      const interval = setInterval(() => {
+        let out = '';
+        for (let i = 0; i < finalText.length; i++) {
+          out += (i < frame) ? finalText[i] : chars[Math.floor(Math.random() * chars.length)];
+        }
+        el.textContent = out;
+        frame++;
+        if (frame > finalText.length) {
+          clearInterval(interval);
+          el.textContent = finalText;
+        }
+      }, 110);
+    });
+  </script>
+
+  <!-- Update toggle labels AFTER DOM is ready -->
+  <script>
+    document.addEventListener("DOMContentLoaded", function() {
+      const saved = localStorage.getItem('styleMode');
+      const labelTextures = document.getElementById('labelTextures');
+      const labelNoTextures = document.getElementById('labelNoTextures');
+
+      if (saved === 'no-textures') {
+        labelTextures.innerHTML = "Bright <br>Textures<br>Mode: Off";
+        labelNoTextures.innerHTML = "Toned<br>Down<br>Mode: On";
+      } else {
+        labelTextures.innerHTML = "Bright <br>Textures<br>Mode: On";
+        labelNoTextures.innerHTML = "Toned<br>Down<br>Mode: Off";
+      }
+    });
+  </script>
 </head>
 
 <style>
@@ -62,24 +90,32 @@
 
 	<div class="menu-signal"></div>
 
-	<div id="myNav" class="overlay pattern-grid-dark-yellow">
+	<div id="myNav" class="overlay pattern-grid-large">
 		<!-- Overlay content -->
 		<div class="overlay-content ">
 			<a href="index.html">Home</a>
 			<a href="webdesign.html">Web Design</a>
 			<a href="graphicdesign.html">Graphic Design</a>
 			<a href="photography.html">Photography</a>
+			<p class="overlay-title">Settings</p>
+			<div class="style-toggle" id="styleToggle">
+				<span class="label-textures" id="labelTextures">Bright <br>Textures<br>Mode: On</span>
+				<button class="toggle-button" aria-label="Toggle style mode">
+				<span class="toggle-knob"></span>
+				</button>
+				<span class="label-no-textures" id="labelNoTextures">Toned<br>Down<br>Mode: Off</span>
+			</div>
 		</div>
-	</div>
+	</div><!--end my nav-->
 
-<header class="pattern-dots-grid-sparse">
+<header class="pattern-dots-sparse">
 	<div class="header-container">
 		<h1 class="source-code-pro source-code-pro-light">Lawrence Getubig</h1>
 		<p class="source-code-pro">Creative Technologist in Product Design</p>
 	</div><!--end header container-->
 </header>
 
-<div class="hero-container pattern-grid-black" id="waypointSignal">
+<div class="hero-container pattern-grid-small" id="waypointSignal">
 <!-- tagline element -->
 <h2 id="tagline" class="source-code-pro source-code-pro-light absolute hero-text">From Clutter To Clarity: Playful by Design</h2>
 	<div class="spinning-star">
@@ -95,14 +131,14 @@
 	</div>
 </div><!--end hero container-->
 
-<div class="project-header-bar pattern-dots-grid-sparse">
+<div class="project-header-bar pattern-dots-sparse">
 	<h2 class="source-code-pro source-code-pro-light">Home: Featured Projects</h2>
 </div>
 
 <div class="flex-container-main">
 
 <!-- 45th -->
-	<div class="flex-container-child-projects pattern-diagonal-up">
+	<div class="flex-container-child-projects pattern-lines-up">
 		<section class="featured-project-card">
 			<div class="img-container">
 				<img id="45th" class="project-image" src="images/animate/45th_static.jpg" alt="45th Parallel Wines">
@@ -119,6 +155,7 @@
 			<p><a href="45.html" class="btn">View Design Examples</a></p>
 		</section>
 	</div>
+
 
 <!-- styleguide -->
 	<div class="flex-container-child-projects pattern-dots-stagger">
@@ -139,7 +176,7 @@
 	</div>
 
 <!-- newsletter -->
-	<div class="flex-container-child-projects pattern-dots-grid-sparse">
+	<div class="flex-container-child-projects pattern-dots-sparse">
 		<section class="featured-project-card">
 			<div class="img-container">
 				<img id="newsletter" class="project-image" src="images/animate/newsletter_static.jpg" alt="Ashoka Newsletter">
@@ -156,7 +193,7 @@
 	</div>
 
 <!-- drom printed material -->
-	<div class="flex-container-child-projects pattern-diagonal-down">
+	<div class="flex-container-child-projects pattern-dots-dense">
 		<section class="featured-project-card">
 			<div class="img-container">
 				<img id="drom" class="project-image" src="images/animate/drom_static.jpg" alt="Drom Peppercorns">
@@ -174,7 +211,7 @@
 	</div>
 
 <!-- swisspost -->
-	<div class="flex-container-child-projects pattern-dots-grid-sparse">
+	<div class="flex-container-child-projects pattern-dots-sparse">
 		<section class="featured-project-card">
 			<div class="img-container">
 				<img id="cards" class="project-image" src="images/animate/cards_static.jpg" alt="Swiss Post AI Tool">
@@ -191,7 +228,7 @@
 	</div>
 
 <!-- ads -->
-	<div class="flex-container-child-projects pattern-dots-stagger">
+	<div class="flex-container-child-projects pattern-lines-down">
 		<section class="featured-project-card">
 			<div class="img-container">
 				<img id="ads" class="project-image" src="images/animate/ads_static.jpg" alt="Web Ads">
@@ -210,7 +247,7 @@
 
 </div><!--end main flex container-->
 
-<footer class="pattern-dots-grid-dense">
+<footer class="pattern-dots-dense">
 	<p>Find me in:</p><br>
 	<a href="https://github.com/LarsGittenberg"><p class="test"><i class="fa fa-github"></i> Github</p></a><br>
 	
@@ -232,6 +269,38 @@ var waypoint = new Waypoint({
   }
 })
 </script>
+
+<!--Bright Texture Mode Switch--Toggles the class--Saves the preference--Updates the UI instantly-->
+<script>
+  document.querySelector('#styleToggle .toggle-button').addEventListener('click', function() {
+    const root = document.documentElement;
+    const labelTextures = document.getElementById('labelTextures');
+    const labelNoTextures = document.getElementById('labelNoTextures');
+
+    if (root.classList.contains('no-textures')) {
+      // Switch to TEXTURES mode
+      root.classList.remove('no-textures');
+      root.classList.add('textures');
+      localStorage.setItem('styleMode', 'textures');
+
+      // Update labels
+      labelTextures.innerHTML = "Bright <br>Textures<br>Mode: On";
+      labelNoTextures.innerHTML = "Toned<br>Down<br>Mode: Off";
+
+    } else {
+      // Switch to NO-TEXTURES mode
+      root.classList.remove('textures');
+      root.classList.add('no-textures');
+      localStorage.setItem('styleMode', 'no-textures');
+
+      // Update labels
+      labelTextures.innerHTML = "Bright <br>Textures<br>Mode: Off";
+      labelNoTextures.innerHTML = "Toned<br>Down<br>Mode: On";
+    }
+  });
+</script>
+
+
 <!-- script for site's UI functionality -->
 <script src="js/design.js"></script>
 <script src="js/cookie_2.js"></script>
@@ -251,7 +320,7 @@ class="statcounter"
 src="//c.statcounter.com/5156734/0/8c976dcb/1/" alt="site
 stats"></a></div></noscript>
 <!-- End of StatCounter Code for Default Guide -->
-</body>
 
+</body>
 </html>
 

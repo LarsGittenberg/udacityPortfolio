@@ -1,6 +1,97 @@
 
 /*main styles for lawrencegetubig.com creative design portfolio*/
 
+/* background variables set up */
+:root {
+	--pattern-lines-up: url(../images/pattern/yellow_lines_up.png); /*matched*/
+  --pattern-lines-up-var: url(../images/pattern/yellow_lines_up_var.png); /*matched*/
+  --pattern-lines-down: url(../images/pattern/yellow_lines_down.png); /*matched*/
+  --pattern-dots-dense: url(../images/pattern/yellow_dots_grid_dense.png);/*matched*/
+  --pattern-dots-sparse: url(../images/pattern/yellow_dots_grid_sparse.png); /*matched*/
+  --pattern-dots-stagger: url(../images/pattern/yellow_dots_stagger.png); /*matched*/
+  --pattern-grid-small: url(../images/pattern/black_grid.png);/*matched*/
+	--pattern-grid-large: url(../images/pattern/yellow_grid.png);/*matched*/
+
+  /* etc… add all your patterns */
+}
+
+/* patterns */
+/*matched*/
+.pattern-lines-up {
+	background-image: var(--pattern-lines-up);
+	background-size: 25px;
+}
+
+/*matched*/
+.pattern-lines-up-var {
+	background-image: var(--pattern-lines-up-var);
+	background-size: 8px;
+}
+
+/*matched*/
+.pattern-lines-down {
+	background-image: var(--pattern-lines-down);
+	background-size: 25px;
+}
+
+.pattern-horizontal {
+	background-image: url(../images/pattern/yellow_lines_hor.png);
+	background-size: 10px;
+}
+
+.pattern-vertical {
+	background-image: url(../images/pattern/yellow_lines_vert.png);
+	background-size: 10px;
+}
+
+/*matched*/
+.pattern-dots-dense {
+	background-image: var(--pattern-dots-dense);
+	background-size: 5px;
+}
+
+/*matched*/
+.pattern-dots-sparse {
+	background-image: var(--pattern-dots-sparse);
+	background-size: 5px;
+}
+
+.pattern-dots-grid-var {
+	background-image: url(../images/pattern/yellow_dots_grid2.png);
+	background-size: 5px;
+}
+
+/*matched*/
+.pattern-dots-stagger {
+	background-image: var(--pattern-dots-stagger);
+	background-size: 10px;
+}
+
+/*matched*/
+.pattern-grid-small {
+	background-image:url(../images/pattern/black_grid.png);
+	background-size: 5px;
+}
+
+/*matched*/
+.pattern-grid-large {
+	background-image: var(--pattern-grid-large);
+    background-repeat: repeat;
+    background-size: 5px;
+}
+
+html.no-textures {
+	--pattern-lines-up: url(../images/pattern/gray_lines_up.png); /*matched*/
+  --pattern-lines-up-var: url(../images/pattern/gray_lines_up_var.png); /*matched*/
+  --pattern-lines-down: url(../images/pattern/gray_lines_down.png); /*matched*/
+  --pattern-dots-dense: url(../images/pattern/gray_dots_grid_dense.png);/*matched*/
+  --pattern-dots-sparse: url(../images/pattern/gray_dots_grid_sparse.png); /*matched*/
+  --pattern-dots-stagger: url(../images/pattern/gray_dots_stagger.png); /*matched*/
+  --pattern-grid-small: url(../images/pattern/black_grid.png);/*matched*/
+	--pattern-grid-large: url(../images/pattern/gray_grid.png);/*matched*/
+  /* etc… */
+}
+
 /* Base (mobile-first) */
 
 * {
@@ -39,6 +130,7 @@ img {
 figure {
 	width:100%;
 	display: flow-root;
+	padding-bottom:24px;
 }
 
 .highlight-orange {
@@ -196,7 +288,12 @@ div.hero-container {
   opacity: 0;
 
   /* spin + fade in */
-  animation: spin 50s linear infinite, fadeIn 2s ease forwards;
+  animation: spin 120s linear infinite, fadeIn 2s ease forwards;
+  animation-delay: 0s, 4s; /* spin starts immediately, fade starts after 3s */
+}
+
+html.no-textures .spinning-star {
+  animation: spin 0s linear infinite, fadeIn 2s ease forwards;
   animation-delay: 0s, 4s; /* spin starts immediately, fade starts after 3s */
 }
 
@@ -207,7 +304,7 @@ div.hero-container {
 
 @keyframes fadeIn {
   from { opacity: 0; }
-  to   { opacity: 0.4; } /* semi-transparent */
+  to   { opacity: 0.3; } /* semi-transparent */
 }
 
 
@@ -443,61 +540,6 @@ section.featured-project-card img {
 }
 
 /*pattern and background color classes*/
-.pattern-diagonal-up {
-	background-image: url(../images/pattern/yellow_lines_up.png);
-	background-size: 25px;
-}
-
-.pattern-diagonal-up-var {
-	background-image: url(../images/pattern/yellow_lines_up_var.png);
-	background-size: 8px;
-}
-
-.pattern-diagonal-down {
-	background-image: url(../images/pattern/yellow_lines_down.png);
-	background-size: 25px;
-}
-
-.pattern-horizontal {
-	background-image: url(../images/pattern/yellow_lines_hor.png);
-	background-size: 10px;
-}
-
-.pattern-vertical {
-	background-image: url(../images/pattern/yellow_lines_vert.png);
-	background-size: 10px;
-}
-
-.pattern-dots-grid-dense {
-	background-image: url(../images/pattern/yellow_dots_grid_dense.png);
-	background-size: 5px;
-}
-
-.pattern-dots-grid-sparse {
-	background-image: url(../images/pattern/yellow_dots_grid_sparse.png);
-	background-size: 5px;
-}
-
-.pattern-dots-grid-var {
-	background-image: url(../images/pattern/yellow_dots_grid2.png);
-	background-size: 5px;
-}
-
-.pattern-dots-stagger {
-	background-image: url(../images/pattern/yellow_dots_stagger.png);
-	background-size: 10px;
-}
-
-.pattern-grid-black {
-	background-image:url(../images/pattern/black_grid.png);
-	background-size: 5px;
-}
-
-.pattern-grid-dark-yellow {
-    background-image: url(../images/pattern/yellow_grid.png);
-    background-repeat: repeat;
-    background-size: 5px;
-}
 
 .color-yellow {
 	background-color: #febe13;

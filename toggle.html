@@ -1,0 +1,88 @@
+<html>
+<head>
+</head>
+
+<style>
+	/* Wrapper */
+.style-toggle {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.75rem;
+  font-family: inherit;
+}
+
+/* Labels */
+.style-toggle .label-textures,
+.style-toggle .label-no-textures {
+  font-size: 0.85rem;
+  letter-spacing: 0.02em;
+  opacity: 0.7;
+  transition: opacity 0.25s ease;
+}
+
+/* The toggle button */
+.toggle-button {
+  position: relative;
+  width: 60px;
+  height: 28px;
+  border-radius: 20px;
+  border: 2px solid currentColor;
+  background: transparent;
+  cursor: pointer;
+  padding: 0;
+  transition: all 0.3s ease;
+}
+
+/* The knob */
+.toggle-knob {
+  position: absolute;
+  top: 1px;
+  left: 2px;
+  width: 22px;
+  height: 22px;
+  border-radius: 50%;
+  background: currentColor;
+  transition: transform 0.3s cubic-bezier(0.25, 1, 0.5, 1);
+}
+
+/* When in no-textures mode */
+.no-textures .toggle-button {
+  color: #333; /* darker, calmer */
+}
+
+.no-textures .toggle-knob {
+  transform: translateX(32px);
+}
+
+/* When in textures mode */
+.textures .toggle-button {
+  color: #ff6600; /* your expressive orange */
+}
+
+.textures .toggle-knob {
+  transform: translateX(0);
+}
+
+/* Optional: emphasize active label */
+.textures .label-textures,
+.no-textures .label-no-textures {
+  opacity: 1;
+  font-weight: 600;
+}
+
+</style>
+
+<body>
+
+<div class="style-toggle" id="styleToggle">
+  <span class="label-textures">Bright Textures</span>
+
+  <button class="toggle-button" aria-label="Toggle style mode">
+    <span class="toggle-knob"></span>
+  </button>
+
+  <span class="label-no-textures">Toned Down Mode</span>
+</div>
+
+</body>
+</html>

@@ -2,20 +2,83 @@
 
 <html>
 <head>
-	<title>Visual Design - Style Guide</title>
-	<meta charset="UTF-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<meta name="theme-color" content="#feb013">
-	<link rel="stylesheet" href="css/main.css">
-	<link rel="stylesheet" href="css/ui.css">
-	<link href="https://fonts.googleapis.com/css?family=Montserrat:400,600|Source+Code+Pro:300,400" rel="stylesheet">
-	<!-- script for font awesome-->
-	<script src="https://use.fontawesome.com/1004343e7e.js"></script>
-	<!-- script for jquery on google's cd network -->
-	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  <!-- Load saved preference BEFORE CSS loads -->
+  <script>
+    (function() {
+      const saved = localStorage.getItem('styleMode');
+      if (saved === 'no-textures') {
+        document.documentElement.classList.add('no-textures');
+      } else {
+        document.documentElement.classList.add('textures');
+      }
+    })();
+  </script>
+
+  <title>Style Guide - Visual Design</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#feb013">
+  <meta name="description" content="Web, visual and front-end designer crafting digital experiences that engage, delight and convert.">
+
+  <!-- CSS -->
+  <link rel="preload" href="css/ui.css" as="style">
+  <link rel="stylesheet" href="css/ui.css">
+  <link rel="stylesheet" href="css/main.css">
+  <link href="https://fonts.googleapis.com/css?family=Montserrat:400,600|Source+Code+Pro:300,400" rel="stylesheet">
+
+  <!-- JS libraries -->
+  <script src="https://cdn.jsdelivr.net/npm/js-cookie@2/src/js.cookie.min.js"></script>
+  <script src="https://use.fontawesome.com/1004343e7e.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  <script src="js/noframework.waypoints.min.js"></script>
+
+  <!-- Text Scramble -->
+  <script>
+    document.addEventListener("DOMContentLoaded", function() {
+      const el = document.getElementById('tagline');
+      const finalText = el.textContent;
+      const chars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz!@#$%^&*() ,.-';
+      let frame = 0;
+
+      const interval = setInterval(() => {
+        let out = '';
+        for (let i = 0; i < finalText.length; i++) {
+          out += (i < frame) ? finalText[i] : chars[Math.floor(Math.random() * chars.length)];
+        }
+        el.textContent = out;
+        frame++;
+        if (frame > finalText.length) {
+          clearInterval(interval);
+          el.textContent = finalText;
+        }
+      }, 110);
+    });
+  </script>
+
+  <!-- Update toggle labels AFTER DOM is ready -->
+  <script>
+    document.addEventListener("DOMContentLoaded", function() {
+      const saved = localStorage.getItem('styleMode');
+      const labelTextures = document.getElementById('labelTextures');
+      const labelNoTextures = document.getElementById('labelNoTextures');
+
+      if (saved === 'no-textures') {
+        labelTextures.innerHTML = "Bright <br>Textures<br>Mode: Off";
+        labelNoTextures.innerHTML = "Toned<br>Down<br>Mode: On";
+      } else {
+        labelTextures.innerHTML = "Bright <br>Textures<br>Mode: On";
+        labelNoTextures.innerHTML = "Toned<br>Down<br>Mode: Off";
+      }
+    });
+  </script>
 </head>
 
-<body>
+<style>
+#myNav {
+    width: 0;
+    z-index: 5;
+}
+</style>
 
 	<div class="menu-icon-container">
 		<div class="bar1"></div>
@@ -23,17 +86,25 @@
 		<div class="bar3"></div>
 	</div>
 
-	<div id="myNav" class="overlay pattern-grid-dark-yellow">
+	<div id="myNav" class="overlay pattern-grid-large">
 		<!-- Overlay content -->
 		<div class="overlay-content ">
 			<a href="index.html">Home</a>
 			<a href="webdesign.html">Web Design</a>
 			<a href="graphicdesign.html">Graphic Design</a>
 			<a href="photography.html">Photography</a>
+			<p class="overlay-title">Settings</p>
+			<div class="style-toggle" id="styleToggle">
+				<span class="label-textures" id="labelTextures">Bright <br>Textures<br>Mode: On</span>
+				<button class="toggle-button" aria-label="Toggle style mode">
+				<span class="toggle-knob"></span>
+				</button>
+				<span class="label-no-textures" id="labelNoTextures">Toned<br>Down<br>Mode: Off</span>
+			</div>
 		</div>
-	</div>
+	</div><!--end my nav-->
 
-<header class="pattern-diagonal-up-var">
+<header class="pattern-dots-sparse">
 	<div class="header-container">
 		<h1 class="source-code-pro source-code-pro-light">Lawrence Getubig</h1>
 		<p class="source-code-pro">Creative Technologist in Product Design</p>
@@ -41,11 +112,11 @@
 </header>
 
 
-<div class="project-header-bar pattern-dots-grid-sparse">
+<div class="project-header-bar pattern-lines-up">
 	<h2 class="source-code-pro source-code-pro-light">Ashoka Brand and Style Guide</h2>
 </div>
 
-<div class="flex-container-main pattern-grid-black">
+<div class="flex-container-main pattern-grid-small">
 
 	<!--styleguide-->
 	<div class="info-box">
@@ -116,7 +187,7 @@
 
 	<figure class="margin-right-desktop margin-right-tablet">
 		<img class="two-thirds tablet-float-right" src="images/styleguide/styleguide_font.png" >
-		<figcaption class="tablet-float-right" style="font-size: 0.8em; padding: 25px; text-align: right;">Above and below: Selected pages of the living document—Ashoka Style Guide 2019. <br>Bringing parity to a global brand through collaboration, facilitation, communication, and branding leadership.</figcaption>
+		<figcaption class="tablet-float-right" style="font-size: 0.8em; padding: 25px; text-align: left;">Above and below: Selected pages of the living document—Ashoka Style Guide 2019. <br>Bringing parity to a global brand through collaboration, facilitation, communication, and branding leadership.</figcaption>
 	</figure>
 
 	<figure class="margin-left-desktop margin-right-tablet">
@@ -146,7 +217,7 @@
 
 </div><!--end main flex container-->
 
-<footer class="pattern-dots-grid-dense">
+<footer class="pattern-dots-dense">
 	<p>Find me in:</p><br>
 	<a href="https://github.com/LarsGittenberg"><p class="test"><i class="fa fa-github"></i> Github</p></a><br>
 	
@@ -158,6 +229,37 @@
 </footer>
 
 </body>
+
+<!--Bright Texture Mode Switch--Toggles the class--Saves the preference--Updates the UI instantly-->
+<script>
+  document.querySelector('#styleToggle .toggle-button').addEventListener('click', function() {
+    const root = document.documentElement;
+    const labelTextures = document.getElementById('labelTextures');
+    const labelNoTextures = document.getElementById('labelNoTextures');
+
+    if (root.classList.contains('no-textures')) {
+      // Switch to TEXTURES mode
+      root.classList.remove('no-textures');
+      root.classList.add('textures');
+      localStorage.setItem('styleMode', 'textures');
+
+      // Update labels
+      labelTextures.innerHTML = "Bright <br>Textures<br>Mode: On";
+      labelNoTextures.innerHTML = "Toned<br>Down<br>Mode: Off";
+
+    } else {
+      // Switch to NO-TEXTURES mode
+      root.classList.remove('textures');
+      root.classList.add('no-textures');
+      localStorage.setItem('styleMode', 'no-textures');
+
+      // Update labels
+      labelTextures.innerHTML = "Bright <br>Textures<br>Mode: Off";
+      labelNoTextures.innerHTML = "Toned<br>Down<br>Mode: On";
+    }
+  });
+</script>
+
 <script src="js/design.js"></script>
 
 <!-- Start of StatCounter Code for Default Guide -->
