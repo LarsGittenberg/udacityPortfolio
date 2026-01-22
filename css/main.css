@@ -11,8 +11,6 @@
   --pattern-dots-stagger: url(../images/pattern/yellow_dots_stagger.png); /*matched*/
   --pattern-grid-small: url(../images/pattern/black_grid.png);/*matched*/
 	--pattern-grid-large: url(../images/pattern/yellow_grid.png);/*matched*/
-
-  /* etc… add all your patterns */
 }
 
 /* patterns */
@@ -89,7 +87,6 @@ html.no-textures {
   --pattern-dots-stagger: url(../images/pattern/gray_dots_stagger.png); /*matched*/
   --pattern-grid-small: url(../images/pattern/black_grid.png);/*matched*/
 	--pattern-grid-large: url(../images/pattern/gray_grid.png);/*matched*/
-  /* etc… */
 }
 
 /* Base (mobile-first) */
