@@ -132,6 +132,15 @@ figure {
 
 .highlight-orange {
 	color: #ff7f00;
+	font-size: 0.7em;
+}
+
+.orange-color-font {
+	color: #ff7f00;
+}
+
+.gold-color-font {
+	color: #ffcc00;
 }
 
 /*a:visited {
@@ -410,7 +419,7 @@ div.project-header-bar h3 {
 .flex-container-main h2, 
 .flex-container-main h3 {
 	width: 100%;
-	padding: 5px 25px 5px 25px;
+	padding: 5px 22px 5px 20px;
 
 }
 
@@ -514,6 +523,10 @@ div.project-header-bar h3 {
 	margin-right: auto;
 }
 
+html.no-textures .featured-project-card {
+	background-color: #2c2c2c;
+}
+
 
 section.featured-project-card img {
 	width: 250px;
@@ -605,12 +618,10 @@ section.featured-project-card img {
   }
 
   .featured-project-card {
-	height: 560px!important;
+	  height: 560px!important;
+	  width: 375px;
+	  border-radius: 15px;
 }
-
- .featured-project-card {
-    width: 375px;
-  }
 
   footer {
     height: 254px;
@@ -658,10 +669,6 @@ section.featured-project-card img {
 
 
 /* from original @media only screen and (min-width: 800px)  */
-	.margin-right-tablet {
-		margin-right:100px;
-	}
-
 	img.two-thirds {
 		width: 66%;
 	}
