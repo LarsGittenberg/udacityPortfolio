@@ -330,6 +330,7 @@ html.no-textures .spinning-star {
 }
 
 .center {
+	display: block;
 	margin-left: auto;
 	margin-right: auto;
 }
@@ -583,6 +584,63 @@ section.featured-project-card img {
 	background-color: #363636;
 }
 
+/*about page figure, photo and figcaption "surprised" hover styling*/
+.about-photo {
+  position: relative;
+  display: inline-block;
+  text-align: center;
+  width: 40%;
+}
+
+.about-photo img {
+  width: 100%;
+  display: block;
+  padding-top: 40px;
+}
+
+.photo-hover {
+  position: absolute;
+  top: 0;
+  left: 0;
+  opacity: 0;
+}
+
+.about-photo:hover .photo-hover {
+  opacity: 1;
+}
+
+.about-photo:hover .photo-default {
+  opacity: 0;
+}
+
+/* figcaption styling */
+/* captions – both absolutely positioned in the SAME place */
+.about-photo figcaption {
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 0;
+  width: 100%;
+}
+
+/* default visible, hover hidden */
+.caption-default {
+  opacity: 1;
+}
+
+.caption-hover {
+  opacity: 0;
+}
+
+/* swap on hover */
+.about-photo:hover .caption-default {
+  opacity: 0;
+}
+
+.about-photo:hover .caption-hover {
+  opacity: 1;
+}
+
   footer {
     height: 380px;
     width:100%;
@@ -631,7 +689,8 @@ section.featured-project-card img {
     font-size: 1.2em;
     max-width: 530px;
   }
-}
+
+}/*end media query*/
 
 /* BREAKPOINT CSS BREAKPOINT CSS BREAKPOINT CSS BREAKPOINT CSS BREAKPOINT CSS BREAKPOINT CSS BREAKPOINT CSS */
 /* ≥800px */
@@ -666,7 +725,6 @@ section.featured-project-card img {
     max-width: 870px;
     text-align: left;
   }
-
 
 /* from original @media only screen and (min-width: 800px)  */
 	img.two-thirds {
@@ -734,7 +792,11 @@ section.featured-project-card img {
 	/*for photo gallery*/
 	}
 
+.about-photo {
+  width: 23%;
 }
+
+}/*end media query*/
 
 /* BREAKPOINT CSS BREAKPOINT CSS BREAKPOINT CSS BREAKPOINT CSS BREAKPOINT CSS BREAKPOINT CSS BREAKPOINT CSS */
 /* ≥1180px */
@@ -769,9 +831,6 @@ figcaption {
 	width:66%;
 }
 
-}
 
 
-
-
-
+}/*end media query*/
