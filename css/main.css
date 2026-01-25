@@ -68,7 +68,7 @@
 /*matched*/
 .pattern-grid-small {
 	background-image:url(../images/pattern/black_grid.png);
-	background-size: 5px;
+	background-size: 4px;
 }
 
 /*matched*/
@@ -130,6 +130,26 @@ figure {
 	padding-bottom:24px;
 }
 
+/*layout helper classes*/
+.margin-bottom {
+	margin-bottom: 10px;
+}
+
+.text-center {
+	text-align: center;
+}
+
+.center {
+	display: block;
+	margin-left: auto;
+	margin-right: auto;
+}
+
+.absolute {
+	position: absolute;
+}
+
+/*Font/typography color helper classes*/
 .highlight-orange {
 	color: #ff7f00;
 	font-size: 0.7em;
@@ -162,6 +182,40 @@ figure {
 
 .source-code-pro-regular {
 	font-weight: 400;
+}
+
+/*background color helper classes*/
+
+.color-yellow {
+	background-color: #febe13;
+}
+
+.color-light-yellow {
+	background-color: #fed361;
+}
+
+.color-mustard-brown {
+	background-color: #cb9811;
+}
+
+.color-bright-brown {
+	background-color: #7f5f0a;
+}
+
+.color-dull-brown {
+	background-color: #785d2f;
+}
+
+.color-dark-brown {
+	background-color: #423208;
+}
+
+.color-offwhite {
+	background-color: #e6e6e6;
+}
+
+.color-charcoal {
+	background-color: #363636;
 }
 
 /* hero animation styles */
@@ -318,25 +372,6 @@ html.no-textures .spinning-star {
   width: 100%;   /* scales to container width */
   height: auto;  /* keeps aspect ratio */
   display: block;
-}
-
-/*layout helper classes*/
-.margin-bottom {
-	margin-bottom: 10px;
-}
-
-.text-center {
-	text-align: center;
-}
-
-.center {
-	display: block;
-	margin-left: auto;
-	margin-right: auto;
-}
-
-.absolute {
-	position: absolute;
 }
 
 /*header styles*/
@@ -508,6 +543,7 @@ div.project-header-bar h3 {
 	width: 100%;
 	height: auto;
 	border: 2px solid #363636;/*this rule helps delineate the sections, enhancing the "card" material concept*/
+	border-radius: 15px;
 }
 
 .featured-project-card {
@@ -522,6 +558,10 @@ div.project-header-bar h3 {
 	width: 100%;
 	margin-left: auto;    	
 	margin-right: auto;
+}
+
+.featured-project-card p {
+	font-size: 0.9em;
 }
 
 html.no-textures .featured-project-card {
@@ -548,40 +588,6 @@ section.featured-project-card img {
 	margin-left: auto;
 	position: relative;
 	top: -35px;
-}
-
-/*pattern and background color classes*/
-
-.color-yellow {
-	background-color: #febe13;
-}
-
-.color-light-yellow {
-	background-color: #fed361;
-}
-
-.color-mustard-brown {
-	background-color: #cb9811;
-}
-
-.color-bright-brown {
-	background-color: #7f5f0a;
-}
-
-.color-dull-brown {
-	background-color: #785d2f;
-}
-
-.color-dark-brown {
-	background-color: #423208;
-}
-
-.color-offwhite {
-	background-color: #e6e6e6;
-}
-
-.color-charcoal {
-	background-color: #363636;
 }
 
 /*about page figure, photo and figcaption "surprised" hover styling*/
@@ -820,11 +826,11 @@ section.featured-project-card img {
   }
 
   .margin-left-desktop {
-	margin-left: 100px;
+	margin-left: 112px;
 	}
 
 .margin-right-desktop {
-	margin-right: 100px;
+	margin-right: 112px;
 	}
 
 figcaption {
