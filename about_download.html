@@ -56,6 +56,63 @@
     z-index: 5;
 }
 
+/*old MVP surprised face figcaption and caption effect separate from download hover*/
+/*about page figure, photo and figcaption "surprised" hover styling*/
+.about-photo {
+  position: relative;
+  display: inline-block;
+  text-align: center;
+  width: 25%;
+}
+
+.about-photo img {
+  width: 100%;
+  display: block;
+  padding-top: 40px;
+}
+
+.photo-hover {
+  position: absolute;
+  top: 0;
+  left: 0;
+  opacity: 0;
+}
+
+.about-photo:hover .photo-hover {
+  opacity: 1;
+}
+
+.about-photo:hover .photo-default {
+  opacity: 0;
+}
+
+/*about page figure, photo and figcaption "surprised" hover styling*/
+/* figcaption captions – both absolutely positioned in the SAME place */
+.about-photo figcaption {
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 0;
+  width: 100%;
+}
+
+/* default visible, hover hidden */
+.caption-default {
+  opacity: 1;
+}
+
+.caption-hover {
+  opacity: 0;
+}
+
+/* swap on hover */
+.about-photo:hover .caption-default {
+  opacity: 0;
+}
+
+.about-photo:hover .caption-hover {
+  opacity: 1;
+}
 </style>
 
 <body>
@@ -112,32 +169,31 @@
 		</div><!--end info box left-->
 	</div><!--end info box-->
 
-<div class="about-photo-wrapper center">
-  
-  <figure class="about-photo">
-    <img src="images/about/original.png" alt="self portrait" class="photo-default">
-    <img src="images/about/surprised3.png" alt="surprise version" class="photo-hover">
-  </figure>
+<figure class="about-photo center">
+  <img src="images/about/original.png" alt="self portrait" class="photo-default">
+  <img src="images/about/surprised3.png" alt="surprise version" class="photo-hover">
 
-  <p class="text-center">
-    <a href="x.pdf" class="btn">Download Resume (PDF)</a>
-  </p>
+  <figcaption class="caption-default text-center highlight-orange">Mouse over me!</figcaption>
+  <figcaption class="caption-hover text-center highlight-orange">Tut tut! Didn't say 'Simon Says'!</figcaption>
+</figure>
 
-</div>
+	<div class="info-box">
+		<p class="center text-center"><a href="45.html" class="btn">Download Resume (PDF)</a></p>
+	</div><!--end info box-->
 
 	<div class="info-box margin-right-desktop margin-right-tablet">
 		<div class="info-box-right">
 			<h3>Said About Me</h3><!--sect 2-->
 			<p>“First, Lawrence, you’re my favorite person I’ve ever met virtually. Second, I’m blown away. It’s like you all are experts in this – and you are!”</p>
 			<p>“This first pass is so beautiful. It’s pretty awesome. It’s so clean, refreshing, navigable. I want to be on this website.”</p>
-			<p class="gold-color-font">— <strong>L.B.</strong>, public sector client, responding to a first-pass website refresh my Accenture Song team and I designed</p>
+			<p class="gold-color-font">— <strong>LB</strong>, public sector client, responding to a first-pass web-site refresh my Accenture Song team and I designed</p>
 		</div><!--end info box left/right-->
 	</div><!--end info box-->
 
 	<div class="info-box margin-left-desktop margin-left-tablet">
 		<div class="info-box-left">
 			<p>“I've been doing this nearly ten years and haven't met someone like Lawrence...a one-stop shop who can implement [Adobe Target] A/B tests from his own [Figma] mockups, then analyze the results himself [using Adobe Workspace]."</p>
-			<p>“One of the A/B tests he was absolutely critical in helped increase email subscriptions for [the client's website], which is their number two goal...for this test, he mocked it up himself, led meetings with the client, then did the entire front-end-coding and implemented the test in Adobe Target.”</p>
+			<p>“One of the A/B tests he was absolutely critical in helped increase email subscriptions for [the client], which is their number two goal...for this test, he mocked it up himself, led meetings with the client, then did the entire front-end-coding and implemented the test in Adobe Target.”</p>
 			<p>"This test had a 5,000% lift...it was 50x better at increasing email subscriptions over the control..."
 			<p class="gold-color-font">— <strong>Yorkey Ng</strong>, former Optimization and Personalization manager / Team Lead at Accenture Federal Services</p>
 		</div><!--end info box left-->

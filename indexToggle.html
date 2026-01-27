@@ -17,6 +17,8 @@
 	<script src="https://cdn.jsdelivr.net/npm/js-cookie@2/src/js.cookie.min.js"></script>
 	<!-- script for font awesome-->
 	<script src="https://use.fontawesome.com/1004343e7e.js"></script>
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css" />
+
 	<!-- script for jquery on google's cd network -->
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 	<script src="js/noframework.waypoints.min.js"></script>
@@ -52,82 +54,59 @@
     z-index: 5;
 }
 
-/*toggle styles*/
-	/* Wrapper */
-.style-toggle {
-  display: inline-flex;
-  align-items: center;
-  gap: 0.75rem;
-  font-family: inherit;
-}
-
-/* Labels */
-.style-toggle .label-textures,
-.style-toggle .label-no-textures {
-  font-size: 0.85rem;
-  letter-spacing: 0.02em;
-  opacity: 0.7;
-  transition: opacity 0.25s ease;
-}
-
-/* The toggle button */
-.toggle-button {
-  position: relative;
-  width: 60px;
-  height: 28px;
-  border-radius: 20px;
-  border: 2px solid white;
-  background: transparent;
-  cursor: pointer;
-  padding: 0;
-  transition: all 0.3s ease;
-}
-
-/* The knob */
-.toggle-knob {
-  position: absolute;
-  top: 1px;
-  left: 2px;
-  width: 22px;
-  height: 22px;
-  border-radius: 50%;
-  background: #f9bc41;
-  transition: transform 0.3s cubic-bezier(0.25, 1, 0.5, 1);
-}
-
-/* When in no-textures mode */
-.no-textures .toggle-button {
-  color: #333; /* darker, calmer */
-}
-
-.no-textures .toggle-knob {
-  transform: translateX(32px);
-}
-
-/* When in textures mode */
-.textures .toggle-button {
-  color: #ff6600; /* your expressive orange */
-}
-
-.textures .toggle-knob {
-  transform: translateX(0);
-}
-
-/* Optional: emphasize active label */
-.textures .label-textures,
-.no-textures .label-no-textures {
-  opacity: 1;
-  font-weight: 600;
-}
-
 .flex-container-child-projects {
 	position: relative;
 }
+
 .corner-tear {
 	position: absolute;
 	bottom: 0;
 	right: 0;
+}
 
+/*jello cta*/
+.cta {
+  width: 120px; /* width for latent state */
+  display: inline-flex;
+  align-items: center;
+  justify-content: flex-start; /* keep text stuck left */
+  overflow: hidden;
+  white-space: nowrap;
+  transition: width 380ms cubic-bezier(0.25, 1.50, 0.35, 1.00);
+  cursor: pointer;
+  border: none;
+  background-color: #0078d4;
+  color: white;
+  font-size: 1rem;
+  padding: 0.5em 1em;
+  border-radius: 4px;
+}
+
+.cta i {
+  margin-left: 8px;
+  opacity: 0;
+  transform: translateX(-10px);
+  transition: opacity 260ms ease, transform 260ms ease;
+}
+
+.cta:hover {
+  width: 180px; /* expanded width with arrow */
+  transition-timing-function: cubic-bezier(0.25, 1.50, 0.35, 1.00);
+}
+
+.cta:hover i {
+  opacity: 1;
+  transform: translateX(0);
+  transition-timing-function: cubic-bezier(0.30, 0.80, 0.40, 1.00);
+}
+
+.cta-text {
+  display: inline-block;
+  transition: transform 380ms cubic-bezier(0.25, 1.50, 0.35, 1.00);
+}
+
+.cta:hover .cta-text {
+  transform: translateX(0);
 }
 </style>
 
@@ -201,7 +180,10 @@
 				<ul>
 					<li>Conceptualize identity and branding, from logo through all visual assets</li>
 				</ul>
-			<p><a href="45.html" class="btn">View Design Examples</a></p>
+					<button class="cta">
+					  <span class="cta-text">View Project</span>
+					  <i class="fa fa-arrow-right"></i>
+					</button>
 		</section>
 	</div>
 

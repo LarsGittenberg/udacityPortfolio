@@ -619,31 +619,29 @@ section.featured-project-card img {
   opacity: 0;
 }
 
-/* figcaption styling */
-/* captions – both absolutely positioned in the SAME place */
-.about-photo figcaption {
-  position: absolute;
-  left: 0;
-  right: 0;
-  top: 0;
-  width: 100%;
+.about-photo-wrapper {
+  display: inline-block;
+  text-align: center;
+  max-width: 500px;
+  width: 100%; /* allows it to shrink on mobile */
+  margin-bottom: 60px;
 }
 
-/* default visible, hover hidden */
-.caption-default {
+/*about page figure, photo and figcaption "surprised" hover styling*/
+/*the surprised face hover effect with download cta mouse on*/
+.about-photo-wrapper:hover .photo-hover {
   opacity: 1;
 }
 
-.caption-hover {
+.about-photo-wrapper:hover .photo-default {
   opacity: 0;
 }
 
-/* swap on hover */
-.about-photo:hover .caption-default {
+.about-photo-wrapper:hover .caption-default {
   opacity: 0;
 }
 
-.about-photo:hover .caption-hover {
+.about-photo-wrapper:hover .caption-hover {
   opacity: 1;
 }
 
@@ -798,9 +796,6 @@ section.featured-project-card img {
 	/*for photo gallery*/
 	}
 
-.about-photo {
-  width: 23%;
-}
 
 }/*end media query*/
 
