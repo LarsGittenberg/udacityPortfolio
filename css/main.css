@@ -3,14 +3,14 @@
 
 /* background variables set up */
 :root {
-	--pattern-lines-up: url(../images/pattern/yellow_lines_up.png); /*matched*/
-  --pattern-lines-up-var: url(../images/pattern/yellow_lines_up_var.png); /*matched*/
-  --pattern-lines-down: url(../images/pattern/yellow_lines_down.png); /*matched*/
-  --pattern-dots-dense: url(../images/pattern/yellow_dots_grid_dense.png);/*matched*/
-  --pattern-dots-sparse: url(../images/pattern/yellow_dots_grid_sparse.png); /*matched*/
-  --pattern-dots-stagger: url(../images/pattern/yellow_dots_stagger.png); /*matched*/
+	--pattern-lines-up: url(../images/pattern/teal_lines_up.png); /*matched*/
+  --pattern-lines-up-var: url(../images/pattern/teal_lines_up_var.png); /*matched*/
+  --pattern-lines-down: url(../images/pattern/teal_lines_down.png); /*matched*/
+  --pattern-dots-dense: url(../images/pattern/teal_dots_grid_dense.png);/*matched*/
+  --pattern-dots-sparse: url(../images/pattern/teal_dots_grid_sparse.png); /*matched*/
+  --pattern-dots-stagger: url(../images/pattern/teal_dots_stagger.png); /*matched*/
   --pattern-grid-small: url(../images/pattern/black_grid.png);/*matched*/
-	--pattern-grid-large: url(../images/pattern/yellow_grid.png);/*matched*/
+	--pattern-grid-large: url(../images/pattern/teal_grid.png);/*matched*/
 }
 
 /* patterns */
@@ -51,7 +51,7 @@
 /*matched*/
 .pattern-dots-sparse {
 	background-image: var(--pattern-dots-sparse);
-	background-size: 5px;
+	background-size: 4.5px;
 }
 
 .pattern-dots-grid-var {
@@ -78,7 +78,7 @@
     background-size: 5px;
 }
 
-html.no-textures {
+html.toned-down {
 	--pattern-lines-up: url(../images/pattern/gray_lines_up.png); /*matched*/
   --pattern-lines-up-var: url(../images/pattern/gray_lines_up_var.png); /*matched*/
   --pattern-lines-down: url(../images/pattern/gray_lines_down.png); /*matched*/
@@ -313,7 +313,7 @@ div.hero-container {
 
 .hero-text {
   top: 32px;
-  font-size: 12px;
+  font-size: 11px;
   width: 100%;          /* let it shrink naturally */
   max-width: 399px;      /*cap width for small screens */
   text-align: center;
@@ -334,13 +334,13 @@ div.hero-container {
   height: 260px;
 }
 
-/* star element */
-.spinning-star {
+/* central circle element */
+.central-shape {
   position: absolute;
-  bottom: -50%; /* approx center aligned with bottom edge */
+  bottom: -10%; /* approx center aligned with bottom edge */
   left: 50%;
   transform: translateX(-50%);
-  width: 90%;
+  width: 40%;
   height: auto;
   z-index: 1;
 
@@ -348,13 +348,73 @@ div.hero-container {
   opacity: 0;
 
   /* spin + fade in */
-  animation: spin 120s linear infinite, fadeIn 2s ease forwards;
-  animation-delay: 0s, 4s; /* spin starts immediately, fade starts after 3s */
+  animation: fadeIn 2s ease forwards;
+  animation-delay:4s; /*  fade starts after 4s */
 }
 
-html.no-textures .spinning-star {
-  animation: spin 0s linear infinite, fadeIn 2s ease forwards;
-  animation-delay: 0s, 4s; /* spin starts immediately, fade starts after 3s */
+.hero-left {
+  position: absolute;
+  bottom: 10%;
+  left: 25%;
+  width: 40%;
+  height: auto;
+  z-index: 1;
+
+  /* start invisible */
+  opacity: 0;
+
+  /* float + fade in */
+  animation: float 5s ease-out infinite, fadeIn 2s ease forwards;
+  animation-delay: 4s;
+  animation-timing-function: cubic-bezier(0.6, 0.04, 0.4, 1);
+}
+
+
+.hero-right {
+	position: absolute;
+  bottom: 0%; /* approx center aligned with bottom edge */
+  right: -20%;
+  width: 33%;
+  height: auto;
+  z-index: 1;
+
+  /* start invisible */
+  opacity: 0;
+
+  /* spin + fade in */
+  animation: float 5.5s ease-out infinite, fadeIn 2s ease forwards;
+  animation-delay: 4s; /* fade starts after 3s */
+  animation-timing-function: cubic-bezier(0.6, 0.04, 0.4, 1);
+}
+
+html.toned-down .hero-left,
+html.toned-down .hero-right {
+  display: none;
+}
+
+@keyframes float {
+  /* bottom — shorter pause */
+  0% {
+    transform: translate(-50%, 0);
+  }
+  8% {
+    transform: translate(-50%, 0);
+  }
+
+  /* rise */
+  50% {
+    transform: translate(-50%, -12px);
+  }
+
+  /* top — keep the longer, perfect pause */
+  62% {
+    transform: translate(-50%, -12px);
+  }
+
+  /* fall */
+  100% {
+    transform: translate(-50%, 0);
+  }
 }
 
 @keyframes spin {
@@ -364,12 +424,24 @@ html.no-textures .spinning-star {
 
 @keyframes fadeIn {
   from { opacity: 0; }
-  to   { opacity: 0.3; } /* semi-transparent */
+  to   { opacity: 1; } /* semi-transparent */
 }
 
 
-.spinning-star img {
+.central-shape img {
   width: 100%;   /* scales to container width */
+  height: auto;  /* keeps aspect ratio */
+  display: block;
+}
+
+.hero-left img {
+  width: 70%;   /* scales to container width */
+  height: auto;  /* keeps aspect ratio */
+  display: block;
+}
+
+.hero-right img {
+  width: 70%;   /* scales to container width */
   height: auto;  /* keeps aspect ratio */
   display: block;
 }
@@ -420,6 +492,8 @@ div.project-header-bar {
 	height: 100px;
 	position: relative;
 	border: 2px solid #363636;
+	border-radius: 15px;
+	margin: 3px 0px;
 }
 
 div.project-header-bar h2 {
@@ -564,7 +638,7 @@ div.project-header-bar h3 {
 	font-size: 0.9em;
 }
 
-html.no-textures .featured-project-card {
+html.toned-down .featured-project-card {
 	background-color: #2c2c2c;
 }
 
@@ -595,7 +669,7 @@ section.featured-project-card img {
   position: relative;
   display: inline-block;
   text-align: center;
-  width: 40%;
+  width: 50%;
 }
 
 .about-photo img {
@@ -622,7 +696,7 @@ section.featured-project-card img {
 .about-photo-wrapper {
   display: inline-block;
   text-align: center;
-  max-width: 500px;
+  max-width: 400px;
   width: 100%; /* allows it to shrink on mobile */
   margin-bottom: 60px;
 }
@@ -649,6 +723,8 @@ section.featured-project-card img {
     height: 380px;
     width:100%;
  		position: relative;
+ 		border-radius: 15px 15px 0px 0px;
+ 		margin-top: 4px;
   }
 
  footer p {   
@@ -671,8 +747,8 @@ section.featured-project-card img {
   }
 
 /* star element */
-	.spinning-star {
-  bottom: -95%; /* approx center aligned with bottom edge */
+	.central-shape {
+  bottom: -15%; /* approx center aligned with bottom edge */
 	}
 
   .flex-container-child-projects {
@@ -690,7 +766,7 @@ section.featured-project-card img {
   }
 
   .hero-text {
-    font-size: 1.2em;
+    font-size: 1.1em;
     max-width: 530px;
   }
 
@@ -725,9 +801,9 @@ section.featured-project-card img {
 
   .hero-text {
     top: 60px;
-    font-size: 2em;
+    font-size: 1.7em;
     max-width: 870px;
-    text-align: left;
+    text-align: center;
   }
 
 /* from original @media only screen and (min-width: 800px)  */
@@ -816,7 +892,6 @@ section.featured-project-card img {
 
  .hero-text {
     top: 80px;
-    font-size: 2em;
     max-width: 870px;
   }
 

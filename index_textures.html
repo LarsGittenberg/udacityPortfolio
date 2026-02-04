@@ -4,14 +4,14 @@
 <head>
   <!-- Load saved preference BEFORE CSS loads -->
   <script>
-		(function() {
-		  const saved = localStorage.getItem('styleMode');
-		  if (saved === 'toned-down') {
-		    document.documentElement.classList.add('toned-down');
-		  } else {
-		    document.documentElement.classList.add('colorful');
-		  }
-		})();
+    (function() {
+      const saved = localStorage.getItem('styleMode');
+      if (saved === 'no-textures') {
+        document.documentElement.classList.add('no-textures');
+      } else {
+        document.documentElement.classList.add('textures');
+      }
+    })();
   </script>
 
   <title>Lawrence Getubig Portfolio</title>
@@ -55,25 +55,22 @@
     });
   </script>
 
-	<!-- Update toggle labels AFTER DOM is ready -->
-	<script>
-	  document.addEventListener("DOMContentLoaded", function() {
-	    const saved = localStorage.getItem('styleMode');
-	    const labelColorful = document.getElementById('labelColorful');
-	    const labelToned = document.getElementById('labelToned');
+  <!-- Update toggle labels AFTER DOM is ready -->
+  <script>
+    document.addEventListener("DOMContentLoaded", function() {
+      const saved = localStorage.getItem('styleMode');
+      const labelTextures = document.getElementById('labelTextures');
+      const labelNoTextures = document.getElementById('labelNoTextures');
 
-	    if (saved === 'toned-down') {
-	      // User previously chose TONED-DOWN mode
-	      labelColorful.innerHTML = "Colorful<br>Mode: Off";
-	      labelToned.innerHTML = "Toned‑Down<br>Mode: On";
-	    } else {
-	      // Default or saved COLORFUL mode
-	      labelColorful.innerHTML = "Colorful<br>Mode: On";
-	      labelToned.innerHTML = "Toned‑Down<br>Mode: Off";
-	    }
-	  });
-	</script>
-
+      if (saved === 'no-textures') {
+        labelTextures.innerHTML = "Bright <br>Textures<br>Mode: Off";
+        labelNoTextures.innerHTML = "Toned<br>Down<br>Mode: On";
+      } else {
+        labelTextures.innerHTML = "Bright <br>Textures<br>Mode: On";
+        labelNoTextures.innerHTML = "Toned<br>Down<br>Mode: Off";
+      }
+    });
+  </script>
 </head>
 
 <style>
@@ -81,15 +78,15 @@
     width: 0;
     z-index: 5;
 }
-
 /*testing corner tear effects*/
-.flex-container-child-projects, .project-header-bar  {
+.flex-container-child-projects {
 	position: relative;
 }
 .corner-tear {
 	position: absolute;
 	bottom: 0;
 	right: 0;
+
 }
 </style>
 
@@ -113,12 +110,11 @@
 			<a href="about.html">About</a>
 			<p class="overlay-title">Settings</p>
 			<div class="style-toggle" id="styleToggle">
-				<span class="label-colorful" id="labelColorful">Colorful<br>Mode: On</span>
+				<span class="label-textures" id="labelTextures">Bright <br>Textures<br>Mode: On</span>
 				<button class="toggle-button" aria-label="Toggle style mode">
-				  <span class="toggle-knob"></span>
+				<span class="toggle-knob"></span>
 				</button>
-				<span class="label-toned" id="labelToned">Toned‑Down<br>Mode: Off</span>
-
+				<span class="label-no-textures" id="labelNoTextures">Toned<br>Down<br>Mode: Off</span>
 			</div>
 		</div>
 	</div><!--end my nav-->
@@ -132,27 +128,18 @@
 
 <div class="hero-container pattern-grid-small" id="waypointSignal">
 <!-- tagline element -->
-<h2 id="tagline" class="source-code-pro source-code-pro-light absolute hero-text">Synthesis with Perspective: Playful by Design</h2>
+<h2 id="tagline" class="source-code-pro source-code-pro-light absolute hero-text">From Clutter To Clarity: Playful by Design</h2>
+	<div class="spinning-star">
+  	<img src="images/hero/star3.svg" alt="spinning star">
+	</div>
 
-<div class="hero-left">
-	<img src="images/hero/dotsTriangleU.svg" alt="80s shapes and patterns">
-</div>
-
-<div class="central-shape">
-	<img src="images/hero/yellowCircle.svg" alt="halo circular shape">
-</div>
-
-<div class="hero-right">
-	<img src="images/hero/diamondZigzag.svg" alt="80s shapes and patterns">
-</div>
-
-<div class="hero-face" >
-	<img src="images/hero/face1.png" class="start-transparent img-layer-absolute " alt="portrait illustration">
-	<img src="images/hero/face2.png" class="start-bottom img-layer-absolute " alt="portrait illustration">
-	<img src="images/hero/face3.png" class="start-right-fast img-layer-absolute " alt="portrait illustration">
-	<img src="images/hero/face4.png" class="start-left  img-layer-absolute " alt="portrait illustration">
-	<img src="images/hero/face5.png" class="start-top img-layer-absolute " alt="portrait illustration">
-</div>
+	<div class="hero-face" >
+		<img src="images/hero/face1.png" class="start-transparent img-layer-absolute " alt="portrait illustration">
+		<img src="images/hero/face2.png" class="start-bottom img-layer-absolute " alt="portrait illustration">
+		<img src="images/hero/face3.png" class="start-right-fast img-layer-absolute " alt="portrait illustration">
+		<img src="images/hero/face4.png" class="start-left  img-layer-absolute " alt="portrait illustration">
+		<img src="images/hero/face5.png" class="start-top img-layer-absolute " alt="portrait illustration">
+	</div>
 </div><!--end hero container-->
 
 <div class="project-header-bar pattern-dots-sparse">
@@ -163,6 +150,7 @@
 
 <!-- 45th -->
 	<div class="flex-container-child-projects pattern-lines-up">
+		<img class="corner-tear" src="images/pattern/cornerTear2.png" style="top: 0; left: 0">
 		<section class="featured-project-card">
 			<div class="img-container">
 				<img id="45th" class="project-image" src="images/animate/45th_static.jpg" alt="45th Parallel Wines">
@@ -181,6 +169,7 @@
 
 <!-- styleguide -->
 	<div class="flex-container-child-projects pattern-dots-stagger">
+		<img class="corner-tear" src="images/pattern/cornerTear.png">
 		<section class="featured-project-card">
 			<div class="img-container">
 				<img id="styleguide" class="project-image" src="images/animate/styleguide_static.jpg" alt="Ashoka Style Guide and Branding">
@@ -198,7 +187,6 @@
 
 <!-- newsletter -->
 	<div class="flex-container-child-projects pattern-dots-sparse">
-		<img class="corner-tear" src="images/pattern/cornerTear.png">
 		<section class="featured-project-card">
 			<div class="img-container">
 				<img id="newsletter" class="project-image" src="images/animate/newsletter_static.jpg" alt="Ashoka Newsletter">
@@ -216,7 +204,6 @@
 
 <!-- drom printed material -->
 	<div class="flex-container-child-projects pattern-dots-dense">
-		<img class="corner-tear" src="images/pattern/cornerTear4.png">
 		<section class="featured-project-card">
 			<div class="img-container">
 				<img id="drom" class="project-image" src="images/animate/drom_static.jpg" alt="Drom Peppercorns">
@@ -234,6 +221,7 @@
 
 <!-- swisspost -->
 	<div class="flex-container-child-projects pattern-dots-sparse">
+		<img class="corner-tear" src="images/pattern/cornerTear4.png" style="left: 0; bottom: 0">
 		<section class="featured-project-card">
 			<div class="img-container">
 				<img id="cards" class="project-image" src="images/animate/cards_static.jpg" alt="Swiss Post AI Tool">
@@ -291,30 +279,32 @@ var waypoint = new Waypoint({
 })
 </script>
 
-<!--colorful Mode Switch--Toggles the class--Saves the preference--Updates the UI instantly-->
+<!--Bright Texture Mode Switch--Toggles the class--Saves the preference--Updates the UI instantly-->
 <script>
   document.querySelector('#styleToggle .toggle-button').addEventListener('click', function() {
     const root = document.documentElement;
-    const labelColorful = document.getElementById('labelColorful');
-    const labelToned = document.getElementById('labelToned');
+    const labelTextures = document.getElementById('labelTextures');
+    const labelNoTextures = document.getElementById('labelNoTextures');
 
-    if (root.classList.contains('toned-down')) {
-      // Switch to COLORFUL mode
-      root.classList.remove('toned-down');
-      root.classList.add('colorful');
-      localStorage.setItem('styleMode', 'colorful');
+    if (root.classList.contains('no-textures')) {
+      // Switch to TEXTURES mode
+      root.classList.remove('no-textures');
+      root.classList.add('textures');
+      localStorage.setItem('styleMode', 'textures');
 
-      labelColorful.innerHTML = "Colorful<br>Mode: On";
-      labelToned.innerHTML = "Toned‑Down<br>Mode: Off";
+      // Update labels
+      labelTextures.innerHTML = "Bright <br>Textures<br>Mode: On";
+      labelNoTextures.innerHTML = "Toned<br>Down<br>Mode: Off";
 
     } else {
-      // Switch to TONED-DOWN mode
-      root.classList.remove('colorful');
-      root.classList.add('toned-down');
-      localStorage.setItem('styleMode', 'toned-down');
+      // Switch to NO-TEXTURES mode
+      root.classList.remove('textures');
+      root.classList.add('no-textures');
+      localStorage.setItem('styleMode', 'no-textures');
 
-      labelColorful.innerHTML = "Colorful<br>Mode: Off";
-      labelToned.innerHTML = "Toned‑Down<br>Mode: On";
+      // Update labels
+      labelTextures.innerHTML = "Bright <br>Textures<br>Mode: Off";
+      labelNoTextures.innerHTML = "Toned<br>Down<br>Mode: On";
     }
   });
 </script>

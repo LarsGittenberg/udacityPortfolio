@@ -133,7 +133,7 @@
 }
 
 /* for the bright textures switch */
-html.no-textures #styleToggle .toggle-knob {
+html.toned-down #styleToggle .toggle-knob {
   transform: translateX(32px) !important;
 }
 
@@ -145,7 +145,7 @@ html.textures #labelTextures {
   font-weight: 600;
 }
 
-html.no-textures #labelNoTextures {
+html.toned-down #labelNoTextures {
   font-weight: 600;
 }
 
@@ -180,7 +180,7 @@ position the close button again, so they don't overlap */
 
 /* Labels */
 #styleToggle .label-textures,
-#styleToggle .label-no-textures {
+#styleToggle .label-toned-down {
     display: inline-block; 
     width: 90px;
     text-align: center;
@@ -220,7 +220,7 @@ position the close button again, so they don't overlap */
 
 
 /* Mode states */
-html.no-textures #styleToggle .toggle-knob {
+html.toned-down #styleToggle .toggle-knob {
   transform: translateX(32px);
 }
 
@@ -228,7 +228,7 @@ html.textures #styleToggle .toggle-knob {
   transform: translateX(0);
 }
 
-html.no-textures #styleToggle .label-no-textures,
+html.toned-down #styleToggle .label-toned-down,
 html.textures #styleToggle .label-textures {
   opacity: 1;
   font-weight: 600;
@@ -239,7 +239,8 @@ html.textures #styleToggle .label-textures {
 
 .btn {
     /* use a gradient even in the default state */
-    background: linear-gradient(to top right, #0E7C7C, #0E7C7C);
+    
+    background: linear-gradient(to top right, #8c1c78, #8c1c78);
     padding: 8px 20px;
     color: white;
     display: inline-block;
@@ -257,8 +258,12 @@ section.featured-project-card .btn {
     margin: 15px 15px 15px 0;
 }
 
+html.toned-down .btn {
+   background: linear-gradient(to top right, #0E7C7C, #0E7C7C);
+}
+
 /* Hover state */
-.btn:hover {
+.btn:hover, html.toned-down .btn:hover {
     color: #363636;
     background: linear-gradient(to top right, #66CDAA, #FFCC00);
     background-size: 200% 200%;

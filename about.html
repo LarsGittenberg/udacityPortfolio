@@ -56,6 +56,25 @@
     z-index: 5;
 }
 
+/* figcaption captions – both absolutely positioned in the SAME place */
+.about-photo figcaption {
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 0;
+  width: 100%;
+  font-size: 0.7em;
+}
+
+/* default visible, hover hidden */
+.caption-default {
+  opacity: 1;
+}
+
+.caption-hover {
+  opacity: 0;
+}
+
 </style>
 
 <body>
@@ -117,10 +136,13 @@
   <figure class="about-photo">
     <img src="images/about/original.png" alt="self portrait" class="photo-default">
     <img src="images/about/surprised3.png" alt="surprise version" class="photo-hover">
+
+	  <figcaption class="caption-default text-center">Mouse over me!</figcaption>
+	  <figcaption class="caption-hover text-center">Tut tut! Didn't say 'Simon Says'!</figcaption>
   </figure>
 
   <p class="text-center">
-    <a href="x.pdf" class="btn">Download Resume (PDF)</a>
+    <a class="btn">Resume (Coming Soon)</a>
   </p>
 
 </div>
