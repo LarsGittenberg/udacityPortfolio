@@ -337,113 +337,46 @@ div.hero-container {
 /* central circle element */
 .central-shape {
   position: absolute;
-  bottom: -10%; /* approx center aligned with bottom edge */
+  bottom: 0%;
   left: 50%;
   transform: translateX(-50%);
   width: 40%;
-  height: auto;
-  z-index: 1;
-
-  /* start invisible */
+  height: 40vw;
+  max-height: 475px;
+  background: none; /* important for psuedo element image technique to work*/
   opacity: 0;
-
-  /* spin + fade in */
   animation: fadeIn 2s ease forwards;
-  animation-delay:4s; /*  fade starts after 4s */
-}
-
-.hero-left {
-  position: absolute;
-  bottom: 10%;
-  left: 25%;
-  width: 40%;
-  height: auto;
-  z-index: 1;
-
-  /* start invisible */
-  opacity: 0;
-
-  /* float + fade in */
-  animation: float 5s ease-out infinite, fadeIn 2s ease forwards;
   animation-delay: 4s;
-  animation-timing-function: cubic-bezier(0.6, 0.04, 0.4, 1);
+}
+
+.central-shape::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
+  opacity: 1; /* default for sun */
+  transition: opacity 0.3s ease;
+}
+
+/* COLORFUL MODE → sun */
+html.colorful .central-shape::before {
+  background-image: url("../images/hero/sun89.svg");
+  opacity: 1;
 }
 
 
-.hero-right {
-	position: absolute;
-  bottom: 0%; /* approx center aligned with bottom edge */
-  right: -20%;
-  width: 33%;
-  height: auto;
-  z-index: 1;
-
-  /* start invisible */
-  opacity: 0;
-
-  /* spin + fade in */
-  animation: float 5.5s ease-out infinite, fadeIn 2s ease forwards;
-  animation-delay: 4s; /* fade starts after 3s */
-  animation-timing-function: cubic-bezier(0.6, 0.04, 0.4, 1);
+/* TONED-DOWN MODE → moon */
+html.toned-down .central-shape::before {
+  background-image: url("../images/hero/moon89.svg");
+  opacity: 0.3;
 }
 
-html.toned-down .hero-left,
-html.toned-down .hero-right {
-  display: none;
-}
-
-@keyframes float {
-  /* bottom — shorter pause */
-  0% {
-    transform: translate(-50%, 0);
-  }
-  8% {
-    transform: translate(-50%, 0);
-  }
-
-  /* rise */
-  50% {
-    transform: translate(-50%, -12px);
-  }
-
-  /* top — keep the longer, perfect pause */
-  62% {
-    transform: translate(-50%, -12px);
-  }
-
-  /* fall */
-  100% {
-    transform: translate(-50%, 0);
-  }
-}
-
-@keyframes spin {
-  from { transform: translateX(-50%) rotate(0deg); }
-  to   { transform: translateX(-50%) rotate(360deg); }
-}
 
 @keyframes fadeIn {
   from { opacity: 0; }
   to   { opacity: 1; } /* semi-transparent */
-}
-
-
-.central-shape img {
-  width: 100%;   /* scales to container width */
-  height: auto;  /* keeps aspect ratio */
-  display: block;
-}
-
-.hero-left img {
-  width: 70%;   /* scales to container width */
-  height: auto;  /* keeps aspect ratio */
-  display: block;
-}
-
-.hero-right img {
-  width: 70%;   /* scales to container width */
-  height: auto;  /* keeps aspect ratio */
-  display: block;
 }
 
 /*header styles*/
@@ -748,7 +681,7 @@ section.featured-project-card img {
 
 /* star element */
 	.central-shape {
-  bottom: -15%; /* approx center aligned with bottom edge */
+  bottom: -10%; /* approx center aligned with bottom edge */
 	}
 
   .flex-container-child-projects {

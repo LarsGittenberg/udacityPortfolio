@@ -179,8 +179,8 @@ position the close button again, so they don't overlap */
 }
 
 /* Labels */
-#styleToggle .label-textures,
-#styleToggle .label-toned-down {
+#styleToggle .label-colorful,
+#styleToggle .label-toned {
     display: inline-block; 
     width: 90px;
     text-align: center;
@@ -224,12 +224,12 @@ html.toned-down #styleToggle .toggle-knob {
   transform: translateX(32px);
 }
 
-html.textures #styleToggle .toggle-knob {
+html.colorful #styleToggle .toggle-knob {
   transform: translateX(0);
 }
 
-html.toned-down #styleToggle .label-toned-down,
-html.textures #styleToggle .label-textures {
+html.toned-down #styleToggle .label-toned,
+html.colorful #styleToggle .label-colorful {
   opacity: 1;
   font-weight: 600;
 }

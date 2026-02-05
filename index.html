@@ -64,12 +64,12 @@
 
 	    if (saved === 'toned-down') {
 	      // User previously chose TONED-DOWN mode
-	      labelColorful.innerHTML = "Colorful<br>Mode: Off";
-	      labelToned.innerHTML = "Toned‑Down<br>Mode: On";
+	      labelColorful.innerHTML = "Colorful<br>Retro<br>Mode: Off";
+	      labelToned.innerHTML = "Toned<br>Down<br>Mode: On";
 	    } else {
 	      // Default or saved COLORFUL mode
-	      labelColorful.innerHTML = "Colorful<br>Mode: On";
-	      labelToned.innerHTML = "Toned‑Down<br>Mode: Off";
+	      labelColorful.innerHTML = "Colorful<br>Retro<br>Mode: On";
+	      labelToned.innerHTML = "Toned<br>Down<br>Mode: Off";
 	    }
 	  });
 	</script>
@@ -113,12 +113,11 @@
 			<a href="about.html">About</a>
 			<p class="overlay-title">Settings</p>
 			<div class="style-toggle" id="styleToggle">
-				<span class="label-colorful" id="labelColorful">Colorful<br>Mode: On</span>
+				<span class="label-colorful" id="labelColorful">Colorful<br>Retro<br>Mode: On</span>
 				<button class="toggle-button" aria-label="Toggle style mode">
 				  <span class="toggle-knob"></span>
 				</button>
-				<span class="label-toned" id="labelToned">Toned‑Down<br>Mode: Off</span>
-
+				<span class="label-toned" id="labelToned">Toned<br>Down<br>Mode: Off</span>
 			</div>
 		</div>
 	</div><!--end my nav-->
@@ -134,17 +133,7 @@
 <!-- tagline element -->
 <h2 id="tagline" class="source-code-pro source-code-pro-light absolute hero-text">Synthesis with Perspective: Playful by Design</h2>
 
-<div class="hero-left">
-	<img src="images/hero/dotsTriangleU.svg" alt="80s shapes and patterns">
-</div>
-
-<div class="central-shape">
-	<img src="images/hero/yellowCircle.svg" alt="halo circular shape">
-</div>
-
-<div class="hero-right">
-	<img src="images/hero/diamondZigzag.svg" alt="80s shapes and patterns">
-</div>
+<div class="central-shape"></div>
 
 <div class="hero-face" >
 	<img src="images/hero/face1.png" class="start-transparent img-layer-absolute " alt="portrait illustration">
@@ -304,8 +293,8 @@ var waypoint = new Waypoint({
       root.classList.add('colorful');
       localStorage.setItem('styleMode', 'colorful');
 
-      labelColorful.innerHTML = "Colorful<br>Mode: On";
-      labelToned.innerHTML = "Toned‑Down<br>Mode: Off";
+      labelColorful.innerHTML = "Colorful<br>Retro<br>Mode: On";
+      labelToned.innerHTML = "Toned<br>Down<br>Mode: Off";
 
     } else {
       // Switch to TONED-DOWN mode
@@ -313,8 +302,8 @@ var waypoint = new Waypoint({
       root.classList.add('toned-down');
       localStorage.setItem('styleMode', 'toned-down');
 
-      labelColorful.innerHTML = "Colorful<br>Mode: Off";
-      labelToned.innerHTML = "Toned‑Down<br>Mode: On";
+      labelColorful.innerHTML = "Colorful<br>Retro<br>Mode: Off";
+      labelToned.innerHTML = "Toned<br>Down<br>Mode: On";
     }
   });
 </script>

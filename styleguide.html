@@ -4,17 +4,17 @@
 <head>
   <!-- Load saved preference BEFORE CSS loads -->
   <script>
-    (function() {
-      const saved = localStorage.getItem('styleMode');
-      if (saved === 'no-textures') {
-        document.documentElement.classList.add('no-textures');
-      } else {
-        document.documentElement.classList.add('textures');
-      }
-    })();
+		(function() {
+		  const saved = localStorage.getItem('styleMode');
+		  if (saved === 'toned-down') {
+		    document.documentElement.classList.add('toned-down');
+		  } else {
+		    document.documentElement.classList.add('colorful');
+		  }
+		})();
   </script>
 
-  <title>Style Guide - Visual Design</title>
+  <title>Style Guide</title>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="theme-color" content="#feb013">
@@ -32,22 +32,48 @@
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
   <script src="js/noframework.waypoints.min.js"></script>
 
-  <!-- Update toggle labels AFTER DOM is ready -->
+  <!-- Text Scramble -->
   <script>
     document.addEventListener("DOMContentLoaded", function() {
-      const saved = localStorage.getItem('styleMode');
-      const labelTextures = document.getElementById('labelTextures');
-      const labelNoTextures = document.getElementById('labelNoTextures');
+      const el = document.getElementById('tagline');
+      const finalText = el.textContent;
+      const chars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz!@#$%^&*() ,.-';
+      let frame = 0;
 
-      if (saved === 'no-textures') {
-        labelTextures.innerHTML = "Bright <br>Textures<br>Mode: Off";
-        labelNoTextures.innerHTML = "Toned<br>Down<br>Mode: On";
-      } else {
-        labelTextures.innerHTML = "Bright <br>Textures<br>Mode: On";
-        labelNoTextures.innerHTML = "Toned<br>Down<br>Mode: Off";
-      }
+      const interval = setInterval(() => {
+        let out = '';
+        for (let i = 0; i < finalText.length; i++) {
+          out += (i < frame) ? finalText[i] : chars[Math.floor(Math.random() * chars.length)];
+        }
+        el.textContent = out;
+        frame++;
+        if (frame > finalText.length) {
+          clearInterval(interval);
+          el.textContent = finalText;
+        }
+      }, 110);
     });
   </script>
+
+	<!-- Update toggle labels AFTER DOM is ready -->
+	<script>
+	  document.addEventListener("DOMContentLoaded", function() {
+	    const saved = localStorage.getItem('styleMode');
+	    const labelColorful = document.getElementById('labelColorful');
+	    const labelToned = document.getElementById('labelToned');
+
+	    if (saved === 'toned-down') {
+	      // User previously chose TONED-DOWN mode
+	      labelColorful.innerHTML = "Colorful<br>Retro<br>Mode: Off";
+	      labelToned.innerHTML = "Toned<br>Down<br>Mode: On";
+	    } else {
+	      // Default or saved COLORFUL mode
+	      labelColorful.innerHTML = "Colorful<br>Retro<br>Mode: On";
+	      labelToned.innerHTML = "Toned<br>Down<br>Mode: Off";
+	    }
+	  });
+	</script>
+
 </head>
 
 <style>
@@ -73,11 +99,11 @@
 			<a href="about.html">About</a>
 			<p class="overlay-title">Settings</p>
 			<div class="style-toggle" id="styleToggle">
-				<span class="label-textures" id="labelTextures">Bright <br>Textures<br>Mode: On</span>
+				<span class="label-colorful" id="labelColorful">Colorful<br>Retro<br>Mode: On</span>
 				<button class="toggle-button" aria-label="Toggle style mode">
-				<span class="toggle-knob"></span>
+				  <span class="toggle-knob"></span>
 				</button>
-				<span class="label-no-textures" id="labelNoTextures">Toned<br>Down<br>Mode: Off</span>
+				<span class="label-toned" id="labelToned">Toned<br>Down<br>Mode: Off</span>
 			</div>
 		</div>
 	</div><!--end my nav-->
@@ -210,32 +236,30 @@
 
 </body>
 
-<!--Bright Texture Mode Switch--Toggles the class--Saves the preference--Updates the UI instantly-->
+<!--colorful Mode Switch--Toggles the class--Saves the preference--Updates the UI instantly-->
 <script>
   document.querySelector('#styleToggle .toggle-button').addEventListener('click', function() {
     const root = document.documentElement;
-    const labelTextures = document.getElementById('labelTextures');
-    const labelNoTextures = document.getElementById('labelNoTextures');
+    const labelColorful = document.getElementById('labelColorful');
+    const labelToned = document.getElementById('labelToned');
 
-    if (root.classList.contains('no-textures')) {
-      // Switch to TEXTURES mode
-      root.classList.remove('no-textures');
-      root.classList.add('textures');
-      localStorage.setItem('styleMode', 'textures');
+    if (root.classList.contains('toned-down')) {
+      // Switch to COLORFUL mode
+      root.classList.remove('toned-down');
+      root.classList.add('colorful');
+      localStorage.setItem('styleMode', 'colorful');
 
-      // Update labels
-      labelTextures.innerHTML = "Bright <br>Textures<br>Mode: On";
-      labelNoTextures.innerHTML = "Toned<br>Down<br>Mode: Off";
+      labelColorful.innerHTML = "Colorful<br>Retro<br>Mode: On";
+      labelToned.innerHTML = "Toned<br>Down<br>Mode: Off";
 
     } else {
-      // Switch to NO-TEXTURES mode
-      root.classList.remove('textures');
-      root.classList.add('no-textures');
-      localStorage.setItem('styleMode', 'no-textures');
+      // Switch to TONED-DOWN mode
+      root.classList.remove('colorful');
+      root.classList.add('toned-down');
+      localStorage.setItem('styleMode', 'toned-down');
 
-      // Update labels
-      labelTextures.innerHTML = "Bright <br>Textures<br>Mode: Off";
-      labelNoTextures.innerHTML = "Toned<br>Down<br>Mode: On";
+      labelColorful.innerHTML = "Colorful<br>Retro<br>Mode: Off";
+      labelToned.innerHTML = "Toned<br>Down<br>Mode: On";
     }
   });
 </script>
