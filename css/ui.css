@@ -242,8 +242,8 @@ html.colorful #styleToggle .label-colorful {
    =========================== */
 
 .btn {
-    background: linear-gradient(to top right, #8c1c78, #8c1c78);
-    background-size: 200% 200%;
+  background: linear-gradient(to top right, #8c1c78, #8c1c78);
+  background-size: 200% 200%;
   background-position: 0% 100%;
   position: relative;
   z-index: 0;
@@ -352,6 +352,10 @@ html.toned-down .btn:hover::before {
     opacity 300ms ease 100ms;    /* optional fade */
 }
 
+/* On mouseout: kill transitions so reset is instant */
+.btn:not(:hover) .btn-arrow .shaft { 
+    transition: none; }
+
 .btn:hover .btn-arrow .shaft {
   width: 11px;
 }
@@ -364,9 +368,15 @@ html.toned-down .btn:hover::before {
   transform: rotate(0deg) translateX(1px) translateZ(0);
   will-change: transform;
   transition:
-    opacity 400ms ease 500ms,     /* starts after shaft finishes */
+    opacity 300ms ease 400ms,     /* starts after shaft finishes */
     transform 600ms ease 500ms;   /* rotation begins even later */
 }
+
+/* On mouseout: kill transitions so reset is instant */
+.btn:not(:hover) .btn-arrow .wing {
+  transition: none;
+}
+
 
 /* wings unfold only on hover */
 .btn:hover .btn-arrow .wing-left {
@@ -434,6 +444,10 @@ a, .btn {
 
 p.breadcrumb {
     padding-left: 0px;
+}
+
+p.footer a {
+    text-decoration:none;
 }
 
 

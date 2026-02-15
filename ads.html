@@ -2,7 +2,17 @@
 
 <html>
 <head>
-  <!-- Load saved preference BEFORE CSS loads -->
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-2QV625FZN6"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+
+    gtag('config', 'G-2QV625FZN6');
+  </script>
+
+  <!-- Load saved toggle mode preference BEFORE CSS loads -->
   <script>
 		(function() {
 		  const saved = localStorage.getItem('styleMode');
@@ -20,6 +30,11 @@
   <meta name="theme-color" content="#feb013">
   <meta name="description" content="Web, visual and front-end designer crafting digital experiences that engage, delight and convert.">
 
+  <!-- Favicons -->
+	<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+	<link rel="icon" href="/favicon.png" sizes="32x32">
+	<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+	
   <!-- CSS -->
   <link rel="preload" href="css/ui.css" as="style">
   <link rel="stylesheet" href="css/ui.css">
@@ -95,11 +110,11 @@
 	<div id="myNav" class="overlay pattern-grid-large">
 		<!-- Overlay content -->
 		<div class="overlay-content ">
-			<a href="index.html">Home</a>
-			<a href="webdesign.html">Web Design</a>
-			<a href="graphicdesign.html">Graphic Design</a>
-			<a href="photography.html">Photography</a>
-			<a href="about.html">About</a>
+			<a href="index.html" onclick="gtag('event', 'nav_click', { nav_item: 'home', from_page: window.location.pathname });"> Home </a>
+			<a href="webdesign.html" onclick="gtag('event', 'nav_click', { nav_item: 'web_design', from_page: window.location.pathname });"> Web Design </a>
+			<a href="graphicdesign.html" onclick="gtag('event', 'nav_click', { nav_item: 'graphic_design', from_page: window.location.pathname });"> Graphic Design </a>
+			<a href="photography.html" onclick="gtag('event', 'nav_click', { nav_item: 'photography', from_page: window.location.pathname });"> Photography </a>
+			<a href="about.html" onclick="gtag('event', 'nav_click', { nav_item: 'about', from_page: window.location.pathname });"> About </a>
 			<p class="overlay-title">Settings</p>
 			<div class="style-toggle" id="styleToggle">
 				<span class="label-colorful" id="labelColorful">Colorful<br>Retro<br>Mode: On</span>
@@ -127,7 +142,7 @@
 <div class="flex-container-main pattern-grid-small">
 
 <div class="info-box">
-	<p class="breadcrumb"><a href="index.html">Home</a> > <a href="graphicdesign.html">Graphic Design</a> > Digital Ads and GIFs</p>
+	<p class="breadcrumb"><a href="index.html" onclick="gtag('event', 'breadcrumb_click', { breadcrumb_item: 'home', from_page: window.location.pathname });"> Home </a> > <a href="graphicdesign.html" onclick="gtag('event', 'breadcrumb_click', { breadcrumb_item: 'graphic_design', from_page: window.location.pathname });"> Graphic Design </a> > Digital Ads and GIFs</p>
 </div><!--end info box-->
 
 <div class="info-box margin-left-desktop margin-left-tablet">
@@ -207,19 +222,20 @@
 		<img src="images/ads/march_twitter.png" class="gallery-icon-gif" alt="ads">
 	</div>
 
-
-	<p style="text-align: center; padding-bottom: 25px;"><a href="index.html">Back to Home</a></p>
-
+	<p style="text-align: center; padding-bottom: 25px;">
+		<a href="index.html" onclick="gtag('event', 'footer_click', { footer_item: 'home', from_page: window.location.pathname });">Back to Home </a>
+	</p>
 
 </div><!--end main flex container-->
 
 <footer class="pattern-dots-dense">
 	<p>Find me in:</p><br>
-	<a href="https://github.com/LarsGittenberg"><p class="test"><i class="fa fa-github"></i> Github</p></a><br>
-	
-	<a href="https://www.linkedin.com/in/lawrence-getubig"><p class="test"><i class="fa fa-linkedin-square"></i> LinkedIn</p></a><br>
-
-	<a href="https://www.instagram.com/ljgetubig/"><p class="test"><i class="fa fa-instagram"></i> Instagram</p></a><br>
+	<p class="footer"><a href="https://github.com/LarsGittenberg" onclick="gtag('event', 'footer_click', { destination: 'github', from_page: window.location.pathname });"><i class="fa fa-github"></i> Github</a></p>
+	<br>
+	<p class="footer"><a href="https://www.linkedin.com/in/lawrence-getubig" onclick="gtag('event', 'footer_click', { destination: 'linkedin', from_page: window.location.pathname });"><i class="fa fa-linkedin-square"></i> LinkedIn</a></p> 
+	<br>
+	<p class="footer"><a href="https://www.instagram.com/ljgetubig/" onclick="gtag('event', 'footer_click', { destination: 'instagram', from_page: window.location.pathname });"><i class="fa fa-instagram"></i> Instagram</a></p>
+	<br>
 	<p class="copyright"><small>Copyright Lawrence Getubig 2026</small></p>
 	<!--  want to change the copyright date for all html files? use: perl -pi -w -e 's/Getubig\ 2018/Getubig\ 2019/g;' *.html -->
 </footer>
@@ -228,30 +244,40 @@
 
 <!--colorful Mode Switch--Toggles the class--Saves the preference--Updates the UI instantly-->
 <script>
-  document.querySelector('#styleToggle .toggle-button').addEventListener('click', function() {
-    const root = document.documentElement;
-    const labelColorful = document.getElementById('labelColorful');
-    const labelToned = document.getElementById('labelToned');
+document.querySelector('#styleToggle .toggle-button').addEventListener('click', function() {
+  const root = document.documentElement;
+  const labelColorful = document.getElementById('labelColorful');
+  const labelToned = document.getElementById('labelToned');
 
-    if (root.classList.contains('toned-down')) {
-      // Switch to COLORFUL mode
-      root.classList.remove('toned-down');
-      root.classList.add('colorful');
-      localStorage.setItem('styleMode', 'colorful');
+  if (root.classList.contains('toned-down')) {
+    // Switch to COLORFUL mode
+    root.classList.remove('toned-down');
+    root.classList.add('colorful');
+    localStorage.setItem('styleMode', 'colorful');
 
-      labelColorful.innerHTML = "Colorful<br>Retro<br>Mode: On";
-      labelToned.innerHTML = "Toned<br>Down<br>Mode: Off";
+    labelColorful.innerHTML = "Colorful<br>Retro<br>Mode: On";
+    labelToned.innerHTML = "Toned<br>Down<br>Mode: Off";
 
-    } else {
-      // Switch to TONED-DOWN mode
-      root.classList.remove('colorful');
-      root.classList.add('toned-down');
-      localStorage.setItem('styleMode', 'toned-down');
+    // ⭐ GA4 EVENT
+    gtag('event', 'theme_toggle', {
+      mode: 'colorful', from_page: window.location.pathname
+    });
 
-      labelColorful.innerHTML = "Colorful<br>Retro<br>Mode: Off";
-      labelToned.innerHTML = "Toned<br>Down<br>Mode: On";
-    }
-  });
+  } else {
+    // Switch to TONED-DOWN mode
+    root.classList.remove('colorful');
+    root.classList.add('toned-down');
+    localStorage.setItem('styleMode', 'toned-down');
+
+    labelColorful.innerHTML = "Colorful<br>Retro<br>Mode: Off";
+    labelToned.innerHTML = "Toned<br>Down<br>Mode: On";
+
+    // ⭐ GA4 EVENT
+    gtag('event', 'theme_toggle', {
+      mode: 'toned_down', from_page: window.location.pathname
+    });
+  }
+});
 </script>
 
 
