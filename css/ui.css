@@ -54,7 +54,6 @@
     position: fixed;
     opacity: 1;
     z-index: 50;
-
 }
 
 .signal {
@@ -280,7 +279,7 @@ section.featured-project-card .btn {
   position: absolute;
   inset: 0;
   border-radius: 25px;
-  background: linear-gradient(to top right, #8c1c78, #8c1c78);
+  background: linear-gradient(to top right, #8c1c78, #c314a4);
   z-index: -1;
   transition: background 0.6s ease;
 }
@@ -430,7 +429,7 @@ html.toned-down .btn:hover::before {
 /*anchor-link styles, btn hover effects*/
 a {
     color: #66cdaa;
-    text-underline-offset: 0.4em;
+    text-underline-offset: 0.3em;
     font-weight: bold;
 }
 
@@ -449,6 +448,5 @@ p.breadcrumb {
 p.footer a {
     text-decoration:none;
 }
-
 
 

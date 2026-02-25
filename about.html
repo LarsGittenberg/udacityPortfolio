@@ -47,29 +47,6 @@
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
   <script src="js/noframework.waypoints.min.js"></script>
 
-  <!-- Text Scramble -->
-  <script>
-    document.addEventListener("DOMContentLoaded", function() {
-      const el = document.getElementById('tagline');
-      const finalText = el.textContent;
-      const chars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz!@#$%^&*() ,.-';
-      let frame = 0;
-
-      const interval = setInterval(() => {
-        let out = '';
-        for (let i = 0; i < finalText.length; i++) {
-          out += (i < frame) ? finalText[i] : chars[Math.floor(Math.random() * chars.length)];
-        }
-        el.textContent = out;
-        frame++;
-        if (frame > finalText.length) {
-          clearInterval(interval);
-          el.textContent = finalText;
-        }
-      }, 110);
-    });
-  </script>
-
 	<!-- Update toggle labels AFTER DOM is ready -->
 	<script>
 	  document.addEventListener("DOMContentLoaded", function() {
@@ -183,7 +160,7 @@
 	  <figcaption class="caption-hover text-center">Tut tut! Didn't say 'Simon Says'!</figcaption>
   </figure>
 
-  <p class="text-center highlight-orange">Resume (Coming Soon)</p>
+  <p class="text-center orange-color-font small-font">Resume (Coming Soon)</p>
 
 </div>
 

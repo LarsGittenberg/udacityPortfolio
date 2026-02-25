@@ -47,29 +47,6 @@
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
   <script src="js/noframework.waypoints.min.js"></script>
 
-  <!-- Text Scramble -->
-  <script>
-    document.addEventListener("DOMContentLoaded", function() {
-      const el = document.getElementById('tagline');
-      const finalText = el.textContent;
-      const chars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz!@#$%^&*() ,.-';
-      let frame = 0;
-
-      const interval = setInterval(() => {
-        let out = '';
-        for (let i = 0; i < finalText.length; i++) {
-          out += (i < frame) ? finalText[i] : chars[Math.floor(Math.random() * chars.length)];
-        }
-        el.textContent = out;
-        frame++;
-        if (frame > finalText.length) {
-          clearInterval(interval);
-          el.textContent = finalText;
-        }
-      }, 110);
-    });
-  </script>
-
 	<!-- Update toggle labels AFTER DOM is ready -->
 	<script>
 	  document.addEventListener("DOMContentLoaded", function() {
@@ -133,7 +110,7 @@
 </header>
 
 <div class="project-header-bar pattern-dots-dense">
-	<h2 class="source-code-pro source-code-pro-light">Photography</h2>
+	<h2 class="source-code-pro source-code-pro-light margin-left-40">Photography</h2>
 </div>
 
 <div class="flex-container-main">
@@ -144,8 +121,8 @@
 			<div class="img-container">
 				<img id="cutout" class="project-image" src="images/animate/cutout_static.jpg" alt="abstract silhouete image of cowboy western landscape">
 			</div>
-			<h3 class="margin-bottom headline-text-color"><strong><span class="highlight-orange">Tufts / SMFA, Boston — MFA Thesis</span><br> Cutout Figures Series</strong></h3>
-			<p><strong>Artist Statement</strong>: American science fiction movies, television shows, cartoons and superhero comic book escapades were regular imports growing up in the Philippines. Thanks to action figure toys, the stories continued well beyond the screen and comic pages. These photographs of paper cut-outs revisit those toys and boyhood narratives, while addressing cultural hegemonies and American hero tropes.</p>
+			<h3 class="margin-bottom headline-text-color"><strong><span class="orange-color-font small-font">Tufts / SMFA, Boston — MFA Thesis</span><br> Cutout Figures Series</strong></h3>
+			<p>A photographic series that reimagines childhood action‑figure narratives through paper cut‑outs while examining the cultural hegemony of American heroism.</p>
 				<a href="cutouts.html" class="btn">
 					<span class="btn-text">View Series</span>
 					<span class="btn-arrow">
@@ -163,9 +140,9 @@
 			<div class="img-container">
 				<img id="retouch" class="project-image" src="images/animate/retouch_static.jpg" alt="image of retouched photo of todler in a photo studio">
 			</div>
-			<h3 class="margin-bottom headline-text-color"><strong><span class="highlight-orange">Photography Portraiture</span><br> Photoshop Retouching</strong></h3>
+			<h3 class="margin-bottom headline-text-color"><strong><span class="orange-color-font small-font">Photography Portraiture</span><br> Photoshop Retouching</strong></h3>
 			<ul>
-				<li>Professionally photograph engaging portraits for clients using high-end strobe kits and state-of-the-art studio equipment</li>
+				<li>Professionally photograph engaging portraits for clients using high-end strobe kits and studio equipment</li>
 				<li>Composite and retouch digital photography using industry standard retouching techniques</li>
 				<li><strong class="gold-color-font">Tools:</strong> Bowens & Calumet, Profoto lighting systems, 4x5-large format/digital format cameras, Photoshop CC</li>
 			</ul>
@@ -185,8 +162,8 @@
 			<div class="img-container">
 				<img id="posed" class="project-image" src="images/animate/posed_static.jpg" alt="image of woman in pajamas in a dark kitchen">
 			</div>
-			<h3 class="margin-bottom headline-text-color"><strong><span class="highlight-orange">Photography</span><br> Posed Encouters Series</strong></h3>
-			<p><strong>Artist Statement</strong>: I am interested in particular cinematic gestures in movies. From Spielberg reels to Godzilla camp, there's a certain reaction shot that is reitereated over and over, employed perhaps to mirror, augment and tap into collective anxieties. I use my own brand of camp and noir-like effect to explore this idea of anxiety and of the sublime.</p>
+			<h3 class="margin-bottom headline-text-color"><strong><span class="orange-color-font small-font">Photography</span><br> Posed Encouters Series</strong></h3>
+			<p>A study of iconic cinematic reaction shots, reimagined through camp and noir aesthetics to probe the tension between fear, spectacle, and the sublime.</p>
 				<a href="posed.html" class="btn">
 					<span class="btn-text">View Series</span>
 					<span class="btn-arrow">

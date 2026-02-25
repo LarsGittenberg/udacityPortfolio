@@ -48,29 +48,6 @@
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
   <script src="js/noframework.waypoints.min.js"></script>
 
-  <!-- Text Scramble -->
-  <script>
-    document.addEventListener("DOMContentLoaded", function() {
-      const el = document.getElementById('tagline');
-      const finalText = el.textContent;
-      const chars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz!@#$%^&*() ,.-';
-      let frame = 0;
-
-      const interval = setInterval(() => {
-        let out = '';
-        for (let i = 0; i < finalText.length; i++) {
-          out += (i < frame) ? finalText[i] : chars[Math.floor(Math.random() * chars.length)];
-        }
-        el.textContent = out;
-        frame++;
-        if (frame > finalText.length) {
-          clearInterval(interval);
-          el.textContent = finalText;
-        }
-      }, 110);
-    });
-  </script>
-
 	<!-- Update toggle labels AFTER DOM is ready -->
 	<script>
 	  document.addEventListener("DOMContentLoaded", function() {
@@ -136,7 +113,7 @@
 
 
 <div class="project-header-bar pattern-dots-dense">
-	<h2 class="source-code-pro source-code-pro-light">Photography - Retouching</h2>
+	<h2 class="source-code-pro source-code-pro-light margin-left-40">Photography - Retouching</h2>
 </div>
 
 
@@ -145,7 +122,7 @@
 
 	<div class="info-box">
 		<p class="breadcrumb"><a href="index.html" onclick="gtag('event', 'breadcrumb_click', { breadcrumb_item: 'home', from_page: window.location.pathname });"> Home </a> > <a href="photography.html" onclick="gtag('event', 'breadcrumb_click', { breadcrumb_item: 'photography', from_page: window.location.pathname });"> Photography </a>> Photoshop Retouching</p>
-		<p class="highlight-orange">Hover on images for before and after</p>
+		<p class="orange-color-font small-font">Hover on images for before and after</p>
 	</div><!--end info box-->
 
 	<div class="flex-container-child-gallery ">

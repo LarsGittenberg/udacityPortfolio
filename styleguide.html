@@ -47,29 +47,6 @@
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
   <script src="js/noframework.waypoints.min.js"></script>
 
-  <!-- Text Scramble -->
-  <script>
-    document.addEventListener("DOMContentLoaded", function() {
-      const el = document.getElementById('tagline');
-      const finalText = el.textContent;
-      const chars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz!@#$%^&*() ,.-';
-      let frame = 0;
-
-      const interval = setInterval(() => {
-        let out = '';
-        for (let i = 0; i < finalText.length; i++) {
-          out += (i < frame) ? finalText[i] : chars[Math.floor(Math.random() * chars.length)];
-        }
-        el.textContent = out;
-        frame++;
-        if (frame > finalText.length) {
-          clearInterval(interval);
-          el.textContent = finalText;
-        }
-      }, 110);
-    });
-  </script>
-
 	<!-- Update toggle labels AFTER DOM is ready -->
 	<script>
 	  document.addEventListener("DOMContentLoaded", function() {
@@ -132,7 +109,7 @@
 
 
 <div class="project-header-bar pattern-lines-up-var">
-	<h2 class="source-code-pro source-code-pro-light">Ashoka Brand and Style Guide</h2>
+	<h2 class="source-code-pro source-code-pro-light margin-left-40">Ashoka Brand and Style Guide</h2>
 </div>
 
 <div class="flex-container-main pattern-grid-small">
@@ -163,7 +140,7 @@
 		<img style="margin-bottom:20px; padding: 0px 20px 0px 20px;" src="images/styleguide/nono1.png" alt="examples of digital and print assets with different styles">
 		<img style="margin-bottom:20px; padding: 0px 20px 0px 20px;" src="images/styleguide/nono2.png" alt="examples of digital and print assets with different styles">
 		<img style="margin-bottom:20px; padding: 0px 20px 0px 20px;" src="images/styleguide/nono3.png" alt="examples of digital and print assets with different styles">
-		<figcaption class="tablet-float-right" style="font-size: 0.8em; padding: 25px;">Above: Examples of the diverse but divergent branding styles of Ashoka. All assets <em>courtesy</em> of Ashoka Branding Team of Teams, ©Ashoka</figcaption>
+		<figcaption class="tablet-float-right" style="font-size: 0.8em; padding: 25px;">Above: Examples of the diverse but divergent branding styles of Ashoka. All assets <em>courtesy</em> of Ashoka Branding Team of Teams, Ashoka</figcaption>
 	</figure>
 
 	<div class="info-box margin-right-desktop margin-right-tablet">
@@ -207,7 +184,7 @@
 
 	<figure class="margin-right-desktop margin-right-tablet">
 		<img class="two-thirds tablet-float-right" src="images/styleguide/styleguide_font.png" >
-		<figcaption class="tablet-float-right" style="font-size: 0.8em; padding: 25px; text-align: left;">Above and below: Selected pages of the living document—Ashoka Style Guide 2019. <br>Bringing parity to a global brand through collaboration, facilitation, communication, and branding leadership.</figcaption>
+		<figcaption class="tablet-float-right" style="font-size: 0.8em; padding: 25px; text-align: left;">Above and below: Selected pages of the living document—Ashoka Style Guide 2019. <br>Bringing parity to a global brand through collaboration, facilitation, communication, and branding leadership. All assets <em>courtesy</em> of Ashoka Branding Team of Teams, Ashoka</figcaption>
 	</figure>
 
 	<figure class="margin-left-desktop margin-right-tablet">

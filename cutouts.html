@@ -48,29 +48,6 @@
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
   <script src="js/noframework.waypoints.min.js"></script>
 
-  <!-- Text Scramble -->
-  <script>
-    document.addEventListener("DOMContentLoaded", function() {
-      const el = document.getElementById('tagline');
-      const finalText = el.textContent;
-      const chars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz!@#$%^&*() ,.-';
-      let frame = 0;
-
-      const interval = setInterval(() => {
-        let out = '';
-        for (let i = 0; i < finalText.length; i++) {
-          out += (i < frame) ? finalText[i] : chars[Math.floor(Math.random() * chars.length)];
-        }
-        el.textContent = out;
-        frame++;
-        if (frame > finalText.length) {
-          clearInterval(interval);
-          el.textContent = finalText;
-        }
-      }, 110);
-    });
-  </script>
-
 	<!-- Update toggle labels AFTER DOM is ready -->
 	<script>
 	  document.addEventListener("DOMContentLoaded", function() {
@@ -136,7 +113,7 @@
 
 
 <div class="project-header-bar pattern-dots-dense">
-	<h2 class="source-code-pro source-code-pro-light">Photography - Cutout Series</h2>
+	<h2 class="source-code-pro source-code-pro-light margin-left-40">Photography - Cutout Series</h2>
 </div>
 
 
@@ -145,6 +122,10 @@
 	<div class="info-box">
 		<p class="breadcrumb"><a href="index.html" onclick="gtag('event', 'breadcrumb_click', { breadcrumb_item: 'home', from_page: window.location.pathname });"> Home </a> > <a href="photography.html" onclick="gtag('event', 'breadcrumb_click', { breadcrumb_item: 'photography', from_page: window.location.pathname });"> Photography </a> > Cutout Figures Series</p>
 	</div><!--end info box-->
+
+	<div class="info-box">
+		<p class="info-box-left"><strong>Artist Statement</strong>: American science fiction movies, television shows, cartoons and superhero comic book escapades were regular imports growing up in the Philippines. Thanks to action figure toys, the stories continued well beyond the screen and comic pages. These photographs of paper cut-outs revisit those toys and boyhood narratives, while addressing cultural hegemonies and American hero tropes.</p>
+	</div>
 
 	<div class="flex-container-child-gallery ">
 		<div class="gallery-item gallery-photo dragon-cutout"></div>

@@ -47,29 +47,6 @@
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
   <script src="js/noframework.waypoints.min.js"></script>
 
-  <!-- Text Scramble -->
-  <script>
-    document.addEventListener("DOMContentLoaded", function() {
-      const el = document.getElementById('tagline');
-      const finalText = el.textContent;
-      const chars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz!@#$%^&*() ,.-';
-      let frame = 0;
-
-      const interval = setInterval(() => {
-        let out = '';
-        for (let i = 0; i < finalText.length; i++) {
-          out += (i < frame) ? finalText[i] : chars[Math.floor(Math.random() * chars.length)];
-        }
-        el.textContent = out;
-        frame++;
-        if (frame > finalText.length) {
-          clearInterval(interval);
-          el.textContent = finalText;
-        }
-      }, 110);
-    });
-  </script>
-
 	<!-- Update toggle labels AFTER DOM is ready -->
 	<script>
 	  document.addEventListener("DOMContentLoaded", function() {
@@ -156,7 +133,7 @@
 			<div class="img-container">
 				<img id="memory" class="project-image" src="images/animate/memory_static.jpg" alt="Memory Game">
 			</div>
-			<h3 class="margin-bottom headline-text-color"><strong><span class="highlight-orange">JavaScript Coding · UI Design</span><br> Memory Matching Game</strong></h3>
+			<h3 class="margin-bottom headline-text-color"><strong><span class="orange-color-font small-font">JavaScript Coding · UI Design</span><br> Memory Matching Game</strong></h3>
 			<ul>
 				<li>Code a jQuery, web-based app that lets the user play a memory-matching game</li>
 				<li>Responsive design for desktop, tablets and phones/small devices</li>
@@ -180,7 +157,7 @@
 			<div class="img-container">
 				<img id="pixel" class="project-image" src="images/animate/pixel_static.jpg" alt="Pixel Art Maker">
 			</div>
-			<h3 class="margin-bottom headline-text-color"><strong><span class="highlight-orange">JavaScript Coding· UX/UI</span><br> Pixel Art Maker</strong></h3>
+			<h3 class="margin-bottom headline-text-color"><strong><span class="orange-color-font small-font">JavaScript Coding· UX/UI</span><br> Pixel Art Maker</strong></h3>
 			<ul>
 				<li>Code a jQuery, web based app that allows the user to create pixels and change their colors</li>
 				<li>Optimize for desktop and tablets 1020px and up</li>
@@ -205,7 +182,7 @@
 			<div class="img-container">
 				<img id="arcade" class="project-image" src="images/animate/arcade_static.jpg" alt="Memory Game">
 			</div>
-			<h3 class="margin-bottom headline-text-color"><strong><span class="highlight-orange">Object Oriented JS Coding</span><br> Arcade Game Clone</strong></h3>
+			<h3 class="margin-bottom headline-text-color"><strong><span class="orange-color-font small-font">Object Oriented JS Coding</span><br> Arcade Game Clone</strong></h3>
 			<ul>
 				<li>Udacity Nanodegree Project</li>
 				<li>Apply JSON, functional classes, JavaScript concepts learnt to refactor a 'Frogger' arcade game</li>
@@ -223,19 +200,28 @@
 		</section>
 	</div>
 
-	<!-- getit -->
-	<div class="flex-container-child-projects pattern-dots-sparse">
+
+<!-- pride -->
+	<div class="flex-container-child-projects pattern-lines-down">
 		<section class="featured-project-card">
 			<div class="img-container">
-				<img id="getit" class="project-image" src="images/animate/getit_static.jpg" alt="GetIt Landing Page">
+				<img id="pride" class="project-image" src="images/animate/pride_static.jpg" alt="Pride365 app worldpride">
 			</div>
-			<h3 class="margin-bottom headline-text-color"><strong><span class="highlight-orange">Web Design · UX/UI</span><br> GetIt Job Search Portal Wireframe</strong></h3>
-			<ul>
-				<li>Hi-fidelity mockup re-design proposal for start-up company GetIt, providing a one-stop-shop search platform for jobs and more</li>
-				<li>Pitch and present design concepts to CEO and other stakeholders</li>
-				<li><strong class="gold-color-font">Tools:</strong> Sketch+Invision, Photoshop, Illustrator CC, InVision</li>
-			</ul>
-			<!--removed cta-->
+			<h3 class="margin-bottom headline-text-color"><strong><span class="orange-color-font small-font">Web · UI/UX · Brand System</span><br>Pride365 App Marketing</strong></h3>
+				<ul>
+					<li>Research and analyse ways to increase awareness and adoption of the official WorldPrideDC Pride365 event planner app</li>
+					<li>Design CTAs to download</li>
+					<li>Recommendations led to a <strong>X30</strong> fold increase in app downloads</li>
+					<li><strong class="gold-color-font">Tools and Skills: </strong>Web Design, UX/UI Design, Research, Visual Design, Figma</li>
+				</ul>
+				<a href="http://www.lawrencegetubig.com/pride.html" class="btn" onclick="gtag('event', 'project_click', { project: 'pride', from_page: window.location.pathname });">
+					<span class="btn-text">View Project</span>
+					<span class="btn-arrow">
+					<span class="shaft"></span>
+					<span class="wing wing-left"></span>
+					<span class="wing wing-right"></span>
+					</span>
+				</a>
 		</section>
 	</div>
 
@@ -246,7 +232,7 @@
 			<div class="img-container">
 				<img id="45th" class="project-image" src="images/animate/45th_static.jpg" alt="45th Parallel Wines">
 			</div>
-			<h3 class="margin-bottom headline-text-color"><strong><span class="highlight-orange">Web · Brand · Visual Design</span><br>45th Parallel Wines</strong></h3>
+			<h3 class="margin-bottom headline-text-color"><strong><span class="orange-color-font small-font">Web · Brand · Visual Design</span><br>45th Parallel Wines</strong></h3>
 				<ul>
 					<li>Built a full brand identity — logo, palette, and a bespoke illustration system</li>
 					<li>Transformed a Squarespace template into a tailored digital storefront</li>
@@ -263,35 +249,44 @@
 		</section>
 	</div>
 
-	<!-- mynctm -->
-		<div class="flex-container-child-projects pattern-dots-sparse">
-			<section class="featured-project-card">
-				<div class="img-container">
-					<img id="speechbubbles" class="project-image" src="images/animate/speechbubbles_static.jpg" alt="MyNctm">
-				</div>
-				<h3 class="margin-bottom headline-text-color"><strong><span class="highlight-orange">Web Design · UX/UI</span><br> MyNCTM Wireframe</strong></h3>
-				<ul>
-					<li>Hi-fidelity mockup for NCTM community platform landing page</li>
-					<li>Design visual and graphic assets</li>
-					<li><strong class="gold-color-font">Tools:</strong> Sketch+Invision, Adobe Photoshop CC, Adobe Illustrator CC, InVision</li>
-				</ul>
-			<!--removed cta-->
-			</section>
-		</div>
-
-<!-- drom -->
-	<div class="flex-container-child-projects pattern-lines-down">
+<!-- newsletter -->
+	<div class="flex-container-child-projects pattern-dots-sparse">
+		<img class="corner-tear" src="images/pattern/cornerTear.png">
 		<section class="featured-project-card">
 			<div class="img-container">
-				<img id="drom" class="project-image" src="images/animate/drom_static.jpg" alt="Drom Peppercorns">
+				<img id="newsletter" class="project-image" src="images/animate/newsletter_static.jpg" alt="Ashoka Newsletter">
 			</div>
-			<h3 class="margin-bottom headline-text-color"><strong><span class="highlight-orange">Web · Brand Identity Design</span><br>Drøm Peppercorns</strong></h3>
-				<ul>
-					<li>Conceptualize identity and branding, from logo through all visual assets</li>
-					<li>Modify Shopify Liquid code and SCSS to match preliminary visual proposal. View <a href="http://www.lawrencegetubig.com/pp_moodboard.pdf" target="_blank">moodboard (PDF)</a></li>
-					<li><strong class="gold-color-font">Tools:</strong> HTML5, CSS3, SASS, Adobe Photoshop CC, Adobe Illustrator CC, Shopify Liquid markup</li>
-				</ul>
-				<!--removed cta-->
+			<h3 class="margin-bottom headline-text-color"><strong><span class="orange-color-font small-font">Visual Design · UX/UI</span><br> Ashoka Marketing Newsletter</strong></h3>
+			<ul>
+				<li>Redesigned an outdated newsletter into a modern, readable system</li>
+				<li>Built a reusable asset library for future campaigns</li>
+				<li>Optimized templates for DotDigital and mobile audiences</li>
+				<li><strong class="gold-color-font">Tools:</strong> HTML, CSS, UI/UX, DotDigital</li>
+			</ul>
+				<a href="newsletter.html" class="btn" onclick="gtag('event', 'project_click', { project: 'newsletter', from_page: window.location.pathname });">
+					<span class="btn-text">View Project</span>
+					<span class="btn-arrow">
+					<span class="shaft"></span>
+					<span class="wing wing-left"></span>
+					<span class="wing wing-right"></span>
+					</span>
+				</a>
+		</section>
+	</div>
+
+	<!-- getit -->
+	<div class="flex-container-child-projects pattern-dots-sparse">
+		<section class="featured-project-card">
+			<div class="img-container">
+				<img id="getit" class="project-image" src="images/animate/getit_static.jpg" alt="GetIt Landing Page">
+			</div>
+			<h3 class="margin-bottom headline-text-color"><strong><span class="orange-color-font small-font">Web Design · UX/UI</span><br> GetIt Job Search Portal Wireframe</strong></h3>
+			<ul>
+				<li>Hi-fidelity mockup re-design proposal for start-up company GetIt, providing a one-stop-shop search platform for jobs and more</li>
+				<li>Pitch and present design concepts to CEO and other stakeholders</li>
+				<li><strong class="gold-color-font">Tools:</strong> Sketch+Invision, Photoshop, Illustrator CC, InVision</li>
+			</ul>
+			<!--removed cta-->
 		</section>
 	</div>
 
@@ -301,7 +296,7 @@
 			<div class="img-container">
 				<img id="bird" class="project-image" src="images/animate/bird_static.jpg" alt="I love math">
 			</div>
-			<h3 class="margin-bottom headline-text-color"><strong><span class="highlight-orange">Web Page Design · UX/UI</span><br>  I Love Math Campaign</strong></h3>
+			<h3 class="margin-bottom headline-text-color"><strong><span class="orange-color-font small-font">Web Page Design · UX/UI</span><br>  I Love Math Campaign</strong></h3>
 			<ul>
 				<li>Create visuals through competition research for member acquisition landing page</li>
 				<li>Delight users with engaging, fun UI</li>
@@ -318,7 +313,7 @@
 			<div class="img-container">
 				<img id="liquid" class="project-image" src="images/animate/liquid_static.jpg" alt="Liquid Lab">
 			</div>
-			<h3 class="margin-bottom headline-text-color"><strong><span class="highlight-orange">Web · Brand Identity Design</span><br>Liquid Lab</strong></h3>
+			<h3 class="margin-bottom headline-text-color"><strong><span class="orange-color-font small-font">Web · Brand Identity Design</span><br>Liquid Lab</strong></h3>
 				<ul>
 					<li>Use HTML5, CSS3 and JavaScript to code a landing page for fictitious company "LiquidLab"</li>
 					<li>Conceptualize identity and branding.</li>

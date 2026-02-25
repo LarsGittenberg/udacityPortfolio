@@ -48,29 +48,6 @@
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
   <script src="js/noframework.waypoints.min.js"></script>
 
-  <!-- Text Scramble -->
-  <script>
-    document.addEventListener("DOMContentLoaded", function() {
-      const el = document.getElementById('tagline');
-      const finalText = el.textContent;
-      const chars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz!@#$%^&*() ,.-';
-      let frame = 0;
-
-      const interval = setInterval(() => {
-        let out = '';
-        for (let i = 0; i < finalText.length; i++) {
-          out += (i < frame) ? finalText[i] : chars[Math.floor(Math.random() * chars.length)];
-        }
-        el.textContent = out;
-        frame++;
-        if (frame > finalText.length) {
-          clearInterval(interval);
-          el.textContent = finalText;
-        }
-      }, 110);
-    });
-  </script>
-
 	<!-- Update toggle labels AFTER DOM is ready -->
 	<script>
 	  document.addEventListener("DOMContentLoaded", function() {
@@ -136,15 +113,18 @@
 
 
 <div class="project-header-bar pattern-dots-dense">
-	<h2 class="source-code-pro source-code-pro-light">Photography - Posed Encounters</h2>
-
+	<h2 class="source-code-pro source-code-pro-light margin-left-40">Photography - Posed Encounters</h2>
 </div>
 
 <div class="flex-container-main pattern-grid-small">
 
 	<div class="info-box">
-		<p class="breadcrumb"><a href="index.html" onclick="gtag('event', 'breadcrumb_click', { breadcrumb_item: 'home', from_page: window.location.pathname });"> Home </a> > <a href="photography.html" onclick="gtag('event', 'breadcrumb_click', { breadcrumb_item: 'photography', from_page: window.location.pathname });"> Photography </a>> Posed Encounters</p>
+		<p class="breadcrumb"><a href="index.html" onclick="gtag('event', 'breadcrumb_click', { breadcrumb_item: 'home', from_page: window.location.pathname });"> Home </a> > <a href="photography.html" onclick="gtag('event', 'breadcrumb_click', { breadcrumb_item: 'photography', from_page: window.location.pathname });"> Photography </a> > Posed Encounters</p>
 	</div><!--end info box-->
+
+	<div class="info-box">
+		<p class="info-box-left"><strong>Artist Statement</strong>: I am interested in particular cinematic gestures in movies. From Spielberg reels to Godzilla camp, there's a certain reaction shot that is reitereated over and over, employed perhaps to mirror, augment and tap into collective anxieties. I use my own brand of camp and noir-like effect to explore this idea of anxiety and of the sublime.</p>
+	</div>
 
 	<div class="flex-container-child-gallery ">
 		<div class="gallery-item gallery-photo jeannie-posed"></div>

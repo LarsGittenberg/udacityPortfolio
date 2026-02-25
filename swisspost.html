@@ -47,29 +47,6 @@
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
   <script src="js/noframework.waypoints.min.js"></script>
 
-  <!-- Text Scramble -->
-  <script>
-    document.addEventListener("DOMContentLoaded", function() {
-      const el = document.getElementById('tagline');
-      const finalText = el.textContent;
-      const chars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz!@#$%^&*() ,.-';
-      let frame = 0;
-
-      const interval = setInterval(() => {
-        let out = '';
-        for (let i = 0; i < finalText.length; i++) {
-          out += (i < frame) ? finalText[i] : chars[Math.floor(Math.random() * chars.length)];
-        }
-        el.textContent = out;
-        frame++;
-        if (frame > finalText.length) {
-          clearInterval(interval);
-          el.textContent = finalText;
-        }
-      }, 110);
-    });
-  </script>
-
 	<!-- Update toggle labels AFTER DOM is ready -->
 	<script>
 	  document.addEventListener("DOMContentLoaded", function() {
@@ -134,7 +111,7 @@
 
 
 <div class="project-header-bar pattern-dots-dense">
-	<h2 class="source-code-pro source-code-pro-light">Swiss Post AI Tool</h2>
+	<h2 class="source-code-pro source-code-pro-light margin-left-40">Swiss Post AI Tool</h2>
 </div>
 
 <div class="flex-container-main pattern-grid-small">
@@ -163,7 +140,7 @@
 			<p>This project is a scrubbed case study derived from work I completed for one of the largest government‑run mail and logistics systems in the world. While the visual design, UX, and UI are entirely new, the journey and business value mirror the kinds of strategic questions that the LLM‑powered generative AI assistant can help answer.</p>
 			<p><b><em><span style="color: #FFCC00;">Framing Question:</span></em></b> How can Swiss Post decision‑makers leverage AI tools to quickly generate insights in performance, sales, marketing, and logistics—driving smarter business decisions?</p>
 			<p>To begin, I conducted comparative market research into Swiss Post’s brand identity, rooted in Helvetica and Swiss design principles, and explored how those traditions of clarity and precision could inform a modern AI interface.</p>
-			<p><a href="http://www.lawrencegetubig.com/pdfs/swisspost.pdf" target="_blank">Download PDF Deck (opens a new tab)</a></p>
+			<p><a href="http://www.lawrencegetubig.com/pdfs/swisspost.pdf" target="_blank">Download PDF Deck</a> (opens a new tab)</p>
 		</div><!--end info box left-->
 	</div><!--end info box-->
 
@@ -225,7 +202,7 @@
 				<li>Complex query handling with tables, charts, and data manipulation.</li>
 				<li>Feedback modal triggered by a thumbs‑down, allowing users to specify issues (e.g., “inaccurate answer,” “forgot context,” “factually wrong”).</li>
 			</ul>
-			<p>For a detailed desktop view:<br> <a href="http://www.lawrencegetubig.com/pdfs/swisspost.pdf" target="_blank">Download PDF Deck (opens a new tab)</a></p>
+			<p>For a detailed desktop view:<br> <a href="http://www.lawrencegetubig.com/pdfs/swisspost.pdf" target="_blank">Download PDF Deck</a> (opens a new tab)</p>
 		</div><!--end info box left-->
 	</div><!--end info box-->
 

@@ -47,29 +47,6 @@
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
   <script src="js/noframework.waypoints.min.js"></script>
 
-  <!-- Text Scramble -->
-  <script>
-    document.addEventListener("DOMContentLoaded", function() {
-      const el = document.getElementById('tagline');
-      const finalText = el.textContent;
-      const chars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz!@#$%^&*() ,.-';
-      let frame = 0;
-
-      const interval = setInterval(() => {
-        let out = '';
-        for (let i = 0; i < finalText.length; i++) {
-          out += (i < frame) ? finalText[i] : chars[Math.floor(Math.random() * chars.length)];
-        }
-        el.textContent = out;
-        frame++;
-        if (frame > finalText.length) {
-          clearInterval(interval);
-          el.textContent = finalText;
-        }
-      }, 110);
-    });
-  </script>
-
 	<!-- Update toggle labels AFTER DOM is ready -->
 	<script>
 	  document.addEventListener("DOMContentLoaded", function() {
@@ -155,7 +132,7 @@
 			<div class="img-container">
 				<img id="icons" class="project-image" src="images/animate/icons_static.jpg" alt="Web Icons">
 			</div>
-			<h3 class="margin-bottom headline-text-color"><strong><span class="highlight-orange">Graphic Design · Illustration</span><br>Web Icon Illustration</strong></h3>
+			<h3 class="margin-bottom headline-text-color"><strong><span class="orange-color-font small-font">Graphic Design · Illustration</span><br>Web Icon Illustration</strong></h3>
 			<ul>
 				<li>Craft thoughtful, brand-aware web icon sets for use in interactive UI on web landing pages that support marketing initiatives</li>
 				<li>Coordinate branding of assets with social media graphics intended to resonate with audience and drive member engagement</li>
@@ -178,7 +155,7 @@
 			<div class="img-container">
 				<img id="ads" class="project-image" src="images/animate/ads_static.jpg" alt="Web Ads">
 			</div>
-			<h3 class="margin-bottom headline-text-color"><strong><span class="highlight-orange">Graphic Design · Marketing</span><br>Digital Ads + Gifs</strong></h3>
+			<h3 class="margin-bottom headline-text-color"><strong><span class="orange-color-font small-font">Graphic Design · Marketing</span><br>Digital Ads + Gifs</strong></h3>
 			<ul>
 				<li>Designed static + animated assets for multi‑channel campaigns</li>
 				<li>Adapted visuals across Instagram, Twitter, email, and web</li>
@@ -202,7 +179,7 @@
 			<div class="img-container">
 				<img id="drom" class="project-image" src="images/animate/drom_static.jpg" alt="Drom Peppercorns">
 			</div>
-			<h3 class="margin-bottom headline-text-color"><strong><span class="highlight-orange">Graphic and Print Design</span><br>Drøm Print and Marketing Materials</strong></h3>
+			<h3 class="margin-bottom headline-text-color"><strong><span class="orange-color-font small-font">Graphic and Print Design</span><br>Drøm Print and Marketing Materials</strong></h3>
 				<ul>
 					<li>Created cohesive print + digital visuals for brand campaigns</li>
 					<li>Prepared production‑ready files for CMYK offset printing</li>

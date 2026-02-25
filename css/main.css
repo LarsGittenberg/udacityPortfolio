@@ -116,6 +116,7 @@ body {
 
 ul {
 	margin-left: 20px;
+	margin-right: 20px;
 	font-size: 0.9em;
 }
 
@@ -149,18 +150,25 @@ figure {
 	position: absolute;
 }
 
-/*Font/typography color helper classes*/
-.highlight-orange {
-	color: #ff7f00;
-	font-size: 0.7em;
+.margin-left-40 {
+	margin-left: 40px!important;
 }
 
+/*Font/typography color helper classes*/
 .orange-color-font {
 	color: #ff7f00;
 }
 
 .gold-color-font {
-	color: #ffcc00;
+	color: gold;
+}
+
+.small-font {
+	font-size: 0.65em!important;
+}
+
+.large-font {
+	font-size: 1.2em!important;
 }
 
 /*a:visited {
@@ -569,6 +577,7 @@ div.project-header-bar h3 {
 
 .featured-project-card p {
 	font-size: 0.9em;
+	padding: 0 20px 0 20px;
 }
 
 html.toned-down .featured-project-card {
@@ -584,6 +593,7 @@ section.featured-project-card img {
 	margin-left: auto;
 	margin-right: auto;
 	display: block;
+	border-radius: 5px;
 }
 
 .img-container {
