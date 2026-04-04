@@ -117,6 +117,7 @@ body {
 ul {
 	margin-left: 20px;
 	margin-right: 20px;
+	margin-top: 12px;
 	font-size: 0.9em;
 }
 
@@ -190,6 +191,27 @@ figure {
 
 .source-code-pro-regular {
 	font-weight: 400;
+}
+
+.doto-lg {
+  font-family: "Doto", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: 600;
+  font-style: normal;
+  font-variation-settings:
+    "ROND" 0;
+}
+
+.bitcount-lg {
+  font-family: "Bitcount", system-ui;
+  font-optical-sizing: auto;
+  font-weight: 300;
+  font-style: normal;
+  font-variation-settings:
+    "slnt" 0,
+    "CRSV" 0.5,
+    "ELSH" 0,
+    "ELXP" 0;
 }
 
 /*background color helper classes*/
@@ -812,6 +834,21 @@ section.featured-project-card img {
 	.flex-container-child-gallery {
 		width: 50%;
 	/*for photo gallery*/
+	}
+
+	p.breadcrumb {
+		font-size: 0.8em;
+	}
+
+	.info-box h3 {
+    font-size: 1.5em;
+    font-weight: lighter;
+    line-height: 1.5em;
+    margin-bottom: 20px;
+	}
+
+	.featured-project-card h3 {
+		line-height:1.5em;
 	}
 
 
