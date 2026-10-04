@@ -121,6 +121,40 @@ ul {
 	font-size: 0.9em;
 }
 
+
+/* Remove default UL spacing */
+ul.trailing-bullets {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  font-size: 0.8em;
+}
+
+/* Right-align each list item */
+.trailing-bullets li {
+  display: flex;
+  justify-content: flex-end;   /* pushes text + bullet to the right */
+  align-items: center;
+  gap: 0.5rem;
+  text-align: right;           /* aligns the text itself */
+}
+
+.role-header {
+	text-align: right;
+}
+
+/* Text takes natural width */
+.trailing-bullets li span {
+  flex: 0 1 auto;
+}
+
+/* Trailing bullet */
+.trailing-bullets li::after {
+  content: "•";
+  font-size: 0.9em;
+}
+
+
 img {
 	display: block;
 	width: 100%;
@@ -157,11 +191,11 @@ figure {
 
 /*Font/typography color helper classes*/
 .orange-color-font {
-	color: #ff7f00;
+	color: #ff7f00 !important;
 }
 
 .gold-color-font {
-	color: gold;
+	color: gold !important;
 }
 
 .small-font {
@@ -490,7 +524,8 @@ div.project-header-bar h3 {
 .flex-container-main p, 
 .flex-container-main h1, 
 .flex-container-main h2, 
-.flex-container-main h3 {
+.flex-container-main h3,
+.flex-container-main h4 {
 	width: 100%;
 	padding: 5px 22px 5px 20px;
 
