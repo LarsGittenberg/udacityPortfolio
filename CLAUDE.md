@@ -6,4 +6,8 @@ This is my personal design portfolio, hand-coded in 2017 with a custom simple co
 
 Don't edit anything without my review and approval. For now, I'd like it kept as is.
 
+# soul
+
+@soul.md
+
 
