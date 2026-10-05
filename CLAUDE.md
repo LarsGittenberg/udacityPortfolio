@@ -14,7 +14,8 @@ This is my personal design portfolio, hand-coded in ~2018 with a custom simple c
 - Each project has its own case-study page (`tnecd.html`, `swisspost.html`, etc.), linked from `index.html`.
 - Project images go in `images/<project>/`.
 - Project buttons use GA4 click tracking (`gtag(...)`). Keep it when adding new project cards.
-- `index_tnecd.html` and `swisspost copy.html` are drafts.
+- `styleguide.html` is a published project feature, not a draft. Keep it.
+- Old draft pages were removed on 2026-10-05. The git tag `pre-cleanup` marks the last commit that still has them.
 
 # soul
 
