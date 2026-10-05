@@ -161,6 +161,11 @@ figure {
 	margin-left: 40px!important;
 }
 
+/* small icon after outbound links */
+.icon-external {
+	margin-left: 0.5em;
+}
+
 /*Font/typography color helper classes*/
 .orange-color-font {
 	color: #ff7f00 !important;
