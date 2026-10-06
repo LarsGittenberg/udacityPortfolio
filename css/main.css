@@ -161,8 +161,8 @@ figure {
 	margin-left: 40px!important;
 }
 
-/* small icon after outbound links */
-.icon-external {
+/* spacing for an icon placed after link text */
+.icon-after-text {
 	margin-left: 0.5em;
 }
 
