@@ -595,6 +595,7 @@ div.project-header-bar h3 {
 	border-radius: 15px;
 }
 
+/* cards stay square below 530px by design; rounded corners start in the min-width: 530px media query */
 .featured-project-card {
 	height: 660px!important;
 	background-color: #363636;
