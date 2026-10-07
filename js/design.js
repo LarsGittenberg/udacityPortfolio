@@ -32,6 +32,57 @@ if (isTouchOnly && !prefersReducedMotion && 'IntersectionObserver' in window) {
 	});
 }
 
+// HERO COLLAPSE (proof of concept): once the intro has assembled, the hero's bottom edge
+// rises until the hero is gone, so the project cards come into view.
+// Plays once per browser session; skipped for reduced motion or if the visitor starts scrolling first.
+var hero = document.querySelector('.hero-container');
+var heroTagline = document.getElementById('tagline');
+
+if (hero && heroTagline && !prefersReducedMotion) {
+	var HERO_INTRO_MS = 6000; // face layers finish ~5.1s, central shape fades in by 6s
+	var HERO_HOLD_MS = 2500;  // pause so the tagline can be read
+	var HERO_COLLAPSE_MS = 1200; // keep in step with the transition time in main.css
+
+	var collapseHero = function(animate) {
+		hero.style.height = hero.offsetHeight + 'px'; // height:auto can't animate, so pin the current height first
+		if (animate) {
+			hero.classList.add('hero-collapsing');
+			void hero.offsetHeight; // force the browser to register the pinned height before changing it
+		}
+		hero.style.height = '0px';
+		if (animate) { setTimeout(finishHeroCollapse, HERO_COLLAPSE_MS + 100); } // backup in case transitionend doesn't fire
+		hero.setAttribute('aria-hidden', 'true'); // nothing left to see, so hide it from screen readers too
+		try { sessionStorage.setItem('heroCollapsed', '1'); } catch (e) {}
+	};
+
+	// remove the transition class when done, so window resizes don't animate
+	var finishHeroCollapse = function() {
+		if (!hero.classList.contains('hero-collapsing')) { return; }
+		hero.classList.remove('hero-collapsing');
+		if (window.Waypoint) { Waypoint.refreshAll(); } // hero is shorter now; recalculate waypoint positions
+	};
+	hero.addEventListener('transitionend', function(e) {
+		if (e.target === hero) { finishHeroCollapse(); }
+	});
+
+	var alreadySeen = false;
+	try { alreadySeen = sessionStorage.getItem('heroCollapsed') === '1'; } catch (e) {}
+
+	if (alreadySeen) {
+		collapseHero(false); // returning within this session: start collapsed, no animation
+	} else {
+		var heroTimer;
+		var cancelHeroCollapse = function() { clearTimeout(heroTimer); };
+		// if the visitor is already scrolling or tapping, don't move the cards under their finger
+		['scroll', 'wheel', 'touchstart', 'keydown', 'mousedown'].forEach(function(evt) {
+			window.addEventListener(evt, cancelHeroCollapse, { once: true, passive: true });
+		});
+		$(window).on('load', function() {
+			heroTimer = setTimeout(function() { collapseHero(true); }, HERO_INTRO_MS + HERO_HOLD_MS);
+		});
+	}
+}
+
 // when page hero/home page loads - hero animation triggered
 $( window ).on( 'load', assembleImgLayers);
 
