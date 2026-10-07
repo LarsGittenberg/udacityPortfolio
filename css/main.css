@@ -602,7 +602,6 @@ div.project-header-bar h3 {
 
 /* cards stay square below 530px by design; rounded corners start in the min-width: 530px media query */
 .featured-project-card {
-	height: 660px!important;
 	background-color: #363636;
 	margin-top: 40px;
 	margin-bottom: 40px;
@@ -716,6 +715,13 @@ section.featured-project-card img {
     padding: 10px;
     margin: 10px 25px 10px 25px;
 		box-shadow: 5px 5px 3px rgba(0, 0, 0, 0.2);
+}
+
+/* phones: no fixed card height; the card grows with its content, plus room for the pinned button */
+@media (max-width: 529px) {
+  .featured-project-card {
+    padding-bottom: 100px;
+  }
 }
 
 /* BREAKPOINT CSS BREAKPOINT CSS BREAKPOINT CSS BREAKPOINT CSS BREAKPOINT CSS BREAKPOINT CSS BREAKPOINT CSS */
