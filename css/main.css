@@ -595,6 +595,11 @@ div.project-header-bar h3 {
 	border-radius: 15px;
 }
 
+/* empty pattern boxes that balance the grid; hidden until the 3-column grid starts at 1180px */
+.card-placeholder {
+	display: none;
+}
+
 /* cards stay square below 530px by design; rounded corners start in the min-width: 530px media query */
 .featured-project-card {
 	height: 660px!important;
@@ -880,6 +885,10 @@ section.featured-project-card img {
   .flex-container-child-projects,
   .flex-container-child-gallery {
     width: 33.3%;
+  }
+
+  .card-placeholder {
+    display: block;
   }
 
  .hero-text {
