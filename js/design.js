@@ -10,6 +10,28 @@ $('.featured-project-card').on('mouseenter', swapToAnimate);
 //to static/non-moving jpg
 $('.featured-project-card').on('mouseleave', swapToStatic);
 
+// touch devices have no hover, so animate the card that is mostly on screen instead.
+// skipped for people who prefer reduced motion
+var isTouchOnly = window.matchMedia('(hover: none)').matches;
+var prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+if (isTouchOnly && !prefersReducedMotion && 'IntersectionObserver' in window) {
+	var cardObserver = new IntersectionObserver(function(entries) {
+		entries.forEach(function(entry) {
+			// run the existing swap functions with the card as 'this'
+			if (entry.isIntersecting) {
+				swapToAnimate.call(entry.target);
+			} else {
+				swapToStatic.call(entry.target);
+			}
+		});
+	}, { threshold: 0.6 }); // card is "in view" when 60% of it is visible
+
+	$('.featured-project-card').each(function() {
+		cardObserver.observe(this);
+	});
+}
+
 // when page hero/home page loads - hero animation triggered
 $( window ).on( 'load', assembleImgLayers);
 
