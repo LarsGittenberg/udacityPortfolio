@@ -508,6 +508,7 @@ p.breadcrumb a::after {
 	flex-wrap: wrap;
 	max-width: 1280px;
 	line-height: 22px;
+	border-radius: 0px 0px 100px 0px;
 }
 
 .flex-container-main p, 
@@ -726,7 +727,7 @@ section.featured-project-card img {
     height: 380px;
     width:100%;
  		position: relative;
- 		border-radius: 15px 15px 0px 0px;
+ 		border-radius: 15px 100px 0px 0px;
  		margin-top: 4px;
   }
 
