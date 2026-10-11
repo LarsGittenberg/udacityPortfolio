@@ -172,6 +172,12 @@ img {
 	width: 100%;
 }
 
+/* image with breathing room at the sides and below */
+.img-inset {
+	margin-bottom: 20px;
+	padding: 0 20px;
+}
+
 figure {
 	width:100%;
 	display: flow-root;
