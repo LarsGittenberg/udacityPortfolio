@@ -112,7 +112,7 @@
 .overlay a {
     padding: 8px;
     text-decoration: none;
-    font-size: 36px;
+    font-size: var(--menu-36);
     color: var(--mint);
     display: block; /* Display block instead of inline */
     transition: 0.3s; /* Transition effects on hover (color) */
@@ -121,7 +121,7 @@
 .overlay-title {
     padding: 32px 8px 8px 8px;
     text-decoration: none;
-    font-size: 30px;
+    font-size: var(--menu-30);
     color: var(--white);
     display: block; /* Display block instead of inline */
 }
@@ -141,19 +141,19 @@ html.textures #styleToggle .toggle-knob {
 }
 
 html.textures #labelTextures {
-  font-weight: 600;
+  font-weight: var(--weight-semibold);
 }
 
 html.toned-down #labelNoTextures {
-  font-weight: 600;
+  font-weight: var(--weight-semibold);
 }
 
 /* When the height of the screen is less than 450 pixels, change the font-size of the overlay menu links and
 position the close button again, so they don't overlap */
 @media screen and (max-height: 450px) {
-    .overlay a {font-size: 20px}
+    .overlay a {font-size: var(--menu-20)}
     .overlay .closebtn {
-        font-size: 40px;
+        font-size: var(--menu-40);
         top: 15px;
         right: 35px;
     }
@@ -185,7 +185,7 @@ position the close button again, so they don't overlap */
     display: inline-block; 
     width: 90px;
     text-align: center;
-    font-size: 0.85rem;
+    font-size: var(--body-text-14);
     letter-spacing: 0.02em;
     opacity: 0.7;
     transition: opacity 0.25s ease;
@@ -232,7 +232,7 @@ html.colorful #styleToggle .toggle-knob {
 html.toned-down #styleToggle .label-toned,
 html.colorful #styleToggle .label-colorful {
   opacity: 1;
-  font-weight: 600;
+  font-weight: var(--weight-semibold);
 }
 
 

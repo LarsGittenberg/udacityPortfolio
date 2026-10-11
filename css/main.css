@@ -42,6 +42,36 @@
 	--radius-sm: 15px;
 	--radius-md: 20px;
 	--radius-pill: 25px;
+
+	/* type: families (Doto = display, Source Code Pro = mono/headings, Montserrat = body) */
+	--font-body: 'Montserrat', sans-serif;
+	--font-mono: 'Source Code Pro', 'Arial', sans-serif;
+	--font-display: "Doto", sans-serif;
+
+	/* weights */
+	--weight-light: 300;
+	--weight-regular: 400;
+	--weight-semibold: 600;
+
+	/* type sizes: the number in each name is the size in px at default browser settings; values are in rem
+	   so they honor a visitor's browser text-size setting. If a size changes, add a new token instead of editing one */
+	--body-text-11: 0.6875rem;
+	--body-text-12: 0.75rem;
+	--body-text-14: 0.875rem;
+	--body-text-15: 0.9375rem;
+	--body-text-17: 1.0625rem;
+	--heading-19: 1.1875rem;
+	--heading-20: 1.25rem;
+	--heading-26: 1.625rem;
+	--display-11: 0.6875rem;
+	--display-19: 1.1875rem;
+	--display-27: 1.6875rem;
+	--display-29: 1.8125rem;
+	--display-31: 1.9375rem;
+	--menu-20: 1.25rem;
+	--menu-30: 1.875rem;
+	--menu-36: 2.25rem;
+	--menu-40: 2.5rem;
 }
 
 /* patterns */
@@ -121,19 +151,19 @@ body {
 	background-color: var(--charcoal);
 	height: 100%;
 	color: var(--white);
-	font-size:17px;
+	font-size: var(--body-text-17);
 	max-width: 1280px;
 	margin-left: auto;
 	margin-right: auto;
 	display: block;
-	font-family: 'Montserrat', sans-serif;
+	font-family: var(--font-body);
 }
 
 ul {
 	margin-left: 20px;
 	margin-right: 20px;
 	margin-top: 12px;
-	font-size: 0.9em;
+	font-size: var(--body-text-15);
 }
 
 
@@ -186,7 +216,7 @@ figure {
 }
 
 .small-font {
-	font-size: 0.65em!important;
+	font-size: var(--body-text-11)!important;
 }
 
 /*a:visited {
@@ -195,21 +225,21 @@ figure {
 
 /*typography options*/
 .source-code-pro {
-	font-family: 'Source Code Pro', 'Arial', sans-serif!important;
+	font-family: var(--font-mono)!important;
 }
 
 .source-code-pro-light {
-	font-weight: 300;
+	font-weight: var(--weight-light);
 }
 
 .source-code-pro-regular {
-	font-weight: 400;
+	font-weight: var(--weight-regular);
 }
 
 .doto-lg {
-  font-family: "Doto", sans-serif;
+  font-family: var(--font-display);
   font-optical-sizing: auto;
-  font-weight: 600;
+  font-weight: var(--weight-semibold);
   font-style: normal;
   font-variation-settings:
     "ROND" 0;
@@ -346,7 +376,7 @@ div.hero-container.hero-collapsing {
 
 .hero-text {
   top: 32px;
-  font-size: 11px;
+  font-size: var(--display-11);
   width: 100%;          /* let it shrink naturally */
   max-width: 399px;      /*cap width for small screens */
   text-align: center;
@@ -412,7 +442,7 @@ header {
 	position: relative;
 	display: flex;
 	flex-direction: row-reverse;
-	font-size:.8em;
+	font-size: var(--body-text-14);
 }
 
 .header-container {
@@ -426,7 +456,7 @@ header {
 	background: var(--charcoal);
 	display: inline;
 	padding: 5px 10px 5px 10px;
-	font-size: 2.0em;
+	font-size: var(--display-27);
 	box-shadow: var(--shadow-soft);
 }
 
@@ -467,7 +497,7 @@ div.project-header-bar h2 {
 	margin-left:25px;
 	margin-right: 25px; /* keeps a wrapped label off the right edge */
 	box-shadow: var(--shadow-soft);
-	font-size: 1.1em;
+	font-size: var(--heading-19);
 }
 
 div.project-header-bar h3 {
@@ -477,7 +507,7 @@ div.project-header-bar h3 {
 	margin-left:25px;
 	margin-right: 25px;
 	box-shadow: var(--shadow-soft);
-	font-size: 0.9em;
+	font-size: var(--body-text-15);
 }
 
 /* breadcrumb: each crumb is its own flex item, so a long crumb wraps inside itself
@@ -486,7 +516,7 @@ div.project-header-bar h3 {
 p.breadcrumb {
 	display: flex;
 	align-items: center;
-	font-size: 0.8em;
+	font-size: var(--body-text-14);
 }
 
 p.breadcrumb a {
@@ -531,6 +561,10 @@ p.breadcrumb a::after {
 	margin-bottom:40px;
 }
 
+.info-box h3 {
+	font-size: var(--heading-20);
+}
+
 .info-box-left {
 	max-width: 620px;
 	float: left;
@@ -554,7 +588,7 @@ p.breadcrumb a::after {
 /* small orange category line above a card's title (sits outside the h3 so its line-height can be tuned on its own) */
 .card-label {
 	padding: 5px 22px 0 20px; /* same sides as the h3, so it lines up */
-	font-size: 0.8em;
+	font-size: var(--body-text-12);
 	line-height: 2.0em;
 	color: var(--orange);
 	font-weight: bold;
@@ -649,7 +683,7 @@ p.breadcrumb a::after {
 }
 
 .featured-project-card p {
-	font-size: 0.9em;
+	font-size: var(--body-text-15);
 	padding: 0 20px 0 20px;
 }
 
@@ -773,7 +807,7 @@ section.featured-project-card img {
   }
 
   .header-container h1 {
-    font-size: 2.3em;
+    font-size: var(--display-31);
   }
 
 /* star element */
@@ -796,7 +830,7 @@ section.featured-project-card img {
   }
 
   .hero-text {
-    font-size: 1.1em;
+    font-size: var(--display-19);
     max-width: 530px;
   }
 
@@ -810,11 +844,11 @@ section.featured-project-card img {
   }
 
   div.project-header-bar h2 {
-    font-size: 1.5em;
+    font-size: var(--heading-26);
   }
 
   div.project-header-bar h3 {
-    font-size: 1.2em;
+    font-size: var(--heading-20);
   }
 
   .flex-container-child-projects,
@@ -824,7 +858,7 @@ section.featured-project-card img {
 
   .hero-text {
     top: 60px;
-    font-size: 1.7em;
+    font-size: var(--display-29);
     max-width: 870px;
   }
 
@@ -874,7 +908,7 @@ section.featured-project-card img {
 	}
 
 	.info-box h3 {
-    font-size: 1.5em;
+    font-size: var(--heading-26);
     font-weight: lighter;
     line-height: 1.5em;
     margin-bottom: 20px;
