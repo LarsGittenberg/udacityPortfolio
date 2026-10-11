@@ -577,6 +577,39 @@ p.breadcrumb a::after {
 	text-align: left;
 }
 
+/* intro row: two info boxes (e.g. Role + Framing the Challenge) side by side above the fold.
+   Below 1020px the boxes stack and keep their normal left/right placement */
+.intro-row {
+	display: flex;
+	flex-wrap: wrap;
+	width: 100%;
+}
+
+.intro-row .info-box {
+	flex: 1 1 100%;
+	width: auto;
+}
+
+/* side by side only when the row is wide enough for a 620px text column
+   (same width as the info-box-right sections below) plus a readable first column */
+@media (min-width: 1020px) {
+	.intro-row {
+		flex-wrap: nowrap;
+	}
+
+	/* first box takes whatever space is left */
+	.intro-row .info-box:first-child {
+		flex: 1 1 0;
+		min-width: 200px;
+	}
+
+	/* second box: 620px of text + 25px padding each side = 670px,
+	   so it lines up with the right-aligned sections below */
+	.intro-row .info-box:last-child {
+		flex: 0 0 670px;
+	}
+}
+
 .flex-container-child-projects p {
 	padding: 5px 0 5px 0;
 }
