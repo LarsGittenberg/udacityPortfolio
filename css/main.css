@@ -32,16 +32,6 @@
 	background-size: 25px;
 }
 
-.pattern-horizontal {
-	background-image: url(../images/pattern/yellow_lines_hor.png);
-	background-size: 10px;
-}
-
-.pattern-vertical {
-	background-image: url(../images/pattern/yellow_lines_vert.png);
-	background-size: 10px;
-}
-
 /*matched*/
 .pattern-dots-dense {
 	background-image: var(--pattern-dots-dense);
@@ -52,11 +42,6 @@
 .pattern-dots-sparse {
 	background-image: var(--pattern-dots-sparse);
 	background-size: 4.5px;
-}
-
-.pattern-dots-grid-var {
-	background-image: url(../images/pattern/yellow_dots_grid2.png);
-	background-size: 5px;
 }
 
 /*matched*/
@@ -122,11 +107,6 @@ ul {
 }
 
 
-.role-header {
-	text-align: right;
-}
-
-
 img {
 	display: block;
 	width: 100%;
@@ -179,19 +159,11 @@ figure {
 	font-size: 0.65em!important;
 }
 
-.large-font {
-	font-size: 1.2em!important;
-}
-
 /*a:visited {
 	color: darkorange;
 }*/
 
 /*typography options*/
-.montserrat {
-	font-family: 'Montserrat', sans-serif;
-}
-
 .source-code-pro {
 	font-family: 'Source Code Pro', 'Arial', sans-serif!important;
 }
@@ -211,18 +183,6 @@ figure {
   font-style: normal;
   font-variation-settings:
     "ROND" 0;
-}
-
-.bitcount-lg {
-  font-family: "Bitcount", system-ui;
-  font-optical-sizing: auto;
-  font-weight: 300;
-  font-style: normal;
-  font-variation-settings:
-    "slnt" 0,
-    "CRSV" 0.5,
-    "ELSH" 0,
-    "ELXP" 0;
 }
 
 /*background color helper classes*/
