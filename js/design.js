@@ -91,6 +91,22 @@ $( window ).on( 'load', assembleImgLayers);
 // when user clicks menu navigation icon
 $('.menu-icon-container').on('click', changeToX_openNav);
 
+// Safari/iPhone can freeze a page in its back/forward cache with the menu open, then show it
+// open again on Back. Close the menu instantly (no slide) as the page is left, and again on
+// restore as a safety net, so the user never sees an open menu pop up and slide shut.
+function closeNavInstantly() {
+	var parts = $('#myNav, .menu-icon-container > *');
+	parts.css('transition', 'none');
+	$('#myNav').removeClass('open-nav');
+	$('.menu-icon-container').children().removeClass('change');
+	$('#myNav')[0].offsetWidth; // forces the browser to apply the change now, before transitions come back
+	parts.css('transition', '');
+}
+window.addEventListener('pagehide', closeNavInstantly);
+window.addEventListener('pageshow', function (event) {
+	if (event.persisted) { closeNavInstantly(); }
+});
+
 
 /* function declarations */
 function swapToAnimate() {
