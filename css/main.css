@@ -495,11 +495,28 @@ div.project-header-bar h3 {
 	font-size: 0.9em;
 }
 
-/* breadcrumb: the arrow after each link is drawn here, so the HTML only holds the links */
+/* breadcrumb: each crumb is its own flex item, so a long crumb wraps inside itself
+   and the arrows stay vertically centered between them.
+   The arrow after each link is drawn here, so the HTML only holds the links */
+p.breadcrumb {
+	display: flex;
+	align-items: center;
+	font-size: 0.8em;
+}
+
+p.breadcrumb a {
+	position: relative;
+	margin-right: 2em; /* room for the arrow */
+	white-space: nowrap; /* links never wrap, so each arrow stays right beside its text; only the current page wraps */
+}
+
 p.breadcrumb a::after {
 	content: "\2192"; /* → */
-	display: inline-block; /* keeps the link underline off the arrow */
-	margin: 0 0.5em;
+	position: absolute; /* out of the text flow, so the link underline stays off the arrow */
+	left: 100%;
+	top: 50%;
+	transform: translateY(-50%);
+	margin-left: 0.5em;
 }
 
 /*featured projects main and subcategories pages styles*/
@@ -615,6 +632,16 @@ p.breadcrumb a::after {
 	height: auto;
 	border: 2px solid #363636;/*this rule helps delineate the sections, enhancing the "card" material concept*/
 	border-radius: 15px;
+	position: relative; /* lets the corner-tear image be positioned against its card */
+}
+
+/* decorative torn-paper corner, pinned to the bottom-right of its card.
+   The PNG is bigger than the card and spills onto the card above, so pointer-events: none lets taps pass through to that card's button */
+.corner-tear {
+	position: absolute;
+	bottom: 0;
+	right: 0;
+	pointer-events: none;
 }
 
 /* empty pattern boxes that balance the grid; hidden until the 3-column grid starts at 1180px */
@@ -743,6 +770,13 @@ section.featured-project-card img {
 @media (max-width: 529px) {
   .featured-project-card {
     padding-bottom: 100px;
+  }
+}
+
+/* phones and tablets: tighter breadcrumb line spacing (desktop keeps the inherited one) */
+@media (max-width: 889px) {
+  p.breadcrumb {
+    line-height: 1.4;
   }
 }
 
@@ -880,10 +914,6 @@ section.featured-project-card img {
 	.flex-container-child-gallery {
 		width: 50%;
 	/*for photo gallery*/
-	}
-
-	p.breadcrumb {
-		font-size: 0.8em;
 	}
 
 	.info-box h3 {
