@@ -640,6 +640,17 @@ p.breadcrumb a::after {
 	padding: 5px 0 5px 0;
 }
 
+/* "Back to Home" line at the bottom of a page. Written as p.back-link so it outranks the
+   padding that .flex-container-main p sets; only the bottom (and optional top) padding changes */
+p.back-link {
+	text-align: center;
+	padding-bottom: 25px;
+}
+
+p.back-link-spaced {
+	padding-top: 40px;
+}
+
 .headline-text-color {
 	color: var(--offwhite);
 }
