@@ -343,9 +343,6 @@ div.hero-container.hero-collapsing {
 	width:85%;
 }
 
-.hero-web,
-.hero-graphic,
-.hero-photo,
 .hero-face {
 	width: 33%;
 	margin-right: auto;
@@ -371,13 +368,6 @@ div.hero-container.hero-collapsing {
 	padding: 5px;
 	box-shadow: 5px 5px 3px rgba(0, 0, 0, 0.2);
 	z-index: 10;
-}
-
-.hero-web,
-.hero-graphic,
-.hero-photo,
-.hero-face {
-  height: 260px;
 }
 
 /* central circle element */
@@ -825,9 +815,6 @@ section.featured-project-card img {
 /* BREAKPOINT CSS BREAKPOINT CSS BREAKPOINT CSS BREAKPOINT CSS BREAKPOINT CSS BREAKPOINT CSS BREAKPOINT CSS */
 /* ≥800px */
 @media (min-width: 890px) {
-  .hero-web,
-  .hero-graphic,
-  .hero-photo,
   .hero-face {
     height: 440px;
   }
@@ -938,9 +925,6 @@ section.featured-project-card img {
 /* BREAKPOINT CSS BREAKPOINT CSS BREAKPOINT CSS BREAKPOINT CSS BREAKPOINT CSS BREAKPOINT CSS BREAKPOINT CSS */
 /* ≥1180px */
 @media (min-width: 1180px) {
-  .hero-web,
-  .hero-graphic,
-  .hero-photo,
   .hero-face {
     height: 600px;
   }
