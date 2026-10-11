@@ -819,6 +819,25 @@ section.featured-project-card img {
   opacity: 0;
 }
 
+/* hover captions: the default and hover captions sit in the SAME place, stacked on top of each other */
+.about-photo figcaption {
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 0;
+  width: 100%;
+  font-size: var(--body-text-12);
+}
+
+/* default visible, hover hidden */
+.caption-default {
+  opacity: 1;
+}
+
+.caption-hover {
+  opacity: 0;
+}
+
 .about-photo-wrapper {
   display: inline-block;
   text-align: center;
