@@ -2,7 +2,7 @@
 .menu-icon-container {
     display: inline-block;
     cursor: pointer;
-    background-color: #0E7C7C;
+    background-color: var(--teal);
     padding: 5px;
     width: 51px;
     height: 51px;
@@ -13,12 +13,12 @@
     top: 0;
     position: fixed;
     transform: translateY(20%) translateX(20%);
-    box-shadow: 5px 5px 3px rgba(0, 0, 0, 0.2);
+    box-shadow: var(--shadow-soft);
     transition: 300ms all ease-in-out;
 }
 
 .menu-icon-container:hover {
-    background-color: mediumaquamarine;
+    background-color: var(--mint);
 }
 
 .bar1,
@@ -49,7 +49,7 @@
     width: 150px;
     height: 150px;
     transform: scale(0, 0) translateX(-25%) translateY(-25%);
-    background-color: mediumaquamarine;
+    background-color: var(--mint);
     border-radius: 50%;
     position: fixed;
     opacity: 1;
@@ -113,7 +113,7 @@
     padding: 8px;
     text-decoration: none;
     font-size: 36px;
-    color: #66cdaa;
+    color: var(--mint);
     display: block; /* Display block instead of inline */
     transition: 0.3s; /* Transition effects on hover (color) */
 }
@@ -122,13 +122,13 @@
     padding: 32px 8px 8px 8px;
     text-decoration: none;
     font-size: 30px;
-    color: white;
+    color: var(--white);
     display: block; /* Display block instead of inline */
 }
 
 /* When you mouse over the navigation links, change their color */
 .overlay a:hover, .overlay a:focus {
-    color: darkcyan;
+    color: var(--cyan-dark);
 }
 
 /* for the bright textures switch */
@@ -197,7 +197,7 @@ position the close button again, so they don't overlap */
   width: 60px;
   height: 28px;
   border-radius: 20px;
-  border: 2px solid white;
+  border: 2px solid var(--white);
   background: transparent;
   cursor: pointer;
   padding: 0;
@@ -212,12 +212,12 @@ position the close button again, so they don't overlap */
   width: 22px;
   height: 22px;
   border-radius: 50%;
-  background: #66cdaa;
+  background: var(--mint);
   transition: transform 0.3s cubic-bezier(0.25, 1, 0.5, 1), background 0.3s ease;
 }
 
 #styleToggle .toggle-button:hover .toggle-knob, #styleToggle .toggle-knob:hover { 
-    background: darkcyan; }
+    background: var(--cyan-dark); }
 
 
 /* Mode states */
@@ -243,7 +243,7 @@ html.colorful #styleToggle .label-colorful {
    =========================== */
 
 .btn {
-  background: linear-gradient(to top right, #8c1c78, #8c1c78);
+  background: linear-gradient(to top right, var(--purple), var(--purple));
   background-size: 200% 200%;
   background-position: 0% 100%;
   position: relative;
@@ -253,7 +253,7 @@ html.colorful #styleToggle .label-colorful {
   gap: 0;
   padding: 8px 20px 8px 32px;
   border-radius: 25px;
-  color: white;
+  color: var(--white);
   text-decoration: none;
   overflow: visible;
   transition:
@@ -271,7 +271,7 @@ section.featured-project-card .btn {
 
 .btn:hover {
   padding-right: 20px;
-  color: #363636;
+  color: var(--charcoal);
   gap: 10px;
 }
 
@@ -281,19 +281,19 @@ section.featured-project-card .btn {
   position: absolute;
   inset: 0;
   border-radius: 25px;
-  background: linear-gradient(to top right, #8c1c78, #c314a4);
+  background: linear-gradient(to top right, var(--purple), var(--magenta));
   z-index: -1;
   transition: background 0.6s ease;
 }
 
 html.toned-down .btn::before {
-  background: linear-gradient(to top right, #0E7C7C, #0E7C7C);
+  background: linear-gradient(to top right, var(--teal), var(--teal));
 }
 
 .btn:hover::before,
 html.toned-down .btn:hover::before {
-    color: #363636;
-    background: linear-gradient(to top right, #66CDAA, #FFCC00);
+    color: var(--charcoal);
+    background: linear-gradient(to top right, var(--mint), var(--gold));
     background-size: 200% 200%;
     animation: gradientShift 3s ease infinite;
 }
@@ -394,13 +394,13 @@ html.toned-down .btn:hover::before {
 
 /*anchor-link styles, btn hover effects*/
 a {
-    color: #66cdaa;
+    color: var(--mint);
     text-underline-offset: 0.3em;
     font-weight: bold;
 }
 
 a:hover {
-    color: darkcyan;
+    color: var(--cyan-dark);
 }
 
 a, .btn {

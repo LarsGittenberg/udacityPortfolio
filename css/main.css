@@ -11,6 +11,32 @@
   --pattern-dots-stagger: url(../images/pattern/teal_dots_stagger.svg); /*matched*/
   --pattern-grid-small: url(../images/pattern/black_grid.png);/*matched*/
 	--pattern-grid-large: url(../images/pattern/teal_grid.png);/*matched*/
+
+	/* color palette: named by hue; change a value here and the whole site follows */
+	--charcoal: #363636;      /* base background and text-box color */
+	--charcoal-deep: #2c2c2c; /* toned-down card background */
+	--offwhite: #e6e6e6;
+	--white: #FFFFFF;
+	--mint: #66cdaa;          /* links and button hover */
+	--teal: #0E7C7C;
+	--cyan-dark: darkcyan;    /* link hover and toggle */
+	--purple: #8c1c78;
+	--magenta: #c314a4;
+	--orange: #ff7f00;
+	--gold: #FFCC00;
+
+	/* IMAGE-ASSET COLORS: the color language of the jpg and gif illustrations (the pre-2026 look).
+	   Kept as a reference; these are not meant for web UI */
+	--yellow: #febe13;
+	--light-yellow: #fed361;
+	--mustard: #cb9811;
+	--bright-brown: #7f5f0a;
+	--dull-brown: #785d2f;
+	--dark-brown: #423208;
+
+	/* shadows */
+	--shadow-soft: 5px 5px 3px rgba(0, 0, 0, 0.2);
+	--shadow-card: 5px 5px 5px rgba(0, 0, 0, 0.3);
 }
 
 /* patterns */
@@ -88,9 +114,9 @@ html {
 }
 
 body {
-	background-color: #363636;
+	background-color: var(--charcoal);
 	height: 100%;
-	color: #FFFFFF;
+	color: var(--white);
 	font-size:17px;
 	max-width: 1280px;
 	margin-left: auto;
@@ -148,11 +174,11 @@ figure {
 
 /*Font/typography color helper classes*/
 .orange-color-font {
-	color: #ff7f00 !important;
+	color: var(--orange) !important;
 }
 
 .gold-color-font {
-	color: gold !important;
+	color: var(--gold) !important;
 }
 
 .small-font {
@@ -188,35 +214,35 @@ figure {
 /*background color helper classes*/
 
 .color-yellow {
-	background-color: #febe13;
+	background-color: var(--yellow);
 }
 
 .color-light-yellow {
-	background-color: #fed361;
+	background-color: var(--light-yellow);
 }
 
 .color-mustard-brown {
-	background-color: #cb9811;
+	background-color: var(--mustard);
 }
 
 .color-bright-brown {
-	background-color: #7f5f0a;
+	background-color: var(--bright-brown);
 }
 
 .color-dull-brown {
-	background-color: #785d2f;
+	background-color: var(--dull-brown);
 }
 
 .color-dark-brown {
-	background-color: #423208;
+	background-color: var(--dark-brown);
 }
 
 .color-offwhite {
-	background-color: #e6e6e6;
+	background-color: var(--offwhite);
 }
 
 .color-charcoal {
-	background-color: #363636;
+	background-color: var(--charcoal);
 }
 
 /* hero animation styles */
@@ -323,10 +349,10 @@ div.hero-container.hero-collapsing {
 	left: 50%;
 	transform: translateX(-50%);
 	white-space: nowrap;
-	background: #363636;
+	background: var(--charcoal);
 	display: inline-block;
 	padding: 5px;
-	box-shadow: 5px 5px 3px rgba(0, 0, 0, 0.2);
+	box-shadow: var(--shadow-soft);
 	z-index: 10;
 }
 
@@ -393,19 +419,19 @@ header {
 
 .header-container h1 {
 	line-height: 50px;
-	background: #363636;
+	background: var(--charcoal);
 	display: inline;
 	padding: 5px 10px 5px 10px;
 	font-size: 2.0em;
-	box-shadow: 5px 5px 3px rgba(0, 0, 0, 0.2);
+	box-shadow: var(--shadow-soft);
 }
 
 .header-container p {
-	background: #363636;
+	background: var(--charcoal);
 	display: block;
 	padding: 5px;
 	margin-top: 15px;
-	box-shadow: 5px 5px 3px rgba(0, 0, 0, 0.2);
+	box-shadow: var(--shadow-soft);
 }
 
 .copyright {
@@ -425,28 +451,28 @@ div.project-header-bar {
 	align-items: center;
 	padding: 10px 0;
 	position: relative;
-	border: 2px solid #363636;
+	border: 2px solid var(--charcoal);
 	border-radius: 15px;
 	margin: 3px 0px;
 }
 
 div.project-header-bar h2 {
 	line-height: 1.4;
-	background: #363636;
+	background: var(--charcoal);
 	padding: 5px;
 	margin-left:25px;
 	margin-right: 25px; /* keeps a wrapped label off the right edge */
-	box-shadow: 5px 5px 3px rgba(0, 0, 0, 0.2);
+	box-shadow: var(--shadow-soft);
 	font-size: 1.1em;
 }
 
 div.project-header-bar h3 {
 	line-height: 1.4;
-	background: #363636;
+	background: var(--charcoal);
 	padding: 5px;
 	margin-left:25px;
 	margin-right: 25px;
-	box-shadow: 5px 5px 3px rgba(0, 0, 0, 0.2);
+	box-shadow: var(--shadow-soft);
 	font-size: 0.9em;
 }
 
@@ -518,7 +544,7 @@ p.breadcrumb a::after {
 }
 
 .headline-text-color {
-	color: #e6e6e6;
+	color: var(--offwhite);
 }
 
 /* small orange category line above a card's title (sits outside the h3 so its line-height can be tuned on its own) */
@@ -526,7 +552,7 @@ p.breadcrumb a::after {
 	padding: 5px 22px 0 20px; /* same sides as the h3, so it lines up */
 	font-size: 0.75em;
 	line-height: 2.0em;
-	color: #ff7f00;
+	color: var(--orange);
 	font-weight: bold;
 }
 
@@ -555,7 +581,7 @@ p.breadcrumb a::after {
 	margin-top:50px;
 	background-size: 300px;
 	background-repeat: no-repeat;
-	box-shadow: 5px 5px 3px rgba(0, 0, 0, 0.2);
+	box-shadow: var(--shadow-soft);
 }
 
 .gallery-icon-img {
@@ -571,7 +597,7 @@ p.breadcrumb a::after {
 	height: auto;
 	margin: 50px auto 10px auto;
 	display: block;
-	box-shadow: 5px 5px 3px rgba(0, 0, 0, 0.2);
+	box-shadow: var(--shadow-soft);
 }
 
 .gallery-print-img {
@@ -579,13 +605,13 @@ p.breadcrumb a::after {
 	height: auto;
 	margin: 50px auto 10px auto;
 	display: block;
-	box-shadow: 5px 5px 3px rgba(0, 0, 0, 0.2);
+	box-shadow: var(--shadow-soft);
 }
 
 .flex-container-child-projects {
 	width: 100%;
 	height: auto;
-	border: 2px solid #363636;/*this rule helps delineate the sections, enhancing the "card" material concept*/
+	border: 2px solid var(--charcoal);/*this rule helps delineate the sections, enhancing the "card" material concept*/
 	border-radius: 15px;
 	position: relative; /* lets the corner-tear image be positioned against its card */
 }
@@ -606,13 +632,13 @@ p.breadcrumb a::after {
 
 /* cards stay square below 530px by design; rounded corners start in the min-width: 530px media query */
 .featured-project-card {
-	background-color: #363636;
+	background-color: var(--charcoal);
 	margin-top: 40px;
 	margin-bottom: 40px;
 	padding: 12px;
 	transition: 300ms all ease-in-out;
 	position: relative;
-	box-shadow: 5px 5px 5px rgba(0,0,0,0.3);
+	box-shadow: var(--shadow-card);
 	width: 100%;
 	margin-left: auto;    	
 	margin-right: auto;
@@ -624,7 +650,7 @@ p.breadcrumb a::after {
 }
 
 html.toned-down .featured-project-card {
-	background-color: #2c2c2c;
+	background-color: var(--charcoal-deep);
 }
 
 
@@ -714,11 +740,11 @@ section.featured-project-card img {
   }
 
  footer p {   
- 		background-color: #363636;
+ 		background-color: var(--charcoal);
     display: inline-table;
     padding: 10px;
     margin: 10px 25px 10px 25px;
-		box-shadow: 5px 5px 3px rgba(0, 0, 0, 0.2);
+		box-shadow: var(--shadow-soft);
 }
 
 /* phones: no fixed card height; the card grows with its content, plus room for the pinned button */
