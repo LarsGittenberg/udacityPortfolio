@@ -178,6 +178,12 @@ figure {
 	padding-bottom:24px;
 }
 
+/* figure caption: small text with room around it. Add .float-left / .float-right / .text-center etc. to position it */
+.caption {
+	font-size: var(--body-text-14);
+	padding: 25px;
+}
+
 /*layout helper classes*/
 .margin-bottom {
 	margin-bottom: 10px;
@@ -185,6 +191,26 @@ figure {
 
 .text-center {
 	text-align: center;
+}
+
+.text-left {
+	text-align: left;
+}
+
+.text-right {
+	text-align: right;
+}
+
+.float-left {
+	float: left;
+}
+
+.float-right {
+	float: right;
+}
+
+.full-width {
+	width: 100%;
 }
 
 .center {
