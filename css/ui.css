@@ -196,7 +196,7 @@ position the close button again, so they don't overlap */
   position: relative;
   width: 60px;
   height: 28px;
-  border-radius: 20px;
+  border-radius: var(--radius-md);
   border: 2px solid var(--white);
   background: transparent;
   cursor: pointer;
@@ -252,7 +252,7 @@ html.colorful #styleToggle .label-colorful {
   align-items: center;
   gap: 0;
   padding: 8px 20px 8px 32px;
-  border-radius: 25px;
+  border-radius: var(--radius-pill);
   color: var(--white);
   text-decoration: none;
   overflow: visible;
@@ -280,7 +280,7 @@ section.featured-project-card .btn {
   content: "";
   position: absolute;
   inset: 0;
-  border-radius: 25px;
+  border-radius: var(--radius-pill);
   background: linear-gradient(to top right, var(--purple), var(--magenta));
   z-index: -1;
   transition: background 0.6s ease;

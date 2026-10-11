@@ -37,6 +37,11 @@
 	/* shadows */
 	--shadow-soft: 5px 5px 3px rgba(0, 0, 0, 0.2);
 	--shadow-card: 5px 5px 5px rgba(0, 0, 0, 0.3);
+
+	/* corner radii: the three reusable sizes. The 100px asymmetric sweeps (footer, main container) stay hand-written in their rules */
+	--radius-sm: 15px;
+	--radius-md: 20px;
+	--radius-pill: 25px;
 }
 
 /* patterns */
@@ -78,7 +83,7 @@
 
 /*matched*/
 .pattern-grid-small {
-	background-image:url(../images/pattern/black_grid.png);
+	background-image: var(--pattern-grid-small);
 	background-size: 4px;
 }
 
@@ -96,7 +101,6 @@ html.toned-down {
   --pattern-dots-dense: url(../images/pattern/gray_dots_grid_dense.png);/*matched*/
   --pattern-dots-sparse: url(../images/pattern/gray_dots_grid_sparse.png); /*matched*/
   --pattern-dots-stagger: url(../images/pattern/gray_dots_stagger.png); /*matched*/
-  --pattern-grid-small: url(../images/pattern/black_grid.png);/*matched*/
 	--pattern-grid-large: url(../images/pattern/gray_grid.png);/*matched*/
 }
 
@@ -452,7 +456,7 @@ div.project-header-bar {
 	padding: 10px 0;
 	position: relative;
 	border: 2px solid var(--charcoal);
-	border-radius: 15px;
+	border-radius: var(--radius-sm);
 	margin: 3px 0px;
 }
 
@@ -550,7 +554,7 @@ p.breadcrumb a::after {
 /* small orange category line above a card's title (sits outside the h3 so its line-height can be tuned on its own) */
 .card-label {
 	padding: 5px 22px 0 20px; /* same sides as the h3, so it lines up */
-	font-size: 0.75em;
+	font-size: 0.8em;
 	line-height: 2.0em;
 	color: var(--orange);
 	font-weight: bold;
@@ -612,7 +616,7 @@ p.breadcrumb a::after {
 	width: 100%;
 	height: auto;
 	border: 2px solid var(--charcoal);/*this rule helps delineate the sections, enhancing the "card" material concept*/
-	border-radius: 15px;
+	border-radius: var(--radius-sm);
 	position: relative; /* lets the corner-tear image be positioned against its card */
 }
 
@@ -662,7 +666,7 @@ section.featured-project-card img {
 	margin-left: auto;
 	margin-right: auto;
 	display: block;
-	border-radius: 20px;
+	border-radius: var(--radius-md);
 }
 
 .img-container {
@@ -784,7 +788,7 @@ section.featured-project-card img {
   .featured-project-card {
 	  height: 560px!important;
 	  width: 375px;
-	  border-radius: 20px;
+	  border-radius: var(--radius-md);
 }
 
   footer {
@@ -803,10 +807,6 @@ section.featured-project-card img {
 @media (min-width: 890px) {
   .hero-face {
     height: 440px;
-  }
-
-  .header-container {
-    font-size: 1em;
   }
 
   div.project-header-bar h2 {
@@ -871,27 +871,6 @@ section.featured-project-card img {
 
 .margin-right-tablet {
 	margin-right: 60px;
-	}
-
-	.header-container {
-		font-size: 1em;
-	}
-
-	div.project-header-bar h2 {
-		font-size: 1.5em;
-	}
-
-	div.project-header-bar h3 {
-		font-size: 1.2em;
-	}
-
-	.flex-container-child-projects {
- 	   width: 50%;
-	}
-
-	.flex-container-child-gallery {
-		width: 50%;
-	/*for photo gallery*/
 	}
 
 	.info-box h3 {
