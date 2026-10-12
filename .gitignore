@@ -3,9 +3,6 @@
 .AppleDouble
 .LSOverride
 
-# Icon files
-Icon?
-
 # Thumbnails
 ._*
 
@@ -18,11 +15,9 @@ Icon?
 
 # Time Machine
 .fseventsd
-.DS_Store
-Icon?
-.DS_Store
-.DS_Store
-*/.DS_Store
 
 # Claude Code local settings
 .claude/
+
+# Note: the usual macOS "Icon?" rule is left out on purpose. "?" matches any character, and
+# git on a Mac ignores letter case, so it also matched the images/icons folder and hid new icons.
