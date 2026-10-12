@@ -401,10 +401,6 @@ a, .btn {
     transition:300ms ease-in-out;
 }
 
-p.breadcrumb {
-    padding-left: 0px;
-}
-
 p.footer a {
     text-decoration:none;
 }

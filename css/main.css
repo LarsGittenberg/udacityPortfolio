@@ -573,6 +573,12 @@ p.breadcrumb {
 	font-size: var(--body-text-14);
 }
 
+/* the breadcrumb text sits 25px from the page edge (the .info-box padding): cancel the paragraph's own left padding.
+   Written with .flex-container-main so it outranks that padding rule */
+.flex-container-main p.breadcrumb {
+	padding-left: 0;
+}
+
 p.breadcrumb a {
 	position: relative;
 	margin-right: 2em; /* room for the arrow */
