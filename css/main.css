@@ -668,6 +668,11 @@ p.breadcrumb a::after {
 	padding: 5px 0 5px 0;
 }
 
+/* captions under the gallery items (Icons page) */
+.flex-container-child-gallery p {
+	font-size: var(--body-text-14);
+}
+
 /* "Back to Home" line at the bottom of a page. Written as p.back-link so it outranks the
    padding that .flex-container-main p sets; only the bottom (and optional top) padding changes */
 p.back-link {
