@@ -71,7 +71,6 @@
 	--menu-20: 1.25rem;
 	--menu-30: 1.875rem;
 	--menu-36: 2.25rem;
-	--menu-40: 2.5rem;
 
 	/* layout: --indent is responsive (0 below 890px, 60px from 890px, 112px from 1180px; set in the media queries below).
 	   --gutter is the fixed gap beside a floated image. --column-text is the width of a text column */
@@ -1003,6 +1002,7 @@ section.featured-project-card img {
 		margin-right: auto;
 	}
 
+	/* "tablet" in these float names means from 890px up: below that the content stacks instead of floating */
 	img.tablet-float-left {
 		float: left;
 		margin-left: var(--gutter);

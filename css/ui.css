@@ -148,15 +148,9 @@ html.toned-down #labelNoTextures {
   font-weight: var(--weight-semibold);
 }
 
-/* When the height of the screen is less than 450 pixels, change the font-size of the overlay menu links and
-position the close button again, so they don't overlap */
+/* When the height of the screen is less than 450 pixels, shrink the overlay menu links so they fit */
 @media screen and (max-height: 450px) {
     .overlay a {font-size: var(--menu-20)}
-    .overlay .closebtn {
-        font-size: var(--menu-40);
-        top: 15px;
-        right: 35px;
-    }
 }
 
 #myNav {
