@@ -981,7 +981,7 @@ section.featured-project-card img {
 		width: 66%;
 	}
 
-	img.one-thirds {
+	img.one-third {
 		width:33%;
 	}
 
@@ -1012,14 +1012,6 @@ section.featured-project-card img {
 
 	.tablet-float-right {
 		float: right;
-	}
-
-  .margin-left-tablet {
-	margin-left: 60px;
-	}
-
-.margin-right-tablet {
-	margin-right: 60px;
 	}
 
 	.info-box h3 {
@@ -1062,14 +1054,6 @@ section.featured-project-card img {
     padding-left: 50px;
     text-align: left;
   }
-
-  .margin-left-desktop {
-	margin-left: 112px;
-	}
-
-.margin-right-desktop {
-	margin-right: 112px;
-	}
 
 figcaption {
 	width:66%;
