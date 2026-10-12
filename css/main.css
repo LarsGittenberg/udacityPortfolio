@@ -72,6 +72,12 @@
 	--menu-30: 1.875rem;
 	--menu-36: 2.25rem;
 	--menu-40: 2.5rem;
+
+	/* layout: --indent is responsive (0 below 890px, 60px from 890px, 112px from 1180px; set in the media queries below).
+	   --gutter is the fixed gap beside a floated image. --column-text is the width of a text column */
+	--indent: 0;
+	--gutter: 60px;
+	--column-text: 620px;
 }
 
 /* patterns */
@@ -231,6 +237,15 @@ figure {
 
 .margin-left-40 {
 	margin-left: 40px!important;
+}
+
+/* indent a section from the page edge; the size comes from --indent, which changes at each breakpoint */
+.indent-left {
+	margin-left: var(--indent);
+}
+
+.indent-right {
+	margin-right: var(--indent);
 }
 
 /* spacing for an icon placed after link text */
@@ -598,13 +613,13 @@ p.breadcrumb a::after {
 }
 
 .info-box-left {
-	max-width: 620px;
+	max-width: var(--column-text);
 	float: left;
 	text-align: left;
 }
 
 .info-box-right {
-	max-width: 620px;
+	max-width: var(--column-text);
 	float: right;
 	text-align: left;
 }
@@ -622,7 +637,7 @@ p.breadcrumb a::after {
 	width: auto;
 }
 
-/* side by side only when the row is wide enough for a 620px text column
+/* side by side only when the row is wide enough for a text column
    (same width as the info-box-right sections below) plus a readable first column */
 @media (min-width: 1020px) {
 	.intro-row {
@@ -635,10 +650,10 @@ p.breadcrumb a::after {
 		min-width: 200px;
 	}
 
-	/* second box: 620px of text + 25px padding each side = 670px,
+	/* second box: one text column + 25px padding each side,
 	   so it lines up with the right-aligned sections below */
 	.intro-row .info-box:last-child {
-		flex: 0 0 670px;
+		flex: 0 0 calc(var(--column-text) + 50px);
 	}
 }
 
@@ -934,6 +949,10 @@ section.featured-project-card img {
 /* BREAKPOINT CSS BREAKPOINT CSS BREAKPOINT CSS BREAKPOINT CSS BREAKPOINT CSS BREAKPOINT CSS BREAKPOINT CSS */
 /* ≥800px */
 @media (min-width: 890px) {
+  :root {
+    --indent: 60px;
+  }
+
   .hero-face {
     height: 440px;
   }
@@ -978,12 +997,12 @@ section.featured-project-card img {
 
 	img.tablet-float-left {
 		float: left;
-		margin-left: 60px;
+		margin-left: var(--gutter);
 	}
 
 	img.tablet-float-right {
 		float: right;
-		margin-right: 60px;
+		margin-right: var(--gutter);
 	}
 
 	.tablet-float-left {
@@ -1019,6 +1038,10 @@ section.featured-project-card img {
 /* BREAKPOINT CSS BREAKPOINT CSS BREAKPOINT CSS BREAKPOINT CSS BREAKPOINT CSS BREAKPOINT CSS BREAKPOINT CSS */
 /* ≥1180px */
 @media (min-width: 1180px) {
+  :root {
+    --indent: 112px;
+  }
+
   .hero-face {
     height: 600px;
   }
