@@ -196,6 +196,7 @@ figure {
 .caption {
 	font-size: var(--body-text-14);
 	padding: 25px;
+	clear: both; /* always sit below a floated image, never wrap beside it */
 }
 
 /*layout helper classes*/
