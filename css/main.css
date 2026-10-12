@@ -78,6 +78,11 @@
 	--indent: 0;
 	--gutter: 60px;
 	--column-text: 620px;
+
+	/* where a page title sits inside its header bar: 25px on pages with cards (lines up with the cards' left edge),
+	   40px on pages with a breadcrumb (lines up with the breadcrumb below the bar) */
+	--title-align-cards: 25px;
+	--title-align-breadcrumb: 40px;
 }
 
 /* patterns */
@@ -233,10 +238,6 @@ figure {
 
 .absolute {
 	position: absolute;
-}
-
-.margin-left-40 {
-	margin-left: 40px!important;
 }
 
 /* indent a section from the page edge; the size comes from --indent, which changes at each breakpoint */
@@ -541,7 +542,7 @@ div.project-header-bar h2 {
 	line-height: 1.4;
 	background: var(--charcoal);
 	padding: 5px;
-	margin-left:25px;
+	margin-left: var(--title-align-cards);
 	margin-right: 25px; /* keeps a wrapped label off the right edge */
 	box-shadow: var(--shadow-soft);
 	font-size: var(--heading-19);
@@ -551,10 +552,17 @@ div.project-header-bar h3 {
 	line-height: 1.4;
 	background: var(--charcoal);
 	padding: 5px;
-	margin-left:25px;
+	margin-left: var(--title-align-cards);
 	margin-right: 25px;
 	box-shadow: var(--shadow-soft);
 	font-size: var(--body-text-15);
+}
+
+/* pages with a breadcrumb: the title (and the section headings further down) align with it.
+   The second selector outranks the bar's own title rule */
+.title-align-breadcrumb,
+div.project-header-bar h2.title-align-breadcrumb {
+	margin-left: var(--title-align-breadcrumb);
 }
 
 /* breadcrumb: each crumb is its own flex item, so a long crumb wraps inside itself
