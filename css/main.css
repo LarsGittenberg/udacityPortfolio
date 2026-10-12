@@ -998,6 +998,7 @@ section.featured-project-card img {
 	img.tablet-float-left {
 		float: left;
 		margin-left: var(--gutter);
+		margin-right: var(--gutter);
 	}
 
 	img.tablet-float-right {
