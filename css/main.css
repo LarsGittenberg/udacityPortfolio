@@ -622,6 +622,11 @@ p.breadcrumb a::after {
 	text-align: left;
 }
 
+/* Role box on the project pages: heading and list inherit the orange */
+.info-box-left.role {
+	color: var(--orange);
+}
+
 .info-box-right {
 	max-width: var(--column-text);
 	float: right;
