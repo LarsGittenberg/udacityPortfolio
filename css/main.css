@@ -628,6 +628,11 @@ p.breadcrumb a::after {
 	color: var(--orange);
 }
 
+/* the paragraph beside the Role box has 5px of top padding; give the list the same so their first lines line up */
+.info-box-left.role ul {
+	padding-top: 5px;
+}
+
 .info-box-right {
 	max-width: var(--column-text);
 	float: right;
