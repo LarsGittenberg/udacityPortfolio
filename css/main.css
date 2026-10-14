@@ -325,58 +325,67 @@ figure {
 	background-color: var(--charcoal);
 }
 
-/* hero animation styles */
-.start-transparent {
+/* hero animation styles
+   Each face piece does two things on separate clocks:
+   1. it MOVES from its start spot to the assembled spot (top / left / transform), each at its own speed
+   2. it FADES IN as a "ghost" that solidifies, one piece after another (opacity, staggered)
+   The fade dials are on .img-layer-absolute. Each piece has a number (--i, 0 to 4, same order as the images in index.html).
+   Saved alternative (all pieces fade together, two shared dials): experiments/hero-fade-shared-dials.css */
+.start-transparent { /* face1: fades in place first, then drifts down late */
+	--i: 0;
 	top: 50%;
 	left: 50%;
 	transform: translate(-50%, -50%);
-	opacity:0;
-	transition: 2500ms all ease;
-	transition-delay: 2400ms;
+	opacity: 0;
+	transition: top 2500ms ease 2400ms, left 2500ms ease 2400ms, transform 2500ms ease 2400ms,
+		opacity var(--fade-time) ease var(--fade-delay);
 }
 
-.start-left {
+.start-bottom { /* face2: rises from below */
+	--i: 1;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, 25%);
+	opacity: 0;
+	transition: top 3000ms ease-in-out, left 3000ms ease-in-out, transform 3000ms ease-in-out,
+		opacity var(--fade-time) ease-in-out var(--fade-delay);
+}
+
+.start-right-fast { /* face3: from the right, overshoots and bounces */
+	--i: 2;
+	top: 50%;
+	left: 50%;
+	transform: translate(75%, -50%);
+	opacity: 0;
+	transition: top 3800ms cubic-bezier(0.37, 2, 0.3, 1.26), left 3800ms cubic-bezier(0.37, 2, 0.3, 1.26), transform 3800ms cubic-bezier(0.37, 2, 0.3, 1.26),
+		opacity var(--fade-time) ease var(--fade-delay);
+}
+
+.start-left { /* face4: slides in from the left */
+	--i: 3;
 	top: 50%;
 	left: 50%;
 	transform: translate(-125%, -50%);
-	transition: 3000ms all ease-in-out;
-	/*transition-delay: 500ms;*/
 	opacity: 0;
+	transition: top 3000ms ease-in-out, left 3000ms ease-in-out, transform 3000ms ease-in-out,
+		opacity var(--fade-time) ease-in-out var(--fade-delay);
 }
 
-.start-right {
+.start-top { /* face5: drops in from above */
+	--i: 4;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -100%);
+	opacity: 0;
+	transition: top 4700ms ease 400ms, left 4700ms ease 400ms, transform 4700ms ease 400ms,
+		opacity var(--fade-time) ease var(--fade-delay);
+}
+
+.start-right { /* not used by any face right now */
 	top: 50%;
 	left: 50%;
 	transform: translate(100%, -50%);
 	transition: 2500ms all ease-in-out;
-	/*transition-delay: 500ms;*/
-	opacity: 0;
-}
-
-.start-right-fast {
-	top: 50%;
-	left: 50%;
-	transform: translate(75%, -50%);
-	transition: 3800ms all cubic-bezier(0.37, 2, 0.3, 1.26);
-	opacity: 0;
-}
-/*transition-delay: 500ms; original transition: 2300ms all cubic-bezier(0.27, 0.86, 0.4, 1.26);*/
-
-.start-top {
-	top: 50%;
-	left: 50%;
-	transform: translate(-50%, -100%);
-	transition: 4700ms all ease;
-	transition-delay: 400ms;
-	opacity: 0;
-}
-
-.start-bottom {
-	top: 50%;
-	left: 50%;
-	transform: translate(-50%, 25%);
-	transition: 3000ms all ease-in-out;
-	/*transition-delay: 500ms;*/
 	opacity: 0;
 }
 
@@ -407,6 +416,12 @@ div.hero-container.hero-collapsing {
 .img-layer-absolute {
 	position: absolute;
 	width:85%;
+	/* fade dials: --fade-start = when the first piece begins to solidify, --stagger = gap before each next piece,
+	   --fade-time = how long each piece takes to become solid */
+	--fade-start: 400ms;
+	--stagger: 800ms;
+	--fade-time: 2500ms;
+	--fade-delay: calc(var(--fade-start) + var(--i) * var(--stagger));
 }
 
 .hero-face {

@@ -1,0 +1,38 @@
+/* SAVED OPTION A: shared dials (all five pieces fade together, no stagger).
+   To use: paste this whole file at the very END of css/main.css. It overrides the staggered fade rules above it
+   (same selectors, later in the file wins). To go back to the stagger, delete the pasted copy.
+   Written 2026-10-13 against main.css after the staggered fade was folded in. */
+/* EXPERIMENT (uncommitted): hero face fades in on its own, slower clock.
+   Movement timing is unchanged; only opacity is split out.
+   Dials: --fade-delay = extra time each piece stays transparent, --fade-time = how long it takes to become solid.
+   To revert: delete this whole block. */
+.img-layer-absolute {
+	--fade-delay: 1000ms;
+	--fade-time: 4000ms;
+}
+
+.start-transparent {
+	transition: top 2500ms ease 2400ms, left 2500ms ease 2400ms, transform 2500ms ease 2400ms,
+		opacity var(--fade-time) ease calc(2400ms + var(--fade-delay));
+}
+
+.start-left {
+	transition: top 3000ms ease-in-out, left 3000ms ease-in-out, transform 3000ms ease-in-out,
+		opacity var(--fade-time) ease-in-out var(--fade-delay);
+}
+
+.start-right-fast {
+	transition: top 3800ms cubic-bezier(0.37, 2, 0.3, 1.26), left 3800ms cubic-bezier(0.37, 2, 0.3, 1.26), transform 3800ms cubic-bezier(0.37, 2, 0.3, 1.26),
+		opacity var(--fade-time) ease var(--fade-delay);
+}
+
+.start-top {
+	transition: top 4700ms ease 400ms, left 4700ms ease 400ms, transform 4700ms ease 400ms,
+		opacity var(--fade-time) ease calc(400ms + var(--fade-delay));
+}
+
+.start-bottom {
+	transition: top 3000ms ease-in-out, left 3000ms ease-in-out, transform 3000ms ease-in-out,
+		opacity var(--fade-time) ease-in-out var(--fade-delay);
+}
+/* end EXPERIMENT */
