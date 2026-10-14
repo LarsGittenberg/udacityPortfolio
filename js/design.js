@@ -77,17 +77,16 @@ if (hero && heroTagline && !prefersReducedMotion) {
 		['scroll', 'wheel', 'touchstart', 'keydown', 'mousedown'].forEach(function(evt) {
 			window.addEventListener(evt, cancelHeroCollapse, { once: true, passive: true });
 		});
-		$(window).on('load', function() {
+		$(function() { // DOM ready, the same starting gun as the face and the sun, so the timing doesn't wait on slow downloads
 			heroTimer = setTimeout(function() { collapseHero(true); }, HERO_INTRO_MS + HERO_HOLD_MS);
 		});
 	}
 }
 
-// when page hero/home page loads - hero animation triggered
-$( window ).on( 'load', assembleImgLayers);
+// hero animation triggered as soon as the HTML is read (DOM ready), not when every image and script
+// has finished downloading ('load'). The tagline unscramble in index.html uses the same moment.
+$(assembleImgLayers);
 
-
-//$(document).ready(assembleImgLayers); //what is the diff between this and window-on-load method?
 // when user clicks menu navigation icon
 $('.menu-icon-container').on('click', changeToX_openNav);
 
@@ -135,7 +134,10 @@ function swapToStatic() {
 
 function assembleImgLayers() {
 	// code to assemble hero elements
+	void document.body.offsetHeight; // make the browser register the scattered start positions first, or it may skip the animation
 	$('.img-layer-absolute').addClass('img-layer-assembled');
+	// also start the sun's fade-in (its delay is counted from this moment, see .hero-start in main.css)
+	$('.hero-container').addClass('hero-start');
 }// end assembleImgLayers
 
 

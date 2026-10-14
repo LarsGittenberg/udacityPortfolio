@@ -447,6 +447,10 @@ div.hero-container.hero-collapsing {
   max-height: 475px;
   background: none; /* important for psuedo element image technique to work*/
   opacity: 0;
+}
+
+/* the sun fades in 4s after the hero starts (class added by design.js), so it always follows the face */
+.hero-start .central-shape {
   animation: fadeIn 2s ease forwards;
   animation-delay: 4s;
 }
