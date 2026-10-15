@@ -6,6 +6,8 @@ Hi there! Thanks for peeking under the hood.
 This site’s color palette is inspired by the bright pinks, purples, teals, and yellows of 1986 — the same patterns that wrapped my high‑school notebooks. The textures, torn edges, and papery feel are intentional nods to that era.  
 
 If you prefer to focus on the work itself, I built a mode toggle that switches the site from Colorful Mode to a toned‑down grayscale version. 🙌🏽
+
+One more thing, for the observant: the face at the top of this page has two different fade-in animations, and the page picks one at random each time it loads. Reload to see the other one. 🎲
 -->
 
 <head>
@@ -29,6 +31,15 @@ If you prefer to focus on the work itself, I built a mode toggle that switches t
 		    document.documentElement.classList.add('colorful');
 		  }
 		})();
+  </script>
+
+  <!-- Pick one of two hero face fades at random; ?fade=shared or ?fade=stagger forces one (for testing) -->
+  <script>
+    (function() {
+      var forced = new URLSearchParams(location.search).get('fade');
+      var shared = forced === 'shared' || (forced !== 'stagger' && Math.random() < 0.5);
+      if (shared) document.documentElement.classList.add('fade-shared');
+    })();
   </script>
 
   <title>Home: Featured Projects | Lawrence Getubig</title>

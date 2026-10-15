@@ -330,7 +330,7 @@ figure {
    1. it MOVES from its start spot to the assembled spot (top / left / transform), each at its own speed
    2. it FADES IN as a "ghost" that solidifies, one piece after another (opacity, staggered)
    The fade dials are on .img-layer-absolute. Each piece has a number (--i, 0 to 4, same order as the images in index.html).
-   Saved alternative (all pieces fade together, two shared dials): experiments/hero-fade-shared-dials.css */
+   A second version (all pieces fade together) sits just below, switched on by the .fade-shared class that index.html adds at random. */
 .start-transparent { /* face1: fades in place first, then drifts down late */
 	--i: 0;
 	top: 50%;
@@ -387,6 +387,38 @@ figure {
 	transform: translate(100%, -50%);
 	transition: 2500ms all ease-in-out;
 	opacity: 0;
+}
+
+/* Alternative hero fade: all five pieces fade in together on two shared dials.
+   Only applies when index.html adds .fade-shared to <html> (a random coin flip on each load, or ?fade=shared). */
+html.fade-shared .img-layer-absolute {
+	--fade-delay: 1000ms; /* extra time each piece stays transparent */
+	--fade-time: 4000ms;  /* how long each piece takes to become solid */
+}
+
+html.fade-shared .start-transparent {
+	transition: top 2500ms ease 2400ms, left 2500ms ease 2400ms, transform 2500ms ease 2400ms,
+		opacity var(--fade-time) ease calc(2400ms + var(--fade-delay));
+}
+
+html.fade-shared .start-left {
+	transition: top 3000ms ease-in-out, left 3000ms ease-in-out, transform 3000ms ease-in-out,
+		opacity var(--fade-time) ease-in-out var(--fade-delay);
+}
+
+html.fade-shared .start-right-fast {
+	transition: top 3800ms cubic-bezier(0.37, 2, 0.3, 1.26), left 3800ms cubic-bezier(0.37, 2, 0.3, 1.26), transform 3800ms cubic-bezier(0.37, 2, 0.3, 1.26),
+		opacity var(--fade-time) ease var(--fade-delay);
+}
+
+html.fade-shared .start-top {
+	transition: top 4700ms ease 400ms, left 4700ms ease 400ms, transform 4700ms ease 400ms,
+		opacity var(--fade-time) ease calc(400ms + var(--fade-delay));
+}
+
+html.fade-shared .start-bottom {
+	transition: top 3000ms ease-in-out, left 3000ms ease-in-out, transform 3000ms ease-in-out,
+		opacity var(--fade-time) ease-in-out var(--fade-delay);
 }
 
 .img-layer-assembled{
