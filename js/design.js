@@ -39,8 +39,8 @@ var hero = document.querySelector('.hero-container');
 var heroTagline = document.getElementById('tagline');
 
 if (hero && heroTagline && !prefersReducedMotion) {
-	var HERO_INTRO_MS = 6000; // face layers finish ~5.1s, central shape fades in by 6s
-	var HERO_HOLD_MS = 2500;  // pause so the tagline can be read
+	var HERO_INTRO_MS = 6000; // roughly when the intro is done: the staggered face is solid by ~6.1s, the other fade by ~7.4s, the sun by 6s
+	var HERO_HOLD_MS = 3999;  // pause so the finished face and tagline can be enjoyed (was 2500)
 	var HERO_COLLAPSE_MS = 1200; // keep in step with the transition time in main.css
 
 	var collapseHero = function(animate) {

@@ -377,7 +377,7 @@ figure {
 	left: 50%;
 	transform: translate(-50%, -100%);
 	opacity: 0;
-	transition: top 4700ms ease 400ms, left 4700ms ease 400ms, transform 4700ms ease 400ms,
+	transition: top 4700ms ease 399ms, left 4700ms ease 399ms, transform 4700ms ease 399ms,
 		opacity var(--fade-time) ease var(--fade-delay);
 }
 
@@ -412,8 +412,8 @@ html.fade-shared .start-right-fast {
 }
 
 html.fade-shared .start-top {
-	transition: top 4700ms ease 400ms, left 4700ms ease 400ms, transform 4700ms ease 400ms,
-		opacity var(--fade-time) ease calc(400ms + var(--fade-delay));
+	transition: top 4700ms ease 399ms, left 4700ms ease 399ms, transform 4700ms ease 399ms,
+		opacity var(--fade-time) ease calc(399ms + var(--fade-delay));
 }
 
 html.fade-shared .start-bottom {
@@ -496,10 +496,10 @@ div.hero-container.hero-collapsing {
   opacity: 0;
 }
 
-/* the sun fades in 4s after the hero starts (class added by design.js), so it always follows the face */
+/* the sun fades in 3999ms after the hero starts (class added by design.js), so it always follows the face */
 .hero-start .central-shape {
   animation: fadeIn 2s ease forwards;
-  animation-delay: 4s;
+  animation-delay: 3999ms;
 }
 
 .central-shape::before {
