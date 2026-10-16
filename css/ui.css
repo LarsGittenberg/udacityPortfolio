@@ -269,6 +269,17 @@ section.featured-project-card .btn {
   gap: 10px;
 }
 
+/* button label size: 15px, 14px on phones */
+.btn-text {
+  font-size: var(--body-text-15);
+}
+
+@media (max-width: 529px) {
+  .btn-text {
+    font-size: var(--body-text-14);
+  }
+}
+
 /* pill background */
 .btn::before {
   content: "";
