@@ -180,6 +180,7 @@ ul {
 img {
 	display: block;
 	width: 100%;
+	height: auto; /* keeps the picture's proportions now that img tags carry width/height attributes */
 }
 
 /* image with breathing room at the sides and below */
