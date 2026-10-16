@@ -38,10 +38,12 @@
 	--shadow-soft: 5px 5px 3px rgba(0, 0, 0, 0.2);
 	--shadow-card: 5px 5px 5px rgba(0, 0, 0, 0.3);
 
-	/* corner radii: the three reusable sizes. The 100px asymmetric sweeps (footer, main container) stay hand-written in their rules */
+	/* corner radii: reusable sizes. xl is the big sweep used on the footer, main container and project header bars */
 	--radius-sm: 15px;
 	--radius-md: 20px;
 	--radius-pill: 25px;
+	--radius-xl: 100px;
+	
 
 	/* type: families (Doto = display, Source Code Pro = mono/headings, Montserrat = body) */
 	--font-body: 'Montserrat', sans-serif;
@@ -643,7 +645,7 @@ p.breadcrumb a::after {
 	flex-wrap: wrap;
 	max-width: 1280px;
 	line-height: 22px;
-	border-radius: 0px 0px 100px 0px;
+	border-radius: 0 0 var(--radius-xl) 0;
 }
 
 .flex-container-main p, 
@@ -954,7 +956,7 @@ section.featured-project-card img {
     height: 380px;
     width:100%;
  		position: relative;
- 		border-radius: 15px 100px 0px 0px;
+ 		border-radius: var(--radius-sm) var(--radius-xl) 0 0;
  		margin-top: 4px;
   }
 
@@ -983,6 +985,11 @@ section.featured-project-card img {
 /* BREAKPOINT CSS BREAKPOINT CSS BREAKPOINT CSS BREAKPOINT CSS BREAKPOINT CSS BREAKPOINT CSS BREAKPOINT CSS */
 /* ≥530px */
 @media (min-width: 530px) {
+  /* tablets and desktop: header bar gets a pill sweep on the right (phones keep the plain 15px corners) */
+  div.project-header-bar {
+    border-radius: var(--radius-md) var(--radius-xl) var(--radius-xl) var(--radius-md);
+  }
+
   .header-container {
     padding-right: 25px;
   }
