@@ -541,11 +541,11 @@ header {
 	position: relative;
 	display: flex;
 	flex-direction: row-reverse;
+	align-items: center; /* centers the title stack vertically, whatever its real height in each browser */
 	font-size: var(--body-text-14);
 }
 
 .header-container {
-	margin-top: 15px;
 	text-align: right;
 	padding-right: 0;
 }
