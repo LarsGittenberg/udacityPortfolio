@@ -552,7 +552,7 @@ header {
 	line-height: 50px;
 	background: var(--charcoal);
 	display: inline;
-	padding: 5px 10px 5px 10px;
+	padding: 4px 12px;
 	font-size: var(--display-27);
 	box-shadow: var(--shadow-soft);
 }
@@ -560,7 +560,7 @@ header {
 .header-container p {
 	background: var(--charcoal);
 	display: block;
-	padding: 5px;
+	padding: 4px 12px;
 	margin-top: 15px;
 	box-shadow: var(--shadow-soft);
 }
@@ -590,7 +590,7 @@ div.project-header-bar {
 div.project-header-bar h2 {
 	line-height: 1.4;
 	background: var(--charcoal);
-	padding: 5px;
+	padding: 4px 12px;
 	margin-left: var(--page-inset);
 	margin-right: 25px; /* keeps a wrapped label off the right edge */
 	box-shadow: var(--shadow-soft);
