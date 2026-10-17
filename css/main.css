@@ -588,9 +588,8 @@ div.project-header-bar {
 	align-items: center;
 	padding: 10px 0;
 	position: relative;
-	border: 2px solid var(--charcoal);
 	border-radius: var(--radius-sm);
-	margin: 3px 0px;
+	margin: 5px 0 3px;
 }
 
 div.project-header-bar h2 {
@@ -648,6 +647,7 @@ p.breadcrumb a::after {
 	display: flex;
 	flex-wrap: wrap;
 	max-width: 1280px;
+	margin-top: 5px;
 	line-height: 22px;
 	border-radius: 0 0 var(--radius-xl) 0;
 }
@@ -817,7 +817,8 @@ p.back-link-spaced {
 .flex-container-child-projects {
 	width: 100%;
 	height: auto;
-	border: 2px solid var(--charcoal);/*this rule helps delineate the sections, enhancing the "card" material concept*/
+	border: solid var(--charcoal);
+	border-width: 0 2px 4px; /* top 0, left/right 2px, bottom 4px */ /*these borders help delineate the sections, enhancing the "card" material concept*/
 	border-radius: var(--radius-sm);
 	position: relative; /* lets the corner-tear image be positioned against its card */
 }
