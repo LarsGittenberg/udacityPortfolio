@@ -7,7 +7,7 @@ This is my personal design portfolio, hand-coded in ~2018 with a custom simple c
 - Don't edit anything without my review and approval.
 - Only commit when I say so.
 - Never push to GitHub without my order.
-- When I need decisions from you, I ask them as short multiple-choice questions, one decision per question, instead of stacking several requests in one paragraph.
+- When you need decisions from me, ask them as short multiple-choice questions, one decision per question, instead of stacking several requests in one paragraph.
 
 # project map
 
