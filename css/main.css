@@ -564,6 +564,9 @@ header {
 }
 
 .header-container p {
+	font-family: var(--font-mono);
+	font-weight: var(--weight-light);
+	text-align: center;
 	background: var(--charcoal);
 	align-self: stretch; /* the tagline fills the container width, as it did before */
 	padding: 4px 12px;
