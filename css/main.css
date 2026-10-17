@@ -742,14 +742,16 @@ p.breadcrumb a::after {
 }
 
 /* "Back to Home" line at the bottom of a page. Written as p.back-link so it outranks the
-   padding that .flex-container-main p sets; only the bottom (and optional top) padding changes */
+   padding that .flex-container-main p sets; only the bottom padding changes.
+   Goal: about 80px between the page's last content and the link text. Pages that end in an
+   info box already land there. Pages that end differently (gallery rows are a fixed 400px tall,
+   figures have their own padding) set --back-link-nudge on the <p> to correct it, e.g.
+   style="--back-link-nudge: 24px". Use positive values only: the link is a flex item, so a
+   negative margin-top moves the link up but leaves empty space below it */
 p.back-link {
 	text-align: center;
 	padding-bottom: 25px;
-}
-
-p.back-link-spaced {
-	padding-top: 40px;
+	margin-top: var(--back-link-nudge, 0);
 }
 
 .headline-text-color {
@@ -768,6 +770,14 @@ p.back-link-spaced {
 .flex-container-child-gallery {
 	width: 100%;
 	height: 400px;
+}
+
+/* ads page: its tallest picture is 300px (50px top margin + 300px = 350px), so the standard
+   400px rows are roomier than needed. 375px leaves a 75px gap under a 300px-tall ad, which with
+   the link's own 5px of padding gives the 80px "Back to Home" gap used on the other pages.
+   Keep an ad (not a short Twitter picture) as the last item, so the gap is the same at every width */
+.gallery-compact .flex-container-child-gallery {
+	height: 375px;
 }
 
 /* for size of retouch photos ...*/
