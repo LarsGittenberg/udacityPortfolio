@@ -434,8 +434,11 @@ section.featured-project-card li strong { font-weight: 400; letter-spacing: 0.08
 .btn:hover { transform: translate(-2px, -2px); box-shadow: 8px 8px 0 var(--orange); background: var(--paper); color: var(--ink); }
 .btn-text { font-size: 0.8rem; }
 section.featured-project-card .btn { position: relative; margin: 0; }
-.flex-container-child-projects:nth-child(6n+1) .btn { box-shadow: 5px 5px 0 var(--paper); } /* orange would vanish against the amber card */
-.flex-container-child-projects:nth-child(6n+1) .btn:hover { box-shadow: 8px 8px 0 var(--paper); }
+/* orange would vanish against the amber and orange cards (1 and 2), so their stamps cast cream shadows */
+.flex-container-child-projects:nth-child(6n+1) .btn,
+.flex-container-child-projects:nth-child(6n+2) .btn { box-shadow: 5px 5px 0 var(--paper); }
+.flex-container-child-projects:nth-child(6n+1) .btn:hover,
+.flex-container-child-projects:nth-child(6n+2) .btn:hover { box-shadow: 8px 8px 0 var(--paper); }
 
 /* =====================================================================
    FOOTER: an ink slab with the initials in amber, cropped
