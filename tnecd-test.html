@@ -1,0 +1,316 @@
+<!doctype html>
+
+<html lang="en">
+<head>
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-2QV625FZN6"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+
+    gtag('config', 'G-2QV625FZN6');
+  </script>
+
+  <!-- Load saved toggle mode preference BEFORE CSS loads -->
+  <script>
+		(function() {
+		  const saved = localStorage.getItem('styleMode');
+		  if (saved === 'toned-down') {
+		    document.documentElement.classList.add('toned-down');
+		  } else {
+		    document.documentElement.classList.add('colorful');
+		  }
+		})();
+  </script>
+
+  <title>TNECD.com Site Redesign | Lawrence Getubig</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#feb013">
+  <meta name="description" content="Web, visual and front-end designer crafting digital experiences that engage, delight and convert.">
+
+  <!-- CSS -->
+  <link rel="preload" href="css/ui.css" as="style">
+  <link rel="stylesheet" href="css/ui.css">
+  <link rel="stylesheet" href="css/main.css">
+  <style>
+    /* test-only: "Next project" link. The arrow is drawn here, so the HTML holds only the text.
+       Absolute, like the breadcrumb arrows, so the underline stays off it */
+    a.next-link {
+      position: relative;
+      margin-right: 1.5em; /* room for the arrow */
+    }
+
+    a.next-link::after {
+      content: "\2192"; /* → */
+      position: absolute;
+      left: 100%;
+      margin-left: 0.5em;
+    }
+  </style>
+  
+	<!--fonts-->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link href="https://fonts.googleapis.com/css2?family=Doto:wght@100..900&display=swap" rel="stylesheet">
+	<!--older font choices-->
+	<link href="https://fonts.googleapis.com/css?family=Montserrat:400,600|Source+Code+Pro:300,400" rel="stylesheet">
+
+  <!-- Favicons -->
+	<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+	<link rel="icon" href="/favicon.png" sizes="32x32">
+	<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+
+  <!-- JS libraries -->
+  <script src="https://cdn.jsdelivr.net/npm/js-cookie@2/src/js.cookie.min.js"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg==" crossorigin="anonymous" referrerpolicy="no-referrer">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  <script src="js/noframework.waypoints.min.js"></script>
+
+	<!-- Update toggle labels AFTER DOM is ready -->
+	<script>
+	  document.addEventListener("DOMContentLoaded", function() {
+	    const saved = localStorage.getItem('styleMode');
+	    const labelColorful = document.getElementById('labelColorful');
+	    const labelToned = document.getElementById('labelToned');
+
+	    if (saved === 'toned-down') {
+	      // User previously chose TONED-DOWN mode
+	      labelColorful.innerHTML = "Colorful<br>Retro<br>Mode: Off";
+	      labelToned.innerHTML = "Toned<br>Down<br>Mode: On";
+	    } else {
+	      // Default or saved COLORFUL mode
+	      labelColorful.innerHTML = "Colorful<br>Retro<br>Mode: On";
+	      labelToned.innerHTML = "Toned<br>Down<br>Mode: Off";
+	    }
+	  });
+	</script>
+
+</head>
+
+<body>
+
+	<div class="menu-icon-container">
+		<div class="bar1"></div>
+		<div class="bar2"></div>
+		<div class="bar3"></div>
+	</div>
+
+	<div id="myNav" class="overlay pattern-grid-large">
+		<!-- Overlay content -->
+		<div class="overlay-content ">
+			<a href="index.html" onclick="gtag('event', 'nav_click', { nav_item: 'home', from_page: window.location.pathname });"> Home </a>
+			<a href="webdesign.html" onclick="gtag('event', 'nav_click', { nav_item: 'web_design', from_page: window.location.pathname });"> Web Design </a>
+			<a href="graphicdesign.html" onclick="gtag('event', 'nav_click', { nav_item: 'graphic_design', from_page: window.location.pathname });"> Graphic Design </a>
+			<a href="photography.html" onclick="gtag('event', 'nav_click', { nav_item: 'photography', from_page: window.location.pathname });"> Photography </a>
+			<a href="about.html" onclick="gtag('event', 'nav_click', { nav_item: 'about', from_page: window.location.pathname });"> About </a>
+			<p class="overlay-title">Settings</p>
+			<div class="style-toggle" id="styleToggle">
+				<span class="label-colorful" id="labelColorful">Colorful<br>Retro<br>Mode: On</span>
+				<button class="toggle-button" aria-label="Toggle style mode">
+				  <span class="toggle-knob"></span>
+				</button>
+				<span class="label-toned" id="labelToned">Toned<br>Down<br>Mode: Off</span>
+			</div>
+		</div>
+	</div><!--end my nav-->
+
+<header class="pattern-dots-sparse">
+	<div class="header-container">
+		<h1 class="doto-lg">Lawrence Getubig</h1>
+		<p>Creative Technologist in Product Design</p>
+	</div><!--end header container-->
+</header>
+
+<main>
+
+<div class="project-header-bar pattern-dots-dense">
+	<h2 class="source-code-pro source-code-pro-light">TNECD.com Site Redesign</h2>
+</div>
+
+<div class="flex-container-main pattern-grid-small">
+
+	<div class="info-box">
+		<p class="breadcrumb"><a href="index.html" onclick="gtag('event', 'breadcrumb_click', { breadcrumb_item: 'home', from_page: window.location.pathname });">Home</a> <a href="webdesign.html" onclick="gtag('event', 'breadcrumb_click', { breadcrumb_item: 'web_design', from_page: window.location.pathname });">Web Design</a> TNECD.com Site Redesign</p>
+	</div><!--end info box-->
+
+	<div class="intro-row indent-left indent-right">
+	<div class="info-box">
+		<div class="info-box-left role">
+			<h3 class="source-code-pro">Role</h3><!--section 1--->
+			<ul>
+				<li>Web Designer</li>
+				<li>Visual Designer</li>
+				<li>UX/UI Designer</li>
+			</ul>
+		</div><!--end info box left-->
+	</div><!--end info box-->
+
+	<div class="info-box">
+		<div class="info-box-right">
+			<h3 class="source-code-pro">Framing the Challenge</h3><!--section 1--->
+			<p>As the digital storefront for Tennessee’s economic development efforts—including $49B+ in foreign investment and 160K+ jobs—the TNECD.com (Tennessee Department of Economic and Community Development) website plays a critical role in shaping first impressions and guiding strategic conversations. TNECD engaged Accenture Song and Nashville-based creative agency <a href="https://www.mpf.com" target="_blank" aria-label="MP&F website (opens in a new tab)" onclick="gtag('event', 'outbound_click', { destination: 'mpf', from_page: window.location.pathname });">MP&F<i class="fa-solid fa-square-arrow-up-right icon-after-text" aria-hidden="true"></i></a> to refresh the brand and website. At over 10 years old, the site no longer reflected the dynamic, evolving identity of the state.</p>
+			<p>Working under MP&F’s creative leadership, I served as the visual and UX/UI designer: I created the design proposals, built the design system in Figma, and helped shape the content architecture from stakeholder research.</p>
+		</div><!--end info box right-->
+	</div><!--end info box-->
+	</div><!--end intro row-->
+
+	<figure class="indent-left">
+		<img class="two-thirds" src="images/tnecd/olddesign.webp" width="2100" height="1223" alt="Homepage of the TNECD website before the redesign">
+		<figcaption class="caption float-left">Above: Homepage of TNECD.com before the redesign.</figcaption>
+	</figure>
+
+	<div class="info-box indent-right">
+		<div class="info-box-right">
+			<h3 class="source-code-pro">User Research</h3><!--section 2--->
+			<p>MP&F conducted focus group interviews and shared the transcripts with the design team. We analyzed these conversations, surfacing pain points, user sentiment, and actionable insights about the website experience.</p>
+			<h4 class="source-code-pro orange-color-font">Pain Point #1</h4>
+			<p>Regional economic development leaders use the website to promote their counties, but struggle to fully leverage its content.</p>
+			<p>“My team uses this site to market our infrastructure...[and] wish that the branding and content reflected our county better.”</p>
+			<p class="gold-color-font">— Tennessee County Chamber of Commerce Leadership</p>
+			<h4 class="source-code-pro orange-color-font">Pain Point #2</h4>
+			<p>Content owners report that the site no longer meets their marketing and communications needs.</p>
+			<p>“...important content that we should willingly share with [prospective] companies is hidden behind subscription requests...[as an additional example] this brochure call-to-action is hard to find.”</p>
+			<p class="gold-color-font">— Tennessee Department of Economic and Community Development Leadership</p>
+			<h4 class="source-code-pro orange-color-font">Pain Point #3</h4>
+			<p>Third-party real-estate site selectors hired by prospective companies cite difficult-to-find content as a major pain point.</p>
+			<p>“In the selection process [to help companies decide where to build their plant] some states get overlooked because content and information is unavailable or hard to find—incentives and grants, for example.”</p>
+			<p class="gold-color-font">— Site Selector Leadership, Americas Consulting | Location Incentives</p>
+		</div><!--end info box right-->
+	</div><!--end info box-->
+
+	<div class="info-box indent-left">
+		<div class="info-box-left">
+			<h3 class="source-code-pro">Design Approach</h3><!--section 3--->
+			<p>The creative director and MP&F team provided the new TNECD logo, color palette, and typography. From this baseline brand guideline, I built a design system library from scratch using an atomic design approach.</p>
+		</div><!--end info box left-->
+	</div><!--end info box-->
+
+	<figure >
+		<img loading="lazy" src="images/tnecd/tnecd_atomic_design.webp" width="1953" height="553" alt="Atomic design elements for the TNECD redesign: buttons, cards and modules">
+		<figcaption class="caption">Above: Early examples of the atomic design elements.</figcaption>
+	</figure>
+
+	<div class="info-box indent-right">
+		<div class="info-box-right">
+			<h3 class="source-code-pro">Pain Point #1 Solution</h3><!--section 4--->
+			<p>The team proposed a user experience that places regional economic development leaders’ counties and infrastructure front and center. This was achieved by positioning key content on the homepage and throughout high-impact pages in the user journey.</p>
+		</div><!--end info box right-->
+	</div><!--end info box-->
+
+	<figure >
+		<img loading="lazy" class="two-thirds tablet-float-left" src="images/tnecd/pain_point_solution_one.webp" width="1433" height="1529" alt="Annotated partial screenshot of the Business Climate page showing regions, county map and certified sites">
+		<figcaption class="caption float-left">Above: Partial screenshot of the key page, Business Climate.
+A) Create and place content that showcases the strengths of the three grand regions of Tennessee.
+B) Sequentially, allow the user to dive deeper with an interactive tool that allows them to see and select the counties of the state, along with quick facts associated with the area.
+C) Coordinate communications to market shovel-ready certified sites that the regional leaders want featured. With this approach, the website can feature each of the regions and multiple counties, empowering regional leaders with a centralized website and communications platform that represents the whole of Tennessee.</figcaption>
+	</figure>
+
+	<div class="info-box">
+		<div class="info-box-left indent-left">
+			<h3 class="source-code-pro">Pain Points #2 &amp; #3 Solution</h3><!--section 5--->
+			<p>Whether it was TNECD’s team struggling to get key content in front of prospects, or site selectors overlooking Tennessee because incentives were hard to find, the fix was the same: make high-value content impossible to miss. Our designs gave incentives and grants real estate on the homepage, clear signposting in the navigation, and placement on high-traffic pages.</p>
+		</div><!--end info box left-->
+	</div><!--end info box-->
+
+	<figure >
+		<img loading="lazy" class="two-thirds tablet-float-right" src="images/tnecd/pain_point_solution_two.webp" width="952" height="1019" alt="Annotated partial screenshot of the TNECD homepage highlighting the Incentives and Grants section">
+		<figcaption class="caption center">Above: Partial screenshot of the homepage. A) We ensured that incentives and grants content had real estate on the homepage, as well as visibility (through visual design) on other key, high-traffic pages.</figcaption>
+	</figure>
+
+	<div class="info-box indent-left">
+		<div class="info-box-left">
+			<h3 class="source-code-pro gold-color-font">Live Site</h3><!--section 6--->
+			<p>The redesigned TNECD.com is live and now serves as the front door for Tennessee’s pitch to global companies. <a href="https://tnecd.com" target="_blank" aria-label="Visit TNECD.com (opens in a new tab)" onclick="gtag('event', 'outbound_click', { destination: 'tnecd', from_page: window.location.pathname });">Visit TNECD.com<i class="fa-solid fa-square-arrow-up-right icon-after-text" aria-hidden="true"></i></a></p>
+		</div><!--end info box left-->
+	</div><!--end info box-->
+
+	<figure >
+		<img loading="lazy" class="img-inset" src="images/tnecd/before.webp" width="2000" height="335" alt="Laptops showing the old TNECD.com pages"> 
+		<img loading="lazy" class="img-inset" src="images/tnecd/after.webp" width="2000" height="336" alt="Laptops showing the new TNECD.com pages">
+		<figcaption class="tablet-float-left caption">Above: Select pages of TNECD.com before and after the redesign.</figcaption>
+	</figure>
+
+	<p class="back-link">
+		<a href="pride.html" class="next-link" aria-label="Next project: Pride365 App Marketing" onclick="gtag('event', 'project_click', { project: 'pride', from_page: window.location.pathname });">Next project: Pride365 App Marketing</a>
+	</p>
+
+	<p class="back-link">
+		<a href="index.html" onclick="gtag('event', 'footer_click', { footer_item: 'home', from_page: window.location.pathname });">Back to Home </a>
+	</p>
+
+</div><!--end main flex container-->
+
+</main>
+
+<footer class="pattern-dots-dense">
+	<p>Find me in:</p><br>
+	<p class="footer"><a href="https://github.com/LarsGittenberg" onclick="gtag('event', 'footer_click', { destination: 'github', from_page: window.location.pathname });"><i class="fa-brands fa-github" aria-hidden="true"></i> GitHub</a></p>
+	<br>
+	<p class="footer"><a href="https://www.linkedin.com/in/lawrence-getubig" onclick="gtag('event', 'footer_click', { destination: 'linkedin', from_page: window.location.pathname });"><i class="fa-brands fa-linkedin" aria-hidden="true"></i> LinkedIn</a></p> 
+	<br>
+	<p class="footer"><a href="https://www.instagram.com/ljgetubig/" onclick="gtag('event', 'footer_click', { destination: 'instagram', from_page: window.location.pathname });"><i class="fa-brands fa-instagram" aria-hidden="true"></i> Instagram</a></p>
+	<br>
+	<p class="copyright"><small>Copyright Lawrence Getubig 2026</small></p>
+	<!--  want to change the copyright date for all html files? use: perl -pi -w -e 's/Getubig\ 2018/Getubig\ 2019/g;' *.html -->
+</footer>
+
+<!--colorful Mode Switch--Toggles the class--Saves the preference--Updates the UI instantly-->
+<script>
+document.querySelector('#styleToggle .toggle-button').addEventListener('click', function() {
+  const root = document.documentElement;
+  const labelColorful = document.getElementById('labelColorful');
+  const labelToned = document.getElementById('labelToned');
+
+  if (root.classList.contains('toned-down')) {
+    // Switch to COLORFUL mode
+    root.classList.remove('toned-down');
+    root.classList.add('colorful');
+    localStorage.setItem('styleMode', 'colorful');
+
+    labelColorful.innerHTML = "Colorful<br>Retro<br>Mode: On";
+    labelToned.innerHTML = "Toned<br>Down<br>Mode: Off";
+
+    // ⭐ GA4 EVENT
+    gtag('event', 'theme_toggle', {
+      mode: 'colorful', from_page: window.location.pathname
+    });
+
+  } else {
+    // Switch to TONED-DOWN mode
+    root.classList.remove('colorful');
+    root.classList.add('toned-down');
+    localStorage.setItem('styleMode', 'toned-down');
+
+    labelColorful.innerHTML = "Colorful<br>Retro<br>Mode: Off";
+    labelToned.innerHTML = "Toned<br>Down<br>Mode: On";
+
+    // ⭐ GA4 EVENT
+    gtag('event', 'theme_toggle', {
+      mode: 'toned_down', from_page: window.location.pathname
+    });
+  }
+});
+</script>
+
+<script src="js/design.js"></script>
+
+<!-- Start of StatCounter Code for Default Guide -->
+<script type="text/javascript">
+var sc_project=5156734;
+var sc_invisible=1;
+var sc_security="8c976dcb";
+</script>
+<script type="text/javascript"
+src="https://www.statcounter.com/counter/counter.js"
+async></script>
+<noscript><div class="statcounter"><a title="site stats"
+href="http://statcounter.com/" target="_blank"><img
+class="statcounter"
+src="//c.statcounter.com/5156734/0/8c976dcb/1/" alt="site
+stats"></a></div></noscript>
+<!-- End of StatCounter Code for Default Guide -->
+
+</body>
+</html>

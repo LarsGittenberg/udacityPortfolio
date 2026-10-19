@@ -105,11 +105,10 @@ One more thing, for the observant: the face at the top of this page has two diff
   header { padding-right: calc(2.4 * var(--u)); }
   .header-container {
     justify-content: flex-end;
-    align-items: flex-start; /* name and blurb share a top line, as in the mockup */
+    align-items: flex-end; /* the blue page's pillar: the blurb is the tallest item, so it sets the row's height and the name rests at its foot */
     gap: calc(4.4 * var(--u));
-    height: calc(1.6 * clamp(3.8rem, 16vw, 16.5rem)); /* exactly the two name lines (16vw x 0.8 line-height x 2), so the taller blurb can't push the name down */
   }
-  .header-container h1 { text-align: right; }
+  .header-container h1 { text-align: right; margin-bottom: 10px; } /* nudges the name up 10px off the pillar's foot; delete the margin to undo */
   .header-container p { white-space: nowrap; } /* the row now has a fixed height, so without this the blurb would wrap into two columns */
 
   /* the blue slab: same tilt as before, now sized from the mockup, with the band riding its lower edge */
@@ -137,11 +136,11 @@ One more thing, for the observant: the face at the top of this page has two diff
     position: absolute;
     grid-column: auto;
     right: calc(31.5 * var(--u));
-    top: calc(21.4 * var(--u) - 1.8em); /* its centre sits level with the face circle */
+    top: calc(21.4 * var(--u) - 2.0em - 48px); /* its centre sits level with the face circle; was 1.8em, so 0.2em higher, plus 48px up in two steps of 24px */
     width: 8.76em;
     height: 3.6em;
     max-width: none;
-    font-size: clamp(2rem, 6.2vw, 4rem); /* 64px ceiling (was 88px = what the site rendered at 1417px) */
+    font-size: clamp(2rem, 6.2vw, 3.5rem); /* 56px ceiling (was 64px; before that 88px = what the site rendered at 1417px) */
     font-weight: 700; /* was 900 from .doto-lg; lighter dots read less heavy */
     line-height: 0.9;
     letter-spacing: -0.03em;
@@ -157,7 +156,7 @@ One more thing, for the observant: the face at the top of this page has two diff
     width: var(--size);
     height: var(--size);
     left: calc(82 * var(--u) - var(--size) / 2);
-    top: calc(21.4 * var(--u) - var(--size) / 2);
+    top: calc(21.4 * var(--u) - var(--size) / 2 - 0.2 * clamp(2rem, 6.2vw, 3.5rem) - 48px); /* the 0.2 part is the same nudge as the tagline (0.2 x its font-size, so it must use the same clamp); the 48px matches the tagline's lift, so the two rise together */
   }
   .badge-circle { position: absolute; inset: 0; border-radius: 50%; background: var(--amber); }
   .badge-face { position: absolute; left: 12%; top: 13%; width: 76%; aspect-ratio: 876 / 893; }

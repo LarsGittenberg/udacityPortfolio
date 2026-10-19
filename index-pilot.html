@@ -1,0 +1,714 @@
+<!doctype html>
+
+<html lang="en">
+<!--
+PILOT: "The Modular Poster". A free-reign redesign sketch of index.html.
+Self-contained: all CSS is inline below, so css/main.css and css/ui.css are not used and not touched.
+Not linked from anywhere, and marked noindex. The real Google Analytics tag is left out on purpose,
+and gtag() is a no-op stub, so the click-tracking attributes are kept exactly as on index.html.
+Not in this pilot (yet): the colorful/toned-down toggle, the hero text scramble, the 2-way hero fade.
+-->
+
+<head>
+  <title>Pilot: The Modular Poster | Lawrence Getubig</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="robots" content="noindex, nofollow">
+  <meta name="theme-color" content="#f3ead6">
+  <meta name="description" content="Pilot redesign of the Lawrence Getubig portfolio home page.">
+
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml">
+  <link rel="icon" href="/favicon.png" sizes="32x32">
+
+  <!-- fonts: same families as the live site -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Doto:wght@100..900&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css?family=Montserrat:400,600|Source+Code+Pro:300,400" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg==" crossorigin="anonymous" referrerpolicy="no-referrer">
+
+  <script>
+    /* pilot only: the real GA tag is omitted, so the tracking calls in the markup do nothing */
+    function gtag() {}
+  </script>
+
+  <style>
+    /* ---------- tokens ---------- */
+    :root {
+      /* paper and ink */
+      --paper: #f3ead6;
+      --paper-deep: #eadfc4;
+      --ink: #2a2a2a;
+      --on-dark: #fffaf0;        /* text on the dark tiles; 4.8:1 or better on every tile color below */
+
+      /* the site's own palette, reused */
+      --amber: #f2a51d;
+      --teal: #0e7c7c;
+      --purple: #8c1c78;
+      --magenta: #c314a4;
+      --mint: #66cdaa;
+      --orange: #e8930f;
+
+      --font-display: "Doto", sans-serif;
+      --font-body: "Montserrat", sans-serif;
+      --font-mono: "Source Code Pro", "Arial", sans-serif;
+
+      --pad: clamp(16px, 4vw, 56px);  /* page side margin */
+      --gap: clamp(12px, 1.6vw, 22px);
+      --radius: 6px;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; }
+    * { margin: 0; padding: 0; }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      background: var(--paper);
+      color: var(--ink);
+      font-family: var(--font-body);
+      font-size: 1.0625rem;
+      line-height: 1.55;
+      max-width: 1440px;
+      margin: 0 auto;
+      overflow-x: hidden;
+    }
+
+    img { display: block; max-width: 100%; }
+    a { color: inherit; }
+
+    .doto { font-family: var(--font-display); font-optical-sizing: auto; font-weight: 900; font-variation-settings: "ROND" 0; }
+    .mono { font-family: var(--font-mono); font-size: 0.75rem; letter-spacing: 0.08em; text-transform: uppercase; font-weight: 400; }
+
+    .skip { position: absolute; left: -999px; top: 0; background: var(--ink); color: var(--on-dark); padding: 8px 14px; z-index: 300; }
+    .skip:focus { left: 8px; top: 8px; }
+
+    :focus-visible { outline: 3px solid var(--magenta); outline-offset: 3px; }
+
+    /* ---------- top bar + menu ---------- */
+    .topbar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 18px var(--pad);
+    }
+
+    .menu-button {
+      position: fixed;
+      top: 14px;
+      right: 14px;
+      z-index: 120;
+      width: 64px;
+      height: 64px;
+      border-radius: 50%;
+      border: 0;
+      background: var(--teal);
+      color: var(--on-dark);
+      font-family: var(--font-mono);
+      font-size: 0.75rem;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      cursor: pointer;
+      box-shadow: 4px 4px 0 var(--ink);
+      transition: transform 250ms ease, background 250ms ease;
+    }
+    .menu-button:hover { background: var(--purple); transform: rotate(-8deg) scale(1.06); }
+
+    .nav {
+      position: fixed;
+      inset: 0;
+      z-index: 110;
+      background: var(--ink);
+      color: var(--on-dark);
+      display: grid;
+      place-content: center;
+      gap: 6px;
+      text-align: center;
+      visibility: hidden;
+      clip-path: circle(0% at calc(100% - 46px) 46px);
+      transition: clip-path 600ms cubic-bezier(0.65, 0, 0.35, 1), visibility 0s 600ms;
+    }
+    .nav.open {
+      visibility: visible;
+      clip-path: circle(150% at calc(100% - 46px) 46px);
+      transition: clip-path 600ms cubic-bezier(0.65, 0, 0.35, 1), visibility 0s;
+    }
+    .nav a {
+      font-family: var(--font-display);
+      font-weight: 900;
+      font-size: clamp(2.4rem, 8vw, 5.5rem);
+      line-height: 1.05;
+      text-decoration: none;
+      text-transform: uppercase;
+      transition: color 200ms ease, transform 200ms ease;
+    }
+    .nav a:hover, .nav a:focus-visible { color: var(--amber); transform: translateX(10px); }
+    .nav .mono { color: var(--mint); margin-top: 28px; }
+
+    /* ---------- hero poster ---------- */
+    .poster {
+      position: relative;
+      display: grid;
+      grid-template-columns: repeat(12, 1fr);
+      column-gap: var(--gap);
+      padding: 0 var(--pad) clamp(40px, 6vw, 90px);
+      overflow: hidden;
+    }
+
+    .name {
+      grid-column: 1 / -1;
+      grid-row: 1;
+      position: relative;
+      z-index: 3;
+      font-size: clamp(3.6rem, 15.5vw, 15rem);
+      line-height: 0.82;
+      letter-spacing: -0.03em;
+      text-transform: uppercase;
+      margin-top: clamp(8px, 2vw, 28px);
+    }
+    .name span { display: block; }
+    .name .n2 { padding-left: 0; }
+
+    .art {
+      grid-column: 8 / -1;
+      grid-row: 1 / span 3;
+      margin-top: clamp(40px, 8.5vw, 130px);
+      position: relative;
+      align-self: start;
+    }
+
+    .sunblock {
+      position: relative;
+      aspect-ratio: 4 / 5;
+      background: var(--amber);
+      border-radius: 999px 999px 0 0;
+      overflow: hidden;
+    }
+    .sunblock .rays {
+      position: absolute;
+      width: 150%;
+      left: -25%;
+      top: -5%;
+      opacity: 0.55;
+      animation: spin 120s linear infinite;
+    }
+    .sunblock .sun {
+      position: absolute;
+      width: 70%;
+      left: 15%;
+      top: 4%;
+    }
+    .face {
+      position: absolute;
+      inset: auto 0 0 0;
+      aspect-ratio: 1;
+      width: 100%;
+    }
+    .face img {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      opacity: 0;
+      animation: rise 900ms cubic-bezier(0.2, 0.8, 0.2, 1) forwards;
+    }
+    .face img:nth-child(1) { animation-delay: 200ms; }
+    .face img:nth-child(2) { animation-delay: 450ms; }
+    .face img:nth-child(3) { animation-delay: 700ms; }
+    .face img:nth-child(4) { animation-delay: 950ms; }
+    .face img:nth-child(5) { animation-delay: 1200ms; }
+
+    .shapes-confetti { position: absolute; pointer-events: none; }
+    .confetti-triangle { width: 34%; left: -22%; bottom: 8%; transform: rotate(-12deg); }
+    .confetti-diamond { width: 30%; right: -8%; top: 4%; transform: rotate(8deg); }
+
+    .tagline {
+      grid-column: 1 / 8;
+      grid-row: 2;
+      align-self: start;
+      margin-top: clamp(18px, 3vw, 48px);
+      position: relative;
+      z-index: 3;
+      font-weight: 400;
+      line-height: 1;
+    }
+    .tagline .big {
+      display: block;
+      font-family: var(--font-display);
+      font-weight: 900;
+      font-size: clamp(2.2rem, 7.4vw, 7.2rem);
+      line-height: 0.95;
+      text-transform: uppercase;
+      letter-spacing: -0.02em;
+    }
+    .tagline .big.magenta { color: var(--magenta); }
+    .tagline .small {
+      display: inline-block;
+      font-family: var(--font-mono);
+      font-size: 0.75rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      margin: 10px 14px 10px 0;
+      vertical-align: middle;
+    }
+    .tagline .small::after {
+      content: "";
+      display: inline-block;
+      width: clamp(24px, 6vw, 90px);
+      height: 2px;
+      background: currentColor;
+      vertical-align: middle;
+      margin-left: 12px;
+    }
+    .tagline .mid {
+      display: inline-block;
+      font-family: var(--font-body);
+      font-weight: 600;
+      font-size: clamp(1.25rem, 3.4vw, 3.2rem);
+      letter-spacing: -0.015em;
+      color: var(--teal);
+      vertical-align: middle;
+    }
+
+    .role {
+      grid-column: 1 / 7;
+      grid-row: 3;
+      align-self: end;
+      margin-top: clamp(20px, 3vw, 40px);
+      display: flex;
+      align-items: center;
+      gap: 14px;
+    }
+    .role .dot { width: 14px; height: 14px; border-radius: 50%; background: var(--magenta); flex: none; }
+
+    /* ---------- marquee strip ---------- */
+    .strip {
+      background: var(--ink);
+      color: var(--on-dark);
+      overflow: hidden;
+      white-space: nowrap;
+      padding: 16px 0;
+    }
+    .strip-track { display: inline-flex; animation: slide 38s linear infinite; }
+    .strip-track span { font-family: var(--font-mono); font-size: 0.8125rem; letter-spacing: 0.14em; text-transform: uppercase; padding-right: 2.2em; }
+    .strip-track i { font-style: normal; color: var(--amber); }
+    .strip-track i:nth-of-type(2n) { color: var(--mint); }
+    .strip-track i:nth-of-type(3n) { color: var(--magenta); }
+
+    /* ---------- work ---------- */
+    .work { padding: clamp(48px, 7vw, 110px) var(--pad) clamp(48px, 7vw, 100px); }
+
+    .work-head { display: flex; flex-direction: column; margin-bottom: clamp(24px, 4vw, 56px); }
+    .work-head .mono { color: var(--teal); }
+    .work-head .giant {
+      font-family: var(--font-display);
+      font-weight: 900;
+      font-size: clamp(3.2rem, 13vw, 12rem);
+      line-height: 0.85;
+      text-transform: uppercase;
+      letter-spacing: -0.03em;
+    }
+    .work-head h2 { font-weight: 400; display: flex; flex-direction: column; gap: 8px; }
+
+    .tiles {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: var(--gap);
+      align-items: start;
+    }
+
+    .tile {
+      position: relative;
+      display: flex;
+      flex-direction: column;
+      gap: 18px;
+      padding: clamp(20px, 2.6vw, 38px);
+      border-radius: var(--radius);
+      overflow: hidden;
+      transition: transform 300ms cubic-bezier(0.2, 0.8, 0.2, 1);
+    }
+    .tile:hover { transform: translateY(-6px) rotate(-0.4deg); }
+    .tile:nth-child(even):hover { transform: translateY(-6px) rotate(0.4deg); }
+
+    .tile--tnecd { background: var(--teal); color: var(--on-dark); }
+    .tile--pride { background: var(--purple); color: var(--on-dark); }
+    .tile--swisspost { background: var(--ink); color: var(--on-dark); }
+    .tile--drom { background: var(--mint); color: var(--ink); }
+    .tile--45th { background: var(--magenta); color: var(--on-dark); }
+    .tile--ads { background: var(--paper-deep); color: var(--ink); border: 2px solid var(--ink); }
+
+    .num {
+      font-family: var(--font-display);
+      font-weight: 900;
+      font-size: clamp(4.5rem, 10vw, 10rem);
+      line-height: 0.8;
+      letter-spacing: -0.03em;
+    }
+
+    .shape { position: relative; overflow: hidden; background: transparent; transition: transform 500ms cubic-bezier(0.2, 0.8, 0.2, 1); }
+    .shape img { width: 100%; height: 100%; object-fit: cover; }
+    .tile:hover .shape { transform: rotate(4deg) scale(1.03); }
+
+    .shape--circle { width: 80%; aspect-ratio: 1; border-radius: 50%; align-self: flex-end; margin-top: -3.2rem; }
+    .shape--arch { width: 72%; aspect-ratio: 4 / 5; border-radius: 999px 999px 0 0; align-self: flex-end; margin-top: -2.4rem; }
+    .shape--quarter { width: 86%; aspect-ratio: 1; border-radius: 0 100% 0 0; align-self: flex-end; }
+    .shape--semi { width: 100%; aspect-ratio: 2 / 1; border-radius: 999px 999px 0 0; }
+    .shape--pill { width: 100%; aspect-ratio: 5 / 3; border-radius: 999px; }
+
+    .tags { font-family: var(--font-mono); font-size: 0.75rem; letter-spacing: 0.1em; text-transform: uppercase; opacity: 0.92; }
+    .tile h3 {
+      font-family: var(--font-body);
+      font-weight: 600;
+      font-size: clamp(1.5rem, 2.4vw, 2.3rem);
+      line-height: 1.1;
+      letter-spacing: -0.02em;
+      margin-top: 4px;
+    }
+    .desc { font-size: 0.9375rem; line-height: 1.6; max-width: 46ch; }
+    .desc a { position: relative; z-index: 2; }
+    .tools { font-family: var(--font-mono); font-size: 0.8125rem; line-height: 1.5; }
+    .tools strong { font-weight: 400; letter-spacing: 0.08em; text-transform: uppercase; }
+
+    /* the whole tile is clickable through this link's ::after */
+    .go {
+      align-self: flex-start;
+      display: inline-flex;
+      align-items: center;
+      gap: 12px;
+      margin-top: 6px;
+      font-family: var(--font-mono);
+      font-size: 0.8125rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      text-decoration: none;
+      border: 2px solid currentColor;
+      border-radius: 999px;
+      padding: 10px 20px;
+      transition: background 200ms ease, color 200ms ease;
+    }
+    .go::after { content: ""; position: absolute; inset: 0; }
+    .go .arr { display: inline-block; transition: transform 250ms ease; }
+    .tile:hover .go .arr { transform: translateX(6px); }
+    .tile--tnecd:hover .go, .tile--pride:hover .go, .tile--swisspost:hover .go, .tile--45th:hover .go { background: var(--on-dark); color: var(--ink); }
+    .tile--drom:hover .go, .tile--ads:hover .go { background: var(--ink); color: var(--on-dark); }
+
+    .tile--ads .tile-layout { display: flex; flex-direction: column; gap: 18px; }
+
+    /* pull-stat: a poster moment that fills the gap under tile 02 on desktop (decorative; the number is in tile 02's copy) */
+    .stat { display: none; }
+
+    /* ---------- footer ---------- */
+    footer {
+      position: relative;
+      background: var(--ink);
+      color: var(--on-dark);
+      padding: clamp(40px, 6vw, 90px) var(--pad) 28px;
+      overflow: hidden;
+    }
+    footer .mono { color: var(--mint); }
+    .footer-links { list-style: none; display: flex; flex-wrap: wrap; gap: 12px 28px; margin: 16px 0 clamp(60px, 12vw, 180px); }
+    .footer-links a {
+      font-family: var(--font-body);
+      font-weight: 600;
+      font-size: clamp(1.4rem, 3.4vw, 2.6rem);
+      letter-spacing: -0.02em;
+      text-decoration: none;
+      transition: color 200ms ease;
+    }
+    .footer-links a:hover, .footer-links a:focus-visible { color: var(--amber); }
+    .footer-links i { margin-right: 10px; }
+    .ghost {
+      position: absolute;
+      right: -2vw;
+      bottom: -6vw;
+      font-size: clamp(9rem, 34vw, 32rem);
+      line-height: 0.8;
+      color: var(--teal);
+      opacity: 0.55;
+      pointer-events: none;
+      user-select: none;
+    }
+    .copyright { position: relative; z-index: 2; font-size: 0.8125rem; opacity: 0.85; }
+
+    /* ---------- motion ---------- */
+    @keyframes rise { from { opacity: 0; transform: translateY(40px); } to { opacity: 1; transform: none; } }
+    @keyframes spin { to { transform: rotate(360deg); } }
+    @keyframes slide { to { transform: translateX(-50%); } }
+
+    @media (prefers-reduced-motion: reduce) {
+      html { scroll-behavior: auto; }
+      .face img { animation: none; opacity: 1; }
+      .sunblock .rays, .strip-track { animation: none; }
+      .tile, .tile:hover, .tile:nth-child(even):hover, .tile:hover .shape, .menu-button:hover { transform: none; }
+      .nav, .nav.open { transition: none; }
+    }
+
+    /* ---------- small screens: the poster stacks ---------- */
+    @media (max-width: 719px) {
+      .art { grid-column: 3 / -1; grid-row: 2; margin-top: 8px; }
+      .tagline { grid-column: 1 / -1; grid-row: 3; }
+      .role { grid-column: 1 / -1; grid-row: 4; }
+      .name .n2 { padding-left: 8%; }
+      .confetti-triangle, .confetti-diamond { display: none; }
+    }
+
+    /* ---------- tablets: two columns of tiles ---------- */
+    @media (min-width: 720px) {
+      .tiles { grid-template-columns: repeat(2, 1fr); }
+      .tile--tnecd, .tile--ads { grid-column: 1 / -1; }
+      .tile--tnecd .shape--circle, .tile--ads .shape--circle { width: 56%; }
+    }
+
+    /* ---------- desktop: the modular grid ---------- */
+    @media (min-width: 1100px) {
+      .tiles { grid-template-columns: repeat(12, 1fr); }
+      .tile--tnecd { grid-column: 1 / 8; grid-row: 1 / span 2; align-self: stretch; display: flex; flex-direction: column; }
+      .tile--pride { grid-column: 8 / -1; grid-row: 1; }
+      .stat {
+        grid-column: 8 / -1;
+        grid-row: 2;
+        align-self: stretch;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        background: var(--amber);
+        color: var(--ink);
+        border-radius: var(--radius);
+        padding: clamp(20px, 2.6vw, 38px);
+        overflow: hidden;
+        position: relative;
+      }
+      .stat .big {
+        font-family: var(--font-display);
+        font-weight: 900;
+        font-size: clamp(6rem, 13vw, 13rem);
+        line-height: 0.8;
+        letter-spacing: -0.04em;
+      }
+      .stat .mono { max-width: 22ch; }
+      .stat img { position: absolute; width: 46%; right: -9%; bottom: -14%; opacity: 0.9; }
+      .tile--swisspost { grid-column: 1 / 5; }
+      .tile--drom { grid-column: 5 / 9; margin-top: 64px; }
+      .tile--45th { grid-column: 9 / -1; margin-top: 24px; }
+      .tile--ads { grid-column: 1 / -1; display: grid; grid-template-columns: 5fr 7fr; gap: clamp(24px, 4vw, 64px); align-items: center; }
+      .tile--ads .tile-visual { display: flex; flex-direction: column; }
+      .tile--ads .shape--circle { width: 78%; margin-top: -3.2rem; }
+      .tile--pride .shape--arch { width: 58%; }
+      .tile--tnecd .tags { margin-top: auto; }
+    }
+  </style>
+</head>
+
+<body>
+
+<a class="skip" href="#work">Skip to projects</a>
+
+<button class="menu-button" id="menuButton" aria-expanded="false" aria-controls="nav" aria-label="Open menu">Menu</button>
+
+<nav class="nav" id="nav" aria-label="Main">
+  <a href="index.html" onclick="gtag('event', 'nav_click', { nav_item: 'home', from_page: window.location.pathname });">Home</a>
+  <a href="webdesign.html" onclick="gtag('event', 'nav_click', { nav_item: 'web_design', from_page: window.location.pathname });">Web Design</a>
+  <a href="graphicdesign.html" onclick="gtag('event', 'nav_click', { nav_item: 'graphic_design', from_page: window.location.pathname });">Graphic Design</a>
+  <a href="photography.html" onclick="gtag('event', 'nav_click', { nav_item: 'photography', from_page: window.location.pathname });">Photography</a>
+  <a href="about.html" onclick="gtag('event', 'nav_click', { nav_item: 'about', from_page: window.location.pathname });">About</a>
+  <p class="mono">Pilot: index-pilot.html</p>
+</nav>
+
+<header class="topbar">
+  <p class="mono">Creative Technologist in Product Design</p>
+</header>
+
+<main id="main">
+
+  <section class="poster" aria-labelledby="name">
+    <h1 class="name doto" id="name"><span class="n1">Lawrence</span><span class="n2">Getubig</span></h1>
+
+    <div class="art">
+      <div class="sunblock">
+        <img class="rays" src="images/hero/star.svg" alt="" aria-hidden="true">
+        <img class="sun" src="images/hero/sun89.svg" alt="" aria-hidden="true">
+        <div class="face" role="img" aria-label="Illustrated portrait of Lawrence Getubig">
+          <img src="images/hero/face1.svg" alt="">
+          <img src="images/hero/face2.svg" alt="">
+          <img src="images/hero/face3.svg" alt="">
+          <img src="images/hero/face4.svg" alt="">
+          <img src="images/hero/face5.svg" alt="">
+        </div>
+      </div>
+      <img class="shapes-confetti confetti-triangle" src="images/hero/largeTriangle.svg" alt="" aria-hidden="true">
+      <img class="shapes-confetti confetti-diamond" src="images/hero/diamondZigzag.svg" alt="" aria-hidden="true">
+    </div>
+
+    <h2 class="tagline">
+      <span class="big">Synthesis</span>
+      <span class="small">with</span><span class="mid">Perspective,</span>
+      <span class="big magenta">Playful</span>
+      <span class="small">by</span><span class="mid">Design</span>
+    </h2>
+
+    <p class="role mono"><span class="dot" aria-hidden="true"></span>Six selected projects below</p>
+  </section>
+
+  <div class="strip" aria-hidden="true">
+    <div class="strip-track">
+      <span>Web Design <i>●</i> UX/UI <i>▲</i> Visual Design <i>◆</i> Illustration <i>■</i> Brand <i>●</i> Animation <i>▲</i> Product Design <i>◆</i> Photography <i>■</i></span>
+      <span>Web Design <i>●</i> UX/UI <i>▲</i> Visual Design <i>◆</i> Illustration <i>■</i> Brand <i>●</i> Animation <i>▲</i> Product Design <i>◆</i> Photography <i>■</i></span>
+    </div>
+  </div>
+
+  <section class="work" id="work" aria-labelledby="work-title">
+    <div class="work-head">
+      <h2 id="work-title"><span class="mono">Home: Featured</span><span class="giant">Projects</span></h2>
+    </div>
+
+    <div class="tiles">
+
+      <!-- tnecd -->
+      <article class="tile tile--tnecd">
+        <span class="num" aria-hidden="true">01</span>
+        <div class="shape shape--circle">
+          <img id="tnecd" class="project-image" src="images/animate/tnecd_static.jpg" alt="Tennessee Economic and Community Development website redesign and campaign" width="1000" height="600">
+        </div>
+        <p class="tags">Web Design · Visual Design · UX/UI</p>
+        <h3>TNECD.com Site Redesign</h3>
+        <p class="desc">Tennessee Economic and Community Development website redesign with a modernized visual system and clearer, more intuitive content architecture. <br><a href="https://tnecd.com" target="_blank" aria-label="Visit TNECD.com (opens in a new tab)" onclick="gtag('event', 'outbound_click', { destination: 'tnecd', from_page: window.location.pathname });">Visit TNECD.com<i class="fa-solid fa-square-arrow-up-right icon-after-text" aria-hidden="true"></i></a></p>
+        <p class="tools"><strong>Tools:</strong> Figma, Photoshop, Illustrator</p>
+        <a href="tnecd.html" class="go" aria-label="Read Case Study: TNECD.com Site Redesign" onclick="gtag('event', 'project_click', { project: 'tnecd', from_page: window.location.pathname });"><span>Read Case Study</span><span class="arr" aria-hidden="true">→</span></a>
+      </article>
+
+      <!-- pride -->
+      <article class="tile tile--pride">
+        <span class="num" aria-hidden="true">02</span>
+        <div class="shape shape--arch">
+          <img id="pride" class="project-image" src="images/animate/pride_static.jpg" alt="Pride365 app, WorldPride" width="500" height="300">
+        </div>
+        <p class="tags">UX Strategy · UI Design · Web Design</p>
+        <h3>Pride365 App Marketing</h3>
+        <p class="desc">Unified navigation and CTA strategy across WorldPrideDC’s web ecosystem, resulting in a 30× increase in Pride365 app adoption.</p>
+        <p class="tools"><strong>Tools and Skills:</strong> Figma, Web Design, UX/UI Design, Research, Visual Design</p>
+        <a href="pride.html" class="go" aria-label="Read Case Study: Pride365 App Marketing" onclick="gtag('event', 'project_click', { project: 'pride', from_page: window.location.pathname });"><span>Read Case Study</span><span class="arr" aria-hidden="true">→</span></a>
+      </article>
+
+      <div class="stat" aria-hidden="true">
+        <span class="big">30×</span>
+        <span class="mono">increase in Pride365 app adoption</span>
+        <img src="images/hero/sun86.svg" alt="">
+      </div>
+
+      <!-- swisspost -->
+      <article class="tile tile--swisspost">
+        <span class="num" aria-hidden="true">03</span>
+        <div class="shape shape--quarter">
+          <img id="swisspost" class="project-image" src="images/animate/swisspost_static.jpg" alt="Swiss Post AI Tool" width="500" height="300">
+        </div>
+        <p class="tags">Product Design · Visual Design · UX/UI</p>
+        <h3>Swiss Post AI Tool</h3>
+        <p class="desc">Designing an AI‑powered interface that turns complex logistics data into clear, actionable workflows.</p>
+        <p class="tools"><strong>Tools:</strong> Figma, Photoshop, Illustrator</p>
+        <a href="swisspost.html" class="go" aria-label="Read Case Study: Swiss Post AI Tool" onclick="gtag('event', 'project_click', { project: 'swisspost', from_page: window.location.pathname });"><span>Read Case Study</span><span class="arr" aria-hidden="true">→</span></a>
+      </article>
+
+      <!-- drom printed material -->
+      <article class="tile tile--drom">
+        <span class="num" aria-hidden="true">04</span>
+        <div class="shape shape--semi">
+          <img id="drom" class="project-image" src="images/animate/drom_static.jpg" alt="DRØM Peppercorns" width="500" height="300" loading="lazy">
+        </div>
+        <p class="tags">Graphic Design · Illustration · Brand</p>
+        <h3>DRØM Print and Marketing</h3>
+        <p class="desc">Designed and produced a suite of print and digital brand assets for DRØM, preparing CMYK‑ready files and consistent visuals for campaigns and packaging.</p>
+        <p class="tools"><strong>Tools:</strong> Illustrator, Photoshop, Product Photography</p>
+        <a href="print.html" class="go" aria-label="View Print Samples: DRØM Print and Marketing" onclick="gtag('event', 'project_click', { project: 'print', from_page: window.location.pathname });"><span>View Print Samples</span><span class="arr" aria-hidden="true">→</span></a>
+      </article>
+
+      <!-- 45th -->
+      <article class="tile tile--45th">
+        <span class="num" aria-hidden="true">05</span>
+        <div class="shape shape--pill">
+          <img id="45th" class="project-image" src="images/animate/45th_static.jpg" alt="45th Parallel Wines" width="500" height="300" loading="lazy">
+        </div>
+        <p class="tags">Web · Brand · Visual Design</p>
+        <h3>45th Parallel Wines</h3>
+        <p class="desc">Created a bespoke, place‑rooted brand and illustration system that transformed a simple template into a distinctive digital storefront for a St. Johns wine shop.</p>
+        <p class="tools"><strong>Tools:</strong> HTML, CSS, Photoshop, Illustrator, Squarespace</p>
+        <a href="45.html" class="go" aria-label="View Design Process: 45th Parallel Wines" onclick="gtag('event', 'project_click', { project: '45th_parallel_wines', from_page: window.location.pathname });"><span>View Design Process</span><span class="arr" aria-hidden="true">→</span></a>
+      </article>
+
+      <!-- ads -->
+      <article class="tile tile--ads">
+        <div class="tile-visual">
+          <span class="num" aria-hidden="true">06</span>
+          <div class="shape shape--circle">
+            <img id="ads" class="project-image" src="images/animate/ads_static.jpg" alt="Web Ads" width="1000" height="600" loading="lazy">
+          </div>
+        </div>
+        <div class="tile-layout">
+          <p class="tags">Visual Design · Illustration · Animation</p>
+          <h3>Digital Ads and GIFs</h3>
+          <p class="desc">Designed static and animated assets for multi‑channel campaigns, adapting visuals across social, email, and web while maintaining a cohesive brand voice.</p>
+          <p class="tools"><strong>Tools:</strong> Photoshop, Illustrator, After Effects</p>
+          <a href="ads.html" class="go" aria-label="View Ads and GIFs: Digital Ads and GIFs" onclick="gtag('event', 'project_click', { project: 'ads', from_page: window.location.pathname });"><span>View Ads and GIFs</span><span class="arr" aria-hidden="true">→</span></a>
+        </div>
+      </article>
+
+    </div><!--end tiles-->
+  </section>
+
+</main>
+
+<footer>
+  <p class="mono">Find me in:</p>
+  <ul class="footer-links">
+    <li><a href="https://github.com/LarsGittenberg" onclick="gtag('event', 'footer_click', { destination: 'github', from_page: window.location.pathname });"><i class="fa-brands fa-github" aria-hidden="true"></i>GitHub</a></li>
+    <li><a href="https://www.linkedin.com/in/lawrence-getubig" onclick="gtag('event', 'footer_click', { destination: 'linkedin', from_page: window.location.pathname });"><i class="fa-brands fa-linkedin" aria-hidden="true"></i>LinkedIn</a></li>
+    <li><a href="https://www.instagram.com/ljgetubig/" onclick="gtag('event', 'footer_click', { destination: 'instagram', from_page: window.location.pathname });"><i class="fa-brands fa-instagram" aria-hidden="true"></i>Instagram</a></li>
+  </ul>
+  <span class="ghost doto" aria-hidden="true">LG</span>
+  <p class="copyright"><small>Copyright Lawrence Getubig 2026</small></p>
+</footer>
+
+<script>
+/* menu: opens and closes the full-screen nav */
+(function () {
+  var button = document.getElementById('menuButton');
+  var nav = document.getElementById('nav');
+
+  function setOpen(open) {
+    nav.classList.toggle('open', open);
+    button.setAttribute('aria-expanded', open ? 'true' : 'false');
+    button.setAttribute('aria-label', open ? 'Close menu' : 'Open menu');
+    button.textContent = open ? 'Close' : 'Menu';
+  }
+
+  button.addEventListener('click', function () { setOpen(!nav.classList.contains('open')); });
+  document.addEventListener('keydown', function (e) { if (e.key === 'Escape') { setOpen(false); button.focus(); } });
+  window.addEventListener('pageshow', function () { setOpen(false); }); // back button: never come back to an open menu
+})();
+
+/* project images: static on load, animated GIF on hover (or when mostly on screen on touch devices).
+   Same swap rule as js/design.js: images/animate/<id>_static.jpg <-> <id>_animate.gif */
+(function () {
+  var tiles = document.querySelectorAll('.tile');
+  var reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  if (reduced) { return; }
+
+  function swap(tile, animated) {
+    var img = tile.querySelector('.project-image');
+    img.src = 'images/animate/' + img.id + (animated ? '_animate.gif' : '_static.jpg');
+  }
+
+  tiles.forEach(function (tile) {
+    tile.addEventListener('mouseenter', function () { swap(tile, true); });
+    tile.addEventListener('mouseleave', function () { swap(tile, false); });
+  });
+
+  if (window.matchMedia('(hover: none)').matches && 'IntersectionObserver' in window) {
+    var observer = new IntersectionObserver(function (entries) {
+      entries.forEach(function (entry) { swap(entry.target, entry.isIntersecting); });
+    }, { threshold: 0.6 });
+    tiles.forEach(function (tile) { observer.observe(tile); });
+  }
+})();
+</script>
+
+</body>
+</html>
