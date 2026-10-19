@@ -96,20 +96,28 @@ One more thing, for the observant: the face at the top of this page has two diff
   :root {
     --u: min(1vw, 14.4px);
     /* the zip-up dials: one set of numbers tunes the whole entrance */
-    --zip-start: 700ms;   /* wait before the first piece moves (was 200ms; +0.5s so the face doesn't start the instant the page loads) */
+    --zip-start: 1200ms;  /* wait before the first piece moves (was 200ms, then 700ms; each +0.5s so the face doesn't start the instant the page loads) */
     --zip-stagger: 250ms; /* gap between one piece and the next */
     --zip-time: 900ms;    /* how long each piece takes to settle */
+    /* the tagline's two shared numbers: the tagline AND the face badge read these, so they always stay level */
+    --tag-font: clamp(2rem, 6.2vw, 3.5rem); /* 56px ceiling (was 64px; before that 88px = what the site rendered at 1417px) */
+    /* top edge = the LARGER of: (a) the original formula, or (b) 16px below the name. Above 1100px (a) wins, so nothing changes;
+       below 1100px (b) wins, so the tagline stops climbing toward the name. (6.3u = the stage's overlap with the header, 10px = the name's nudge, 16px = the gap) */
+    --tag-top: max(calc(21.4 * var(--u) - 2 * var(--tag-font) - 48px), calc(6.3 * var(--u) + 6px));
+    /* the stage's height = the LARGER of: (a) the original proportional height, or (b) "tagline bottom + room for the band, so the tagline-to-band gap stays at its 1100px value (64px)".
+       Above 1100px (a) wins and nothing changes; below it (b) wins and the slab grows taller than the window's proportions.
+       (b)'s pieces: 3.6 x font = the tagline's height; 139px = 64px gap + the band's 75px lift; 7.34u = the band's own window-scaled parts, measured at 1100px) */
+    --stage-h: max(calc(45.05 * var(--u)), calc(var(--tag-top) + 3.6 * var(--tag-font) + 139px + 7.34 * var(--u)));
   }
 
   /* the name hangs from the right edge; the blurb stays beside it */
   header { padding-right: calc(2.4 * var(--u)); }
   .header-container {
     justify-content: flex-end;
-    align-items: flex-start; /* name and blurb share a top line, as in the mockup */
+    align-items: flex-end; /* the blue page's pillar: the blurb is the tallest item, so it sets the row's height and the name rests at its foot */
     gap: calc(4.4 * var(--u));
-    height: calc(1.6 * clamp(3.8rem, 16vw, 16.5rem)); /* exactly the two name lines (16vw x 0.8 line-height x 2), so the taller blurb can't push the name down */
   }
-  .header-container h1 { text-align: right; }
+  .header-container h1 { text-align: right; margin-bottom: 10px; } /* nudges the name up 10px off the pillar's foot; delete the margin to undo */
   .header-container p { white-space: nowrap; } /* the row now has a fixed height, so without this the blurb would wrap into two columns */
 
   /* the blue slab: same tilt as before, now sized from the mockup, with the band riding its lower edge */
@@ -117,7 +125,7 @@ One more thing, for the observant: the face at the top of this page has two diff
   /* the stage holds everything and is NOT clipped, so shapes can poke out over the dark; the clipped blue slab is just its background */
   .hero-stage {
     position: relative;
-    height: calc(45.05 * var(--u));
+    height: var(--stage-h); /* was calc(45.05 * var(--u)); now it can grow taller below 1100px, see --stage-h in :root */
     margin-top: calc(-6.3 * var(--u));
   }
   div.hero-container {
@@ -128,7 +136,9 @@ One more thing, for the observant: the face at the top of this page has two diff
     height: 100% !important;
     margin-top: 0;
     padding: 0;
-    clip-path: polygon(0 10.4%, 100% 0, 100% 89.6%, 0 100%);
+    /* the tilt (4.685u = 10.4% of the old 45.05u height) is now tied to the window's width instead of the slab's height, so a taller slab keeps the SAME tilt as the band.
+       The 75px shaves the slab's bottom edge up to follow the lifted band (45px + 30px) */
+    clip-path: polygon(0 calc(4.685 * var(--u)), 100% 0, 100% calc(100% - 4.685 * var(--u) - 75px), 0 calc(100% - 75px));
   }
 
   /* the tagline: a fixed box sized in em, so it scales with the type and can never reflow.
@@ -137,11 +147,11 @@ One more thing, for the observant: the face at the top of this page has two diff
     position: absolute;
     grid-column: auto;
     right: calc(31.5 * var(--u));
-    top: calc(21.4 * var(--u) - 1.8em); /* its centre sits level with the face circle */
+    top: var(--tag-top); /* its centre sits level with the face circle (the badge reads the same --tag-top); see :root for the formula */
     width: 8.76em;
     height: 3.6em;
     max-width: none;
-    font-size: clamp(2rem, 6.2vw, 4rem); /* 64px ceiling (was 88px = what the site rendered at 1417px) */
+    font-size: var(--tag-font); /* 56px ceiling, set in :root */
     font-weight: 700; /* was 900 from .doto-lg; lighter dots read less heavy */
     line-height: 0.9;
     letter-spacing: -0.03em;
@@ -157,7 +167,7 @@ One more thing, for the observant: the face at the top of this page has two diff
     width: var(--size);
     height: var(--size);
     left: calc(82 * var(--u) - var(--size) / 2);
-    top: calc(21.4 * var(--u) - var(--size) / 2);
+    top: calc(var(--tag-top) + 1.8 * var(--tag-font) - var(--size) / 2); /* the tagline's top plus half its height (1.8 x its font-size) = its centre; minus half the badge = the badge centred on the tagline */
   }
   .badge-circle { position: absolute; inset: 0; border-radius: 50%; background: var(--amber); }
   .badge-face { position: absolute; left: 12%; top: 13%; width: 76%; aspect-ratio: 876 / 893; }
@@ -204,7 +214,7 @@ One more thing, for the observant: the face at the top of this page has two diff
     position: absolute;
     left: -3%;
     width: 106%;
-    bottom: calc(2.34 * var(--u));
+    bottom: calc(2.34 * var(--u) + 75px); /* the 75px lifts the band (45px, then 30px more); delete "+ 75px" to undo */
     height: calc(4.04 * var(--u));
     min-height: 40px;
     display: flex;
@@ -223,6 +233,20 @@ One more thing, for the observant: the face at the top of this page has two diff
   .band-track i:nth-of-type(3n) { color: var(--blue); }
   @keyframes slide { to { transform: translateX(-50%); } }
   @media (prefers-reduced-motion: reduce) { .band-track { animation: none; } }
+
+  /* ===== PHONE LAYOUT: 699px and below (first push) =====
+     The face badge leaves the tagline's side and moves to the top of the screen, centred, at its full 200px.
+     The tagline slides right into the space it left, lined up with the right edge of the name. */
+  @media (max-width: 699px) {
+    .badge {
+      --size: 200px; /* its widest size, instead of shrinking down to 140px */
+      left: calc(50% - var(--size) / 2); /* centred left-to-right on the screen */
+      top: calc(6.3 * var(--u) - 457px); /* 84px from the page top = level with the top of the vertical blurb. (457px = the header's 541px height minus that 84px; the stage starts 6.3u above the header's bottom edge.) If the header's height changes, this number follows */
+    }
+    .hero-text {
+      right: calc(6.8 * var(--u) + 22px); /* the name's right edge: the header's right padding (2.4u) + the gap (4.4u) + the vertical blurb's 22px width. Change the blurb and this follows */
+    }
+  }
 
   /* the pulsing teal rings around the menu button: hidden on this version (delete this rule to bring them back) */
   .menu-signal { display: none; }
@@ -289,7 +313,7 @@ One more thing, for the observant: the face at the top of this page has two diff
 
 	<!-- the face badge: five face layers, then the amber circle last (it sits behind them) -->
 	<div class="badge" role="img" aria-label="Illustrated portrait of Lawrence Getubig">
-		<div class="badge-circle zip" style="--i:13"></div><!-- --i:13 = 1 second later than before; to revert, change 13 back to 9 -->
+		<div class="badge-circle zip" style="--i:9"></div><!-- --i:9 = 1 second sooner than the earlier --i:13; to revert, change 9 back to 13 -->
 
 		<div class="badge-face">
 			<img class="zip" style="--i:0" src="images/hero/face1.svg" alt="">
