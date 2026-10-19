@@ -96,7 +96,7 @@ One more thing, for the observant: the face at the top of this page has two diff
   :root {
     --u: min(1vw, 14.4px);
     /* the zip-up dials: one set of numbers tunes the whole entrance */
-    --zip-start: 200ms;   /* wait before the first piece moves */
+    --zip-start: 700ms;   /* wait before the first piece moves (was 200ms; +0.5s so the face doesn't start the instant the page loads) */
     --zip-stagger: 250ms; /* gap between one piece and the next */
     --zip-time: 900ms;    /* how long each piece takes to settle */
   }
@@ -141,7 +141,8 @@ One more thing, for the observant: the face at the top of this page has two diff
     width: 8.76em;
     height: 3.6em;
     max-width: none;
-    font-size: clamp(2rem, 6.2vw, 5.5rem); /* 88px ceiling = what the site renders today at 1417px */
+    font-size: clamp(2rem, 6.2vw, 4rem); /* 64px ceiling (was 88px = what the site rendered at 1417px) */
+    font-weight: 700; /* was 900 from .doto-lg; lighter dots read less heavy */
     line-height: 0.9;
     letter-spacing: -0.03em;
     text-align: right;
@@ -163,7 +164,7 @@ One more thing, for the observant: the face at the top of this page has two diff
   .badge-face img { position: absolute; inset: 0; width: 100%; }
 
   /* the four decorative shapes, placed by their centres */
-  .deco { position: absolute; z-index: 1; pointer-events: none; }
+  .deco { position: absolute; z-index: 1; pointer-events: none; display: none; /* hidden for now: delete this "display: none" to bring all four shapes back */ }
   .deco-half {   /* orange half-disc, tipped 40 degrees */
     width: calc(13.9 * var(--u)); aspect-ratio: 2 / 1; background: var(--orange);
     border-radius: 999px 999px 0 0; rotate: 40deg; z-index: 2; /* over the magenta circle, as in the mockup */
@@ -196,9 +197,11 @@ One more thing, for the observant: the face at the top of this page has two diff
   @media (prefers-reduced-motion: reduce) { .zip { animation: none; opacity: 1; } }
 
   /* the band: the poster's sliding strip, tipped to ride the slab's lower edge (same tilt as the clip-path) */
+  /* a frame the width of the working area (the 1440px body): it cuts the tilted band off at the left and right edges,
+     while the negative top/bottom values leave the band's height unclipped */
+  .band-wrap { position: absolute; inset: 0; z-index: 3; pointer-events: none; clip-path: inset(-20vw 0); }
   .band {
     position: absolute;
-    z-index: 3;
     left: -3%;
     width: 106%;
     bottom: calc(2.34 * var(--u));
@@ -220,6 +223,9 @@ One more thing, for the observant: the face at the top of this page has two diff
   .band-track i:nth-of-type(3n) { color: var(--blue); }
   @keyframes slide { to { transform: translateX(-50%); } }
   @media (prefers-reduced-motion: reduce) { .band-track { animation: none; } }
+
+  /* the pulsing teal rings around the menu button: hidden on this version (delete this rule to bring them back) */
+  .menu-signal { display: none; }
 
   .placeholder { grid-column: 1 / -1; padding: 90px var(--pad) 200px; text-align: center; font-family: var(--font-mono); font-size: 0.95rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--paper); }
   </style>
@@ -283,7 +289,8 @@ One more thing, for the observant: the face at the top of this page has two diff
 
 	<!-- the face badge: five face layers, then the amber circle last (it sits behind them) -->
 	<div class="badge" role="img" aria-label="Illustrated portrait of Lawrence Getubig">
-		<div class="badge-circle zip" style="--i:9"></div>
+		<div class="badge-circle zip" style="--i:13"></div><!-- --i:13 = 1 second later than before; to revert, change 13 back to 9 -->
+
 		<div class="badge-face">
 			<img class="zip" style="--i:0" src="images/hero/face1.svg" alt="">
 			<img class="zip" style="--i:1" src="images/hero/face2.svg" alt="">
@@ -294,11 +301,13 @@ One more thing, for the observant: the face at the top of this page has two diff
 	</div>
 
 	<!-- the sliding band (four copies, so the loop never shows a gap) -->
+	<div class="band-wrap">
 	<div class="band" aria-hidden="true">
 		<div class="band-track">
 			<span>Web Design <i>●</i> UX/UI <i>▲</i> Visual Design <i>◆</i> Illustration <i>■</i> Brand <i>●</i> Animation <i>▲</i> Product Design <i>◆</i> Photography <i>■</i></span><span>Web Design <i>●</i> UX/UI <i>▲</i> Visual Design <i>◆</i> Illustration <i>■</i> Brand <i>●</i> Animation <i>▲</i> Product Design <i>◆</i> Photography <i>■</i></span><span>Web Design <i>●</i> UX/UI <i>▲</i> Visual Design <i>◆</i> Illustration <i>■</i> Brand <i>●</i> Animation <i>▲</i> Product Design <i>◆</i> Photography <i>■</i></span><span>Web Design <i>●</i> UX/UI <i>▲</i> Visual Design <i>◆</i> Illustration <i>■</i> Brand <i>●</i> Animation <i>▲</i> Product Design <i>◆</i> Photography <i>■</i></span>
 		</div>
 	</div>
+	</div><!--end band-wrap-->
 
 </div><!--end hero stage-->
 
