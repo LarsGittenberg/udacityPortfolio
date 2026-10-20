@@ -397,8 +397,9 @@ section.featured-project-card:hover .img-container { transform: rotate(-2deg) sc
 	display: inline-block;
 	margin-bottom: 12px;
 	padding: 4px 10px;
-	background: var(--ink);
-	color: var(--paper);
+	background: var(--paper); /* the NEGATIVE of the ink tag it replaced, so it stops looking like the CTA stamps */
+	color: var(--ink);
+	border: 2px solid var(--ink); /* echoes the ink frame on the card images; also holds the tag's edge on the amber, orange and mint cards */
 	font-family: var(--font-mono);
 	font-size: 0.72rem;
 	font-weight: 400;
