@@ -1,0 +1,77 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="noindex, nofollow">
+<title>Variant switcher (snippet)</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css?family=Source+Code+Pro:300,400" rel="stylesheet"> <!-- the same mono as the site, so the bar looks the way it did on the real page -->
+<!--
+  VARIANT SWITCHER: a throwaway tool for deciding between two or three looks by eye, on the real page.
+  Born 2026-10-20 while choosing the card-label style. It is a snippet, not part of the site.
+
+  HOW IT WORKS (three parts):
+    1. CSS: each look is a rule that starts with a class on <html>, e.g.  html.look-b .thing { ... }.
+       The first look ("a") is the page's normal styling, so it needs no rule.
+    2. HTML: a small fixed bar with one <button> per look; data-look="a" / "b" / "c" names it.
+    3. JS: clicking a button swaps the class on <html>, and marks the pressed button (aria-pressed).
+       Opening the page with ?look=b in the address picks a look directly, so you can bookmark each one.
+
+  HOW TO REUSE: copy the three marked blocks below into a COPY of a page (never the real one), rename
+  "thing" and the look names to what you are testing, then delete the copy when you have decided.
+  Nothing here should ever ship.
+-->
+<style>
+  /* demo page only */
+  body { margin: 0; padding: 48px 24px; font-family: system-ui, sans-serif; background: #1d1a16; color: #f1e6cc; }
+  .thing { display: inline-block; padding: 8px 14px; font: 0.8rem/1.4 'Source Code Pro', ui-monospace, monospace; letter-spacing: 0.12em; text-transform: uppercase; background: #1d1a16; color: #f1e6cc; border: 2px solid transparent; }
+  .card { width: 320px; padding: 28px; background: #feb013; color: #1d1a16; border: 3px solid #1d1a16; }
+
+  /* ===== 1. THE LOOKS: "a" is the normal style above, so only b and c need rules ===== */
+  html.look-b .thing { background: #f1e6cc; color: #1d1a16; }
+  html.look-c .thing { background: #f1e6cc; color: #1d1a16; border-color: #1d1a16; }
+
+  /* ===== 2. THE SWITCHER BAR (styling) ===== */
+  .look-switch { position: fixed; right: 16px; bottom: 16px; z-index: 50; display: flex; gap: 6px; padding: 8px; background: #1d1a16; border: 2px solid #f1e6cc; font-family: 'Source Code Pro', ui-monospace, monospace; }
+  .look-switch button { font: inherit; font-size: 0.72rem; letter-spacing: 0.1em; text-transform: uppercase; padding: 6px 10px; border: 2px solid #f1e6cc; background: transparent; color: #f1e6cc; cursor: pointer; }
+  .look-switch button[aria-pressed="true"] { background: #f1e6cc; color: #1d1a16; }
+</style>
+</head>
+<body>
+
+<div class="card">
+  <span class="thing">Web Design · UX/UI</span>
+  <h1>Try the buttons</h1>
+  <p>Each button swaps the look of the little tag above.</p>
+</div>
+
+<!-- ===== 2. THE SWITCHER BAR (markup): one button per look ===== -->
+<div class="look-switch" role="group" aria-label="Look">
+  <button type="button" data-look="a">Ink (now)</button>
+  <button type="button" data-look="b">Negative</button>
+  <button type="button" data-look="c">Negative + border</button>
+</div>
+
+<!-- ===== 3. THE SCRIPT ===== -->
+<script>
+(function () {
+  var root = document.documentElement;
+  var buttons = document.querySelectorAll('.look-switch button');
+  var looks = ['a', 'b', 'c']; // keep in step with the data-look values above
+
+  function show(look) {
+    looks.forEach(function (l) { root.classList.remove('look-' + l); });
+    if (look !== 'a') root.classList.add('look-' + look); // "a" = the normal style, no class
+    buttons.forEach(function (b) { b.setAttribute('aria-pressed', b.dataset.look === look); });
+  }
+
+  buttons.forEach(function (b) { b.addEventListener('click', function () { show(b.dataset.look); }); });
+
+  var asked = new URLSearchParams(location.search).get('look'); // ?look=b picks a look from the address
+  show(looks.indexOf(asked) > -1 ? asked : 'c'); // opens on the look you are leaning toward; change 'c' as needed
+})();
+</script>
+</body>
+</html>
