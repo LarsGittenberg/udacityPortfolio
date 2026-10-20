@@ -344,7 +344,7 @@ section.featured-project-card:hover { transform: rotate(0deg) translate(-4px, -4
 .flex-container-child-projects:nth-child(6n+2) section.featured-project-card { --card-bg: var(--orange);  --card-ink: var(--ink);        --tilt: 1.6deg; }
 .flex-container-child-projects:nth-child(6n+3) section.featured-project-card { --card-bg: var(--teal);    --card-ink: var(--cream-text); --tilt: 1deg; }
 .flex-container-child-projects:nth-child(6n+4) section.featured-project-card { --card-bg: var(--blue);    --card-ink: var(--cream-text); --tilt: -1.4deg; border-radius: 0 70px 0 0; }
-.flex-container-child-projects:nth-child(6n+5) section.featured-project-card { --card-bg: var(--purple);  --card-ink: var(--cream-text); --tilt: -0.5deg; }
+.flex-container-child-projects:nth-child(6n+5) section.featured-project-card { --card-bg: var(--purple);  --card-ink: var(--cream-text); --tilt: -0.5deg; border-radius: 70px 0 0 0; }
 .flex-container-child-projects:nth-child(6n) section.featured-project-card { --card-bg: var(--mint);    --card-ink: var(--ink);        --tilt: 1.1deg; border-radius: 70px 0 0 0; }
 
 /* outline numerals from the counter, hanging off the top edge of each card */
@@ -377,18 +377,20 @@ section.featured-project-card::before {
 }
 .img-container img { width: 100%; height: 100%; object-fit: cover; }
 section.featured-project-card:hover .img-container { transform: rotate(-2deg) scale(1.03); }
+/* THE IMAGE DIAL: every card image is multiplied by this, so all three shapes shrink by the same percentage (0.85 = 15% smaller). Set to 1 to undo */
+.flex-container-main { --img-scale: 0.85; }
 /* pill: cards 1 and 4 */
 .flex-container-child-projects:nth-child(6n+1) .img-container,
-.flex-container-child-projects:nth-child(6n+4) .img-container { width: min(81%, 356px); border-radius: 999px; }
+.flex-container-child-projects:nth-child(6n+4) .img-container { width: calc(min(81%, 356px) * var(--img-scale)); border-radius: 999px; }
 /* dome: cards 2 and 3 */
 .flex-container-child-projects:nth-child(6n+2) .img-container,
-.flex-container-child-projects:nth-child(6n+3) .img-container { border-radius: 999px 999px 0 0; aspect-ratio: 4 / 3; }
+.flex-container-child-projects:nth-child(6n+3) .img-container { width: calc(min(100%, 360px) * var(--img-scale)); border-radius: 999px 999px 0 0; aspect-ratio: 4 / 3; margin-left: auto; margin-right: auto; }
 /* circle: cards 5 and 6 */
 .flex-container-child-projects:nth-child(6n+5) .img-container,
-.flex-container-child-projects:nth-child(6n) .img-container { width: 62%; aspect-ratio: 1; border-radius: 50%; margin-left: auto; margin-right: auto; }
+.flex-container-child-projects:nth-child(6n) .img-container { width: calc(62% * var(--img-scale)); aspect-ratio: 1; border-radius: 50%; margin-left: auto; margin-right: auto; }
 @media (min-width: 900px) { /* wider cards here, so a smaller share keeps the circle in proportion; phones stay at 62% */
 	.flex-container-child-projects:nth-child(6n+5) .img-container,
-	.flex-container-child-projects:nth-child(6n) .img-container { width: 49.5%; }
+	.flex-container-child-projects:nth-child(6n) .img-container { width: calc(49.5% * var(--img-scale)); }
 }
 
 .card-label {
