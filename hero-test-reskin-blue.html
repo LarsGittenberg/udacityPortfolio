@@ -1,0 +1,587 @@
+<!doctype html>
+
+<html lang="en">
+<!--  
+Hi there! Thanks for peeking under the hood.  
+This site’s color palette is inspired by the bright pinks, purples, teals, and yellows of 1986 — the same patterns that wrapped my high‑school notebooks. The textures, torn edges, and papery feel are intentional nods to that era.  
+
+If you prefer to focus on the work itself, I built a mode toggle that switches the site from Colorful Mode to a toned‑down grayscale version. 🙌🏽
+
+One more thing, for the observant: the face at the top of this page has two different fade-in animations, and the page picks one at random each time it loads. Reload to see the other one. 🎲
+-->
+
+<head>
+  <!-- TEST COPY of index.html for the same-markup reskin scouting mission. The real Google Analytics tag is left out (gtag is a no-op). -->
+  <meta name="robots" content="noindex, nofollow">
+  <script>
+    function gtag() {}
+  </script>
+
+  <!-- Load saved toggle mode preference BEFORE CSS loads -->
+  <script>
+		(function() {
+		  const saved = localStorage.getItem('styleMode');
+		  if (saved === 'toned-down') {
+		    document.documentElement.classList.add('toned-down');
+		  } else {
+		    document.documentElement.classList.add('colorful');
+		  }
+		})();
+  </script>
+
+  <!-- Pick one of two hero face fades at random; ?fade=shared or ?fade=stagger forces one (for testing) -->
+  <script>
+    (function() {
+      var forced = new URLSearchParams(location.search).get('fade');
+      var shared = forced === 'shared' || (forced !== 'stagger' && Math.random() < 0.5);
+      if (shared) document.documentElement.classList.add('fade-shared');
+    })();
+  </script>
+
+  <title>Hero test + reskin blue (merged) | Lawrence Getubig</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#feb013">
+  <meta name="description" content="Lawrence Getubig is a creative technologist in product design. Featured web, UX/UI and visual design projects, including a 30× lift in app downloads.">
+  
+  <!-- Favicons -->
+	<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+	<link rel="icon" href="/favicon.png" sizes="32x32">
+	<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+
+  <!-- CSS -->
+  <link rel="stylesheet" href="css/reskin-blue.css"> <!-- replaces ui.css and main.css on this test page: the AMBER version -->
+
+	<!--fonts-->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link href="https://fonts.googleapis.com/css2?family=Doto:wght@100..900&display=swap" rel="stylesheet">
+	<!--older font choices-->
+	<link href="https://fonts.googleapis.com/css?family=Montserrat:400,600|Source+Code+Pro:300,400" rel="stylesheet">
+
+  <!-- JS libraries -->
+  <script src="https://cdn.jsdelivr.net/npm/js-cookie@2/src/js.cookie.min.js"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg==" crossorigin="anonymous" referrerpolicy="no-referrer">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  <script src="js/noframework.waypoints.min.js"></script>
+
+
+	<!-- Update toggle labels AFTER DOM is ready -->
+	<script>
+	  document.addEventListener("DOMContentLoaded", function() {
+	    const saved = localStorage.getItem('styleMode');
+	    const labelColorful = document.getElementById('labelColorful');
+	    const labelToned = document.getElementById('labelToned');
+
+	    if (saved === 'toned-down') {
+	      // User previously chose TONED-DOWN mode
+	      labelColorful.innerHTML = "Colorful<br>Retro<br>Mode: Off";
+	      labelToned.innerHTML = "Toned<br>Down<br>Mode: On";
+	    } else {
+	      // Default or saved COLORFUL mode
+	      labelColorful.innerHTML = "Colorful<br>Retro<br>Mode: On";
+	      labelToned.innerHTML = "Toned<br>Down<br>Mode: Off";
+	    }
+	  });
+	</script>
+
+
+  <style>
+  /* =====================================================================
+     HERO + BODY MELD: the hero test's hero, set on top of the blue page's cards. Everything here overrides css/reskin-blue.css,
+     which is left untouched. Layout numbers come from the Figma PNG (1263px wide, 1:1),
+     expressed in --u so the whole composition scales with the screen (1 --u = 1% of the width, capped at the 1440px body).
+     ===================================================================== */
+  :root {
+    --u: min(1vw, 14.4px);
+    /* the zip-up dials: one set of numbers tunes the whole entrance */
+    --zip-start: 1200ms;  /* wait before the first piece moves (was 200ms, then 700ms; each +0.5s so the face doesn't start the instant the page loads) */
+    --zip-stagger: 250ms; /* gap between one piece and the next */
+    --zip-time: 900ms;    /* how long each piece takes to settle */
+    /* the tagline's two shared numbers: the tagline AND the face badge read these, so they always stay level */
+    --tag-font: clamp(2rem, 6.2vw, 3.5rem); /* 56px ceiling (was 64px; before that 88px = what the site rendered at 1417px) */
+    /* top edge = the LARGER of: (a) the original formula, or (b) 16px below the name. Above 1100px (a) wins, so nothing changes;
+       below 1100px (b) wins, so the tagline stops climbing toward the name. (6.3u = the stage's overlap with the header, 10px = the name's nudge, 16px = the gap) */
+    --tag-top: max(calc(21.4 * var(--u) - 2 * var(--tag-font) - 48px), calc(6.3 * var(--u) + 6px));
+    /* the stage's height = the LARGER of: (a) the original proportional height, or (b) "tagline bottom + room for the band, so the tagline-to-band gap stays at its 1100px value (64px)".
+       Above 1100px (a) wins and nothing changes; below it (b) wins and the slab grows taller than the window's proportions.
+       (b)'s pieces: 3.6 x font = the tagline's height; 139px = 64px gap + the band's 75px lift; 7.34u = the band's own window-scaled parts, measured at 1100px) */
+    --stage-h: max(calc(45.05 * var(--u)), calc(var(--tag-top) + 3.6 * var(--tag-font) + 139px + 7.34 * var(--u)));
+  }
+
+  /* the name hangs from the right edge; the blurb stays beside it */
+  header { padding-right: calc(2.4 * var(--u)); }
+  .header-container {
+    justify-content: flex-end;
+    align-items: flex-end; /* the blue page's pillar: the blurb is the tallest item, so it sets the row's height and the name rests at its foot */
+    gap: calc(4.4 * var(--u));
+  }
+  .header-container h1 { text-align: right; margin-bottom: 10px; } /* nudges the name up 10px off the pillar's foot; delete the margin to undo */
+  .header-container p { white-space: nowrap; } /* the row now has a fixed height, so without this the blurb would wrap into two columns */
+
+  /* the blue slab: same tilt as before, now sized from the mockup, with the band riding its lower edge */
+  /* the stage holds everything and is NOT clipped, so shapes can poke out over the dark; the clipped blue slab is just its background */
+  .hero-stage {
+    grid-column: 1 / -1; /* MELD: spans both columns of the blue page's main grid (the old .hero-container did this) */
+    overflow-x: clip; /* the band is drawn wider than the screen so its tilt never shows a gap; this cuts off the overhang so it can't add a sideways scroll (up and down stays open for the shapes) */
+    position: relative;
+    height: var(--stage-h); /* was calc(45.05 * var(--u)); now it can grow taller below 1100px, see --stage-h in :root */
+    margin-top: calc(-6.3 * var(--u));
+  }
+  div.hero-container {
+    position: absolute;
+    inset: 0;
+    display: block;
+    min-height: 0;
+    height: 100% !important;
+    margin-top: 0;
+    padding: 0;
+    /* the tilt (4.685u = 10.4% of the old 45.05u height) is now tied to the window's width instead of the slab's height, so a taller slab keeps the SAME tilt as the band.
+       The 75px shaves the slab's bottom edge up to follow the lifted band (45px + 30px) */
+    clip-path: polygon(0 calc(4.685 * var(--u)), 100% 0, 100% calc(100% - 4.685 * var(--u) - 75px), 0 calc(100% - 75px));
+  }
+
+  /* the tagline: a fixed box sized in em, so it scales with the type and can never reflow.
+     8.76em x 3.6em = Figma's 587 x 240 at 67px; four lines at 90% line-height = 3.6em */
+  .hero-text {
+    position: absolute;
+    grid-column: auto;
+    right: calc(31.5 * var(--u));
+    top: var(--tag-top); /* its centre sits level with the face circle (the badge reads the same --tag-top); see :root for the formula */
+    width: 8.76em;
+    height: 3.6em;
+    max-width: none;
+    font-size: var(--tag-font); /* 56px ceiling, set in :root */
+    font-weight: 700; /* was 900 from .doto-lg; lighter dots read less heavy */
+    line-height: 0.9;
+    letter-spacing: -0.03em;
+    text-align: right;
+  }
+  .hero-text .tl { display: block; white-space: nowrap; }
+
+  /* the face badge: a 200px amber circle with the five face layers rising into it */
+  .badge {
+    --size: clamp(140px, 14.1vw, 200px);
+    position: absolute;
+    z-index: 2;
+    width: var(--size);
+    height: var(--size);
+    left: calc(82 * var(--u) - var(--size) / 2);
+    top: calc(var(--tag-top) + 1.8 * var(--tag-font) - var(--size) / 2); /* the tagline's top plus half its height (1.8 x its font-size) = its centre; minus half the badge = the badge centred on the tagline */
+  }
+  .badge-circle { position: absolute; inset: 0; border-radius: 50%; background: var(--amber); }
+  .badge-face { position: absolute; left: 12%; top: 13%; width: 76%; aspect-ratio: 876 / 893; }
+  .badge-face img { position: absolute; inset: 0; width: 100%; }
+
+  /* the four decorative shapes, placed by their centres */
+  .deco { position: absolute; z-index: 1; pointer-events: none; display: none; /* hidden for now: delete this "display: none" to bring all four shapes back */ }
+  .deco-half {   /* orange half-disc, tipped 40 degrees */
+    width: calc(13.9 * var(--u)); aspect-ratio: 2 / 1; background: var(--orange);
+    border-radius: 999px 999px 0 0; rotate: 40deg; z-index: 2; /* over the magenta circle, as in the mockup */
+    left: calc(21 * var(--u) - 6.95 * var(--u)); top: calc(6.2 * var(--u) - 3.45 * var(--u));
+  }
+  .deco-dot {    /* magenta circle */
+    width: calc(6.5 * var(--u)); aspect-ratio: 1; background: var(--magenta); border-radius: 50%;
+    left: calc(17.3 * var(--u) - 3.25 * var(--u)); top: calc(7.8 * var(--u) - 3.25 * var(--u));
+  }
+  .deco-tri-amber {
+    width: calc(5.5 * var(--u)); aspect-ratio: 69 / 75; background: var(--amber);
+    clip-path: polygon(19% 0, 0 92%, 100% 100%);
+    left: calc(16.9 * var(--u) - 2.75 * var(--u)); top: calc(31.7 * var(--u) - 3 * var(--u));
+  }
+  .deco-tri-teal {
+    width: calc(5.4 * var(--u)); aspect-ratio: 68 / 80; background: var(--teal);
+    clip-path: polygon(0 50%, 100% 0, 100% 100%);
+    left: calc(40.9 * var(--u) - 2.7 * var(--u)); top: calc(31 * var(--u) - 3.2 * var(--u));
+  }
+
+  /* the zip-up: slide up 40px while fading in, one piece after another (--i is each piece's place in line).
+     It uses opacity and the separate "translate" property, so the browser can animate it on the graphics card
+     and the shapes keep their own "rotate" */
+  .zip {
+    opacity: 0;
+    animation: zip var(--zip-time) cubic-bezier(0.2, 0.8, 0.2, 1) forwards;
+    animation-delay: calc(var(--zip-start) + var(--i) * var(--zip-stagger));
+  }
+  @keyframes zip { from { opacity: 0; translate: 0 40px; } to { opacity: 1; translate: 0 0; } }
+  @media (prefers-reduced-motion: reduce) { .zip { animation: none; opacity: 1; } }
+
+  /* the band: the poster's sliding strip, tipped to ride the slab's lower edge (same tilt as the clip-path) */
+  /* a frame the width of the working area (the 1440px body): it cuts the tilted band off at the left and right edges,
+     while the negative top/bottom values leave the band's height unclipped */
+  .band-wrap { position: absolute; inset: 0; z-index: 3; pointer-events: none; clip-path: inset(-20vw 0); }
+  .band {
+    position: absolute;
+    left: -3%;
+    width: 106%;
+    bottom: calc(2.34 * var(--u) + 75px); /* the 75px lifts the band (45px, then 30px more); delete "+ 75px" to undo */
+    height: calc(4.04 * var(--u));
+    min-height: 40px;
+    display: flex;
+    align-items: center;
+    overflow: hidden;
+    white-space: nowrap;
+    background: var(--amber);
+    color: var(--ink);
+    transform: rotate(-2.675deg);
+  }
+  .band-track { display: inline-flex; animation: slide 38s linear infinite; }
+  .band-track span { font-family: var(--font-mono); font-size: 0.8125rem; letter-spacing: 0.14em; text-transform: uppercase; padding-right: 2.2em; }
+  .band-track i { font-style: normal; }
+  .band-track i:nth-of-type(3n+1) { color: var(--magenta); }
+  .band-track i:nth-of-type(3n+2) { color: var(--teal); }
+  .band-track i:nth-of-type(3n) { color: var(--blue); }
+  @keyframes slide { to { transform: translateX(-50%); } }
+  @media (prefers-reduced-motion: reduce) { .band-track { animation: none; } }
+
+  /* ===== STACKED LAYOUT: 899px and below (was 699px; moved to match the cards' breakpoint. To undo, change 899 back to 699) =====
+     The face badge leaves the tagline's side and moves to the top of the screen, centred, at its full 200px.
+     The tagline slides right into the space it left, lined up with the right edge of the name. */
+  @media (max-width: 899px) {
+    .badge {
+      --size: 200px; /* its widest size, instead of shrinking down to 140px */
+      left: calc(50% - var(--size) / 2); /* centred left-to-right on the screen */
+      top: calc(6.3 * var(--u) - 457px); /* 84px from the page top = level with the top of the vertical blurb. (457px = the header's 541px height minus that 84px; the stage starts 6.3u above the header's bottom edge.) If the header's height changes, this number follows */
+    }
+    .hero-text {
+      right: calc(6.8 * var(--u) + 22px); /* the name's right edge: the header's right padding (2.4u) + the gap (4.4u) + the vertical blurb's 22px width. Change the blurb and this follows */
+    }
+  }
+
+  /* the pulsing teal rings around the menu button: hidden on this version (delete this rule to bring them back) */
+  .menu-signal { display: none; }
+
+  </style>
+</head>
+
+<body>
+
+	<div class="menu-icon-container">
+		<div class="bar1"></div>
+		<div class="bar2"></div>
+		<div class="bar3"></div>
+	</div>
+
+	<div class="menu-signal"></div>
+
+	<div id="myNav" class="overlay pattern-grid-large">
+		<!-- Overlay content -->
+		<div class="overlay-content ">
+			<a href="index.html" onclick="gtag('event', 'nav_click', { nav_item: 'home', from_page: window.location.pathname });"> Home </a>
+			<a href="webdesign.html" onclick="gtag('event', 'nav_click', { nav_item: 'web_design', from_page: window.location.pathname });"> Web Design </a>
+			<a href="graphicdesign.html" onclick="gtag('event', 'nav_click', { nav_item: 'graphic_design', from_page: window.location.pathname });"> Graphic Design </a>
+			<a href="photography.html" onclick="gtag('event', 'nav_click', { nav_item: 'photography', from_page: window.location.pathname });"> Photography </a>
+			<a href="about.html" onclick="gtag('event', 'nav_click', { nav_item: 'about', from_page: window.location.pathname });"> About </a>
+			<p class="overlay-title">Settings</p>
+			<div class="style-toggle" id="styleToggle">
+				<span class="label-colorful" id="labelColorful">Colorful<br>Retro<br>Mode: On</span>
+				<button class="toggle-button" aria-label="Toggle style mode">
+				  <span class="toggle-knob"></span>
+				</button>
+				<span class="label-toned" id="labelToned">Toned<br>Down<br>Mode: Off</span>
+			</div>
+		</div>
+	</div><!--end my nav-->
+
+<header class="pattern-dots-sparse">
+	<div class="header-container">
+		<h1 class="doto-lg">Lawrence Getubig</h1>
+		<p>Creative Technologist in Product Design</p>
+	</div><!--end header container-->
+</header>
+
+<main>
+
+<div class="hero-stage">
+
+	<div class="hero-container" id="waypointSignal" aria-hidden="true"></div><!--the blue slab, nothing else-->
+
+	<!-- tagline: four fixed lines in a fixed box. The words are in aria-label, so the scramble below can run without a screen reader reading the noise -->
+	<h2 id="tagline" class="doto-lg hero-text" aria-label="Synthesis with perspective, playful by design">
+		<span class="tl" aria-hidden="true">Synthesis with</span>
+		<span class="tl" aria-hidden="true">Perspective,</span>
+		<span class="tl" aria-hidden="true">Playful by</span>
+		<span class="tl" aria-hidden="true">Design</span>
+	</h2>
+
+	<!-- decorative shapes: they zip up after the face pieces -->
+	<div class="deco deco-half zip" style="--i:5" aria-hidden="true"></div>
+	<div class="deco deco-dot zip" style="--i:6" aria-hidden="true"></div>
+	<div class="deco deco-tri-amber zip" style="--i:7" aria-hidden="true"></div>
+	<div class="deco deco-tri-teal zip" style="--i:8" aria-hidden="true"></div>
+
+	<!-- the face badge: five face layers, then the amber circle last (it sits behind them) -->
+	<div class="badge" role="img" aria-label="Illustrated portrait of Lawrence Getubig">
+		<div class="badge-circle zip" style="--i:9"></div><!-- --i:9 = 1 second sooner than the earlier --i:13; to revert, change 9 back to 13 -->
+
+		<div class="badge-face">
+			<img class="zip" style="--i:0" src="images/hero/face1.svg" alt="">
+			<img class="zip" style="--i:1" src="images/hero/face2.svg" alt="">
+			<img class="zip" style="--i:2" src="images/hero/face3.svg" alt="">
+			<img class="zip" style="--i:3" src="images/hero/face4.svg" alt="">
+			<img class="zip" style="--i:4" src="images/hero/face5.svg" alt="">
+		</div>
+	</div>
+
+	<!-- the sliding band (four copies, so the loop never shows a gap) -->
+	<div class="band-wrap">
+	<div class="band" aria-hidden="true">
+		<div class="band-track">
+			<span>Web Design <i>●</i> UX/UI <i>▲</i> Visual Design <i>◆</i> Illustration <i>■</i> Brand <i>●</i> Animation <i>▲</i> Product Design <i>◆</i> Photography <i>■</i></span><span>Web Design <i>●</i> UX/UI <i>▲</i> Visual Design <i>◆</i> Illustration <i>■</i> Brand <i>●</i> Animation <i>▲</i> Product Design <i>◆</i> Photography <i>■</i></span><span>Web Design <i>●</i> UX/UI <i>▲</i> Visual Design <i>◆</i> Illustration <i>■</i> Brand <i>●</i> Animation <i>▲</i> Product Design <i>◆</i> Photography <i>■</i></span><span>Web Design <i>●</i> UX/UI <i>▲</i> Visual Design <i>◆</i> Illustration <i>■</i> Brand <i>●</i> Animation <i>▲</i> Product Design <i>◆</i> Photography <i>■</i></span>
+		</div>
+	</div>
+	</div><!--end band-wrap-->
+
+</div><!--end hero stage-->
+
+<div class="project-header-bar pattern-dots-sparse">
+	<h2 class="source-code-pro source-code-pro-light">Home: Featured Projects</h2>
+</div>
+
+<div class="flex-container-main">
+
+<!-- tnecd -->
+	<div class="flex-container-child-projects pattern-lines-up">
+		<section class="featured-project-card">
+			<div class="img-container">
+				<img id="tnecd" class="project-image" src="images/animate/tnecd_static.jpg" alt="tennessee economic and community development website redesign and campaign" width="1000" height="600">
+			</div>
+			<div class="card-label source-code-pro">Web Design ·&nbsp;Visual Design ·&nbsp;UX/UI</div>
+			<h3 class="margin-bottom headline-text-color source-code-pro"><strong>TNECD.com Site Redesign</strong></h3>
+			<p>Tennessee Economic and Community Development website redesign with a modernized visual system and clearer, more intuitive content architecture. <br><a href="https://tnecd.com" target="_blank" aria-label="Visit TNECD.com (opens in a new tab)" onclick="gtag('event', 'outbound_click', { destination: 'tnecd', from_page: window.location.pathname });">Visit TNECD.com<i class="fa-solid fa-square-arrow-up-right icon-after-text" aria-hidden="true"></i></a>
+</p>
+			<ul>
+				<li><strong class="gold-color-font">Tools:</strong> Figma, Photoshop, Illustrator</li>
+			</ul>
+				<a href="tnecd.html" class="btn" aria-label="Read Case Study: TNECD.com Site Redesign" onclick="gtag('event', 'project_click', { project: 'tnecd', from_page: window.location.pathname });">
+					<span class="btn-text">Read Case Study</span>
+					<span class="btn-arrow">
+					<span class="shaft"></span>
+					<span class="wing wing-left"></span>
+					<span class="wing wing-right"></span>
+					</span>
+				</a>
+		</section>
+	</div>
+
+<!-- pride -->
+	<div class="flex-container-child-projects pattern-dots-stagger">
+		<section class="featured-project-card">
+			<div class="img-container">
+				<img id="pride" class="project-image" src="images/animate/pride_static.jpg" alt="Pride365 app worldpride" width="500" height="300">
+			</div>
+			<div class="card-label source-code-pro">UX Strategy ·&nbsp;UI Design ·&nbsp;Web Design</div>
+			<h3 class="margin-bottom headline-text-color source-code-pro"><strong>Pride365 App Marketing</strong></h3>
+			<p>Unified navigation and CTA strategy across WorldPrideDC’s web ecosystem, resulting in a 30× increase in Pride365 app adoption.</p>
+			<ul>
+				<li><strong class="gold-color-font">Tools and Skills: </strong>Figma, Web Design, UX/UI Design, Research, Visual Design</li>
+			</ul>
+				<a href="pride.html" class="btn" aria-label="Read Case Study: Pride365 App Marketing" onclick="gtag('event', 'project_click', { project: 'pride', from_page: window.location.pathname });">
+					<span class="btn-text">Read Case Study</span>
+					<span class="btn-arrow">
+					<span class="shaft"></span>
+					<span class="wing wing-left"></span>
+					<span class="wing wing-right"></span>
+					</span>
+				</a>
+		</section>
+	</div>
+
+<!-- swisspost -->
+	<div class="flex-container-child-projects pattern-lines-down">
+		<section class="featured-project-card">
+			<div class="img-container">
+				<img id="swisspost" class="project-image" src="images/animate/swisspost_static.jpg" alt="Swiss Post AI Tool" width="500" height="300">
+			</div>
+			<div class="card-label source-code-pro">Product Design ·&nbsp;Visual Design ·&nbsp;UX/UI</div>
+			<h3 class="margin-bottom headline-text-color source-code-pro"><strong>Swiss Post AI Tool</strong></h3>
+			<p>Designing an AI‑powered interface that turns complex logistics data into clear, actionable workflows.</p>
+			<ul>
+				<li><strong class="gold-color-font">Tools:</strong> Figma, Photoshop, Illustrator</li>
+			</ul>
+				<a href="swisspost.html" class="btn" aria-label="Read Case Study: Swiss Post AI Tool" onclick="gtag('event', 'project_click', { project: 'swisspost', from_page: window.location.pathname });">
+					<span class="btn-text">Read Case Study</span>
+					<span class="btn-arrow">
+					<span class="shaft"></span>
+					<span class="wing wing-left"></span>
+					<span class="wing wing-right"></span>
+					</span>
+				</a>
+		</section>
+	</div>
+
+<!-- drom printed material -->
+	<div class="flex-container-child-projects pattern-dots-dense">
+		<section class="featured-project-card">
+			<div class="img-container">
+				<img id="drom" class="project-image" src="images/animate/drom_static.jpg" alt="Drom Peppercorns" width="500" height="300" loading="lazy">
+			</div>
+			<div class="card-label source-code-pro">Graphic Design ·&nbsp;Illustration ·&nbsp;Brand</div>
+			<h3 class="margin-bottom headline-text-color source-code-pro"><strong>DRØM Print and Marketing</strong></h3>
+			<p>Designed and produced a suite of print and digital brand assets for DRØM, preparing CMYK‑ready files and consistent visuals for campaigns and packaging.</p>
+			<ul>
+				<li><strong class="gold-color-font">Tools:</strong> Illustrator, Photoshop, Product Photography</li>
+			</ul>
+				<a href="print.html" class="btn" aria-label="View Print Samples: DRØM Print and Marketing" onclick="gtag('event', 'project_click', { project: 'print', from_page: window.location.pathname });">
+					<span class="btn-text">View Print Samples</span>
+					<span class="btn-arrow">
+					<span class="shaft"></span>
+					<span class="wing wing-left"></span>
+					<span class="wing wing-right"></span>
+					</span>
+				</a>
+		</section>
+	</div>
+
+<!-- 45th -->
+	<div class="flex-container-child-projects pattern-dots-sparse">
+		<img class="corner-tear" src="images/pattern/cornerTear.png" alt="">
+		<section class="featured-project-card">
+			<div class="img-container">
+				<img id="45th" class="project-image" src="images/animate/45th_static.jpg" alt="45th Parallel Wines" width="500" height="300" loading="lazy">
+			</div>
+			<div class="card-label source-code-pro">Web ·&nbsp;Brand ·&nbsp;Visual Design</div>
+			<h3 class="margin-bottom headline-text-color source-code-pro"><strong>45th Parallel Wines</strong></h3>
+			<p>Created a bespoke, place‑rooted brand and illustration system that transformed a simple template into a distinctive digital storefront for a St. Johns wine shop.</p>
+			<ul>
+				<li><strong class="gold-color-font">Tools:</strong> HTML, CSS, Photoshop, Illustrator, Squarespace</li>
+			</ul>
+			<a href="45.html" class="btn" aria-label="View Design Process: 45th Parallel Wines" onclick="gtag('event', 'project_click', { project: '45th_parallel_wines', from_page: window.location.pathname });">
+			  <span class="btn-text">View Design Process</span>
+			  <span class="btn-arrow">
+			    <span class="shaft"></span>
+			    <span class="wing wing-left"></span>
+			    <span class="wing wing-right"></span>
+			  </span>
+			</a>
+		</section>
+	</div>
+
+<!-- ads -->
+	<div class="flex-container-child-projects pattern-dots-stagger">
+		<section class="featured-project-card">
+			<div class="img-container">
+				<img id="ads" class="project-image" src="images/animate/ads_static.jpg" alt="Web Ads" width="1000" height="600" loading="lazy">
+			</div>
+			<div class="card-label source-code-pro">Visual Design ·&nbsp;Illustration ·&nbsp;Animation</div>
+			<h3 class="margin-bottom headline-text-color source-code-pro"><strong>Digital Ads and GIFs</strong></h3>
+			<p>Designed static and animated assets for multi‑channel campaigns, adapting visuals across social, email, and web while maintaining a cohesive brand voice.</p>
+		<ul>
+			<li><strong class="gold-color-font">Tools:</strong> Photoshop, Illustrator, After Effects</li>
+		</ul>
+				<a href="ads.html" class="btn" aria-label="View Ads and GIFs: Digital Ads and GIFs" onclick="gtag('event', 'project_click', { project: 'ads', from_page: window.location.pathname });">
+					<span class="btn-text">View Ads and GIFs</span>
+					<span class="btn-arrow">
+					<span class="shaft"></span>
+					<span class="wing wing-left"></span>
+					<span class="wing wing-right"></span>
+					</span>
+				</a>
+		</section>
+	</div>
+
+</div><!--end main flex container-->
+
+</main>
+
+<footer class="pattern-dots-dense">
+	<p>Find me in:</p><br>
+	<p class="footer"><a href="https://github.com/LarsGittenberg" onclick="gtag('event', 'footer_click', { destination: 'github', from_page: window.location.pathname });"><i class="fa-brands fa-github" aria-hidden="true"></i> GitHub</a></p>
+	<br>
+	<p class="footer"><a href="https://www.linkedin.com/in/lawrence-getubig" onclick="gtag('event', 'footer_click', { destination: 'linkedin', from_page: window.location.pathname });"><i class="fa-brands fa-linkedin" aria-hidden="true"></i> LinkedIn</a></p> 
+	<br>
+	<p class="footer"><a href="https://www.instagram.com/ljgetubig/" onclick="gtag('event', 'footer_click', { destination: 'instagram', from_page: window.location.pathname });"><i class="fa-brands fa-instagram" aria-hidden="true"></i> Instagram</a></p>
+	<br>
+	<p class="copyright"><small>Copyright Lawrence Getubig 2026</small></p>
+	<!--  want to change the copyright date for all html files? use: perl -pi -w -e 's/Getubig\ 2018/Getubig\ 2019/g;' *.html -->
+</footer>
+
+<script>
+//waypoint
+var waypoint = new Waypoint({
+  element: document.getElementById('waypointSignal'),//cannot use jquery $('#waypointSignal')
+  handler: function() {
+  	//do something
+    console.log('waypoint active')
+    $('.menu-signal').addClass('signal');
+  }
+})
+</script>
+
+<!--colorful Mode Switch--Toggles the class--Saves the preference--Updates the UI instantly-->
+<script>
+document.querySelector('#styleToggle .toggle-button').addEventListener('click', function() {
+  const root = document.documentElement;
+  const labelColorful = document.getElementById('labelColorful');
+  const labelToned = document.getElementById('labelToned');
+
+  if (root.classList.contains('toned-down')) {
+    // Switch to COLORFUL mode
+    root.classList.remove('toned-down');
+    root.classList.add('colorful');
+    localStorage.setItem('styleMode', 'colorful');
+
+    labelColorful.innerHTML = "Colorful<br>Retro<br>Mode: On";
+    labelToned.innerHTML = "Toned<br>Down<br>Mode: Off";
+
+    // ⭐ GA4 EVENT
+    gtag('event', 'theme_toggle', {
+      mode: 'colorful', from_page: window.location.pathname
+    });
+
+  } else {
+    // Switch to TONED-DOWN mode
+    root.classList.remove('colorful');
+    root.classList.add('toned-down');
+    localStorage.setItem('styleMode', 'toned-down');
+
+    labelColorful.innerHTML = "Colorful<br>Retro<br>Mode: Off";
+    labelToned.innerHTML = "Toned<br>Down<br>Mode: On";
+
+    // ⭐ GA4 EVENT
+    gtag('event', 'theme_toggle', {
+      mode: 'toned_down', from_page: window.location.pathname
+    });
+  }
+});
+</script>
+
+
+<!-- script for site's UI functionality -->
+<!-- Tagline scramble: letters only. Spaces and line breaks never change, so nothing can re-wrap or jump -->
+<script>
+document.addEventListener("DOMContentLoaded", function() {
+  var lines = Array.prototype.slice.call(document.querySelectorAll("#tagline .tl"));
+  var finals = lines.map(function(l) { return l.textContent; });
+  if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) { return; }
+  var pool = "ABCDEFGHIJKLMNOPQRSTUVWXYZ!@#$%&*,.-";
+  var total = finals.join("").replace(/ /g, "").length; // letters only
+  var revealed = 0;
+  var timer = setInterval(function() {
+    var seen = 0;
+    lines.forEach(function(el, n) {
+      var out = "";
+      for (var i = 0; i < finals[n].length; i++) {
+        var ch = finals[n][i];
+        if (ch === " ") { out += " "; continue; }
+        out += (seen < revealed) ? ch : pool[Math.floor(Math.random() * pool.length)];
+        seen++;
+      }
+      el.textContent = out;
+    });
+    revealed++;
+    if (revealed > total) {
+      clearInterval(timer);
+      lines.forEach(function(el, n) { el.textContent = finals[n]; });
+    }
+  }, 110);
+});
+</script>
+
+<script src="js/design.js"></script>
+<script src="js/cookie_2.js"></script>
+
+
+</body>
+</html>
+
