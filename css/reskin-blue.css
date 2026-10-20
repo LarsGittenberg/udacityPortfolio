@@ -414,10 +414,16 @@ section.featured-project-card h3 {
 	color: inherit;
 }
 section.featured-project-card p { max-width: 46ch; font-size: 0.95rem; line-height: 1.6; }
-section.featured-project-card p a { font-weight: 600; text-underline-offset: 0.25em; }
+section.featured-project-card p a { font-weight: 600; text-decoration-color: var(--mark); text-decoration-thickness: 3px; text-underline-offset: 0.25em; } /* the underline is for real links only, and wears the card's accent colour */
 section.featured-project-card ul { margin: 16px 0 24px; list-style: none; font-family: var(--font-mono); font-size: 0.8rem; line-height: 1.5; }
 section.featured-project-card li strong { font-weight: 400; letter-spacing: 0.08em; text-transform: uppercase; }
-.gold-color-font { color: inherit; text-decoration: underline; text-decoration-thickness: 2px; }
+.gold-color-font { color: inherit; text-decoration: none; } /* the "Tools:" label is not a link, so no underline; a small accent square marks it instead */
+.gold-color-font::before { content: "\25A0\00a0"; color: var(--mark); }
+/* the accent colour: magenta by default, but magenta vanishes on teal (1.1:1) and fades on blue and purple, so those three cards use gold */
+section.featured-project-card { --mark: var(--magenta); }
+.flex-container-child-projects:nth-child(6n+3) section.featured-project-card,
+.flex-container-child-projects:nth-child(6n+4) section.featured-project-card,
+.flex-container-child-projects:nth-child(6n+5) section.featured-project-card { --mark: var(--gold); }
 
 /* the button becomes a stamp. Its arrow bloom (copied below) still works on hover */
 .btn {
