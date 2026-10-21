@@ -12,18 +12,6 @@
     gtag('config', 'G-2QV625FZN6');
   </script>
 
-  <!-- Load saved toggle mode preference BEFORE CSS loads -->
-  <script>
-		(function() {
-		  const saved = localStorage.getItem('styleMode');
-		  if (saved === 'toned-down') {
-		    document.documentElement.classList.add('toned-down');
-		  } else {
-		    document.documentElement.classList.add('colorful');
-		  }
-		})();
-  </script>
-
   <title>Web Design: Front-End | Lawrence Getubig</title>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -58,25 +46,6 @@
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
   <script src="js/noframework.waypoints.min.js"></script>
 
-	<!-- Update toggle labels AFTER DOM is ready -->
-	<script>
-	  document.addEventListener("DOMContentLoaded", function() {
-	    const saved = localStorage.getItem('styleMode');
-	    const labelColorful = document.getElementById('labelColorful');
-	    const labelToned = document.getElementById('labelToned');
-
-	    if (saved === 'toned-down') {
-	      // User previously chose TONED-DOWN mode
-	      labelColorful.innerHTML = "Colorful<br>Retro<br>Mode: Off";
-	      labelToned.innerHTML = "Toned<br>Down<br>Mode: On";
-	    } else {
-	      // Default or saved COLORFUL mode
-	      labelColorful.innerHTML = "Colorful<br>Retro<br>Mode: On";
-	      labelToned.innerHTML = "Toned<br>Down<br>Mode: Off";
-	    }
-	  });
-	</script>
-
 </head>
 
 <body class="card-page">
@@ -95,14 +64,6 @@
 			<a href="graphicdesign-test.html" onclick="gtag('event', 'nav_click', { nav_item: 'graphic_design', from_page: window.location.pathname });"> Graphic Design </a>
 			<a href="photography-test.html" onclick="gtag('event', 'nav_click', { nav_item: 'photography', from_page: window.location.pathname });"> Photography </a>
 			<a href="about-test.html" onclick="gtag('event', 'nav_click', { nav_item: 'about', from_page: window.location.pathname });"> About </a>
-			<p class="overlay-title">Settings</p>
-			<div class="style-toggle" id="styleToggle">
-				<span class="label-colorful" id="labelColorful">Colorful<br>Retro<br>Mode: On</span>
-				<button class="toggle-button" aria-label="Toggle style mode">
-				  <span class="toggle-knob"></span>
-				</button>
-				<span class="label-toned" id="labelToned">Toned<br>Down<br>Mode: Off</span>
-			</div>
 		</div>
 	</div><!--end my nav-->
 
@@ -369,44 +330,6 @@
 	<p class="copyright"><small>Copyright Lawrence Getubig 2026</small></p>
 	<!--  want to change the copyright date for all html files? use: perl -pi -w -e 's/Getubig\ 2018/Getubig\ 2019/g;' *.html -->
 </footer>
-
-<!--colorful Mode Switch--Toggles the class--Saves the preference--Updates the UI instantly-->
-<script>
-document.querySelector('#styleToggle .toggle-button').addEventListener('click', function() {
-  const root = document.documentElement;
-  const labelColorful = document.getElementById('labelColorful');
-  const labelToned = document.getElementById('labelToned');
-
-  if (root.classList.contains('toned-down')) {
-    // Switch to COLORFUL mode
-    root.classList.remove('toned-down');
-    root.classList.add('colorful');
-    localStorage.setItem('styleMode', 'colorful');
-
-    labelColorful.innerHTML = "Colorful<br>Retro<br>Mode: On";
-    labelToned.innerHTML = "Toned<br>Down<br>Mode: Off";
-
-    // ⭐ GA4 EVENT
-    gtag('event', 'theme_toggle', {
-      mode: 'colorful', from_page: window.location.pathname
-    });
-
-  } else {
-    // Switch to TONED-DOWN mode
-    root.classList.remove('colorful');
-    root.classList.add('toned-down');
-    localStorage.setItem('styleMode', 'toned-down');
-
-    labelColorful.innerHTML = "Colorful<br>Retro<br>Mode: Off";
-    labelToned.innerHTML = "Toned<br>Down<br>Mode: On";
-
-    // ⭐ GA4 EVENT
-    gtag('event', 'theme_toggle', {
-      mode: 'toned_down', from_page: window.location.pathname
-    });
-  }
-});
-</script>
 
 <script src="js/design.js"></script>
 

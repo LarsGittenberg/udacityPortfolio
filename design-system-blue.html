@@ -1,6 +1,6 @@
 <!doctype html>
 
-<html lang="en" class="colorful">
+<html lang="en">
 <head>
   <title>Design System: Blue Skin | Lawrence Getubig</title>
   <meta charset="UTF-8">
@@ -40,7 +40,6 @@
   .ds-pass { display: inline-block; margin-right: 4px; padding: 0 6px; background: var(--mint); color: var(--ink); font-size: var(--fs-xs); }
   .ds-fail { background: var(--gold); }
   .ds-poor { background: var(--orange); }
-  .ds-legacy { opacity: .75; }
 
   .ds-table { width: 100%; border-collapse: collapse; margin: 14px 0 0; font-family: var(--font-mono); font-size: var(--fs-s); }
   .ds-table th, .ds-table td { padding: 8px 10px; border: 1px solid #ffffff40; text-align: left; vertical-align: top; }
@@ -99,9 +98,6 @@
   <h2 id="colour">01 &middot; Colour</h2>
   <p class="note">Each swatch is the token's real computed colour. The two contrast readings use the WCAG formula: <span class="ds-pass">AA</span> reaches 4.5:1 (comfortable for body text), <span class="ds-pass ds-fail">large</span> reaches 3:1 (big headings only), <span class="ds-pass ds-poor">weak</span> is below 3:1.</p>
   <div class="ds-grid" id="dsColours"></div>
-
-  <h3>Legacy colour names (retire with the old toggle switch)</h3>
-  <div class="ds-grid ds-legacy" id="dsColoursLegacy"></div>
 
   <!-- ===================================================== TYPE -->
   <h2 id="type">02 &middot; Type</h2>
@@ -192,8 +188,6 @@
     <tr><td>Cut-corner radius <code>70px</code></td><td>8 uses as a raw value</td><td>Token <code>--cut</code></td></tr>
     <tr><td>Floating shapes (<code>ab-float</code> drift)</td><td>about-test.html</td><td>Utility class + keyframes</td></tr>
     <tr><td>Hero text-shadow <code>5px 5px 0</code></td><td>reskin-blue.css (the same hard-shadow idea, on text)</td><td>Fold into the shadow tokens</td></tr>
-    <tr><td>Colour toggle script</td><td>about 2KB pasted in all 5 pages</td><td>Move to one file, or delete with the legacy toggle</td></tr>
-    <tr><td>Legacy toggle switch block + 5 old variables</td><td>reskin-blue.css (<code>#styleToggle</code>)</td><td>Prune</td></tr>
   </table></div>
 
   <!-- ===================================================== HOUSE RULES -->
@@ -215,6 +209,7 @@
     <tr><td>wave1-text-link</td><td>c078a08</td><td><code>.text-link</code> component, yellow highlight, circle menu, darker teal</td><td><code>git revert c078a08</code></td></tr>
     <tr><td>wave2-tokens</td><td>59c40d0</td><td>Shadow-size and motion tokens</td><td><code>git revert 59c40d0</code></td></tr>
     <tr><td>wave3-type-scale</td><td>62b751f</td><td>Small-text scale, page-title tokens</td><td><code>git revert 62b751f</code></td></tr>
+    <tr><td>(prune, see below)</td><td>&mdash;</td><td>Removed the do-nothing Colorful/Toned-Down toggle (menu markup, 3 pasted scripts on 8 pages, 1.3KB of CSS, <code>.overlay-title</code>, 5 legacy variables), plus the unused <code>.start-right</code> and <code>.text-center</code> rules. The 14 experiment files were archived on the <code>experiments-archive</code> branch.</td><td>see the commit</td></tr>
     <tr><td>pre-cleanup</td><td>(older)</td><td>Last commit with the old draft pages</td><td>checkout the tag to look</td></tr>
   </table></div>
 
@@ -253,13 +248,11 @@
     ['--night', 'Dark page ground'],
     ['--night-deep', 'Darkest ground: footer, page backdrop']
   ];
-  var LEGACY = [['--white', 'Old toggle switch only'], ['--cyan-dark', 'Old toggle switch only']];
   var FONTS = ['--font-display', '--font-body', '--font-mono'];
   var SCALE = [['--fs-xs', 'tags, captions, the footer lead-in'], ['--fs-s', 'button text, tool lists, small notes'], ['--fs-m', 'header line, title descriptor, copyright'], ['--fs-l', 'paragraphs, kickers'], ['--fs-base', 'the page base text']];
   var TITLES = [['--fs-title', 'page title at 900px and wider'], ['--fs-title-sm', 'page title below 900px']];
   var SHADOWS = [['--shadow-s', 'pancake, buttons at rest'], ['--shadow-m', 'buttons on hover'], ['--shadow-l', 'cards at rest, about panels'], ['--shadow-xl', 'cards on hover, the intro panel']];
   var MOTION = [['--t-quick', 'colour fades, buttons, menu links', 'ease'], ['--t-base', 'cards, images, shapes, the link swoop', 'var(--ease-soft)'], ['--t-slow', 'the full-screen menu circle', 'var(--ease-swoop)']];
-  var LEGACY_OTHER = ['--radius-md', '--body-text-14', '--weight-semibold'];
 
   var ink = rgbOf('--ink'), cream = rgbOf('--cream-text');
   function chip(t, role, legacy) {
@@ -269,8 +262,6 @@
       '<span class="role">' + role + '</span></div></div>';
   }
   $('dsColours').innerHTML = COLOURS.map(function (c) { return chip(c[0], c[1]); }).join('');
-  $('dsColoursLegacy').innerHTML = LEGACY.map(function (c) { return chip(c[0], c[1]); }).join('') +
-    LEGACY_OTHER.map(function (t) { return '<div class="ds-chip"><div class="tx"><b>' + t + '</b>' + tok(t) + '<span class="role">Old toggle switch only</span></div></div>'; }).join('');
 
   FONTS.forEach(function (t) { document.querySelector('[data-font="' + t + '"]').textContent = tok(t).split(',')[0].replace(/"/g, ''); });
 
@@ -326,8 +317,8 @@
 
   /* ---- drift detector: compare every custom property the stylesheets declare with the lists above ---- */
   var documented = {};
-  [COLOURS, LEGACY, SCALE, TITLES, SHADOWS, MOTION].forEach(function (L) { L.forEach(function (x) { documented[x[0]] = 1; }); });
-  FONTS.concat(LEGACY_OTHER, ['--ease-soft', '--ease-swoop']).forEach(function (n) { documented[n] = 1; });
+  [COLOURS, SCALE, TITLES, SHADOWS, MOTION].forEach(function (L) { L.forEach(function (x) { documented[x[0]] = 1; }); });
+  FONTS.concat(['--ease-soft', '--ease-swoop']).forEach(function (n) { documented[n] = 1; });
   /* working variables the components set for themselves; they are plumbing, not design tokens */
   var PLUMBING = /^--(u|h2-scale|pad|gap|nudge|card-bg|card-ink|tilt|img-scale|mark|link-hover|lg-size|i|fade-[\w-]+|stagger|band-[\w-]+|size|tag-[\w-]+|slab-[\w-]+|shape-scale|qm-[\w-]+|s[123]|c|shadow-night|slab-lift)$/;
   var status = $('dsStatus'), found = {}, readable = 0, blocked = 0;
