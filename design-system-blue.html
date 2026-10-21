@@ -1,0 +1,360 @@
+<!doctype html>
+
+<html lang="en" class="colorful">
+<head>
+  <title>Design System: Blue Skin | Lawrence Getubig</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="robots" content="noindex, nofollow"> <!-- internal page for the captain and the first officer: not for search engines, not in the menu -->
+  <meta name="description" content="Internal guide to the blue skin's atoms and components. Values are read live from the stylesheet.">
+
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml">
+  <link rel="icon" href="/favicon.png" sizes="32x32">
+
+  <!-- the real stylesheets: the guide shows what they actually say, so it cannot drift from the site -->
+  <link rel="stylesheet" href="css/reskin-blue.css">
+  <link rel="stylesheet" href="css/card-pages.css">
+
+  <style>
+  /* the guide's own furniture (prefix ds-). Everything INSIDE a specimen uses the real site classes. */
+  .ds { display: block; max-width: 1180px; margin: 0 auto; padding: 32px var(--pad) 120px; } /* display: block undoes the site's two-column grid on <main>, which this page does not use */
+  .ds h1 { margin: 0 0 8px; font-family: var(--font-display); font-weight: 900; font-size: clamp(2.4rem, 7vw, 5rem); line-height: .9; letter-spacing: -0.02em; text-transform: uppercase; }
+  .ds h2 { margin: 72px 0 8px; padding-top: 18px; border-top: 3px solid var(--paper); font-family: var(--font-mono); font-weight: 400; font-size: var(--fs-l); letter-spacing: .22em; text-transform: uppercase; color: var(--amber); }
+  .ds h3 { margin: 28px 0 8px; font-family: var(--font-body); font-weight: 600; font-size: 1.15rem; }
+  .ds p, .ds li { max-width: 72ch; }
+  .ds .note { color: var(--paper); opacity: .85; font-size: var(--fs-l); }
+  .ds code, .ds .mono { font-family: var(--font-mono); font-size: .92em; }
+  .ds code { padding: 1px 6px; background: #ffffff1a; }
+  .ds-toc { display: flex; flex-wrap: wrap; gap: 8px; margin: 20px 0 0; padding: 0; list-style: none; font-family: var(--font-mono); font-size: var(--fs-s); letter-spacing: .1em; text-transform: uppercase; }
+  .ds-toc a { display: block; padding: 6px 12px; border: 2px solid var(--paper); color: var(--paper); text-decoration: none; }
+  .ds-toc a:hover { background: var(--paper); color: var(--ink); }
+  .ds-status { margin: 22px 0 0; padding: 10px 14px; border-left: 6px solid var(--mint); background: #ffffff12; font-family: var(--font-mono); font-size: var(--fs-s); }
+  .ds-status.warn { border-color: var(--gold); }
+
+  .ds-grid { display: grid; gap: 14px; grid-template-columns: repeat(auto-fill, minmax(230px, 1fr)); margin: 16px 0 0; }
+  .ds-chip { background: #ffffff12; border: 2px solid #ffffff40; }
+  .ds-chip .sw { height: 84px; border-bottom: 2px solid #ffffff40; }
+  .ds-chip .tx { padding: 10px 12px; font-family: var(--font-mono); font-size: var(--fs-s); line-height: 1.5; }
+  .ds-chip .tx b { display: block; font-size: var(--fs-m); }
+  .ds-chip .role { display: block; margin-top: 4px; font-family: var(--font-body); font-size: var(--fs-s); opacity: .85; }
+  .ds-pass { display: inline-block; margin-right: 4px; padding: 0 6px; background: var(--mint); color: var(--ink); font-size: var(--fs-xs); }
+  .ds-fail { background: var(--gold); }
+  .ds-poor { background: var(--orange); }
+  .ds-legacy { opacity: .75; }
+
+  .ds-table { width: 100%; border-collapse: collapse; margin: 14px 0 0; font-family: var(--font-mono); font-size: var(--fs-s); }
+  .ds-table th, .ds-table td { padding: 8px 10px; border: 1px solid #ffffff40; text-align: left; vertical-align: top; }
+  .ds-table th { background: #ffffff1f; letter-spacing: .08em; text-transform: uppercase; font-weight: 400; }
+  .ds-scroll { overflow-x: auto; }
+  .ds-spec { display: flex; align-items: baseline; flex-wrap: wrap; gap: 6px 18px; padding: 10px 0; border-bottom: 1px solid #ffffff30; }
+  .ds-spec .nm { flex: 0 0 150px; font-family: var(--font-mono); font-size: var(--fs-s); color: var(--amber); }
+  .ds-spec .px { flex: 0 0 90px; font-family: var(--font-mono); font-size: var(--fs-s); opacity: .8; }
+
+  .ds-shadows, .ds-motion { display: flex; flex-wrap: wrap; gap: 36px 40px; margin: 22px 0 0; }
+  .ds-box { width: 150px; height: 90px; padding: 10px; background: var(--paper); color: var(--ink); font-family: var(--font-mono); font-size: var(--fs-s); }
+  .ds-slide { position: relative; width: 240px; height: 54px; background: #ffffff1a; border: 2px solid #ffffff40; font-family: var(--font-mono); font-size: var(--fs-s); }
+  .ds-slide i { position: absolute; left: 4px; top: 4px; width: 42px; height: 42px; background: var(--amber); border-radius: 50%; }
+  .ds-slide:hover i { transform: translateX(186px); }
+  .ds-slide span { position: absolute; right: 8px; bottom: 2px; }
+
+  .ds-shapes { display: flex; flex-wrap: wrap; gap: 28px; margin: 22px 0 0; align-items: flex-end; }
+  .ds-shape { width: 110px; height: 110px; }
+  .ds-shape-label { margin-top: 8px; font-family: var(--font-mono); font-size: var(--fs-xs); text-align: center; }
+
+  .ds-ground { padding: 18px 20px; font-size: var(--fs-l); line-height: 1.6; }
+  .ds-grounds { display: grid; gap: 14px; grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)); margin: 16px 0 0; }
+  .ds-cap { display: block; margin-top: 8px; font-family: var(--font-mono); font-size: var(--fs-xs); letter-spacing: .06em; }
+  .ds-cards .flex-container-main { padding-top: 40px; }
+  .ds-ref a { color: var(--gold); }
+  </style>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Doto:wght@100..900&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css?family=Montserrat:400,600|Source+Code+Pro:300,400" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg==" crossorigin="anonymous" referrerpolicy="no-referrer">
+</head>
+
+<body>
+<main class="ds">
+
+  <h1>Design System</h1>
+  <p class="note">The blue skin's atoms and components, for the captain and the first officer. Every value on this page is <b>read live from the stylesheet</b>, so if the CSS changes, this page changes with it. It is not linked from the site menu.</p>
+
+  <ul class="ds-toc">
+    <li><a href="#colour">Colour</a></li>
+    <li><a href="#type">Type</a></li>
+    <li><a href="#shadows">Shadows</a></li>
+    <li><a href="#motion">Motion</a></li>
+    <li><a href="#shapes">Shapes</a></li>
+    <li><a href="#components">Components</a></li>
+    <li><a href="#pieces">Page pieces</a></li>
+    <li><a href="#promote">Not yet in the system</a></li>
+    <li><a href="#rules">House rules</a></li>
+    <li><a href="#history">History</a></li>
+  </ul>
+  <div class="ds-status" id="dsStatus">Reading the stylesheet&hellip;</div>
+
+  <!-- ===================================================== COLOUR -->
+  <h2 id="colour">01 &middot; Colour</h2>
+  <p class="note">Each swatch is the token's real computed colour. The two contrast readings use the WCAG formula: <span class="ds-pass">AA</span> reaches 4.5:1 (comfortable for body text), <span class="ds-pass ds-fail">large</span> reaches 3:1 (big headings only), <span class="ds-pass ds-poor">weak</span> is below 3:1.</p>
+  <div class="ds-grid" id="dsColours"></div>
+
+  <h3>Legacy colour names (retire with the old toggle switch)</h3>
+  <div class="ds-grid ds-legacy" id="dsColoursLegacy"></div>
+
+  <!-- ===================================================== TYPE -->
+  <h2 id="type">02 &middot; Type</h2>
+  <h3>Families</h3>
+  <div class="ds-spec"><span class="nm">--font-display</span><span class="px" data-font="--font-display"></span><span style="font-family:var(--font-display);font-weight:900;font-size:2.4rem;line-height:1">DOTO · HERO, TITLES, SHAPE LABELS</span></div>
+  <div class="ds-spec"><span class="nm">--font-body</span><span class="px" data-font="--font-body"></span><span style="font-family:var(--font-body);font-weight:600;font-size:1.5rem">Montserrat: paragraphs, card headings</span></div>
+  <div class="ds-spec"><span class="nm">--font-mono</span><span class="px" data-font="--font-mono"></span><span style="font-family:var(--font-mono);font-size:1.2rem;letter-spacing:.12em;text-transform:uppercase">Source Code Pro: labels, kickers, tags</span></div>
+
+  <h3>Small-text scale (fixed sizes)</h3>
+  <div id="dsTypeScale"></div>
+  <h3>Page-title sizes (fluid: they follow the window width)</h3>
+  <p class="note">These two are measured at <b id="dsWidth">this window</b>. Resize the window and reload to watch them move.</p>
+  <div id="dsTypeTitle"></div>
+
+  <!-- ===================================================== SHADOWS -->
+  <h2 id="shadows">03 &middot; Hard shadows</h2>
+  <p class="note">The token is the <b>size</b> only (the shadow falls right and down by that much). The colour is chosen where it is used: <code>box-shadow: var(--shadow-l) var(--shadow-l) 0 var(--ink);</code></p>
+  <div class="ds-shadows" id="dsShadows"></div>
+
+  <!-- ===================================================== MOTION -->
+  <h2 id="motion">04 &middot; Motion</h2>
+  <p class="note">Hover a track to feel it. Each ball travels the same distance; only the token changes. The hero entrance, the arrow button and the old toggle switch have their own timings on purpose.</p>
+  <div class="ds-motion" id="dsMotion"></div>
+
+  <!-- ===================================================== SHAPES -->
+  <h2 id="shapes">05 &middot; Shapes</h2>
+  <p class="note">The vocabulary the whole site is cut from. Radii are not tokens yet (see "Not yet in the system").</p>
+  <div class="ds-shapes">
+    <div><div class="ds-shape" style="background:var(--amber);border-radius:50%"></div><div class="ds-shape-label">circle<br>border-radius: 50%</div></div>
+    <div><div class="ds-shape" style="background:var(--magenta);clip-path:polygon(0 100%,100% 100%,0 0)"></div><div class="ds-shape-label">triangle<br>clip-path</div></div>
+    <div><div class="ds-shape" style="background:var(--orange);height:55px;border-radius:999px 999px 0 0;width:110px"></div><div class="ds-shape-label">half-pill<br>999px 999px 0 0</div></div>
+    <div><div class="ds-shape" style="background:var(--mint);clip-path:polygon(50% 0,100% 50%,50% 100%,0 50%)"></div><div class="ds-shape-label">diamond<br>clip-path</div></div>
+    <div><div class="ds-shape" style="background:var(--paper);border-radius:0 70px 0 0"></div><div class="ds-shape-label">cut corner (top right)<br>0 70px 0 0</div></div>
+    <div><div class="ds-shape" style="background:var(--paper);border-radius:70px 0 0 0"></div><div class="ds-shape-label">cut corner (top left)<br>70px 0 0 0</div></div>
+  </div>
+
+  <!-- ===================================================== COMPONENTS -->
+  <h2 id="components">06 &middot; Components</h2>
+
+  <h3>Text link: <code>.text-link</code></h3>
+  <p class="note">Put the class on any text link. Magenta underline; an icon chosen from the address; on hover a yellow highlight swoops in from the left and the text turns ink. The caption under each ground reads the live contrast of the magenta underline against it.</p>
+  <div class="ds-grounds" id="dsLinkGrounds">
+    <div><div class="ds-ground" style="background:var(--amber);color:var(--ink)" data-ground="--amber"><p style="margin:0">View project specs on <a class="text-link" href="https://github.com/LarsGittenberg">GitHub</a></p></div><span class="ds-cap">ink on amber</span></div>
+    <div><div class="ds-ground" style="background:var(--mint);color:var(--ink)" data-ground="--mint"><p style="margin:0">Say hello at <a class="text-link" href="mailto:hello@example.com">email</a></p></div><span class="ds-cap">ink on mint</span></div>
+    <div><div class="ds-ground" style="background:var(--teal);color:var(--cream-text)" data-ground="--teal"><p style="margin:0">Back to the <a class="text-link" href="index-test.html">home page</a></p></div><span class="ds-cap">cream on teal</span></div>
+    <div><div class="ds-ground" style="background:var(--blue);color:var(--cream-text)" data-ground="--blue"><p style="margin:0">Find me on <a class="text-link" href="https://www.linkedin.com/in/lawrence-getubig">LinkedIn</a></p></div><span class="ds-cap">cream on blue</span></div>
+    <div><div class="ds-ground" style="background:var(--night-deep);color:var(--paper)" data-ground="--night-deep"><p style="margin:0">Photos on <a class="text-link" href="https://www.instagram.com/ljgetubig/">Instagram</a></p></div><span class="ds-cap">cream on night (the footer ground)</span></div>
+  </div>
+
+  <h3>Button: <code>.btn</code></h3>
+  <p class="note">Hard shadow grows on hover; the arrow draws itself. Its colours come from the card it sits in (see the cards below); this is the default.</p>
+  <div class="ds-ground" style="background:var(--night)">
+    <a href="#components" class="btn" onclick="return false"><span class="btn-text">View Case Study</span><span class="btn-arrow"><span class="shaft"></span><span class="wing wing-left"></span><span class="wing wing-right"></span></span></a>
+  </div>
+
+  <h3>Card tag: <code>.card-label</code>, and the Tools marker: <code>.gold-color-font</code></h3>
+  <div class="ds-ground" style="background:var(--teal);color:var(--cream-text)">
+    <div class="card-label source-code-pro">JavaScript Coding ·&nbsp;UI Design</div>
+    <ul style="margin:0;list-style:none;padding:0;font-family:var(--font-mono);font-size:var(--fs-s)"><li><strong class="gold-color-font" style="--mark:var(--gold)">Tools:</strong> Figma, HTML5, CSS3</li></ul>
+  </div>
+
+  <h3>Project card: <code>section.featured-project-card</code>, and its colour cycle</h3>
+  <p class="note">Colour, ink, tilt and corner come from the card's position (<code>:nth-child(6n+N)</code>), so six cards show the whole cycle. The pill, dome and cut corners are real. Positions use the live page grid, so resize to see it stack.</p>
+  <div class="ds-cards">
+    <div class="flex-container-main" id="dsCards"></div>
+  </div>
+
+  <!-- ===================================================== PAGE PIECES -->
+  <h2 id="pieces">07 &middot; Page pieces (see them live)</h2>
+  <p class="note">These need the whole page around them (fixed positions, scripts), so they are listed with where to see them, not rebuilt here.</p>
+  <div class="ds-scroll"><table class="ds-table ds-ref">
+    <tr><th>Piece</th><th>Lives in</th><th>See it on</th></tr>
+    <tr><td>Header: name + tagline</td><td>reskin-blue.css <code>.header-container</code>; card-pages.css</td><td><a href="webdesign-test.html">webdesign-test.html</a></td></tr>
+    <tr><td>Sliding band</td><td>card-pages.css <code>.band</code>, <code>.band-track</code> (colours set per page)</td><td><a href="graphicdesign-test.html">graphicdesign-test.html</a></td></tr>
+    <tr><td>Title pillar (page name)</td><td>card-pages.css <code>.project-header-bar h2</code>, <code>--fs-title</code></td><td><a href="photography-test.html">photography-test.html</a></td></tr>
+    <tr><td>Pancake + circle menu</td><td>reskin-blue.css <code>.menu-icon-container</code>, <code>#myNav</code>; js/design.js</td><td>every test page</td></tr>
+    <tr><td>Footer</td><td>reskin-blue.css <code>footer</code>, <code>footer p.footer</code></td><td>bottom of any test page</td></tr>
+    <tr><td>Hero</td><td>reskin-blue.css hero rules; index-test.html inline</td><td><a href="index-test.html">index-test.html</a></td></tr>
+  </table></div>
+
+  <!-- ===================================================== NOT YET IN THE SYSTEM -->
+  <h2 id="promote">08 &middot; Not yet in the system</h2>
+  <p class="note">Patterns that exist but live inside one page's inline CSS, or repeat as raw values. These are the candidates for promotion into the shared stylesheet (found in the audit of 2026-10-21).</p>
+  <div class="ds-scroll"><table class="ds-table">
+    <tr><th>Pattern</th><th>Where it lives now</th><th>Idea</th></tr>
+    <tr><td>Kicker (<code>.ab-kicker</code>): square marker + tracked mono caps</td><td>about-test.html (3 uses)</td><td>Promote as <code>.kicker</code></td></tr>
+    <tr><td>Panel: cut corner + hard shadow + slight tilt</td><td>about-test.html (<code>.ab-intro</code>, <code>.ab-number</code>, <code>.ab-note</code>); the cards do the same in reskin-blue.css</td><td>One <code>.panel</code> recipe</td></tr>
+    <tr><td>Cut-corner radius <code>70px</code></td><td>8 uses as a raw value</td><td>Token <code>--cut</code></td></tr>
+    <tr><td>Floating shapes (<code>ab-float</code> drift)</td><td>about-test.html</td><td>Utility class + keyframes</td></tr>
+    <tr><td>Hero text-shadow <code>5px 5px 0</code></td><td>reskin-blue.css (the same hard-shadow idea, on text)</td><td>Fold into the shadow tokens</td></tr>
+    <tr><td>Colour toggle script</td><td>about 2KB pasted in all 5 pages</td><td>Move to one file, or delete with the legacy toggle</td></tr>
+    <tr><td>Legacy toggle switch block + 5 old variables</td><td>reskin-blue.css (<code>#styleToggle</code>)</td><td>Prune</td></tr>
+  </table></div>
+
+  <!-- ===================================================== HOUSE RULES -->
+  <h2 id="rules">09 &middot; House rules</h2>
+  <ol>
+    <li><b>Tokens, not raw values.</b> Colours, type sizes, shadow sizes and speeds come from the <code>:root</code> tokens. A new raw number needs a reason.</li>
+    <li><b>Components, not context.</b> A link is a link because it wears <code>.text-link</code>, not because of the paragraph it sits in.</li>
+    <li><b>No new inline CSS unless it is truly one-off.</b> If two pages want it, it belongs in the shared stylesheet.</li>
+    <li><b>Measure, then change, then measure.</b> Every refactor wave compares computed styles before and after (headless Chrome); only the intended differences may appear.</li>
+    <li><b>Warn on contrast.</b> Anything under 4.5:1 for small text gets flagged before it ships (this page does the arithmetic live).</li>
+    <li><b>One wave, one commit, one annotated tag</b> so any wave can be rolled back alone.</li>
+    <li><b>The captain approves before anything is edited or committed; nothing is pushed without his order.</b></li>
+  </ol>
+
+  <!-- ===================================================== HISTORY -->
+  <h2 id="history">10 &middot; History and rollback</h2>
+  <div class="ds-scroll"><table class="ds-table">
+    <tr><th>Tag</th><th>Commit</th><th>What</th><th>Roll back</th></tr>
+    <tr><td>wave1-text-link</td><td>c078a08</td><td><code>.text-link</code> component, yellow highlight, circle menu, darker teal</td><td><code>git revert c078a08</code></td></tr>
+    <tr><td>wave2-tokens</td><td>59c40d0</td><td>Shadow-size and motion tokens</td><td><code>git revert 59c40d0</code></td></tr>
+    <tr><td>wave3-type-scale</td><td>62b751f</td><td>Small-text scale, page-title tokens</td><td><code>git revert 62b751f</code></td></tr>
+    <tr><td>pre-cleanup</td><td>(older)</td><td>Last commit with the old draft pages</td><td>checkout the tag to look</td></tr>
+  </table></div>
+
+</main>
+
+<script>
+(function () {
+  var root = document.documentElement;
+  var cs = getComputedStyle(root);
+  var tok = function (n) { return cs.getPropertyValue(n).trim(); };
+  var $ = function (id) { return document.getElementById(id); };
+
+  /* ---- colour helpers: resolve any CSS colour to rgb through a probe element, then hex and WCAG contrast ---- */
+  var probe = document.createElement('i'); probe.style.display = 'none'; document.body.appendChild(probe);
+  function rgbOf(token) { probe.style.color = ''; probe.style.color = 'var(' + token + ')'; var m = getComputedStyle(probe).color.match(/[\d.]+/g) || [0, 0, 0]; return [+m[0], +m[1], +m[2]]; }
+  function toHex(c) { return '#' + c.map(function (v) { return ('0' + Math.round(v).toString(16)).slice(-2); }).join(''); }
+  function lum(c) { var a = c.map(function (v) { v /= 255; return v <= 0.03928 ? v / 12.92 : Math.pow((v + 0.055) / 1.055, 2.4); }); return 0.2126 * a[0] + 0.7152 * a[1] + 0.0722 * a[2]; }
+  function ratio(a, b) { var x = lum(a), y = lum(b); return (Math.max(x, y) + 0.05) / (Math.min(x, y) + 0.05); }
+  function badge(r) { var cls = r >= 4.5 ? '' : (r >= 3 ? ' ds-fail' : ' ds-poor'); var txt = r >= 4.5 ? 'AA' : (r >= 3 ? 'large' : 'weak'); return '<span class="ds-pass' + cls + '">' + txt + '</span>'; }
+
+  /* ---- the documented tokens: name, role. (Values are never typed here; they are read.) ---- */
+  var COLOURS = [
+    ['--paper', 'Cream: card text on dark, panels, the main text colour on the dark ground'],
+    ['--paper-deep', 'Deeper cream: the page backdrop behind the cream paper'],
+    ['--ink', 'Near-black: text on light colours, borders, hard shadows'],
+    ['--cream-text', 'Brighter cream: text on the teal, blue and purple cards'],
+    ['--amber', 'The main brand colour: first card, hero, hard shadows on dark'],
+    ['--orange', 'Orange card, the band on the about page'],
+    ['--mint', 'Mint card, footer labels'],
+    ['--teal', 'Teal card (darkened on 2026-10-21 to #005e5e)'],
+    ['--blue', 'The hero slab, blue card, the about page number panel'],
+    ['--purple', 'Purple card, the keyboard focus ring'],
+    ['--magenta', 'Accent: link underlines, small markers'],
+    ['--yellow', 'Brand yellow: the pancake on hover'],
+    ['--gold', 'Link highlight, cream-link hover, markers on dark cards'],
+    ['--night', 'Dark page ground'],
+    ['--night-deep', 'Darkest ground: footer, page backdrop']
+  ];
+  var LEGACY = [['--white', 'Old toggle switch only'], ['--cyan-dark', 'Old toggle switch only']];
+  var FONTS = ['--font-display', '--font-body', '--font-mono'];
+  var SCALE = [['--fs-xs', 'tags, captions, the footer lead-in'], ['--fs-s', 'button text, tool lists, small notes'], ['--fs-m', 'header line, title descriptor, copyright'], ['--fs-l', 'paragraphs, kickers'], ['--fs-base', 'the page base text']];
+  var TITLES = [['--fs-title', 'page title at 900px and wider'], ['--fs-title-sm', 'page title below 900px']];
+  var SHADOWS = [['--shadow-s', 'pancake, buttons at rest'], ['--shadow-m', 'buttons on hover'], ['--shadow-l', 'cards at rest, about panels'], ['--shadow-xl', 'cards on hover, the intro panel']];
+  var MOTION = [['--t-quick', 'colour fades, buttons, menu links', 'ease'], ['--t-base', 'cards, images, shapes, the link swoop', 'var(--ease-soft)'], ['--t-slow', 'the full-screen menu circle', 'var(--ease-swoop)']];
+  var LEGACY_OTHER = ['--radius-md', '--body-text-14', '--weight-semibold'];
+
+  var ink = rgbOf('--ink'), cream = rgbOf('--cream-text');
+  function chip(t, role, legacy) {
+    var c = rgbOf(t), hex = toHex(c);
+    return '<div class="ds-chip"><div class="sw" style="background:var(' + t + ')"></div><div class="tx"><b>' + t + '</b>' + hex + '<br>' +
+      'on ink ' + ratio(c, ink).toFixed(1) + ' ' + badge(ratio(c, ink)) + ' &middot; cream ' + ratio(c, cream).toFixed(1) + ' ' + badge(ratio(c, cream)) +
+      '<span class="role">' + role + '</span></div></div>';
+  }
+  $('dsColours').innerHTML = COLOURS.map(function (c) { return chip(c[0], c[1]); }).join('');
+  $('dsColoursLegacy').innerHTML = LEGACY.map(function (c) { return chip(c[0], c[1]); }).join('') +
+    LEGACY_OTHER.map(function (t) { return '<div class="ds-chip"><div class="tx"><b>' + t + '</b>' + tok(t) + '<span class="role">Old toggle switch only</span></div></div>'; }).join('');
+
+  FONTS.forEach(function (t) { document.querySelector('[data-font="' + t + '"]').textContent = tok(t).split(',')[0].replace(/"/g, ''); });
+
+  /* ---- type: render each token and report the size the browser actually computed ---- */
+  function typeRow(t, role, sample, extra) {
+    var id = 'ty' + t.replace(/\W/g, '');
+    return '<div class="ds-spec"><span class="nm">' + t + '</span><span class="px" id="' + id + '"></span><span style="' + (extra || '') + 'font-size:var(' + t + ')" data-measure="' + id + '">' + sample + '</span><span class="mono" style="opacity:.75;font-size:var(--fs-xs)">' + role + '</span></div>';
+  }
+  $('dsTypeScale').innerHTML = SCALE.map(function (s) { return typeRow(s[0], s[1], 'The quick brown fox jumps over the lazy dog', 'font-family:var(--font-body);'); }).join('');
+  $('dsTypeTitle').innerHTML = TITLES.map(function (s) { return typeRow(s[0], s[1], 'Web Design', 'font-family:var(--font-display);font-weight:900;text-transform:uppercase;line-height:1;'); }).join('');
+  [].forEach.call(document.querySelectorAll('[data-measure]'), function (el) { $(el.getAttribute('data-measure')).textContent = parseFloat(getComputedStyle(el).fontSize).toFixed(2).replace(/\.?0+$/, '') + 'px'; });
+  $('dsWidth').textContent = 'a window ' + window.innerWidth + 'px wide';
+
+  /* ---- shadows ---- */
+  $('dsShadows').innerHTML = SHADOWS.map(function (s) {
+    return '<div><div class="ds-box" style="box-shadow:var(' + s[0] + ') var(' + s[0] + ') 0 var(--amber)">' + s[0] + '<br>' + tok(s[0]) + '</div><span class="ds-cap">' + s[1] + '</span></div>';
+  }).join('');
+
+  /* ---- motion ---- */
+  $('dsMotion').innerHTML = MOTION.map(function (m) {
+    return '<div><div class="ds-slide"><i style="transition:transform var(' + m[0] + ') ' + m[2] + '"></i><span>' + m[0] + ' ' + tok(m[0]) + '</span></div><span class="ds-cap">' + m[1] + '</span></div>';
+  }).join('') +
+  '<div><div class="ds-slide"><i style="transition:transform var(--t-slow) var(--ease-swoop)"></i><span>--ease-swoop</span></div><span class="ds-cap">' + tok('--ease-swoop') + '</span></div>' +
+  '<div><div class="ds-slide"><i style="transition:transform var(--t-base) var(--ease-soft)"></i><span>--ease-soft</span></div><span class="ds-cap">' + tok('--ease-soft') + '</span></div>';
+
+  /* ---- link grounds: live contrast of the magenta underline ---- */
+  var mag = rgbOf('--magenta');
+  [].forEach.call(document.querySelectorAll('[data-ground]'), function (g) {
+    var r = ratio(mag, rgbOf(g.getAttribute('data-ground')));
+    g.parentNode.querySelector('.ds-cap').insertAdjacentHTML('beforeend', ' &middot; underline contrast ' + r.toFixed(2) + ':1 ' + badge(r));
+  });
+
+  /* ---- the card colour cycle: six real cards ---- */
+  var CARDS = [
+    ['memory_static.jpg', 'JavaScript Coding · UI Design', 'Card one: amber, ink text'],
+    ['pixel_static.jpg', 'JavaScript Coding · UX/UI', 'Card two: orange, ink text'],
+    ['arcade_static.jpg', 'JavaScript Coding · Game Design', 'Card three: teal, cream text'],
+    ['pride_static.jpg', 'UX/UI · Product Design', 'Card four: blue, cream text'],
+    ['45th_static.jpg', 'Visual Design · Front-End', 'Card five: purple, cream text'],
+    ['icons_static.jpg', 'Graphic Design · Icons', 'Card six: mint, ink text']
+  ];
+  $('dsCards').innerHTML = CARDS.map(function (c) {
+    return '<div class="flex-container-child-projects"><section class="featured-project-card">' +
+      '<div class="img-container"><img class="project-image" src="images/animate/' + c[0] + '" alt=""></div>' +
+      '<div class="card-label source-code-pro">' + c[1] + '</div>' +
+      '<h3 class="margin-bottom source-code-pro"><strong>' + c[2] + '</strong></h3>' +
+      '<p>Same markup, different position in the cycle.</p>' +
+      '<p>View more on <a class="text-link" href="https://github.com/LarsGittenberg">GitHub</a></p>' +
+      '<ul><li><strong class="gold-color-font">Tools:</strong> HTML5, CSS3</li></ul>' +
+      '<a href="#components" class="btn" onclick="return false"><span class="btn-text">View Case Study</span><span class="btn-arrow"><span class="shaft"></span><span class="wing wing-left"></span><span class="wing wing-right"></span></span></a>' +
+      '</section></div>';
+  }).join('');
+
+  /* ---- drift detector: compare every custom property the stylesheets declare with the lists above ---- */
+  var documented = {};
+  [COLOURS, LEGACY, SCALE, TITLES, SHADOWS, MOTION].forEach(function (L) { L.forEach(function (x) { documented[x[0]] = 1; }); });
+  FONTS.concat(LEGACY_OTHER, ['--ease-soft', '--ease-swoop']).forEach(function (n) { documented[n] = 1; });
+  /* working variables the components set for themselves; they are plumbing, not design tokens */
+  var PLUMBING = /^--(u|h2-scale|pad|gap|nudge|card-bg|card-ink|tilt|img-scale|mark|link-hover|lg-size|i|fade-[\w-]+|stagger|band-[\w-]+|size|tag-[\w-]+|slab-[\w-]+|shape-scale|qm-[\w-]+|s[123]|c|shadow-night|slab-lift)$/;
+  var status = $('dsStatus'), found = {}, readable = 0, blocked = 0;
+  function scan(rules) {
+    [].forEach.call(rules, function (r) {
+      if (r.style && r.selectorText && /^(:root|html)$/.test(r.selectorText.trim())) {
+        for (var i = 0; i < r.style.length; i++) { if (r.style[i].indexOf('--') === 0) found[r.style[i]] = 1; }
+      }
+      if (r.cssRules) { scan(r.cssRules); }
+    });
+  }
+  [].forEach.call(document.styleSheets, function (s) {
+    try { scan(s.cssRules); readable++; } catch (e) { blocked++; }
+  });
+  var missing = Object.keys(found).filter(function (n) { return !documented[n] && !PLUMBING.test(n); });
+  var thisSheets = [].filter.call(document.styleSheets, function (s) { return s.href && /css\/(reskin-blue|card-pages)\.css/.test(s.href); });
+  var canRead = thisSheets.every(function (s) { try { void s.cssRules; return true; } catch (e) { return false; } });
+  if (!canRead) {
+    status.className = 'ds-status warn';
+    status.innerHTML = 'Values are read live from the CSS. The browser blocks reading the stylesheet <i>rules</i> on file:// pages, so the <b>drift check</b> (are all tokens documented here?) is off. Open this page from the live server or a local server to switch it on.';
+  } else if (missing.length) {
+    status.className = 'ds-status warn';
+    status.innerHTML = 'Drift check: <b>' + missing.length + ' token(s) are in the CSS but not documented here</b>: ' + missing.join(', ');
+  } else {
+    status.innerHTML = 'Drift check passed: every design token in the stylesheet is documented on this page.';
+  }
+})();
+</script>
+</body>
+</html>
