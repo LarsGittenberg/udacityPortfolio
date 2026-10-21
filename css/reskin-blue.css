@@ -418,7 +418,7 @@ section.featured-project-card h3 {
 }
 section.featured-project-card p { max-width: 46ch; font-size: 0.95rem; line-height: 1.6; }
 section.featured-project-card p a { font-weight: 600; } /* underline and icon: see THE LINK RULE, below the footer */
-section.featured-project-card ul { margin: 16px 0 24px; list-style: none; font-family: var(--font-mono); font-size: 0.8rem; line-height: 1.5; }
+section.featured-project-card ul { margin: 16px 0 0; list-style: none; font-family: var(--font-mono); font-size: 0.8rem; line-height: 1.5; }
 section.featured-project-card li strong { font-weight: 400; letter-spacing: 0.08em; text-transform: uppercase; }
 .gold-color-font { color: inherit; text-decoration: none; } /* the "Tools:" label is not a link, so no underline; a small accent square marks it instead */
 .gold-color-font::before { content: "\25A0\00a0"; color: var(--mark); }
@@ -445,7 +445,7 @@ section.featured-project-card { --mark: var(--magenta); }
 }
 .btn:hover { transform: translate(-2px, -2px); box-shadow: 8px 8px 0 var(--orange); background: var(--paper); color: var(--ink); }
 .btn-text { font-size: 0.8rem; }
-section.featured-project-card .btn { position: relative; margin: 0; }
+section.featured-project-card .btn { position: relative; margin: 24px 0 0; } /* the button owns the space above it, so the gap is the same whatever sits above: a paragraph or the Tools list */
 /* orange would vanish against the amber and orange cards (1 and 2), so their stamps cast magenta shadows (were cream; to undo, change var(--magenta) back to var(--paper)) */
 .flex-container-child-projects:nth-child(6n+1) .btn,
 .flex-container-child-projects:nth-child(6n+2) .btn { box-shadow: 5px 5px 0 var(--magenta); }

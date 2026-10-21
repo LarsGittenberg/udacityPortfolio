@@ -1,0 +1,66 @@
+/* =====================================================================
+   CARD PAGES: the pieces the category pages (web design, graphic design, photography) share with each other
+   and, where noted, with the home page. Loaded AFTER css/reskin-blue.css.
+   Each page keeps only what is its own: its band colour (a few lines in its own <style>).
+
+   Two layers:
+     1. PAGE HEADER + PAGE TITLE: shared with the home page.
+     2. ".card-page" rules: only for the category pages, switched on by <body class="card-page">.
+        The home page does not get these; its hero stage supplies the band, the gap below it, and the card spacing.
+   ===================================================================== */
+
+/* ---------- 1a. the page header: the name hangs from the right edge with the tagline beside it, at every width ---------- */
+:root {
+	--u: min(1vw, 14.4px); /* 1u = 1% of the window width, capped at the 1440px body */
+	--h2-scale: 0.88;      /* the title pillar is 88% of the blue skin's size (1 = the original) */
+}
+header { padding-right: calc(2.4 * var(--u)); }
+.header-container { justify-content: flex-end; gap: calc(4.4 * var(--u)); }
+.header-container h1 { text-align: right; margin-bottom: 10px; }
+.header-container p { white-space: nowrap; }
+
+/* ---------- 1b. the page title: a large pillar with a small descriptor beside it, both hung from the top of the column ----------
+   On desktop the pair is sticky: it rides along as you scroll and lets go 50px above the footer.
+   Below 900px it is an ordinary heading, with the descriptor flat underneath. */
+.project-header-bar h2 { font-size: calc(clamp(3rem, 8.4vw, 9.4rem) * var(--h2-scale)); }
+.h2-wrap { display: grid; grid-auto-flow: column; grid-auto-columns: max-content; justify-content: start; align-items: start; column-gap: clamp(8px, 1vw, 14px); }
+.h2-descriptor { writing-mode: vertical-rl; transform: rotate(180deg); white-space: nowrap; margin-bottom: 0.4rem; /* reads bottom to top, like the tagline in the header */
+	font-family: var(--font-mono); font-size: 0.88rem; letter-spacing: 0.22em; text-transform: uppercase; color: var(--paper); }
+@media (min-width: 900px) {
+	.project-header-bar { padding-bottom: 50px; } /* the sticky title may not travel into this padding, so it lets go 50px above the footer */
+	.h2-wrap { position: sticky; top: 100px; } /* 100px parks it below the fixed menu icon */
+	.project-header-bar h2 { font-size: min(calc(clamp(3rem, 8.4vw, 9.4rem) * var(--h2-scale)), 9vh); } /* capped by window height so the pillar always fits on screen */
+}
+@media (max-width: 899px) {
+	.project-header-bar h2 { font-size: calc(clamp(2.4rem, 11vw, 4.4rem) * var(--h2-scale)); }
+	.h2-wrap { display: flex; flex-direction: column; align-items: flex-start; gap: 10px; }
+	.h2-descriptor { writing-mode: horizontal-tb; transform: none; margin-bottom: 0; }
+}
+
+/* =====================================================================
+   2. CATEGORY PAGES ONLY (<body class="card-page">)
+   ===================================================================== */
+
+/* the home page's own number: half the band's width x sin(2.675deg) */
+.card-page { --band-rise: calc(0.02473 * 100vw); }
+
+/* THE BAND: a flat strip with the sliding ticker, an ordinary strip in the page flow (no hero stage to sit on).
+   The page chooses its colours: --band-bg (background), --band-ink (text), --s1 --s2 --s3 (the three shape colours).
+   margin-top: 50px below the "C" of "Creative", the foot of the rotated tagline; the tagline's own 0.4rem bottom margin is already part of that, so it is subtracted */
+.card-page .band { margin-top: calc(50px - 0.4rem); height: calc(4.04 * var(--u)); min-height: 40px; display: flex; align-items: center; overflow: hidden; white-space: nowrap; background: var(--band-bg); color: var(--band-ink); }
+.card-page .band-track { display: inline-flex; animation: slide 38s linear infinite; }
+.card-page .band-track span { font-family: var(--font-mono); font-size: 0.8125rem; letter-spacing: 0.14em; text-transform: uppercase; padding-right: 2.2em; }
+.card-page .band-track i { font-style: normal; }
+.card-page .band-track i:nth-of-type(3n+1) { color: var(--s1); }
+.card-page .band-track i:nth-of-type(3n+2) { color: var(--s2); }
+.card-page .band-track i:nth-of-type(3n) { color: var(--s3); }
+@keyframes slide { to { transform: translateX(-50%); } }
+@media (prefers-reduced-motion: reduce) { .card-page .band-track { animation: none; } }
+
+@media (min-width: 900px) {
+	/* band to title = 75px, same as the home page */
+	.card-page .project-header-bar { padding-top: 75px; }
+	/* CARDS: the same distance below the band as on the home page. There the hero stage leaves (2.34u + 75px - band-rise) below the band before the cards begin;
+	   these pages have no stage, so the cards get it as extra top padding */
+	.card-page .flex-container-main { padding-top: calc(clamp(40px, 6vw, 90px) + 2.34 * var(--u) + 75px - var(--band-rise)); }
+}

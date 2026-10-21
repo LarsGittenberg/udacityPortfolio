@@ -1,0 +1,430 @@
+<!doctype html>
+
+<html lang="en">
+<head>
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-2QV625FZN6"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+
+    gtag('config', 'G-2QV625FZN6');
+  </script>
+
+  <!-- Load saved toggle mode preference BEFORE CSS loads -->
+  <script>
+		(function() {
+		  const saved = localStorage.getItem('styleMode');
+		  if (saved === 'toned-down') {
+		    document.documentElement.classList.add('toned-down');
+		  } else {
+		    document.documentElement.classList.add('colorful');
+		  }
+		})();
+  </script>
+
+  <title>Web Design: Front-End | Lawrence Getubig</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#feb013">
+  <meta name="description" content="Front-end web design by Lawrence Getubig: responsive HTML, CSS and JavaScript builds, interactive games, and UI/UX work from Udacity to Pride365.">
+
+  <!-- Favicons -->
+	<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+	<link rel="icon" href="/favicon.png" sizes="32x32">
+	<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+
+  <!-- CSS -->
+  <link rel="stylesheet" href="css/reskin-blue.css"> <!-- replaces ui.css and main.css on this test page -->
+
+  <link rel="stylesheet" href="css/card-pages.css"> <!-- the header, band, title and card spacing that the category pages share -->
+
+  <style>
+  /* this page's band colour (magenta): background, text, and the three shape colours */
+  .band { --band-bg: var(--magenta); --band-ink: var(--cream-text); --s1: var(--amber); --s2: var(--mint); --s3: var(--cream-text); }
+  </style>
+
+	<!--fonts-->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link href="https://fonts.googleapis.com/css2?family=Doto:wght@100..900&display=swap" rel="stylesheet">
+	<!--older font choices-->
+	<link href="https://fonts.googleapis.com/css?family=Montserrat:400,600|Source+Code+Pro:300,400" rel="stylesheet">
+
+  <!-- JS libraries -->
+  <script src="https://cdn.jsdelivr.net/npm/js-cookie@2/src/js.cookie.min.js"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg==" crossorigin="anonymous" referrerpolicy="no-referrer">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  <script src="js/noframework.waypoints.min.js"></script>
+
+	<!-- Update toggle labels AFTER DOM is ready -->
+	<script>
+	  document.addEventListener("DOMContentLoaded", function() {
+	    const saved = localStorage.getItem('styleMode');
+	    const labelColorful = document.getElementById('labelColorful');
+	    const labelToned = document.getElementById('labelToned');
+
+	    if (saved === 'toned-down') {
+	      // User previously chose TONED-DOWN mode
+	      labelColorful.innerHTML = "Colorful<br>Retro<br>Mode: Off";
+	      labelToned.innerHTML = "Toned<br>Down<br>Mode: On";
+	    } else {
+	      // Default or saved COLORFUL mode
+	      labelColorful.innerHTML = "Colorful<br>Retro<br>Mode: On";
+	      labelToned.innerHTML = "Toned<br>Down<br>Mode: Off";
+	    }
+	  });
+	</script>
+
+</head>
+
+<body class="card-page">
+
+	<div class="menu-icon-container">
+		<div class="bar1"></div>
+		<div class="bar2"></div>
+		<div class="bar3"></div>
+	</div>
+
+	<div id="myNav" class="overlay pattern-grid-large">
+		<!-- Overlay content -->
+		<div class="overlay-content ">
+			<a href="index.html" onclick="gtag('event', 'nav_click', { nav_item: 'home', from_page: window.location.pathname });"> Home </a>
+			<a href="webdesign.html" onclick="gtag('event', 'nav_click', { nav_item: 'web_design', from_page: window.location.pathname });"> Web Design </a>
+			<a href="graphicdesign.html" onclick="gtag('event', 'nav_click', { nav_item: 'graphic_design', from_page: window.location.pathname });"> Graphic Design </a>
+			<a href="photography.html" onclick="gtag('event', 'nav_click', { nav_item: 'photography', from_page: window.location.pathname });"> Photography </a>
+			<a href="about.html" onclick="gtag('event', 'nav_click', { nav_item: 'about', from_page: window.location.pathname });"> About </a>
+			<p class="overlay-title">Settings</p>
+			<div class="style-toggle" id="styleToggle">
+				<span class="label-colorful" id="labelColorful">Colorful<br>Retro<br>Mode: On</span>
+				<button class="toggle-button" aria-label="Toggle style mode">
+				  <span class="toggle-knob"></span>
+				</button>
+				<span class="label-toned" id="labelToned">Toned<br>Down<br>Mode: Off</span>
+			</div>
+		</div>
+	</div><!--end my nav-->
+
+<header class="pattern-dots-sparse">
+	<div class="header-container">
+		<h1 class="doto-lg">Lawrence Getubig</h1>
+		<p>Creative Technologist in Product Design</p>
+	</div><!--end header container-->
+</header>
+
+<!-- the sliding band (four copies, so the loop never shows a gap) -->
+<div class="band" aria-hidden="true">
+	<div class="band-track">
+		<span>Web Design <i>●</i> UX/UI <i>▲</i> Visual Design <i>◆</i> Illustration <i>■</i> Brand <i>●</i> Animation <i>▲</i> Product Design <i>◆</i> Photography <i>■</i></span><span>Web Design <i>●</i> UX/UI <i>▲</i> Visual Design <i>◆</i> Illustration <i>■</i> Brand <i>●</i> Animation <i>▲</i> Product Design <i>◆</i> Photography <i>■</i></span><span>Web Design <i>●</i> UX/UI <i>▲</i> Visual Design <i>◆</i> Illustration <i>■</i> Brand <i>●</i> Animation <i>▲</i> Product Design <i>◆</i> Photography <i>■</i></span><span>Web Design <i>●</i> UX/UI <i>▲</i> Visual Design <i>◆</i> Illustration <i>■</i> Brand <i>●</i> Animation <i>▲</i> Product Design <i>◆</i> Photography <i>■</i></span>
+	</div>
+</div><!--end band-->
+
+<main>
+
+<div class="project-header-bar pattern-dots-dense">
+	<div class="h2-wrap">
+		<h2 class="source-code-pro source-code-pro-light">Web Design</h2>
+		<p class="h2-descriptor">&amp; Front-End</p>
+	</div>
+</div>
+
+<div class="flex-container-main">
+
+<!-- memoryGame -->
+	<div class="flex-container-child-projects pattern-dots-dense">
+		<img class="corner-tear" src="images/pattern/cornerTear6.png" style="left: 0; top: 0" alt="">
+		<section class="featured-project-card">
+			<div class="img-container">
+				<img id="memory" class="project-image" src="images/animate/memory_static.jpg" alt="Memory Game">
+			</div>
+			<div class="card-label source-code-pro">JavaScript Coding ·&nbsp;UI Design</div>
+			<h3 class="margin-bottom headline-text-color source-code-pro"><strong>Memory Matching Game</strong></h3>
+			<p>Code a jQuery, web-based app that lets the user play a memory-matching game</p>
+			<p>Responsive design for desktop, tablets and phones/small devices</p>
+			<p>View project specs on <a href="https://github.com/udacity/fend-project-memory-game" target="_blank" aria-label="View Memory Game project specs on GitHub (opens in a new tab)" onclick="gtag('event', 'outbound_click', { destination: 'github_memory_game', from_page: window.location.pathname });">GitHub<i class="fa-solid fa-square-arrow-up-right icon-after-text" aria-hidden="true"></i></a></p>
+			<ul>
+				<li><strong class="gold-color-font">Tools:</strong> Figma, HTML5, CSS3, jQuery/JavaScript</li>
+			</ul>
+				<a href="https://www.lawrencegetubig.com/memorygame/index.html"  class="btn" title="Project Memory Game" target="_blank" aria-label="Play Game: Memory Matching Game (opens in a new tab)" onclick="gtag('event', 'project_click', { project: 'memorygame', from_page: window.location.pathname });">
+					<span class="btn-text">Play Game</span>
+					<span class="btn-arrow">
+					<span class="shaft"></span>
+					<span class="wing wing-left"></span>
+					<span class="wing wing-right"></span>
+					</span>
+				</a>
+		</section>
+	</div>
+
+	<!-- pixel -->
+	<div class="flex-container-child-projects pattern-dots-sparse">
+		<section class="featured-project-card">
+			<div class="img-container">
+				<img id="pixel" class="project-image" src="images/animate/pixel_static.jpg" alt="Pixel Art Maker">
+			</div>
+			<div class="card-label source-code-pro">JavaScript Coding ·&nbsp;UX/UI</div>
+			<h3 class="margin-bottom headline-text-color source-code-pro"><strong>Pixel Art Maker</strong></h3>
+			<p>Code a jQuery, web based app that allows the user to create pixels and change their colors</p>
+			<p>Optimize for desktop and tablets 1020px and up</p>
+			<p>Project submission for Udacity Front End Web Development Nanodegree</p>
+			<p>View project specs on <a href="https://github.com/udacity/project-pixel-art-maker-starter" target="_blank" aria-label="View Pixel Art Maker project specs on GitHub (opens in a new tab)" onclick="gtag('event', 'outbound_click', { destination: 'github_pixel_art_maker', from_page: window.location.pathname });">GitHub<i class="fa-solid fa-square-arrow-up-right icon-after-text" aria-hidden="true"></i></a></p>
+			<ul>
+				<li><strong class="gold-color-font">Tools:</strong> HTML5, CSS3, jQuery/JavaScript, syncing my left and right brain</li>
+			</ul>
+				<a href="https://www.lawrencegetubig.com/pixel/index.html" class="btn" target="_blank" aria-label="Play App: Pixel Art Maker (opens in a new tab)" onclick="gtag('event', 'project_click', { project: 'pixel_art_maker', from_page: window.location.pathname });">
+					<span class="btn-text">Play App</span>
+					<span class="btn-arrow">
+					<span class="shaft"></span>
+					<span class="wing wing-left"></span>
+					<span class="wing wing-right"></span>
+					</span>
+				</a>
+		</section>
+	</div>
+
+	<!-- arcadeGame -->
+	<div class="flex-container-child-projects pattern-lines-down">
+		<section class="featured-project-card">
+			<div class="img-container">
+				<img id="arcade" class="project-image" src="images/animate/arcade_static.jpg" alt="Memory Game">
+			</div>
+			<div class="card-label source-code-pro">Object Oriented JS Coding</div>
+			<h3 class="margin-bottom headline-text-color source-code-pro"><strong>Arcade Game Clone</strong></h3>
+			<p>Udacity Nanodegree Project</p>
+			<p>Apply JSON, functional classes, JavaScript concepts learnt to refactor a 'Frogger' arcade game</p>
+			<p>View project specs on <a href="https://github.com/udacity/frontend-nanodegree-arcade-game" target="_blank" aria-label="View Arcade Game Clone project specs on GitHub (opens in a new tab)" onclick="gtag('event', 'outbound_click', { destination: 'github_arcade_game', from_page: window.location.pathname });">GitHub<i class="fa-solid fa-square-arrow-up-right icon-after-text" aria-hidden="true"></i></a></p>
+			<ul>
+				<li><strong class="gold-color-font">Tools:</strong> HTML5, CSS3, Object Oriented JavaScript</li>
+			</ul>
+				<a href="https://www.lawrencegetubig.com/arcade/index.html" target="_blank" class="btn" title="Arcade Game Clone" aria-label="Play Game: Arcade Game Clone (opens in a new tab)" onclick="gtag('event', 'project_click', { project: 'arcade_game', from_page: window.location.pathname });">
+					<span class="btn-text">Play Game</span>
+					<span class="btn-arrow">
+					<span class="shaft"></span>
+					<span class="wing wing-left"></span>
+					<span class="wing wing-right"></span>
+					</span>
+				</a>
+		</section>
+	</div>
+
+
+<!-- pride -->
+	<div class="flex-container-child-projects pattern-lines-down">
+		<section class="featured-project-card">
+			<div class="img-container">
+				<img id="pride" class="project-image" src="images/animate/pride_static.jpg" alt="Pride365 app worldpride">
+			</div>
+			<div class="card-label source-code-pro">UX Strategy ·&nbsp;UI Design ·&nbsp;Web Design</div>
+			<h3 class="margin-bottom headline-text-color source-code-pro"><strong>Pride365 App Marketing</strong></h3>
+				<p>Research and analyse ways to increase awareness and adoption of the official WorldPrideDC Pride365 event planner app</p>
+				<p>Design CTAs to download</p>
+				<p>Recommendations led to a <strong>X30</strong> fold increase in app downloads</p>
+				<ul>
+					<li><strong class="gold-color-font">Tools and Skills: </strong>Web Design, UX/UI Design, Research, Visual Design, Figma</li>
+				</ul>
+				<a href="pride.html" class="btn" aria-label="Read Case Study: Pride365 App Marketing" onclick="gtag('event', 'project_click', { project: 'pride', from_page: window.location.pathname });">
+					<span class="btn-text">Read Case Study</span>
+					<span class="btn-arrow">
+					<span class="shaft"></span>
+					<span class="wing wing-left"></span>
+					<span class="wing wing-right"></span>
+					</span>
+				</a>
+		</section>
+	</div>
+
+	<!-- 45th -->
+	<div class="flex-container-child-projects pattern-dots-stagger">
+		<img class="corner-tear" src="images/pattern/cornerTear2.png" alt="">
+		<section class="featured-project-card">
+			<div class="img-container">
+				<img id="45th" class="project-image" src="images/animate/45th_static.jpg" alt="45th Parallel Wines">
+			</div>
+			<div class="card-label source-code-pro">Web ·&nbsp;Brand ·&nbsp;Visual Design</div>
+			<h3 class="margin-bottom headline-text-color source-code-pro"><strong>45th Parallel Wines</strong></h3>
+				<p>Built a full brand identity — logo, palette, and a bespoke illustration system</p>
+				<p>Transformed a Squarespace template into a tailored digital storefront</p>
+				<p>Unified visual language across web and marketing</p>
+				<ul>
+					<li><strong class="gold-color-font">Tools:</strong> HTML, CSS, Photoshop, Illustrator, Squarespace</li>
+				</ul>
+				<a href="45.html" class="btn" aria-label="View Design Process: 45th Parallel Wines" onclick="gtag('event', 'project_click', { project: '45th_parallel_wines', from_page: window.location.pathname });">					<span class="btn-text">View Design Process</span>
+					<span class="btn-arrow">
+					<span class="shaft"></span>
+					<span class="wing wing-left"></span>
+					<span class="wing wing-right"></span>
+					</span>
+				</a>
+		</section>
+	</div>
+
+<!-- newsletter -->
+	<div class="flex-container-child-projects pattern-dots-sparse">
+		<img class="corner-tear" src="images/pattern/cornerTear.png" alt="">
+		<section class="featured-project-card">
+			<div class="img-container">
+				<img id="newsletter" class="project-image" src="images/animate/newsletter_static.jpg" alt="Ashoka Newsletter">
+			</div>
+			<div class="card-label source-code-pro">Visual Design ·&nbsp;UX/UI ·&nbsp;Brand</div>
+			<h3 class="margin-bottom headline-text-color source-code-pro"><strong>Ashoka Marketing Newsletter</strong></h3>
+			<p>Redesigned an outdated newsletter into a modern, readable system</p>
+			<p>Built a reusable asset library for future campaigns</p>
+			<p>Optimized templates for DotDigital and mobile audiences</p>
+			<ul>
+				<li><strong class="gold-color-font">Tools:</strong> HTML, CSS, UI/UX, DotDigital</li>
+			</ul>
+				<a href="newsletter.html" class="btn" aria-label="View Project: Ashoka Marketing Newsletter" onclick="gtag('event', 'project_click', { project: 'newsletter', from_page: window.location.pathname });">
+					<span class="btn-text">View Project</span>
+					<span class="btn-arrow">
+					<span class="shaft"></span>
+					<span class="wing wing-left"></span>
+					<span class="wing wing-right"></span>
+					</span>
+				</a>
+		</section>
+	</div>
+
+	<!-- swisspost -->
+	<div class="flex-container-child-projects pattern-dots-sparse">
+		<img class="corner-tear" src="images/pattern/cornerTear4.png" alt="">
+		<section class="featured-project-card">
+			<div class="img-container">
+				<img id="swisspost" class="project-image" src="images/animate/swisspost_static.jpg" alt="Swiss Post AI Tool">
+			</div>
+			<div class="card-label source-code-pro">Product Design ·&nbsp;Visual Design ·&nbsp;UX/UI</div>
+			<h3 class="margin-bottom headline-text-color source-code-pro"><strong>Swiss Post AI Tool</strong></h3>
+			<p>Designing an AI‑powered interface that turns complex logistics data into clear, actionable workflows.</p>
+			<ul>
+				<li><strong class="gold-color-font">Tools:</strong> Figma, Photoshop, Illustrator</li>
+			</ul>
+			<a href="swisspost.html" class="btn" aria-label="Read Case Study: Swiss Post AI Tool" onclick="gtag('event', 'project_click', { project: 'swisspost', from_page: window.location.pathname });">
+				<span class="btn-text">Read Case Study</span>
+				<span class="btn-arrow">
+					<span class="shaft"></span>
+					<span class="wing wing-left"></span>
+					<span class="wing wing-right"></span>
+				</span>
+			</a>
+		</section>
+	</div>
+
+	<!-- bird -->
+	<div class="flex-container-child-projects pattern-lines-up">
+		<section class="featured-project-card">
+			<div class="img-container">
+				<img id="bird" class="project-image" src="images/animate/bird_static.jpg" alt="I love math">
+			</div>
+			<div class="card-label source-code-pro">Web Page Design ·&nbsp;UX/UI</div>
+			<h3 class="margin-bottom headline-text-color source-code-pro"><strong>I Love Math Campaign</strong></h3>
+			<p>Create visuals through competition research for member acquisition landing page</p>
+			<p>Delight users with engaging, fun UI</p>
+			<p>Optimize visual/graphic assets for multiple endpoints, from Twitter through Instagram, to t-shirts and large scale banners</p>
+			<ul>
+				<li><strong class="gold-color-font">Tools:</strong> HTML5, CSS3, Ektron CMS, Bootstrap, Illustrator CC</li>
+			</ul>
+			<!--removed cta-->
+		</section>
+	</div>
+
+<!-- liquid -->
+	<div class="flex-container-child-projects pattern-dots-dense">
+		<section class="featured-project-card">
+			<div class="img-container">
+				<img id="liquid" class="project-image" src="images/animate/liquid_static.jpg" alt="Liquid Lab">
+			</div>
+			<div class="card-label source-code-pro">Web ·&nbsp;Brand Identity Design</div>
+			<h3 class="margin-bottom headline-text-color source-code-pro"><strong>Liquid Lab</strong></h3>
+				<p>Use HTML5, CSS3 and JavaScript to code a landing page for fictitious company "LiquidLab"</p>
+				<p>Conceptualize identity and branding.</p>
+				<p>Responsive and mobile first</p>
+				<p>Visual design graphic icons, UI buttons and patterns</p>
+				<ul>
+					<li><strong class="gold-color-font">Tools:</strong> HTML5, CSS3, jQuery, Photoshop, Illustrator</li>
+				</ul>
+				<a href="https://www.lawrencegetubig.com/liquidlab/liquidlab.html" class="btn" target="_blank" aria-label="View Live Prototype: Liquid Lab (opens in a new tab)" onclick="gtag('event', 'project_click', { project: 'liquid_lab', from_page: window.location.pathname });">
+					<span class="btn-text">View Live Prototype</span>
+					<span class="btn-arrow">
+					<span class="shaft"></span>
+					<span class="wing wing-left"></span>
+					<span class="wing wing-right"></span>
+					</span>
+				</a>
+		</section>
+	</div>
+
+
+</div><!--end main flex container-->
+
+</main>
+
+<footer class="pattern-dots-dense">
+	<p>Find me in:</p><br>
+	<p class="footer"><a href="https://github.com/LarsGittenberg" onclick="gtag('event', 'footer_click', { destination: 'github', from_page: window.location.pathname });"><i class="fa-brands fa-github" aria-hidden="true"></i> GitHub</a></p>
+	<br>
+	<p class="footer"><a href="https://www.linkedin.com/in/lawrence-getubig" onclick="gtag('event', 'footer_click', { destination: 'linkedin', from_page: window.location.pathname });"><i class="fa-brands fa-linkedin" aria-hidden="true"></i> LinkedIn</a></p> 
+	<br>
+	<p class="footer"><a href="https://www.instagram.com/ljgetubig/" onclick="gtag('event', 'footer_click', { destination: 'instagram', from_page: window.location.pathname });"><i class="fa-brands fa-instagram" aria-hidden="true"></i> Instagram</a></p>
+	<br>
+	<p class="copyright"><small>Copyright Lawrence Getubig 2026</small></p>
+	<!--  want to change the copyright date for all html files? use: perl -pi -w -e 's/Getubig\ 2018/Getubig\ 2019/g;' *.html -->
+</footer>
+
+<!--colorful Mode Switch--Toggles the class--Saves the preference--Updates the UI instantly-->
+<script>
+document.querySelector('#styleToggle .toggle-button').addEventListener('click', function() {
+  const root = document.documentElement;
+  const labelColorful = document.getElementById('labelColorful');
+  const labelToned = document.getElementById('labelToned');
+
+  if (root.classList.contains('toned-down')) {
+    // Switch to COLORFUL mode
+    root.classList.remove('toned-down');
+    root.classList.add('colorful');
+    localStorage.setItem('styleMode', 'colorful');
+
+    labelColorful.innerHTML = "Colorful<br>Retro<br>Mode: On";
+    labelToned.innerHTML = "Toned<br>Down<br>Mode: Off";
+
+    // ⭐ GA4 EVENT
+    gtag('event', 'theme_toggle', {
+      mode: 'colorful', from_page: window.location.pathname
+    });
+
+  } else {
+    // Switch to TONED-DOWN mode
+    root.classList.remove('colorful');
+    root.classList.add('toned-down');
+    localStorage.setItem('styleMode', 'toned-down');
+
+    labelColorful.innerHTML = "Colorful<br>Retro<br>Mode: Off";
+    labelToned.innerHTML = "Toned<br>Down<br>Mode: On";
+
+    // ⭐ GA4 EVENT
+    gtag('event', 'theme_toggle', {
+      mode: 'toned_down', from_page: window.location.pathname
+    });
+  }
+});
+</script>
+
+<script src="js/design.js"></script>
+
+<!-- Start of StatCounter Code for Default Guide -->
+<script type="text/javascript">
+var sc_project=5156734;
+var sc_invisible=1;
+var sc_security="8c976dcb";
+</script>
+<script type="text/javascript"
+src="https://www.statcounter.com/counter/counter.js"
+async></script>
+<noscript><div class="statcounter"><a title="site stats"
+href="http://statcounter.com/" target="_blank"><img
+class="statcounter"
+src="//c.statcounter.com/5156734/0/8c976dcb/1/" alt="site
+stats"></a></div></noscript>
+<!-- End of StatCounter Code for Default Guide -->
+
+</body>
+</html>
