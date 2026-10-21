@@ -295,13 +295,13 @@ One more thing, for the observant: the face at the top of this page has two diff
 	<div class="menu-signal"></div>
 
 	<div id="myNav" class="overlay pattern-grid-large">
-		<!-- Overlay content. TEST LINKS: the four menu links point at the -test pages so the new look can be browsed end to end. At go-live, point them back at index / webdesign / graphicdesign / photography .html -->
+		<!-- Overlay content. TEST LINKS: the five menu links point at the -test pages so the new look can be browsed end to end. At go-live, point them back at index / webdesign / graphicdesign / photography / about .html -->
 		<div class="overlay-content ">
 			<a href="index-test.html" onclick="gtag('event', 'nav_click', { nav_item: 'home', from_page: window.location.pathname });"> Home </a>
 			<a href="webdesign-test.html" onclick="gtag('event', 'nav_click', { nav_item: 'web_design', from_page: window.location.pathname });"> Web Design </a>
 			<a href="graphicdesign-test.html" onclick="gtag('event', 'nav_click', { nav_item: 'graphic_design', from_page: window.location.pathname });"> Graphic Design </a>
 			<a href="photography-test.html" onclick="gtag('event', 'nav_click', { nav_item: 'photography', from_page: window.location.pathname });"> Photography </a>
-			<a href="about.html" onclick="gtag('event', 'nav_click', { nav_item: 'about', from_page: window.location.pathname });"> About </a>
+			<a href="about-test.html" onclick="gtag('event', 'nav_click', { nav_item: 'about', from_page: window.location.pathname });"> About </a>
 			<p class="overlay-title">Settings</p>
 			<div class="style-toggle" id="styleToggle">
 				<span class="label-colorful" id="labelColorful">Colorful<br>Retro<br>Mode: On</span>
@@ -381,7 +381,7 @@ One more thing, for the observant: the face at the top of this page has two diff
 			</div>
 			<div class="card-label source-code-pro">Web Design ·&nbsp;Visual Design ·&nbsp;UX/UI</div>
 			<h3 class="margin-bottom headline-text-color source-code-pro"><strong>TNECD.com Site Redesign</strong></h3>
-			<p>Tennessee Economic and Community Development website redesign with a modernized visual system and clearer, more intuitive content architecture. <br><a href="https://tnecd.com" target="_blank" aria-label="Visit TNECD.com (opens in a new tab)" onclick="gtag('event', 'outbound_click', { destination: 'tnecd', from_page: window.location.pathname });">Visit TNECD.com<i class="fa-solid fa-square-arrow-up-right icon-after-text" aria-hidden="true"></i></a>
+			<p>Tennessee Economic and Community Development website redesign with a modernized visual system and clearer, more intuitive content architecture. <br><a class="text-link" href="https://tnecd.com" target="_blank" aria-label="Visit TNECD.com (opens in a new tab)" onclick="gtag('event', 'outbound_click', { destination: 'tnecd', from_page: window.location.pathname });">Visit TNECD.com<i class="fa-solid fa-square-arrow-up-right icon-after-text" aria-hidden="true"></i></a>
 </p>
 			<ul>
 				<li><strong class="gold-color-font">Tools:</strong> Figma, Photoshop, Illustrator</li>
@@ -519,11 +519,11 @@ One more thing, for the observant: the face at the top of this page has two diff
 
 <footer class="pattern-dots-dense">
 	<p>Find me in:</p><br>
-	<p class="footer"><a href="https://github.com/LarsGittenberg" onclick="gtag('event', 'footer_click', { destination: 'github', from_page: window.location.pathname });"><i class="fa-brands fa-github" aria-hidden="true"></i> GitHub</a></p>
+	<p class="footer"><a class="text-link" href="https://github.com/LarsGittenberg" onclick="gtag('event', 'footer_click', { destination: 'github', from_page: window.location.pathname });"><i class="fa-brands fa-github" aria-hidden="true"></i> GitHub</a></p>
 	<br>
-	<p class="footer"><a href="https://www.linkedin.com/in/lawrence-getubig" onclick="gtag('event', 'footer_click', { destination: 'linkedin', from_page: window.location.pathname });"><i class="fa-brands fa-linkedin" aria-hidden="true"></i> LinkedIn</a></p> 
+	<p class="footer"><a class="text-link" href="https://www.linkedin.com/in/lawrence-getubig" onclick="gtag('event', 'footer_click', { destination: 'linkedin', from_page: window.location.pathname });"><i class="fa-brands fa-linkedin" aria-hidden="true"></i> LinkedIn</a></p> 
 	<br>
-	<p class="footer"><a href="https://www.instagram.com/ljgetubig/" onclick="gtag('event', 'footer_click', { destination: 'instagram', from_page: window.location.pathname });"><i class="fa-brands fa-instagram" aria-hidden="true"></i> Instagram</a></p>
+	<p class="footer"><a class="text-link" href="https://www.instagram.com/ljgetubig/" onclick="gtag('event', 'footer_click', { destination: 'instagram', from_page: window.location.pathname });"><i class="fa-brands fa-instagram" aria-hidden="true"></i> Instagram</a></p>
 	<br>
 	<p class="copyright"><small>Copyright Lawrence Getubig 2026</small></p>
 	<!--  want to change the copyright date for all html files? use: perl -pi -w -e 's/Getubig\ 2018/Getubig\ 2019/g;' *.html -->

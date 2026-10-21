@@ -23,7 +23,7 @@
 	--blue: #004282;    /* the hero slab */
 	--yellow: #febe13;
 	--purple: #8c1c78;
-	--teal: #0e7c7c;
+	--teal: #005e5e;
 	--orange: #ff7f00;
 	--gold: #ffcc00;
 	--mint: #66cdaa;
@@ -112,16 +112,15 @@ a { color: inherit; }
 
 #myNav {
 	position: fixed;
-	inset: 0 auto 0 0;
+	inset: 0;
 	z-index: 5;
-	width: 0;
-	height: 100%;
-	overflow-x: hidden;
-	visibility: hidden; /* closed menu is invisible and its links can't be tabbed to */
+	visibility: hidden; /* closed menu is invisible and its links can't be tabbed to; the 600ms delay lets the circle finish closing before it vanishes */
 	background: var(--ink);
-	transition: 500ms ease-in-out;
+	clip-path: circle(0% at 46px 46px); /* a zero-size circle sitting on the pancake button's centre (14px from the edges + half of its 64px) */
+	transition: clip-path 600ms cubic-bezier(0.65, 0, 0.35, 1), visibility 0s 600ms;
 }
-#myNav.open-nav { width: 100% !important; z-index: 20 !important; visibility: visible; }
+#myNav.open-nav { z-index: 20; visibility: visible; clip-path: circle(150% at 46px 46px); transition: clip-path 600ms cubic-bezier(0.65, 0, 0.35, 1), visibility 0s; } /* the circle grows from the button until it covers the whole screen (150% reaches the far corner) */
+@media (prefers-reduced-motion: reduce) { #myNav, #myNav.open-nav { transition: none; } }
 
 .overlay-content {
 	position: relative;
@@ -417,16 +416,15 @@ section.featured-project-card h3 {
 	color: inherit;
 }
 section.featured-project-card p { max-width: 46ch; font-size: 0.95rem; line-height: 1.6; }
-section.featured-project-card p a { font-weight: 600; } /* underline and icon: see THE LINK RULE, below the footer */
 section.featured-project-card ul { margin: 16px 0 0; list-style: none; font-family: var(--font-mono); font-size: 0.8rem; line-height: 1.5; }
 section.featured-project-card li strong { font-weight: 400; letter-spacing: 0.08em; text-transform: uppercase; }
 .gold-color-font { color: inherit; text-decoration: none; } /* the "Tools:" label is not a link, so no underline; a small accent square marks it instead */
 .gold-color-font::before { content: "\25A0\00a0"; color: var(--mark); }
-/* the accent colour: magenta by default, but magenta vanishes on teal (1.1:1) and fades on blue and purple, so those three cards use gold */
+/* the accent colour of the small square before "Tools:": magenta by default, but magenta vanishes on teal (1.1:1) and fades on blue and purple, so those three cards use gold. The cream cards also turn their links yellow on hover (--link-hover) */
 section.featured-project-card { --mark: var(--magenta); }
 .flex-container-child-projects:nth-child(6n+3) section.featured-project-card,
 .flex-container-child-projects:nth-child(6n+4) section.featured-project-card,
-.flex-container-child-projects:nth-child(6n+5) section.featured-project-card { --mark: var(--gold); }
+.flex-container-child-projects:nth-child(6n+5) section.featured-project-card { --mark: var(--gold); --link-hover: var(--gold); }
 
 /* the button becomes a stamp. Its arrow bloom (copied below) still works on hover */
 .btn {
@@ -467,26 +465,48 @@ footer {
 footer br { display: none; }
 footer p { position: relative; z-index: 2; font-family: var(--font-mono); font-size: 0.78rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--mint); }
 footer p.footer { margin: 12px 0 0; font-family: var(--font-body); font-weight: 600; font-size: clamp(1.5rem, 3.6vw, 2.8rem); letter-spacing: -0.02em; text-transform: none; color: var(--paper); }
-footer p.footer a { transition: color 200ms ease; }
-footer p.footer a:hover { color: var(--gold); }
+footer p.footer { --link-hover: var(--gold); } /* cream text: the hover turns it yellow (see THE LINK RULE) */
 
 /* =====================================================================
-   THE LINK RULE (design system): every text link has
+   THE LINK RULE (design system): the component is .text-link. Put that class on any text link and it has
      1. an underline,
-     2. that underline is magenta (gold on the teal, blue and purple cards, where magenta disappears: 1.1:1 on teal),
-     3. an icon AFTER the text, chosen by where the link goes.
-   It covers text links only (in-card links, footer links, "Back to Home"). Buttons, the menu overlay and the breadcrumb are exempt:
+     2. that underline is always magenta,
+     3. an icon AFTER the text, chosen by where the link goes,
+     4. a hover that fades the text AND its icon to a new colour: black (ink) links turn magenta, cream links turn yellow (--gold).
+        The colour is set by --link-hover on the link's surroundings (magenta unless the surroundings are cream).
+   It is for text links only. Buttons, the menu overlay and the breadcrumb are exempt (they do not carry the class):
    the buttons carry their own arrow, the menu is a navigation component, and the breadcrumb's arrows are its separators.
    The icons are drawn by CSS from the link's address, so no link can forget one. Icons are Font Awesome (already loaded on every page).
    ===================================================================== */
-:is(section.featured-project-card p, footer p.footer, p.back-link) a {
+.text-link {
+	font-weight: 600;
 	text-decoration: underline;
-	text-decoration-color: var(--mark, var(--magenta)); /* --mark is set per card above; outside the cards it falls back to magenta */
+	text-decoration-color: var(--magenta);
 	text-decoration-thickness: 3px;
 	text-underline-offset: 0.25em;
+	transition: color 200ms ease; /* the icon is part of the link, so it fades with the text */
 }
-:is(section.featured-project-card p, footer p.footer, p.back-link) a > i { display: none; } /* TRANSITIONAL: older pages type their own icon in the markup (before or after the text); CSS now supplies it, so those are hidden. Safe to delete from the HTML later */
-:is(section.featured-project-card p, footer p.footer, p.back-link) a::after {
+.text-link:hover { color: var(--link-hover, var(--magenta)); }
+
+/* THE LINK HIGHLIGHT: on hover (or keyboard focus) a yellow highlight swoops in from the left, the text and icon turn ink, and the underline fades out. It replaces the colour change above (it is later, so it wins). The highlight is a background gradient whose width grows from 0 to 100%, which is why it can animate. */
+.text-link {
+	background-image: linear-gradient(var(--gold), var(--gold));
+	background-repeat: no-repeat;
+	background-position: left center;
+	background-size: 0% 100%;
+	padding-inline: 0.25em; margin-inline: -0.25em; /* a wee bit of highlight beyond the text on each side; the equal negative margin cancels it out, so nothing at rest moves */
+	-webkit-box-decoration-break: clone; box-decoration-break: clone; /* if a link wraps onto two lines, each line gets its own highlight */
+	transition: background-size 320ms cubic-bezier(.2, .7, .2, 1), color 200ms ease, text-decoration-color 200ms ease;
+}
+.text-link:hover,
+.text-link:focus-visible {
+	background-size: 100% 100%;
+	color: var(--ink);
+	text-decoration-color: transparent;
+}
+@media (prefers-reduced-motion: reduce) { .text-link { transition: none; } }
+.text-link > i { display: none; } /* TRANSITIONAL: older pages type their own icon in the markup (before or after the text); CSS now supplies it, so those are hidden. Safe to delete from the HTML later */
+.text-link::after {
 	content: "\f061"; /* default: arrow-right, a link to another page on this site */
 	font-family: "Font Awesome 6 Free";
 	font-weight: 900;
@@ -495,13 +515,12 @@ footer p.footer a:hover { color: var(--gold); }
 	margin-left: 0.45em;
 	vertical-align: 0.05em;
 }
-:is(section.featured-project-card p, footer p.footer, p.back-link) a[href^="http"]::after { content: "\f14c"; } /* external site: square with an arrow leaving it */
-:is(section.featured-project-card p, footer p.footer, p.back-link) a[href^="mailto:"]::after { content: "\f0e0"; } /* email: envelope */
-:is(section.featured-project-card p, footer p.footer, p.back-link) a[href="index.html"]::after,
-p.back-link a::after { content: "\f015"; } /* home: house */
-:is(section.featured-project-card p, footer p.footer, p.back-link) a[href*="github.com"]::after { content: "\f09b"; font-family: "Font Awesome 6 Brands"; font-weight: 400; }
-:is(section.featured-project-card p, footer p.footer, p.back-link) a[href*="linkedin.com"]::after { content: "\f08c"; font-family: "Font Awesome 6 Brands"; font-weight: 400; }
-:is(section.featured-project-card p, footer p.footer, p.back-link) a[href*="instagram.com"]::after { content: "\f16d"; font-family: "Font Awesome 6 Brands"; font-weight: 400; }
+.text-link[href^="http"]::after { content: "\f14c"; } /* external site: square with an arrow leaving it */
+.text-link[href^="mailto:"]::after { content: "\f0e0"; } /* email: envelope */
+.text-link[href="index.html"]::after { content: "\f015"; } /* home: house */
+.text-link[href*="github.com"]::after { content: "\f09b"; font-family: "Font Awesome 6 Brands"; font-weight: 400; }
+.text-link[href*="linkedin.com"]::after { content: "\f08c"; font-family: "Font Awesome 6 Brands"; font-weight: 400; }
+.text-link[href*="instagram.com"]::after { content: "\f16d"; font-family: "Font Awesome 6 Brands"; font-weight: 400; }
 footer p.copyright {
 	position: absolute;
 	bottom: 12px; /* 12px off the bottom edge of the page */
@@ -896,6 +915,9 @@ body {
 /* the hard offset shadows were ink; ink vanishes on a dark page, so they take a brand colour */
 section.featured-project-card { box-shadow: 10px 10px 0 var(--shadow-night); }
 section.featured-project-card:hover { box-shadow: 14px 14px 0 var(--shadow-night); }
+/* card 1 (the amber card, every 6th from the first) casts a cream shadow instead: amber on amber read as a thicker edge of the card itself. Delete these two rules to bring the amber back */
+.flex-container-child-projects:nth-child(6n+1) section.featured-project-card { box-shadow: 10px 10px 0 var(--paper); }
+.flex-container-child-projects:nth-child(6n+1) section.featured-project-card:hover { box-shadow: 14px 14px 0 var(--paper); }
 .menu-icon-container { border-color: var(--paper); box-shadow: 5px 5px 0 var(--magenta); } /* magenta on purpose (was var(--shadow-night), the amber the cards use) */
 
 /* the footer needs its own edge now that the page is dark too */
