@@ -39,6 +39,11 @@
 	--fs-title: calc(clamp(3rem, 8.4vw, 9.4rem) * var(--h2-scale));    /* at 900px and wider */
 	--fs-title-sm: calc(clamp(2.4rem, 11vw, 4.4rem) * var(--h2-scale)); /* below 900px */
 
+	/* the cut corner: one corner of a card or panel is cut away in a big curve. Two named shapes, because every use is one of them. */
+	--cut: 70px;
+	--cut-tr: 0 var(--cut) 0 0;  /* top-right corner cut */
+	--cut-tl: var(--cut) 0 0 0;  /* top-left corner cut */
+
 	--font-display: "Doto", sans-serif;
 	--font-body: "Montserrat", sans-serif;
 	--font-mono: "Source Code Pro", "Arial", sans-serif;
@@ -80,6 +85,18 @@ body {
 
 img { display: block; max-width: 100%; }
 a { color: inherit; }
+
+/* ---------- KICKER: a small label that introduces a block: a square marker, then tracked mono caps. Add the .source-code-pro class for the font.
+   The marker is magenta; change it where magenta would fade (e.g. on blue) with --kicker-mark. ---------- */
+.kicker { display: flex; align-items: center; gap: 10px; margin-bottom: 14px; font-size: var(--fs-l); letter-spacing: 0.22em; text-transform: uppercase; }
+.kicker::before { content: ""; width: 12px; height: 12px; background: var(--kicker-mark, var(--magenta)); }
+
+/* ---------- PANEL: a block of colour with one cut corner, a slight tilt and a hard shadow. Set it with variables on the element:
+   --panel-bg (colour), --panel-ink (text colour, ink by default), --panel-shadow (shadow colour), --tilt (angle),
+   --panel-offset (shadow size, --shadow-l by default). Pick the corner with .panel--cut-tr or .panel--cut-tl. Padding and hover belong to the page. ---------- */
+.panel { background: var(--panel-bg); color: var(--panel-ink, var(--ink)); box-shadow: var(--panel-offset, var(--shadow-l)) var(--panel-offset, var(--shadow-l)) 0 var(--panel-shadow); transform: rotate(var(--tilt, 0deg)); }
+.panel--cut-tr { border-radius: var(--cut-tr); }
+.panel--cut-tl { border-radius: var(--cut-tl); }
 
 /* helper classes that the markup already uses */
 .doto-lg { font-family: var(--font-display); font-optical-sizing: auto; font-weight: 900; font-variation-settings: "ROND" 0; }
@@ -344,12 +361,12 @@ section.featured-project-card {
 section.featured-project-card:hover { transform: rotate(0deg) translate(-4px, -4px); box-shadow: var(--shadow-xl) var(--shadow-xl) 0 var(--ink); }
 
 /* each card's paper colour, text colour and tilt */
-.flex-container-child-projects:nth-child(6n+1) section.featured-project-card { --card-bg: var(--amber); --card-ink: var(--ink); --tilt: -0.8deg; border-radius: 0 70px 0 0; }
+.flex-container-child-projects:nth-child(6n+1) section.featured-project-card { --card-bg: var(--amber); --card-ink: var(--ink); --tilt: -0.8deg; border-radius: var(--cut-tr); }
 .flex-container-child-projects:nth-child(6n+2) section.featured-project-card { --card-bg: var(--orange);  --card-ink: var(--ink);        --tilt: 1.6deg; }
 .flex-container-child-projects:nth-child(6n+3) section.featured-project-card { --card-bg: var(--teal);    --card-ink: var(--cream-text); --tilt: 1deg; }
-.flex-container-child-projects:nth-child(6n+4) section.featured-project-card { --card-bg: var(--blue);    --card-ink: var(--cream-text); --tilt: -1.4deg; border-radius: 0 70px 0 0; }
-.flex-container-child-projects:nth-child(6n+5) section.featured-project-card { --card-bg: var(--purple);  --card-ink: var(--cream-text); --tilt: -0.5deg; border-radius: 70px 0 0 0; }
-.flex-container-child-projects:nth-child(6n) section.featured-project-card { --card-bg: var(--mint);    --card-ink: var(--ink);        --tilt: 1.1deg; border-radius: 70px 0 0 0; }
+.flex-container-child-projects:nth-child(6n+4) section.featured-project-card { --card-bg: var(--blue);    --card-ink: var(--cream-text); --tilt: -1.4deg; border-radius: var(--cut-tr); }
+.flex-container-child-projects:nth-child(6n+5) section.featured-project-card { --card-bg: var(--purple);  --card-ink: var(--cream-text); --tilt: -0.5deg; border-radius: var(--cut-tl); }
+.flex-container-child-projects:nth-child(6n) section.featured-project-card { --card-bg: var(--mint);    --card-ink: var(--ink);        --tilt: 1.1deg; border-radius: var(--cut-tl); }
 
 /* outline numerals from the counter, hanging off the top edge of each card */
 section.featured-project-card::before {

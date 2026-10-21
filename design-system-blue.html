@@ -124,14 +124,14 @@
 
   <!-- ===================================================== SHAPES -->
   <h2 id="shapes">05 &middot; Shapes</h2>
-  <p class="note">The vocabulary the whole site is cut from. Radii are not tokens yet (see "Not yet in the system").</p>
+  <p class="note">The vocabulary the whole site is cut from. The cut corner is a token: <code>--cut</code> is <b id="dsCut"></b>, with two named shapes, <code>--cut-tr</code> and <code>--cut-tl</code>.</p>
   <div class="ds-shapes">
     <div><div class="ds-shape" style="background:var(--amber);border-radius:50%"></div><div class="ds-shape-label">circle<br>border-radius: 50%</div></div>
     <div><div class="ds-shape" style="background:var(--magenta);clip-path:polygon(0 100%,100% 100%,0 0)"></div><div class="ds-shape-label">triangle<br>clip-path</div></div>
     <div><div class="ds-shape" style="background:var(--orange);height:55px;border-radius:999px 999px 0 0;width:110px"></div><div class="ds-shape-label">half-pill<br>999px 999px 0 0</div></div>
     <div><div class="ds-shape" style="background:var(--mint);clip-path:polygon(50% 0,100% 50%,50% 100%,0 50%)"></div><div class="ds-shape-label">diamond<br>clip-path</div></div>
-    <div><div class="ds-shape" style="background:var(--paper);border-radius:0 70px 0 0"></div><div class="ds-shape-label">cut corner (top right)<br>0 70px 0 0</div></div>
-    <div><div class="ds-shape" style="background:var(--paper);border-radius:70px 0 0 0"></div><div class="ds-shape-label">cut corner (top left)<br>70px 0 0 0</div></div>
+    <div><div class="ds-shape" style="background:var(--paper);border-radius:var(--cut-tr)"></div><div class="ds-shape-label">cut corner (top right)<br>--cut-tr</div></div>
+    <div><div class="ds-shape" style="background:var(--paper);border-radius:var(--cut-tl)"></div><div class="ds-shape-label">cut corner (top left)<br>--cut-tl</div></div>
   </div>
 
   <!-- ===================================================== COMPONENTS -->
@@ -159,6 +159,21 @@
     <ul style="margin:0;list-style:none;padding:0;font-family:var(--font-mono);font-size:var(--fs-s)"><li><strong class="gold-color-font" style="--mark:var(--gold)">Tools:</strong> Figma, HTML5, CSS3</li></ul>
   </div>
 
+  <h3>Kicker: <code>.kicker</code></h3>
+  <p class="note">A small label that introduces a block: a square marker, then tracked mono caps. Add <code>.source-code-pro</code> for the font. The marker is magenta; set <code>--kicker-mark</code> where magenta would fade (here on blue).</p>
+  <div class="ds-grounds">
+    <div><div class="ds-ground" style="background:var(--paper);color:var(--ink)"><p class="kicker source-code-pro" style="margin:0">Hello</p></div><span class="ds-cap">default: magenta marker on cream</span></div>
+    <div><div class="ds-ground" style="background:var(--blue);color:var(--cream-text);--kicker-mark:var(--amber)"><p class="kicker source-code-pro" style="margin:0">Wow!</p></div><span class="ds-cap">--kicker-mark: var(--amber) on blue</span></div>
+  </div>
+
+  <h3>Panel: <code>.panel</code></h3>
+  <p class="note">A block of colour with one cut corner, a slight tilt and a hard shadow. Set it with variables (<code>--panel-bg</code>, <code>--panel-ink</code>, <code>--panel-shadow</code>, <code>--tilt</code>, and <code>--panel-offset</code> for a bigger shadow); pick the corner with <code>.panel--cut-tr</code> or <code>.panel--cut-tl</code>. Padding and hover belong to the page. The project cards share the idea but add a border, hover motion and the six-colour cycle, so they are not built on it (yet).</p>
+  <div class="ds-grounds" style="padding:0 16px 24px 0">
+    <div class="panel panel--cut-tr" style="padding:24px;--panel-bg:var(--paper);--panel-shadow:var(--amber);--panel-offset:var(--shadow-xl);--tilt:-0.6deg">cut-tr &middot; cream &middot; amber shadow &middot; --shadow-xl</div>
+    <div class="panel panel--cut-tl" style="padding:24px;--panel-bg:var(--blue);--panel-ink:var(--cream-text);--panel-shadow:var(--paper);--tilt:3deg">cut-tl &middot; blue, cream text &middot; cream shadow</div>
+    <div class="panel panel--cut-tr" style="padding:24px;--panel-bg:var(--mint);--panel-shadow:var(--orange);--tilt:1.1deg">cut-tr &middot; mint &middot; orange shadow</div>
+  </div>
+
   <h3>Project card: <code>section.featured-project-card</code>, and its colour cycle</h3>
   <p class="note">Colour, ink, tilt and corner come from the card's position (<code>:nth-child(6n+N)</code>), so six cards show the whole cycle. The pill, dome and cut corners are real. Positions use the live page grid, so resize to see it stack.</p>
   <div class="ds-cards">
@@ -183,9 +198,7 @@
   <p class="note">Patterns that exist but live inside one page's inline CSS, or repeat as raw values. These are the candidates for promotion into the shared stylesheet (found in the audit of 2026-10-21).</p>
   <div class="ds-scroll"><table class="ds-table">
     <tr><th>Pattern</th><th>Where it lives now</th><th>Idea</th></tr>
-    <tr><td>Kicker (<code>.ab-kicker</code>): square marker + tracked mono caps</td><td>about-test.html (3 uses)</td><td>Promote as <code>.kicker</code></td></tr>
-    <tr><td>Panel: cut corner + hard shadow + slight tilt</td><td>about-test.html (<code>.ab-intro</code>, <code>.ab-number</code>, <code>.ab-note</code>); the cards do the same in reskin-blue.css</td><td>One <code>.panel</code> recipe</td></tr>
-    <tr><td>Cut-corner radius <code>70px</code></td><td>8 uses as a raw value</td><td>Token <code>--cut</code></td></tr>
+    <tr><td>Project cards as panels</td><td>reskin-blue.css (<code>section.featured-project-card</code> carries its own border, hover and colour cycle)</td><td>Possibly rebuild on <code>.panel</code> later</td></tr>
     <tr><td>Floating shapes (<code>ab-float</code> drift)</td><td>about-test.html</td><td>Utility class + keyframes</td></tr>
     <tr><td>Hero text-shadow <code>5px 5px 0</code></td><td>reskin-blue.css (the same hard-shadow idea, on text)</td><td>Fold into the shadow tokens</td></tr>
   </table></div>
@@ -210,6 +223,7 @@
     <tr><td>wave2-tokens</td><td>59c40d0</td><td>Shadow-size and motion tokens</td><td><code>git revert 59c40d0</code></td></tr>
     <tr><td>wave3-type-scale</td><td>62b751f</td><td>Small-text scale, page-title tokens</td><td><code>git revert 62b751f</code></td></tr>
     <tr><td>(prune, see below)</td><td>&mdash;</td><td>Removed the do-nothing Colorful/Toned-Down toggle (menu markup, 3 pasted scripts on 8 pages, 1.3KB of CSS, <code>.overlay-title</code>, 5 legacy variables), plus the unused <code>.start-right</code> and <code>.text-center</code> rules. The 14 experiment files were archived on the <code>experiments-archive</code> branch.</td><td>see the commit</td></tr>
+    <tr><td>(wave 4, see below)</td><td>&mdash;</td><td><code>--cut</code> tokens for the cut corner, <code>.kicker</code> and <code>.panel</code> promoted from the about page into the shared stylesheet</td><td>see the commit</td></tr>
     <tr><td>pre-cleanup</td><td>(older)</td><td>Last commit with the old draft pages</td><td>checkout the tag to look</td></tr>
   </table></div>
 
@@ -275,6 +289,8 @@
   [].forEach.call(document.querySelectorAll('[data-measure]'), function (el) { $(el.getAttribute('data-measure')).textContent = parseFloat(getComputedStyle(el).fontSize).toFixed(2).replace(/\.?0+$/, '') + 'px'; });
   $('dsWidth').textContent = 'a window ' + window.innerWidth + 'px wide';
 
+  $('dsCut').textContent = tok('--cut');
+
   /* ---- shadows ---- */
   $('dsShadows').innerHTML = SHADOWS.map(function (s) {
     return '<div><div class="ds-box" style="box-shadow:var(' + s[0] + ') var(' + s[0] + ') 0 var(--amber)">' + s[0] + '<br>' + tok(s[0]) + '</div><span class="ds-cap">' + s[1] + '</span></div>';
@@ -318,9 +334,9 @@
   /* ---- drift detector: compare every custom property the stylesheets declare with the lists above ---- */
   var documented = {};
   [COLOURS, SCALE, TITLES, SHADOWS, MOTION].forEach(function (L) { L.forEach(function (x) { documented[x[0]] = 1; }); });
-  FONTS.concat(['--ease-soft', '--ease-swoop']).forEach(function (n) { documented[n] = 1; });
+  FONTS.concat(['--ease-soft', '--ease-swoop', '--cut', '--cut-tr', '--cut-tl']).forEach(function (n) { documented[n] = 1; });
   /* working variables the components set for themselves; they are plumbing, not design tokens */
-  var PLUMBING = /^--(u|h2-scale|pad|gap|nudge|card-bg|card-ink|tilt|img-scale|mark|link-hover|lg-size|i|fade-[\w-]+|stagger|band-[\w-]+|size|tag-[\w-]+|slab-[\w-]+|shape-scale|qm-[\w-]+|s[123]|c|shadow-night|slab-lift)$/;
+  var PLUMBING = /^--(u|h2-scale|pad|gap|nudge|card-bg|card-ink|tilt|img-scale|mark|link-hover|lg-size|i|fade-[\w-]+|stagger|band-[\w-]+|size|tag-[\w-]+|slab-[\w-]+|shape-scale|qm-[\w-]+|s[123]|c|shadow-night|slab-lift|kicker-mark|panel-[\w-]+)$/;
   var status = $('dsStatus'), found = {}, readable = 0, blocked = 0;
   function scan(rules) {
     [].forEach.call(rules, function (r) {

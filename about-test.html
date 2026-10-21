@@ -42,15 +42,12 @@
   @media (min-width: 900px) { .about-grid { grid-template-columns: repeat(6, minmax(0, 1fr)); } } /* the skin's own 6 columns, back for side by side; every section still spans all six unless it says otherwise */
 
   /* a small square marker in front of every kicker, like the "Tools" marker on the cards */
-  .ab-kicker { display: flex; align-items: center; gap: 10px; margin-bottom: 14px; font-size: var(--fs-l); letter-spacing: 0.22em; text-transform: uppercase; }
-  .ab-kicker::before { content: ""; width: 12px; height: 12px; background: var(--magenta); }
 
   /* ---------- 01 HELLO: a cream panel beside the portrait ---------- */
   .ab-hello { display: grid; gap: clamp(40px, 5vw, 72px); align-items: center; }
   @media (min-width: 900px) { .ab-hello { grid-template-columns: minmax(0, 7fr) minmax(0, 5fr); } }
-  .ab-intro { padding: clamp(28px, 4vw, 56px); background: var(--paper); color: var(--ink); border-radius: 0 70px 0 0; transform: rotate(-0.6deg); box-shadow: var(--shadow-xl) var(--shadow-xl) 0 var(--amber); }
-  .ab-intro .ab-kicker { color: var(--ink); }
-  .ab-intro .ab-kicker { font-size: var(--fs-l); } /* the .ab-intro p rule below would otherwise outrank the base size (that is how Hello once got 15.68px by accident) */
+  .ab-intro { padding: clamp(28px, 4vw, 56px); --panel-bg: var(--paper); --panel-ink: var(--ink); --panel-shadow: var(--amber); --panel-offset: var(--shadow-xl); --tilt: -0.6deg; }
+  .ab-intro .kicker { font-size: var(--fs-l); } /* the .ab-intro p rule below would otherwise outrank the base size (that is how Hello once got 15.68px by accident) */
   .ab-intro h3 { margin: 0 0 22px; font-family: var(--font-body); font-weight: 600; font-size: clamp(2rem, 4.2vw, 3.9rem); line-height: 1.02; letter-spacing: -0.03em; }
   .ab-intro p { max-width: 58ch; margin: 0 0 1em; font-size: var(--fs-l); line-height: 1.65; }
   .ab-intro .ab-lede { font-size: clamp(1.15rem, 1.7vw, 1.5rem); line-height: 1.45; font-weight: 500; }
@@ -78,7 +75,7 @@
   @keyframes ab-float { 0%, 100% { translate: 0 0; } 50% { translate: 0 -10px; } }
 
   /* ---------- 02 THE NUMBER: one fact at poster scale ---------- */
-  .ab-number { display: grid; gap: clamp(20px, 3vw, 40px); padding: clamp(28px, 5vw, 72px); background: var(--blue); color: var(--cream-text); border-radius: 70px 0 0 0; box-shadow: var(--shadow-l) var(--shadow-l) 0 var(--paper); transform: rotate(3deg); }
+  .ab-number { display: grid; gap: clamp(20px, 3vw, 40px); padding: clamp(28px, 5vw, 72px); --panel-bg: var(--blue); --panel-ink: var(--cream-text); --panel-shadow: var(--paper); --tilt: 3deg; --kicker-mark: var(--amber); /* magenta would fade on blue; amber is the same accent the % sign uses */ }
   .ab-figure { margin: 0; font-family: var(--font-display); font-weight: 900; font-size: clamp(3.6rem, 13vw, 13rem); line-height: 0.8; letter-spacing: -0.03em; white-space: nowrap; color: var(--cream-text); }
   /* the number card is 4 of the 6 columns (columns 3 to 6), flush right. (The number itself keeps the big size from .ab-figure above: clamp(3.6rem, 13vw, 13rem).) */
   @media (min-width: 900px) {
@@ -87,8 +84,7 @@
 
   /* THE % SIGN: small, in Montserrat, hanging at the number's top corner. It won a variant-switcher contest against five other looks (2026-10-20) */
   .ab-pct { font-family: var(--font-body); font-weight: 600; font-size: clamp(1.6rem, 3.4vw, 3rem); letter-spacing: 0; line-height: 1; vertical-align: top; margin-left: 0.2em; color: var(--amber); }
-  .ab-number .ab-kicker { margin: 0; } /* the card's own grid gap does the spacing */
-  .ab-number .ab-kicker::before { background: var(--amber); } /* magenta would fade on blue; amber is the same accent the % sign uses */
+  .ab-number .kicker { margin: 0; } /* the card's own grid gap does the spacing */
   .ab-figure-note { max-width: 56ch; }
   .ab-figure-note p { margin: 0; font-size: var(--fs-s); letter-spacing: 0.18em; text-transform: uppercase; }
   .ab-figure-note blockquote { margin: 14px 0; font-family: var(--font-body); font-weight: 600; font-size: clamp(1.3rem, 2.2vw, 2rem); line-height: 1.2; letter-spacing: -0.02em; }
@@ -96,7 +92,6 @@
 
   /* ---------- 03 A BLEND OF: the intro's own sentence, made literal ---------- */
   .ab-method { color: var(--paper); }
-  .ab-method .ab-kicker { color: var(--paper); }
   .ab-shapes { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 28px var(--gap); margin: 0; padding: 0; list-style: none; }
   @media (min-width: 700px) { .ab-shapes { grid-template-columns: repeat(4, minmax(0, 1fr)); } }
   .ab-shapes li { display: flex; flex-direction: column; gap: 14px; }
@@ -139,8 +134,8 @@
   .ab-note p { max-width: 52ch; margin: 0 0 1em; font-size: var(--fs-l); line-height: 1.65; }
   .ab-note .ab-by { margin: 18px 0 0; font-size: var(--fs-xs); letter-spacing: 0.1em; line-height: 1.6; text-transform: uppercase; }
   .ab-note .ab-by strong { font-weight: 600; }
-  .ab-note-1 { background: var(--paper); border-radius: 70px 0 0 0; transform: rotate(-1.2deg); box-shadow: var(--shadow-l) var(--shadow-l) 0 var(--magenta); }
-  .ab-note-2 { background: var(--mint); border-radius: 0 70px 0 0; transform: rotate(1.1deg); box-shadow: var(--shadow-l) var(--shadow-l) 0 var(--orange); }
+  .ab-note-1 { --panel-bg: var(--paper); --panel-shadow: var(--magenta); --tilt: -1.2deg; }
+  .ab-note-2 { --panel-bg: var(--mint); --panel-shadow: var(--orange); --tilt: 1.1deg; }
   @media (min-width: 900px) { /* side by side only; stacked on phones neither card has an offset */
     .ab-note-1 { margin-top: 100px; } /* the left card sits 100px lower */
     .ab-note-2 { margin-top: clamp(0px, 4vw, 60px); } /* the right card keeps its original nudge */
@@ -216,8 +211,8 @@
 
 <!-- 01 · HELLO: a cream panel of text beside the portrait on its sun-disc -->
 	<section class="ab-hello">
-		<div class="ab-intro">
-			<p class="ab-kicker source-code-pro">Hello</p>
+		<div class="ab-intro panel panel--cut-tr">
+			<p class="kicker source-code-pro">Hello</p>
 			<h3>Hello There! Thanks for Dropping By</h3>
 			<p class="ab-lede">I specialize in interface and visual design, where data and intuition work side by side. I use analytics, A/B testing, heat‑mapping, and usability research to shape digital experiences that perform — giving people a clear, easy path to what they need.</p>
 			<p>My art‑school roots keep the work fresh and human, while my systems thinking keeps it intentional and clear. I’m drawn to expressive, maximalist interfaces — work that isn’t afraid of texture, personality, or a little theatricality when it serves the story.</p>
@@ -241,8 +236,8 @@
 	</section>
 
 <!-- 02 · THE NUMBER: one fact set at poster scale (from the testimonial below) -->
-	<section class="ab-number" aria-label="A result from one A/B test">
-		<p class="ab-kicker source-code-pro">Wow!</p>
+	<section class="ab-number panel panel--cut-tl" aria-label="A result from one A/B test">
+		<p class="kicker source-code-pro">Wow!</p>
 		<p class="ab-figure doto-lg" role="img" aria-label="5,000 percent"><span class="ab-digits">5,000</span><span class="ab-pct">%</span></p>
 		<div class="ab-figure-note">
 			<p class="source-code-pro">Percentage lift in email subscriptions on one A/B test</p>
@@ -253,7 +248,7 @@
 
 <!-- 03 · A BLEND OF: the sentence from the intro, made literal in shapes -->
 	<section class="ab-method">
-		<p class="ab-kicker source-code-pro">Every project becomes a blend of</p>
+		<p class="kicker source-code-pro">Every project becomes a blend of</p>
 		<ul class="ab-shapes">
 			<li><span class="ab-shape s-circle" aria-hidden="true"></span><span class="ab-shape-label doto-lg">Evidence</span></li>
 			<li><span class="ab-shape s-tri" aria-hidden="true"></span><span class="ab-shape-label doto-lg">Synthesis</span></li>
@@ -267,12 +262,12 @@
 	<section class="ab-said">
 		<h3 class="doto-lg">Said About Me</h3>
 		<div class="ab-notes">
-			<article class="ab-note ab-note-1">
+			<article class="ab-note ab-note-1 panel panel--cut-tl">
 				<p>“First, Lawrence, you’re my favorite person I’ve ever met virtually. Second, I’m blown away. It’s like you all are experts in this – and you are!”</p>
 				<p>“This first pass is so beautiful. It’s pretty awesome. It’s so clean, refreshing, navigable. I want to be on this website.”</p>
 				<p class="ab-by source-code-pro">— <strong>L.B.</strong>, public sector client, responding to a first-pass website refresh my Accenture Song team and I designed</p>
 			</article>
-			<article class="ab-note ab-note-2">
+			<article class="ab-note ab-note-2 panel panel--cut-tr">
 				<p>“I've been doing this nearly ten years and haven't met someone like Lawrence...a one-stop shop who can implement [Adobe Target] A/B tests from his own [Figma] mockups, then analyze the results himself [using Adobe Workspace].”</p>
 				<p>“One of the A/B tests he was absolutely critical in helped increase email subscriptions for [the client's website], which is their number two goal...for this test, he mocked it up himself, led meetings with the client, then did the entire front-end-coding and implemented the test in Adobe Target.”</p>
 				<p>“This test had a 5,000% lift...it was 50x better at increasing email subscriptions over the control...”</p>
