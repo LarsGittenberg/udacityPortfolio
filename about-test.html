@@ -60,7 +60,7 @@
   /* ---------- 01 HELLO: a cream panel beside the portrait ---------- */
   .ab-hello { display: grid; gap: clamp(40px, 5vw, 72px); align-items: center; }
   @media (min-width: 900px) { .ab-hello { grid-template-columns: minmax(0, 7fr) minmax(0, 5fr); } }
-  .ab-intro { padding: clamp(28px, 4vw, 56px); background: var(--paper); color: var(--ink); border-radius: 0 70px 0 0; transform: rotate(-0.6deg); box-shadow: 14px 14px 0 var(--amber); }
+  .ab-intro { padding: clamp(28px, 4vw, 56px); background: var(--paper); color: var(--ink); border-radius: 0 70px 0 0; transform: rotate(-0.6deg); box-shadow: var(--shadow-xl) var(--shadow-xl) 0 var(--amber); }
   .ab-intro .ab-kicker { color: var(--ink); }
   .ab-intro .ab-kicker { font-size: 1rem; } /* the .ab-intro p rule below would otherwise outrank the base size (that is how Hello once got 15.68px by accident) */
   .ab-intro h3 { margin: 0 0 22px; font-family: var(--font-body); font-weight: 600; font-size: clamp(2rem, 4.2vw, 3.9rem); line-height: 1.02; letter-spacing: -0.03em; }
@@ -90,7 +90,7 @@
   @keyframes ab-float { 0%, 100% { translate: 0 0; } 50% { translate: 0 -10px; } }
 
   /* ---------- 02 THE NUMBER: one fact at poster scale ---------- */
-  .ab-number { display: grid; gap: clamp(20px, 3vw, 40px); padding: clamp(28px, 5vw, 72px); background: var(--blue); color: var(--cream-text); border-radius: 70px 0 0 0; box-shadow: 12px 12px 0 var(--paper); transform: rotate(3deg); }
+  .ab-number { display: grid; gap: clamp(20px, 3vw, 40px); padding: clamp(28px, 5vw, 72px); background: var(--blue); color: var(--cream-text); border-radius: 70px 0 0 0; box-shadow: var(--shadow-l) var(--shadow-l) 0 var(--paper); transform: rotate(3deg); }
   .ab-figure { margin: 0; font-family: var(--font-display); font-weight: 900; font-size: clamp(3.6rem, 13vw, 13rem); line-height: 0.8; letter-spacing: -0.03em; white-space: nowrap; color: var(--cream-text); }
   /* the number card is 4 of the 6 columns (columns 3 to 6), flush right. (The number itself keeps the big size from .ab-figure above: clamp(3.6rem, 13vw, 13rem).) */
   @media (min-width: 900px) {
@@ -113,7 +113,7 @@
   @media (min-width: 700px) { .ab-shapes { grid-template-columns: repeat(4, minmax(0, 1fr)); } }
   .ab-shapes li { display: flex; flex-direction: column; gap: 14px; }
   .ab-shape { --shape-scale: 0.75; /* every shape is drawn at 75% of its box, centred in its column */ position: relative; height: clamp(90px, 12vw, 170px); border-bottom: 3px solid var(--paper); } /* the border is the floor the shape stands on */
-  .ab-shape::before { content: ""; position: absolute; left: 50%; translate: -50% 0; bottom: 0; height: calc(100% * var(--shape-scale)); aspect-ratio: 1; background: var(--c); transition: transform 300ms ease; }
+  .ab-shape::before { content: ""; position: absolute; left: 50%; translate: -50% 0; bottom: 0; height: calc(100% * var(--shape-scale)); aspect-ratio: 1; background: var(--c); transition: transform var(--t-base) ease; }
   .s-circle { --c: var(--amber); }   .s-circle::before { border-radius: 50%; }
   .s-tri { --c: var(--magenta); }    .s-tri::before { clip-path: polygon(0 100%, 100% 100%, 0 0); }
   .s-half { --c: var(--orange); }    .s-half::before { height: calc(50% * var(--shape-scale)); aspect-ratio: 2 / 1; border-radius: 999px 999px 0 0; }
@@ -143,7 +143,7 @@
     .ab-said h3 { margin-bottom: calc(var(--qm-over) + 40px); font-size: calc(clamp(2.4rem, 11vw, 4.4rem) * var(--h2-scale)); letter-spacing: -0.02em; } /* below 900px the title follows the About h2's exact size formula (card-pages.css) and its letter spacing, so the two headings are twins */
     .ab-notes { gap: calc(var(--qm-over) + 56px); }
   }
-  .ab-note { position: relative; padding: clamp(56px, 6vw, 76px) clamp(24px, 3vw, 40px) clamp(24px, 3vw, 40px); color: var(--ink); transition: transform 300ms ease; }
+  .ab-note { position: relative; padding: clamp(56px, 6vw, 76px) clamp(24px, 3vw, 40px) clamp(24px, 3vw, 40px); color: var(--ink); transition: transform var(--t-base) ease; }
   /* the quote mark is made like the cards' numerals (reskin-blue.css): Doto 900, cream fill with a 3px ink outline, hanging over the card's top edge.
      It is bigger than the numerals, and sits lower than theirs (-0.38em against -0.46em), so the mark straddles the edge: half over the card, half over the space above it. Tune the size or the "top" value to move it */
   .ab-note::before { content: "\201C"; position: absolute; left: 14px; top: -0.38em; z-index: 2; font-family: var(--font-display); font-weight: 900;
@@ -151,8 +151,8 @@
   .ab-note p { max-width: 52ch; margin: 0 0 1em; font-size: 0.98rem; line-height: 1.65; }
   .ab-note .ab-by { margin: 18px 0 0; font-size: 0.74rem; letter-spacing: 0.1em; line-height: 1.6; text-transform: uppercase; }
   .ab-note .ab-by strong { font-weight: 600; }
-  .ab-note-1 { background: var(--paper); border-radius: 70px 0 0 0; transform: rotate(-1.2deg); box-shadow: 12px 12px 0 var(--magenta); }
-  .ab-note-2 { background: var(--mint); border-radius: 0 70px 0 0; transform: rotate(1.1deg); box-shadow: 12px 12px 0 var(--orange); }
+  .ab-note-1 { background: var(--paper); border-radius: 70px 0 0 0; transform: rotate(-1.2deg); box-shadow: var(--shadow-l) var(--shadow-l) 0 var(--magenta); }
+  .ab-note-2 { background: var(--mint); border-radius: 0 70px 0 0; transform: rotate(1.1deg); box-shadow: var(--shadow-l) var(--shadow-l) 0 var(--orange); }
   @media (min-width: 900px) { /* side by side only; stacked on phones neither card has an offset */
     .ab-note-1 { margin-top: 100px; } /* the left card sits 100px lower */
     .ab-note-2 { margin-top: clamp(0px, 4vw, 60px); } /* the right card keeps its original nudge */
