@@ -22,17 +22,17 @@ header { padding-right: calc(2.4 * var(--u)); }
 /* ---------- 1b. the page title: a large pillar with a small descriptor beside it, both hung from the top of the column ----------
    On desktop the pair is sticky: it rides along as you scroll and lets go 50px above the footer.
    Below 900px it is an ordinary heading, with the descriptor flat underneath. */
-.project-header-bar h2 { font-size: calc(clamp(3rem, 8.4vw, 9.4rem) * var(--h2-scale)); }
+.project-header-bar h2 { font-size: var(--fs-title); }
 .h2-wrap { display: grid; grid-auto-flow: column; grid-auto-columns: max-content; justify-content: start; align-items: start; column-gap: clamp(8px, 1vw, 14px); }
 .h2-descriptor { writing-mode: vertical-rl; transform: rotate(180deg); white-space: nowrap; margin-bottom: 0.4rem; /* reads bottom to top, like the tagline in the header */
-	font-family: var(--font-mono); font-size: 0.88rem; letter-spacing: 0.22em; text-transform: uppercase; color: var(--paper); }
+	font-family: var(--font-mono); font-size: var(--fs-m); letter-spacing: 0.22em; text-transform: uppercase; color: var(--paper); }
 @media (min-width: 900px) {
 	.project-header-bar { padding-bottom: 50px; } /* the sticky title may not travel into this padding, so it lets go 50px above the footer */
 	.h2-wrap { position: sticky; top: 100px; } /* 100px parks it below the fixed menu icon */
-	.project-header-bar h2 { font-size: min(calc(clamp(3rem, 8.4vw, 9.4rem) * var(--h2-scale)), 9vh); } /* capped by window height so the pillar always fits on screen */
+	.project-header-bar h2 { font-size: min(var(--fs-title), 9vh); } /* capped by window height so the pillar always fits on screen */
 }
 @media (max-width: 899px) {
-	.project-header-bar h2 { font-size: calc(clamp(2.4rem, 11vw, 4.4rem) * var(--h2-scale)); }
+	.project-header-bar h2 { font-size: var(--fs-title-sm); }
 	.h2-wrap { display: flex; flex-direction: column; align-items: flex-start; gap: 10px; }
 	.h2-descriptor { writing-mode: horizontal-tb; transform: none; margin-bottom: 0; }
 }
@@ -49,7 +49,7 @@ header { padding-right: calc(2.4 * var(--u)); }
    margin-top: 50px below the "C" of "Creative", the foot of the rotated tagline; the tagline's own 0.4rem bottom margin is already part of that, so it is subtracted */
 .card-page .band { margin-top: calc(50px - 0.4rem); height: calc(4.04 * var(--u)); min-height: 40px; display: flex; align-items: center; overflow: hidden; white-space: nowrap; background: var(--band-bg); color: var(--band-ink); }
 .card-page .band-track { display: inline-flex; animation: slide 38s linear infinite; }
-.card-page .band-track span { font-family: var(--font-mono); font-size: 0.8125rem; letter-spacing: 0.14em; text-transform: uppercase; padding-right: 2.2em; }
+.card-page .band-track span { font-family: var(--font-mono); font-size: var(--fs-s); letter-spacing: 0.14em; text-transform: uppercase; padding-right: 2.2em; }
 .card-page .band-track i { font-style: normal; }
 .card-page .band-track i:nth-of-type(3n+1) { color: var(--s1); }
 .card-page .band-track i:nth-of-type(3n+2) { color: var(--s2); }

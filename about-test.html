@@ -54,7 +54,7 @@
   @media (min-width: 900px) { .about-grid { grid-template-columns: repeat(6, minmax(0, 1fr)); } } /* the skin's own 6 columns, back for side by side; every section still spans all six unless it says otherwise */
 
   /* a small square marker in front of every kicker, like the "Tools" marker on the cards */
-  .ab-kicker { display: flex; align-items: center; gap: 10px; margin-bottom: 14px; font-size: 1rem; letter-spacing: 0.22em; text-transform: uppercase; }
+  .ab-kicker { display: flex; align-items: center; gap: 10px; margin-bottom: 14px; font-size: var(--fs-l); letter-spacing: 0.22em; text-transform: uppercase; }
   .ab-kicker::before { content: ""; width: 12px; height: 12px; background: var(--magenta); }
 
   /* ---------- 01 HELLO: a cream panel beside the portrait ---------- */
@@ -62,9 +62,9 @@
   @media (min-width: 900px) { .ab-hello { grid-template-columns: minmax(0, 7fr) minmax(0, 5fr); } }
   .ab-intro { padding: clamp(28px, 4vw, 56px); background: var(--paper); color: var(--ink); border-radius: 0 70px 0 0; transform: rotate(-0.6deg); box-shadow: var(--shadow-xl) var(--shadow-xl) 0 var(--amber); }
   .ab-intro .ab-kicker { color: var(--ink); }
-  .ab-intro .ab-kicker { font-size: 1rem; } /* the .ab-intro p rule below would otherwise outrank the base size (that is how Hello once got 15.68px by accident) */
+  .ab-intro .ab-kicker { font-size: var(--fs-l); } /* the .ab-intro p rule below would otherwise outrank the base size (that is how Hello once got 15.68px by accident) */
   .ab-intro h3 { margin: 0 0 22px; font-family: var(--font-body); font-weight: 600; font-size: clamp(2rem, 4.2vw, 3.9rem); line-height: 1.02; letter-spacing: -0.03em; }
-  .ab-intro p { max-width: 58ch; margin: 0 0 1em; font-size: 0.98rem; line-height: 1.65; }
+  .ab-intro p { max-width: 58ch; margin: 0 0 1em; font-size: var(--fs-l); line-height: 1.65; }
   .ab-intro .ab-lede { font-size: clamp(1.15rem, 1.7vw, 1.5rem); line-height: 1.45; font-weight: 500; }
   .ab-intro p:last-child { margin-bottom: 0; }
 
@@ -76,7 +76,7 @@
   .ab-photo .photo-hover { opacity: 0; }
   .ab-portrait:hover .photo-hover { opacity: 1; }
   .ab-portrait:hover .photo-default { opacity: 0; }
-  .ab-portrait figcaption { position: relative; z-index: 2; display: grid; margin-top: 16px; text-align: center; font-size: 0.78rem; letter-spacing: 0.14em; text-transform: uppercase; color: var(--paper); }
+  .ab-portrait figcaption { position: relative; z-index: 2; display: grid; margin-top: 16px; text-align: center; font-size: var(--fs-xs); letter-spacing: 0.14em; text-transform: uppercase; color: var(--paper); }
   .ab-portrait figcaption span { grid-area: 1 / 1; }
   .ab-portrait .caption-hover { opacity: 0; }
   .ab-portrait:hover .caption-hover { opacity: 1; }
@@ -102,7 +102,7 @@
   .ab-number .ab-kicker { margin: 0; } /* the card's own grid gap does the spacing */
   .ab-number .ab-kicker::before { background: var(--amber); } /* magenta would fade on blue; amber is the same accent the % sign uses */
   .ab-figure-note { max-width: 56ch; }
-  .ab-figure-note p { margin: 0; font-size: 0.8rem; letter-spacing: 0.18em; text-transform: uppercase; }
+  .ab-figure-note p { margin: 0; font-size: var(--fs-s); letter-spacing: 0.18em; text-transform: uppercase; }
   .ab-figure-note blockquote { margin: 14px 0; font-family: var(--font-body); font-weight: 600; font-size: clamp(1.3rem, 2.2vw, 2rem); line-height: 1.2; letter-spacing: -0.02em; }
   .ab-figure-note .ab-by { opacity: 0.85; }
 
@@ -131,7 +131,7 @@
   /* SHOW / HIDE TEST (variant switcher): "a" (Show) is the normal page; "b" (Hide) removes the whole "blend of" section (kicker, four shapes, pull-quote). The grid's row-gap closes up by itself. */
   html.look-b .ab-method { display: none; }
   .look-switch { position: fixed; right: 16px; bottom: 16px; z-index: 50; display: flex; flex-wrap: wrap; justify-content: flex-end; gap: 6px; max-width: calc(100vw - 32px); padding: 8px; background: var(--ink); border: 2px solid var(--paper); font-family: var(--font-mono); }
-  .look-switch button { font: inherit; font-size: 0.72rem; letter-spacing: 0.1em; text-transform: uppercase; padding: 6px 10px; border: 2px solid var(--paper); background: transparent; color: var(--paper); cursor: pointer; }
+  .look-switch button { font: inherit; font-size: var(--fs-xs); letter-spacing: 0.1em; text-transform: uppercase; padding: 6px 10px; border: 2px solid var(--paper); background: transparent; color: var(--paper); cursor: pointer; }
   .look-switch button[aria-pressed="true"] { background: var(--paper); color: var(--ink); }
 
   /* ---------- 04 SAID ABOUT ME: two tilted note cards ---------- */
@@ -140,7 +140,7 @@
   .ab-notes { display: grid; gap: clamp(36px, 4vw, 64px); align-items: start; }
   @media (min-width: 900px) { .ab-notes { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
   @media (max-width: 899px) { /* stacked: each card's quote mark hangs above it, so the gaps are the overhang PLUS clear space (was 36px, less than the overhang, so marks landed on the card or title above) */
-    .ab-said h3 { margin-bottom: calc(var(--qm-over) + 40px); font-size: calc(clamp(2.4rem, 11vw, 4.4rem) * var(--h2-scale)); letter-spacing: -0.02em; } /* below 900px the title follows the About h2's exact size formula (card-pages.css) and its letter spacing, so the two headings are twins */
+    .ab-said h3 { margin-bottom: calc(var(--qm-over) + 40px); font-size: var(--fs-title-sm); letter-spacing: -0.02em; } /* below 900px the title follows the About h2's exact size formula (card-pages.css) and its letter spacing, so the two headings are twins */
     .ab-notes { gap: calc(var(--qm-over) + 56px); }
   }
   .ab-note { position: relative; padding: clamp(56px, 6vw, 76px) clamp(24px, 3vw, 40px) clamp(24px, 3vw, 40px); color: var(--ink); transition: transform var(--t-base) ease; }
@@ -148,8 +148,8 @@
      It is bigger than the numerals, and sits lower than theirs (-0.38em against -0.46em), so the mark straddles the edge: half over the card, half over the space above it. Tune the size or the "top" value to move it */
   .ab-note::before { content: "\201C"; position: absolute; left: 14px; top: -0.38em; z-index: 2; font-family: var(--font-display); font-weight: 900;
     font-size: var(--qm-size); line-height: 1; color: var(--paper); -webkit-text-stroke: 3px var(--ink); paint-order: stroke fill; }
-  .ab-note p { max-width: 52ch; margin: 0 0 1em; font-size: 0.98rem; line-height: 1.65; }
-  .ab-note .ab-by { margin: 18px 0 0; font-size: 0.74rem; letter-spacing: 0.1em; line-height: 1.6; text-transform: uppercase; }
+  .ab-note p { max-width: 52ch; margin: 0 0 1em; font-size: var(--fs-l); line-height: 1.65; }
+  .ab-note .ab-by { margin: 18px 0 0; font-size: var(--fs-xs); letter-spacing: 0.1em; line-height: 1.6; text-transform: uppercase; }
   .ab-note .ab-by strong { font-weight: 600; }
   .ab-note-1 { background: var(--paper); border-radius: 70px 0 0 0; transform: rotate(-1.2deg); box-shadow: var(--shadow-l) var(--shadow-l) 0 var(--magenta); }
   .ab-note-2 { background: var(--mint); border-radius: 0 70px 0 0; transform: rotate(1.1deg); box-shadow: var(--shadow-l) var(--shadow-l) 0 var(--orange); }
@@ -162,7 +162,7 @@
   /* ---------- the way out ---------- */
   .ab-actions { display: flex; flex-wrap: wrap; align-items: center; gap: 28px; }
   .btn[aria-disabled="true"] { opacity: 0.6; cursor: not-allowed; pointer-events: none; }
-  .ab-back { font-size: 0.8rem; letter-spacing: 0.14em; text-transform: uppercase; color: var(--paper); }
+  .ab-back { font-size: var(--fs-s); letter-spacing: 0.14em; text-transform: uppercase; color: var(--paper); }
 
   @media (prefers-reduced-motion: reduce) { .ab-orbit, .ab-shape::before { animation: none; } .ab-note, .ab-shape::before, .ab-photo img { transition: none; } }
   </style>

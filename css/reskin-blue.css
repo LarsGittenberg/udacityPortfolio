@@ -29,6 +29,16 @@
 	--mint: #66cdaa;
 	--cream-text: #fffaf0;
 
+	/* the type scale for small text (fixed sizes). Bigger, fluid sizes are written where they are used, except the two page-title sizes below. */
+	--fs-xs: 0.75rem;     /* 12px: tags, captions, the footer lead-in */
+	--fs-s: 0.8125rem;    /* 13px: button text, lists of tools, small notes */
+	--fs-m: 0.875rem;     /* 14px: the header line, the title descriptor, the copyright */
+	--fs-l: 1rem;         /* 16px: paragraphs, kickers */
+	--fs-base: 1.0625rem; /* 17px: the page's base text */
+	/* the page-title sizes (the About / Web Design pillar), after --h2-scale. Needs --h2-scale on :root, which every page has (card-pages.css, or the home page's own style block) */
+	--fs-title: calc(clamp(3rem, 8.4vw, 9.4rem) * var(--h2-scale));    /* at 900px and wider */
+	--fs-title-sm: calc(clamp(2.4rem, 11vw, 4.4rem) * var(--h2-scale)); /* below 900px */
+
 	--font-display: "Doto", sans-serif;
 	--font-body: "Montserrat", sans-serif;
 	--font-mono: "Source Code Pro", "Arial", sans-serif;
@@ -69,7 +79,7 @@ body {
 	background-size: 4px;
 	color: var(--ink);
 	font-family: var(--font-body);
-	font-size: 1.0625rem;
+	font-size: var(--fs-base);
 	line-height: 1.55;
 	overflow-x: hidden;
 }
@@ -158,7 +168,7 @@ a { color: inherit; }
 	display: block;
 	padding: 28px 8px 8px;
 	font-family: var(--font-mono);
-	font-size: 0.8rem;
+	font-size: var(--fs-s);
 	letter-spacing: 0.2em;
 	text-transform: uppercase;
 	color: var(--amber);
@@ -194,7 +204,7 @@ header {
 	margin-bottom: 0.4rem;
 	font-family: var(--font-mono);
 	font-weight: 400;
-	font-size: 0.88rem;
+	font-size: var(--fs-m);
 	letter-spacing: 0.22em;
 	text-transform: uppercase;
 	color: var(--ink); /* amber on cream paper is too faint for small type */
@@ -411,7 +421,7 @@ section.featured-project-card:hover .img-container { transform: rotate(-2deg) sc
 	color: var(--ink);
 	border: 2px solid var(--ink); /* echoes the ink frame on the card images; also holds the tag's edge on the amber, orange and mint cards */
 	font-family: var(--font-mono);
-	font-size: 0.72rem;
+	font-size: var(--fs-xs);
 	font-weight: 400;
 	letter-spacing: 0.12em;
 	text-transform: uppercase;
@@ -426,8 +436,8 @@ section.featured-project-card h3 {
 	letter-spacing: -0.03em;
 	color: inherit;
 }
-section.featured-project-card p { max-width: 46ch; font-size: 0.95rem; line-height: 1.6; }
-section.featured-project-card ul { margin: 16px 0 0; list-style: none; font-family: var(--font-mono); font-size: 0.8rem; line-height: 1.5; }
+section.featured-project-card p { max-width: 46ch; font-size: var(--fs-l); line-height: 1.6; }
+section.featured-project-card ul { margin: 16px 0 0; list-style: none; font-family: var(--font-mono); font-size: var(--fs-s); line-height: 1.5; }
 section.featured-project-card li strong { font-weight: 400; letter-spacing: 0.08em; text-transform: uppercase; }
 .gold-color-font { color: inherit; text-decoration: none; } /* the "Tools:" label is not a link, so no underline; a small accent square marks it instead */
 .gold-color-font::before { content: "\25A0\00a0"; color: var(--mark); }
@@ -453,7 +463,7 @@ section.featured-project-card { --mark: var(--magenta); }
 	transition: transform var(--t-quick) ease, box-shadow var(--t-quick) ease, background var(--t-quick) ease, color var(--t-quick) ease;
 }
 .btn:hover { transform: translate(-2px, -2px); box-shadow: var(--shadow-m) var(--shadow-m) 0 var(--orange); background: var(--paper); color: var(--ink); }
-.btn-text { font-size: 0.8rem; }
+.btn-text { font-size: var(--fs-s); }
 section.featured-project-card .btn { position: relative; margin: 24px 0 0; } /* the button owns the space above it, so the gap is the same whatever sits above: a paragraph or the Tools list */
 /* orange would vanish against the amber and orange cards (1 and 2), so their stamps cast magenta shadows (were cream; to undo, change var(--magenta) back to var(--paper)) */
 .flex-container-child-projects:nth-child(6n+1) .btn,
@@ -474,7 +484,7 @@ footer {
 	color: var(--paper);
 }
 footer br { display: none; }
-footer p { position: relative; z-index: 2; font-family: var(--font-mono); font-size: 0.78rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--mint); }
+footer p { position: relative; z-index: 2; font-family: var(--font-mono); font-size: var(--fs-xs); letter-spacing: 0.2em; text-transform: uppercase; color: var(--mint); }
 footer p.footer { margin: 12px 0 0; font-family: var(--font-body); font-weight: 600; font-size: clamp(1.5rem, 3.6vw, 2.8rem); letter-spacing: -0.02em; text-transform: none; color: var(--paper); }
 footer p.footer { --link-hover: var(--gold); } /* cream text: the hover turns it yellow (see THE LINK RULE) */
 
@@ -543,7 +553,7 @@ footer p.copyright {
 	line-height: 1; /* hugs the letters, so the 12px gap is measured from the ink */
 	font-family: var(--font-mono);
 	font-weight: 400;
-	font-size: 0.88rem;
+	font-size: var(--fs-m);
 	letter-spacing: 0.22em;
 	text-transform: uppercase;
 	color: var(--paper);
@@ -563,7 +573,7 @@ footer p.copyright {
 		right: calc(var(--lg-size) * 1.195 - 2vw + 12px); /* stops 12px short of the L, which makes the text wrap */
 		white-space: normal;
 		text-wrap: balance; /* evens out the two lines so "2026" never sits alone */
-		font-size: 0.75rem;
+		font-size: var(--fs-xs);
 		letter-spacing: 0.12em; /* a touch smaller and tighter than the vertical version so it fits on two lines at 360px */
 	}
 }
