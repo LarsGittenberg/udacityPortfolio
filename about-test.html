@@ -108,8 +108,8 @@
   .ab-shapes li:nth-child(3) .ab-shape::before { animation-delay: -4.6s; }
   .ab-shapes li:nth-child(4) .ab-shape::before { animation-delay: -1.2s; }
   @keyframes ab-shape-float { 0%, 100% { translate: -50% -20px; } 50% { translate: -50% -30px; } }
-  .ab-shape-label { font-family: var(--font-display); font-weight: 900; font-size: clamp(1.5rem, 3vw, 2.8rem); line-height: 0.9; text-transform: uppercase; text-align: center; }
-  .ab-pull { max-width: 26ch; margin: 200px auto; text-align: center; font-family: var(--font-mono); font-weight: 300; font-size: clamp(1.7rem, 3.6vw, 3.4rem); line-height: 1.2; letter-spacing: -0.03em;text-wrap: balance; } /* centred; 200px of empty space above and below (negative space test; the amber rule and its padding are gone); Source Code Pro Light, the lightest weight the page loads */
+  .ab-shape-label { font-family: var(--font-display); font-weight: 900; font-size: var(--fs-label-display); line-height: 0.9; text-transform: uppercase; text-align: center; }
+  .ab-pull { max-width: 26ch; margin: 200px auto; text-align: center; font-family: var(--font-mono); font-weight: 300; font-size: var(--fs-quote); line-height: 1.2; letter-spacing: -0.03em;text-wrap: balance; } /* centred; 200px of empty space above and below (negative space test; the amber rule and its padding are gone); Source Code Pro Light, the lightest weight the page loads */
 
   /* SHOW / HIDE TEST (variant switcher): "a" (Show) is the normal page; "b" (Hide) removes the whole "blend of" section (kicker, four shapes, pull-quote). The grid's row-gap closes up by itself. */
   html.look-b .ab-method { display: none; }

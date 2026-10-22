@@ -111,6 +111,9 @@
   <h3>Page-title sizes (fluid: they follow the window width)</h3>
   <p class="note">These two are measured at <b id="dsWidth">this window</b>. Resize the window and reload to watch them move.</p>
   <div id="dsTypeTitle"></div>
+  <h3>Heading sizes (fluid, one per typeface)</h3>
+  <p class="note">The medium headings. They share a family of sizes but not a typeface, so each voice has its own token. The card title and the footer links are both Montserrat 600 and share <code>--fs-heading</code>.</p>
+  <div id="dsTypeHeading"></div>
 
   <!-- ===================================================== SHADOWS -->
   <h2 id="shadows">03 &middot; Hard shadows</h2>
@@ -226,6 +229,7 @@
     <tr><td>(wave 4, see below)</td><td>&mdash;</td><td><code>--cut</code> tokens for the cut corner, <code>.kicker</code> and <code>.panel</code> promoted from the about page into the shared stylesheet</td><td>see the commit</td></tr>
     <tr><td>(wave 5, see below)</td><td>&mdash;</td><td>The hero tagline element is <code>.hero-tagline</code> (was <code>.hero-text</code>), and its hard text-shadow uses <code>--shadow-s</code></td><td>see the commit</td></tr>
     <tr><td>(wave 6, see below)</td><td>&mdash;</td><td>Link underline follows the text colour; the footer's three social links keep the magenta underline through <code>.text-link--social</code>. Chosen with a variant switcher (options A to D).</td><td>see the commit</td></tr>
+    <tr><td>(wave 7, see below)</td><td>&mdash;</td><td>Heading sizes named: <code>--fs-heading</code> (card titles and footer links now share it), <code>--fs-label-display</code>, <code>--fs-quote</code></td><td>see the commit</td></tr>
     <tr><td>pre-cleanup</td><td>(older)</td><td>Last commit with the old draft pages</td><td>checkout the tag to look</td></tr>
   </table></div>
 
@@ -267,6 +271,9 @@
   var FONTS = ['--font-display', '--font-body', '--font-mono'];
   var SCALE = [['--fs-xs', 'tags, captions, the footer lead-in'], ['--fs-s', 'button text, tool lists, small notes'], ['--fs-m', 'header line, title descriptor, copyright'], ['--fs-l', 'paragraphs, kickers'], ['--fs-base', 'the page base text']];
   var TITLES = [['--fs-title', 'page title at 900px and wider'], ['--fs-title-sm', 'page title below 900px']];
+  var HEADINGS = [['--fs-heading', 'card titles, footer links (Montserrat 600)', 'Memory Matching Game', 'font-family:var(--font-body);font-weight:600;letter-spacing:-0.03em;line-height:1.05;'],
+                  ['--fs-label-display', 'shape labels (Doto 900, caps)', 'Evidence', 'font-family:var(--font-display);font-weight:900;text-transform:uppercase;line-height:1;'],
+                  ['--fs-quote', 'the pull quote (Source Code Pro light)', 'Leave room for play.', 'font-family:var(--font-mono);font-weight:300;letter-spacing:-0.03em;line-height:1.2;']];
   var SHADOWS = [['--shadow-s', 'pancake, buttons at rest'], ['--shadow-m', 'buttons on hover'], ['--shadow-l', 'cards at rest, about panels'], ['--shadow-xl', 'cards on hover, the intro panel']];
   var MOTION = [['--t-quick', 'colour fades, buttons, menu links', 'ease'], ['--t-base', 'cards, images, shapes, the link swoop', 'var(--ease-soft)'], ['--t-slow', 'the full-screen menu circle', 'var(--ease-swoop)']];
 
@@ -288,6 +295,7 @@
   }
   $('dsTypeScale').innerHTML = SCALE.map(function (s) { return typeRow(s[0], s[1], 'The quick brown fox jumps over the lazy dog', 'font-family:var(--font-body);'); }).join('');
   $('dsTypeTitle').innerHTML = TITLES.map(function (s) { return typeRow(s[0], s[1], 'Web Design', 'font-family:var(--font-display);font-weight:900;text-transform:uppercase;line-height:1;'); }).join('');
+  $('dsTypeHeading').innerHTML = HEADINGS.map(function (h) { return typeRow(h[0], h[1], h[2], h[3]); }).join('');
   [].forEach.call(document.querySelectorAll('[data-measure]'), function (el) { $(el.getAttribute('data-measure')).textContent = parseFloat(getComputedStyle(el).fontSize).toFixed(2).replace(/\.?0+$/, '') + 'px'; });
   $('dsWidth').textContent = 'a window ' + window.innerWidth + 'px wide';
 
@@ -336,7 +344,7 @@
 
   /* ---- drift detector: compare every custom property the stylesheets declare with the lists above ---- */
   var documented = {};
-  [COLOURS, SCALE, TITLES, SHADOWS, MOTION].forEach(function (L) { L.forEach(function (x) { documented[x[0]] = 1; }); });
+  [COLOURS, SCALE, TITLES, HEADINGS, SHADOWS, MOTION].forEach(function (L) { L.forEach(function (x) { documented[x[0]] = 1; }); });
   FONTS.concat(['--ease-soft', '--ease-swoop', '--cut', '--cut-tr', '--cut-tl']).forEach(function (n) { documented[n] = 1; });
   /* working variables the components set for themselves; they are plumbing, not design tokens */
   var PLUMBING = /^--(u|h2-scale|pad|gap|nudge|card-bg|card-ink|tilt|img-scale|mark|link-hover|lg-size|i|fade-[\w-]+|stagger|band-[\w-]+|size|tag-[\w-]+|slab-[\w-]+|shape-scale|qm-[\w-]+|s[123]|c|shadow-night|slab-lift|kicker-mark|panel-[\w-]+)$/;

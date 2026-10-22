@@ -38,6 +38,10 @@
 	/* the page-title sizes (the About / Web Design pillar), after --h2-scale. Needs --h2-scale on :root, which every page has (card-pages.css, or the home page's own style block) */
 	--fs-title: calc(clamp(3rem, 8.4vw, 9.4rem) * var(--h2-scale));    /* at 900px and wider */
 	--fs-title-sm: calc(clamp(2.4rem, 11vw, 4.4rem) * var(--h2-scale)); /* below 900px */
+	/* the fluid heading sizes (they follow the window width). One per voice, because each is a different typeface: */
+	--fs-heading: clamp(1.7rem, 3.2vw, 3.1rem);        /* Montserrat 600: project card titles and the footer links */
+	--fs-label-display: clamp(1.5rem, 3vw, 2.8rem);    /* Doto 900 caps: the shape labels (Evidence, Synthesis...) */
+	--fs-quote: clamp(1.7rem, 3.6vw, 3.4rem);          /* Source Code Pro light: the pull quote */
 
 	/* the cut corner: one corner of a card or panel is cut away in a big curve. Two named shapes, because every use is one of them. */
 	--cut: 70px;
@@ -432,7 +436,7 @@ section.featured-project-card h3 {
 	margin: 0 0 14px;
 	font-family: var(--font-body);
 	font-weight: 600;
-	font-size: clamp(1.7rem, 3.2vw, 3.1rem);
+	font-size: var(--fs-heading);
 	line-height: 1.02;
 	letter-spacing: -0.03em;
 	color: inherit;
@@ -486,7 +490,7 @@ footer {
 }
 footer br { display: none; }
 footer p { position: relative; z-index: 2; font-family: var(--font-mono); font-size: var(--fs-xs); letter-spacing: 0.2em; text-transform: uppercase; color: var(--mint); }
-footer p.footer { margin: 12px 0 0; font-family: var(--font-body); font-weight: 600; font-size: clamp(1.5rem, 3.6vw, 2.8rem); letter-spacing: -0.02em; text-transform: none; color: var(--paper); }
+footer p.footer { margin: 12px 0 0; font-family: var(--font-body); font-weight: 600; font-size: var(--fs-heading); letter-spacing: -0.02em; text-transform: none; color: var(--paper); }
 footer p.footer { --link-hover: var(--gold); } /* cream text: the hover turns it yellow (see THE LINK RULE) */
 
 /* =====================================================================
