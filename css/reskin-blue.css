@@ -16,7 +16,6 @@
 :root {
 	/* the brand palette, reused */
 	--paper: #f1e6cc;
-	--paper-deep: #e6d6b0;
 	--ink: #1d1a16;
 	--magenta: #c314a4; /* no longer the main colour; kept as a small accent */
 	--amber: #f2a51d;   /* the main brand colour of this version */
@@ -28,6 +27,8 @@
 	--gold: #ffcc00;
 	--mint: #66cdaa;
 	--cream-text: #fffaf0;
+	--night: #171412;       /* the page ground */
+	--night-deep: #0c0a09;  /* the darkest ground: the page backdrop and the footer */
 
 	/* the type scale for small text (fixed sizes). Bigger, fluid sizes are written where they are used, except the two page-title sizes below. */
 	--fs-xs: 0.75rem;     /* 12px: tags, captions, the footer lead-in */
@@ -71,16 +72,16 @@
 
 * { box-sizing: border-box; margin: 0; padding: 0; }
 
-html { background: var(--paper-deep); }
+html { background: var(--night-deep); }
 
 body {
 	position: relative;
 	max-width: 1440px;
 	margin: 0 auto;
-	background-color: var(--paper);
-	background-image: url(../images/pattern/black_grid.png); /* the site's own grid, now a paper texture */
+	background-color: var(--night);
+	background-image: url(../images/pattern/gray_grid.png); /* the site's grey grid: a faint texture on the dark ground */
 	background-size: 4px;
-	color: var(--ink);
+	color: var(--paper);
 	font-family: var(--font-body);
 	font-size: var(--fs-base);
 	line-height: 1.55;
@@ -123,9 +124,9 @@ a { color: inherit; }
 	height: 64px;
 	padding: 17px 12px;
 	background: var(--amber);
-	border: 3px solid var(--ink);
+	border: 3px solid var(--paper);
 	border-radius: 50%;
-	box-shadow: var(--shadow-s) var(--shadow-s) 0 var(--ink);
+	box-shadow: var(--shadow-s) var(--shadow-s) 0 var(--magenta); /* magenta on purpose */
 	cursor: pointer;
 	transition: transform var(--t-quick) ease, background var(--t-quick) ease;
 }
@@ -201,7 +202,7 @@ header {
 	line-height: 0.8;
 	letter-spacing: -0.03em;
 	text-transform: uppercase;
-	color: var(--ink);
+	color: var(--paper);
 }
 .header-container p {
 	writing-mode: vertical-rl;
@@ -212,7 +213,7 @@ header {
 	font-size: var(--fs-m);
 	letter-spacing: 0.22em;
 	text-transform: uppercase;
-	color: var(--ink); /* amber on cream paper is too faint for small type */
+	color: var(--paper);
 }
 
 /* =====================================================================
@@ -314,7 +315,7 @@ div.hero-container.hero-collapsing { transition: none; }
 	line-height: 0.85;
 	letter-spacing: -0.02em;
 	text-transform: uppercase;
-	color: var(--ink);
+	color: var(--paper);
 	writing-mode: vertical-rl;
 	transform: rotate(180deg); /* reads bottom to top */
 	white-space: nowrap;
@@ -358,11 +359,11 @@ section.featured-project-card {
 	background: var(--card-bg, var(--mint));
 	color: var(--card-ink, var(--ink));
 	border: 3px solid var(--ink);
-	box-shadow: var(--shadow-l) var(--shadow-l) 0 var(--ink);
+	box-shadow: var(--shadow-l) var(--shadow-l) 0 var(--amber); /* ink would vanish on the dark page, so the hard shadow is a brand colour */
 	transform: rotate(var(--tilt, 0deg));
 	transition: transform var(--t-base) var(--ease-soft), box-shadow var(--t-base) ease;
 }
-section.featured-project-card:hover { transform: rotate(0deg) translate(-4px, -4px); box-shadow: var(--shadow-xl) var(--shadow-xl) 0 var(--ink); }
+section.featured-project-card:hover { transform: rotate(0deg) translate(-4px, -4px); box-shadow: var(--shadow-xl) var(--shadow-xl) 0 var(--amber); }
 
 /* each card's paper colour, text colour and tilt */
 .flex-container-child-projects:nth-child(6n+1) section.featured-project-card { --card-bg: var(--amber); --card-ink: var(--ink); --tilt: -0.8deg; border-radius: var(--cut-tr); }
@@ -447,6 +448,9 @@ section.featured-project-card li strong { font-weight: 400; letter-spacing: 0.08
 .gold-color-font { color: inherit; text-decoration: none; } /* the "Tools:" label is not a link, so no underline; a small accent square marks it instead */
 .gold-color-font::before { content: "\25A0\00a0"; color: var(--mark); }
 /* the accent colour of the small square before "Tools:": magenta by default, but magenta vanishes on teal (1.1:1) and fades on blue and purple, so those three cards use gold. The cream cards also turn their links yellow on hover (--link-hover) */
+/* card 1 (the amber card, every 6th from the first) casts a cream shadow instead: amber on amber read as a thicker edge of the card itself. Delete these two rules to bring the amber back */
+.flex-container-child-projects:nth-child(6n+1) section.featured-project-card { box-shadow: var(--shadow-l) var(--shadow-l) 0 var(--paper); }
+.flex-container-child-projects:nth-child(6n+1) section.featured-project-card:hover { box-shadow: var(--shadow-xl) var(--shadow-xl) 0 var(--paper); }
 section.featured-project-card { --mark: var(--magenta); }
 .flex-container-child-projects:nth-child(6n+3) section.featured-project-card,
 .flex-container-child-projects:nth-child(6n+4) section.featured-project-card,
@@ -485,7 +489,8 @@ footer {
 	overflow: hidden;
 	min-height: 350px; /* room for the rotated copyright (about 314px long) on phones, where the footer would otherwise be shorter than the text */
 	padding: clamp(50px, 7vw, 100px) var(--pad) 30px;
-	background: var(--ink);
+	background: var(--night-deep);
+	border-top: 6px solid var(--amber);
 	color: var(--paper);
 }
 footer br { display: none; }
@@ -847,34 +852,3 @@ html.fade-shared .start-bottom {
 .btn:hover .btn-arrow .wing {
   opacity: 1;
 }
-
-
-
-/* =====================================================================
-   DARK MODE (appended to the light stylesheet above; everything below overrides it)
-   The page itself goes dark; the coloured "cut paper" cards stay bright and pop against it.
-   --paper is NOT redefined, because it is also the cream used for text and numerals on the cards.
-   ===================================================================== */
-:root { --night: #171412; --night-deep: #0c0a09; --shadow-night: var(--amber); }
-
-html { background: var(--night-deep); }
-body {
-	background-color: var(--night);
-	background-image: url(../images/pattern/gray_grid.png); /* the site's grey grid: a faint texture on dark */
-	background-size: 4px;
-	color: var(--paper);
-}
-.header-container h1,
-.project-header-bar h2 { color: var(--paper); }
-.header-container p { color: var(--paper); }
-
-/* the hard offset shadows were ink; ink vanishes on a dark page, so they take a brand colour */
-section.featured-project-card { box-shadow: var(--shadow-l) var(--shadow-l) 0 var(--shadow-night); }
-section.featured-project-card:hover { box-shadow: var(--shadow-xl) var(--shadow-xl) 0 var(--shadow-night); }
-/* card 1 (the amber card, every 6th from the first) casts a cream shadow instead: amber on amber read as a thicker edge of the card itself. Delete these two rules to bring the amber back */
-.flex-container-child-projects:nth-child(6n+1) section.featured-project-card { box-shadow: var(--shadow-l) var(--shadow-l) 0 var(--paper); }
-.flex-container-child-projects:nth-child(6n+1) section.featured-project-card:hover { box-shadow: var(--shadow-xl) var(--shadow-xl) 0 var(--paper); }
-.menu-icon-container { border-color: var(--paper); box-shadow: var(--shadow-s) var(--shadow-s) 0 var(--magenta); } /* magenta on purpose (was var(--shadow-night), the amber the cards use) */
-
-/* the footer needs its own edge now that the page is dark too */
-footer { background: var(--night-deep); border-top: 6px solid var(--shadow-night); }
