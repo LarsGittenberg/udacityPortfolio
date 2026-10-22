@@ -97,7 +97,12 @@
   <!-- ===================================================== COLOUR -->
   <h2 id="colour">01 &middot; Colour</h2>
   <p class="note">Each swatch is the token's real computed colour. The two contrast readings use the WCAG formula: <span class="ds-pass">AA</span> reaches 4.5:1 (comfortable for body text), <span class="ds-pass ds-fail">large</span> reaches 3:1 (big headings only), <span class="ds-pass ds-poor">weak</span> is below 3:1.</p>
-  <div class="ds-grid" id="dsColours"></div>
+  <h3>Spectrum</h3>
+  <div class="ds-grid" id="dsSpectrum"></div>
+  <h3>Neutrals</h3>
+  <div class="ds-grid" id="dsNeutrals"></div>
+  <h3>Darks</h3>
+  <div class="ds-grid" id="dsDarks"></div>
 
   <!-- ===================================================== TYPE -->
   <h2 id="type">02 &middot; Type</h2>
@@ -278,22 +283,27 @@
   function badge(r) { var cls = r >= 4.5 ? '' : (r >= 3 ? ' ds-fail' : ' ds-poor'); var txt = r >= 4.5 ? 'AA' : (r >= 3 ? 'large' : 'weak'); return '<span class="ds-pass' + cls + '">' + txt + '</span>'; }
 
   /* ---- the documented tokens: name, role. (Values are never typed here; they are read.) ---- */
-  var COLOURS = [
-    ['--paper', 'Cream: card text on dark, panels, the main text colour on the dark ground'],
-    ['--ink', 'Near-black: text on light colours, borders, hard shadows'],
-    ['--cream-text', 'Brighter cream: text on the teal, blue and purple cards'],
-    ['--amber', 'The main brand colour: first card, hero, hard shadows on dark'],
+  /* the colours, in three groups, each in rainbow order (there is no red): the spectrum runs orange > amber > gold > mint > teal > blue > purple > magenta */
+  var SPECTRUM = [
     ['--orange', 'Orange card, the band on the about page'],
+    ['--amber', 'The main brand colour: first card, hero, hard shadows on dark'],
+    ['--gold', 'The bright yellow: link highlight, cream-link hover, pancake hover, markers on dark cards'],
     ['--mint', 'Mint card, footer labels'],
     ['--teal', 'Teal card (darkened on 2026-10-21 to #005e5e)'],
     ['--blue', 'The hero slab, blue card, the about page number panel'],
     ['--purple', 'Purple card, the keyboard focus ring'],
-    ['--magenta', 'Accent: link underlines, small markers'],
-    ['--yellow', 'Brand yellow: the pancake on hover'],
-    ['--gold', 'Link highlight, cream-link hover, markers on dark cards'],
+    ['--magenta', 'Accent: link underlines, small markers']
+  ];
+  var NEUTRALS = [
+    ['--cream-text', 'Brighter cream: text on the teal, blue and purple cards'],
+    ['--paper', 'Cream: card text on dark, panels, the main text colour on the dark ground']
+  ];
+  var DARKS = [
+    ['--ink', 'Near-black: text on light colours, borders, hard shadows'],
     ['--night', 'The page ground. The blue skin is dark-only: there is no light version underneath'],
     ['--night-deep', 'Darkest ground: footer, page backdrop']
   ];
+  var COLOURS = SPECTRUM.concat(NEUTRALS, DARKS); // the flat list the drift detector and the token lookup read
   var FONTS = ['--font-display', '--font-body', '--font-mono'];
   var SCALE = [['--fs-xs', 'tags, captions, the footer lead-in'], ['--fs-s', 'button text, tool lists, small notes'], ['--fs-m', 'header line, title descriptor, copyright'], ['--fs-l', 'paragraphs, kickers'], ['--fs-base', 'the page base text']];
   var TITLES = [['--fs-title', 'page title at 900px and wider'], ['--fs-title-sm', 'page title below 900px']];
@@ -310,7 +320,10 @@
       'on ink ' + ratio(c, ink).toFixed(1) + ' ' + badge(ratio(c, ink)) + ' &middot; cream ' + ratio(c, cream).toFixed(1) + ' ' + badge(ratio(c, cream)) +
       '<span class="role">' + role + '</span></div></div>';
   }
-  $('dsColours').innerHTML = COLOURS.map(function (c) { return chip(c[0], c[1]); }).join('');
+  function chips(L) { return L.map(function (c) { return chip(c[0], c[1]); }).join(''); }
+  $('dsSpectrum').innerHTML = chips(SPECTRUM);
+  $('dsNeutrals').innerHTML = chips(NEUTRALS);
+  $('dsDarks').innerHTML = chips(DARKS);
 
   FONTS.forEach(function (t) { document.querySelector('[data-font="' + t + '"]').textContent = tok(t).split(',')[0].replace(/"/g, ''); });
 

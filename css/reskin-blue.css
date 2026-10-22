@@ -19,7 +19,6 @@
 	--magenta: #c314a4; /* no longer the main colour; kept as a small accent */
 	--amber: #f2a51d;   /* the main brand colour of this version */
 	--blue: #004282;    /* the hero slab */
-	--yellow: #febe13;
 	--purple: #8c1c78;
 	--teal: #005e5e;
 	--orange: #ff7f00;
@@ -131,7 +130,7 @@ section.featured-project-card { background: var(--panel-bg); color: var(--panel-
 	cursor: pointer;
 	transition: transform var(--t-quick) ease, background var(--t-quick) ease;
 }
-.menu-icon-container:hover { background: var(--yellow); transform: rotate(-8deg) scale(1.05); }
+.menu-icon-container:hover { background: var(--gold); transform: rotate(-8deg) scale(1.05); }
 
 .bar1, .bar2, .bar3 {
 	width: 100%;
