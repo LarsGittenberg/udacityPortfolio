@@ -447,11 +447,11 @@ section.featured-project-card ul { margin: 16px 0 0; list-style: none; font-fami
 section.featured-project-card li strong { font-weight: 400; letter-spacing: 0.08em; text-transform: uppercase; }
 .gold-color-font { color: inherit; text-decoration: none; } /* the "Tools:" label is not a link, so no underline; a small accent square marks it instead */
 .gold-color-font::before { content: "\25A0\00a0"; color: var(--mark); }
-/* the accent colour of the small square before "Tools:": magenta by default, but magenta vanishes on teal (1.1:1) and fades on blue and purple, so those three cards use gold. The cream cards also turn their links yellow on hover (--link-hover) */
+/* the accent colour of the small square before "Tools:": magenta by default, but magenta vanishes on teal (1.1:1) and fades on blue and purple, so those three cards use gold. */
 section.featured-project-card { --mark: var(--magenta); }
 .flex-container-child-projects:nth-child(6n+3) section.featured-project-card,
 .flex-container-child-projects:nth-child(6n+4) section.featured-project-card,
-.flex-container-child-projects:nth-child(6n+5) section.featured-project-card { --mark: var(--gold); --link-hover: var(--gold); }
+.flex-container-child-projects:nth-child(6n+5) section.featured-project-card { --mark: var(--gold); }
 
 /* the button becomes a stamp. Its arrow bloom (copied below) still works on hover */
 .btn {
@@ -493,7 +493,6 @@ footer {
 footer br { display: none; }
 footer p { position: relative; z-index: 2; font-family: var(--font-mono); font-size: var(--fs-xs); letter-spacing: 0.2em; text-transform: uppercase; color: var(--mint); }
 footer p.footer { margin: 12px 0 0; font-family: var(--font-body); font-weight: 600; font-size: var(--fs-heading); letter-spacing: -0.02em; text-transform: none; color: var(--paper); }
-footer p.footer { --link-hover: var(--gold); } /* cream text: the hover turns it yellow (see THE LINK RULE) */
 
 /* =====================================================================
    THE LINK RULE (design system): the component is .text-link. Put that class on any text link and it has
@@ -501,7 +500,6 @@ footer p.footer { --link-hover: var(--gold); } /* cream text: the hover turns it
      2. an underline that FOLLOWS THE TEXT colour (ink on light grounds, cream on dark ones), so it is always as legible as the text itself,
      3. an icon AFTER the text, chosen by where the link goes,
      4. a hover: a yellow highlight swoops in from the left, the text and icon turn ink, and the underline fades (see THE LINK HIGHLIGHT, below).
-        (--link-hover and the colour fade on the next rule are the older hover; the highlight overrides them. They stay as a fallback.)
    THE EXCEPTION: the three social links in the footer wear .text-link--social as well, which gives them the signature MAGENTA underline.
    Any other link, without that class, follows the text.
    It is for text links only. Buttons, the menu overlay and the breadcrumb are exempt (they do not carry the class):
@@ -514,10 +512,8 @@ footer p.footer { --link-hover: var(--gold); } /* cream text: the hover turns it
 	text-decoration-color: currentColor; /* follows the text */
 	text-decoration-thickness: 3px;
 	text-underline-offset: 0.25em;
-	transition: color var(--t-quick) ease; /* the icon is part of the link, so it fades with the text */
 }
 .text-link--social { text-decoration-color: var(--magenta); } /* the footer's GitHub, LinkedIn and Instagram links: the one place the magenta underline stays (the hover rule below is more specific, so the underline still fades on hover) */
-.text-link:hover { color: var(--link-hover, var(--magenta)); }
 
 /* THE LINK HIGHLIGHT: on hover (or keyboard focus) a yellow highlight swoops in from the left, the text and icon turn ink, and the underline fades out. It replaces the colour change above (it is later, so it wins). The highlight is a background gradient whose width grows from 0 to 100%, which is why it can animate. */
 .text-link {
