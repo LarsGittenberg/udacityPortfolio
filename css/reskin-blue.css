@@ -3,8 +3,7 @@
    (a copy of reskin-amber-dark.css where the hero slab is blue #004282 instead of amber; the hero text and shapes are re-coloured to read on it), AMBER VERSION
    (a copy of reskin.css, the magenta version, with amber #f2a51d as the main brand colour instead of magenta;
    where text sat on the old magenta it is now ink, because cream on amber is too faint to read)
-   A complete restyle of the home page's EXISTING markup (index-reskin-test.html is index.html
-   with only a few decorative .rk-deco shapes added, which the real site would simply hide).
+   A complete restyle of the home page's markup.
    Replaces main.css and ui.css for this page. Nothing else on the site loads it.
 
    Idea: a print shop's cut-paper collage. Cream paper, hard offset shadows (like misregistered
@@ -260,53 +259,6 @@ div.hero-container.hero-collapsing { transition: none; }
 	color: var(--paper); /* cream on blue (ink on blue would not read) */
 	text-shadow: var(--shadow-s) var(--shadow-s) 0 var(--ink);
 }
-
-.hero-face {
-	grid-column: 2;
-	position: relative;
-	z-index: 2;
-	justify-self: end;
-	width: 100%;
-	max-width: 620px;
-	aspect-ratio: 1 / 1.02;
-}
-.img-layer-absolute {
-	position: absolute;
-	width: 85%;
-	/* fade dials (the same ones main.css has): when the first piece begins to solidify, the gap before each next piece, how long each takes */
-	--fade-start: 400ms;
-	--stagger: 800ms;
-	--fade-time: 2500ms;
-	--fade-delay: calc(var(--fade-start) + var(--i) * var(--stagger));
-}
-
-.central-shape {
-	position: absolute;
-	right: 3%;
-	bottom: -6%;
-	z-index: 1;
-	width: min(46vw, 640px);
-	height: min(46vw, 640px);
-	background: none;
-	opacity: 0;
-}
-.hero-start .central-shape { animation: fadeIn 2s ease forwards; animation-delay: 3999ms; }
-.central-shape::before {
-	content: "";
-	position: absolute;
-	inset: 0;
-	background-size: contain;
-	background-repeat: no-repeat;
-	background-position: center;
-	transition: opacity var(--t-base) ease;
-}
-.central-shape::before { background-image: url("../images/hero/sun89.svg"); opacity: 1; } /* the sun, always (no more moon or colourful/toned-down switch) */
-
-/* decorative shapes added to the HTML for this skin (the real site would hide .rk-deco) */
-.rk-deco { position: absolute; z-index: 1; pointer-events: none; }
-.rk-circle { width: clamp(70px, 11vw, 170px); aspect-ratio: 1; left: 44%; top: 14%; background: var(--magenta); border-radius: 50%; }
-.rk-triangle { width: clamp(80px, 13vw, 200px); aspect-ratio: 1; left: 3%; bottom: 8%; background: var(--amber); clip-path: polygon(0 100%, 100% 100%, 0 0); }
-.rk-half { width: clamp(90px, 14vw, 220px); aspect-ratio: 2 / 1; right: 36%; top: 6%; background: var(--orange); border-radius: 999px 999px 0 0; transform: rotate(14deg); }
 
 /* ---------- the vertical title ---------- */
 .project-header-bar { position: relative; padding: clamp(24px, 4vw, 60px) 0 0 var(--pad); }
@@ -603,9 +555,6 @@ footer::after {
 	header { padding-left: var(--pad); padding-top: 84px; }
 	div.hero-container { grid-template-columns: 1fr; padding-top: 100px; min-height: 0; }
 	.hero-tagline { max-width: 12ch; margin-bottom: 20px; }
-	.hero-face { grid-column: 1; justify-self: center; max-width: 440px; }
-	.central-shape { right: -10%; bottom: -8%; width: 80vw; height: 80vw; }
-	.rk-circle { left: auto; right: 8%; top: 8%; }
 	.flex-container-main { grid-template-columns: 1fr; padding-left: var(--pad); }
 	.flex-container-child-projects { grid-column: 1 / -1 !important; margin-top: 0 !important; }
 	section.featured-project-card { transform: none; }
@@ -615,112 +564,8 @@ footer::after {
 }
 
 /* =====================================================================
-   COPIED VERBATIM from main.css / ui.css (the behaviours the JavaScript and the toggle rely on)
+   COPIED from main.css (the behaviours the JavaScript relies on: the menu pulse, and the arrow bloom below)
    ===================================================================== */
-
-/* hero animation styles
-   Each face piece does two things on separate clocks:
-   1. it MOVES from its start spot to the assembled spot (top / left / transform), each at its own speed
-   2. it FADES IN as a "ghost" that solidifies, one piece after another (opacity, staggered)
-   The fade dials are on .img-layer-absolute. Each piece has a number (--i, 0 to 4, same order as the images in index.html).
-   A second version (all pieces fade together) sits just below, switched on by the .fade-shared class that index.html adds at random. */
-.start-transparent { /* face1: fades in place first, then drifts down late */
-	--i: 0;
-	top: 50%;
-	left: 50%;
-	transform: translate(-50%, -50%);
-	opacity: 0;
-	transition: top 2500ms ease 2400ms, left 2500ms ease 2400ms, transform 2500ms ease 2400ms,
-		opacity var(--fade-time) ease var(--fade-delay);
-}
-
-.start-bottom { /* face2: rises from below */
-	--i: 1;
-	top: 50%;
-	left: 50%;
-	transform: translate(-50%, 25%);
-	opacity: 0;
-	transition: top 3000ms ease-in-out, left 3000ms ease-in-out, transform 3000ms ease-in-out,
-		opacity var(--fade-time) ease-in-out var(--fade-delay);
-}
-
-.start-right-fast { /* face3: from the right, overshoots and bounces */
-	--i: 2;
-	top: 50%;
-	left: 50%;
-	transform: translate(75%, -50%);
-	opacity: 0;
-	transition: top 3800ms cubic-bezier(0.37, 2, 0.3, 1.26), left 3800ms cubic-bezier(0.37, 2, 0.3, 1.26), transform 3800ms cubic-bezier(0.37, 2, 0.3, 1.26),
-		opacity var(--fade-time) ease var(--fade-delay);
-}
-
-.start-left { /* face4: slides in from the left */
-	--i: 3;
-	top: 50%;
-	left: 50%;
-	transform: translate(-125%, -50%);
-	opacity: 0;
-	transition: top 3000ms ease-in-out, left 3000ms ease-in-out, transform 3000ms ease-in-out,
-		opacity var(--fade-time) ease-in-out var(--fade-delay);
-}
-
-.start-top { /* face5: drops in from above */
-	--i: 4;
-	top: 50%;
-	left: 50%;
-	transform: translate(-50%, -100%);
-	opacity: 0;
-	transition: top 4700ms ease 399ms, left 4700ms ease 399ms, transform 4700ms ease 399ms,
-		opacity var(--fade-time) ease var(--fade-delay);
-}
-
-
-/* Alternative hero fade: all five pieces fade in together on two shared dials.
-   Only applies when index.html adds .fade-shared to <html> (a random coin flip on each load, or ?fade=shared). */
-html.fade-shared .img-layer-absolute {
-	--fade-delay: 1000ms; /* extra time each piece stays transparent */
-	--fade-time: 4000ms;  /* how long each piece takes to become solid */
-}
-
-html.fade-shared .start-transparent {
-	transition: top 2500ms ease 2400ms, left 2500ms ease 2400ms, transform 2500ms ease 2400ms,
-		opacity var(--fade-time) ease calc(2400ms + var(--fade-delay));
-}
-
-html.fade-shared .start-left {
-	transition: top 3000ms ease-in-out, left 3000ms ease-in-out, transform 3000ms ease-in-out,
-		opacity var(--fade-time) ease-in-out var(--fade-delay);
-}
-
-html.fade-shared .start-right-fast {
-	transition: top 3800ms cubic-bezier(0.37, 2, 0.3, 1.26), left 3800ms cubic-bezier(0.37, 2, 0.3, 1.26), transform 3800ms cubic-bezier(0.37, 2, 0.3, 1.26),
-		opacity var(--fade-time) ease var(--fade-delay);
-}
-
-html.fade-shared .start-top {
-	transition: top 4700ms ease 399ms, left 4700ms ease 399ms, transform 4700ms ease 399ms,
-		opacity var(--fade-time) ease calc(399ms + var(--fade-delay));
-}
-
-html.fade-shared .start-bottom {
-	transition: top 3000ms ease-in-out, left 3000ms ease-in-out, transform 3000ms ease-in-out,
-		opacity var(--fade-time) ease-in-out var(--fade-delay);
-}
-
-.img-layer-assembled{
-	top: 66%;/*lg note original is top: 50%; */
-	left: 50%;
-	transform: translate(-50%, -50%);
-	opacity: 1;
-}
-
-
-
-@keyframes fadeIn {
-  from { opacity: 0; }
-  to   { opacity: 1; } /* semi-transparent */
-}
-
 
 /* menu callout signal: so users realize there'a a clickable menu button*/
 .menu-signal {
