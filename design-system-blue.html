@@ -138,13 +138,14 @@
   <h2 id="components">06 &middot; Components</h2>
 
   <h3>Text link: <code>.text-link</code></h3>
-  <p class="note">Put the class on any text link. Magenta underline; an icon chosen from the address; on hover a yellow highlight swoops in from the left and the text turns ink. The caption under each ground reads the live contrast of the magenta underline against it.</p>
+  <p class="note">Put the class on any text link. The underline <b>follows the text</b> (ink on light grounds, cream on dark ones); an icon is chosen from the address; on hover a yellow highlight swoops in from the left, the text turns ink and the underline fades. The caption under each ground reads the live contrast of the underline against it. <b>The one exception</b> is the footer's three social links, which add <code>.text-link--social</code> for the signature magenta underline (last sample below). A link without that class always follows the text.</p>
   <div class="ds-grounds" id="dsLinkGrounds">
     <div><div class="ds-ground" style="background:var(--amber);color:var(--ink)" data-ground="--amber"><p style="margin:0">View project specs on <a class="text-link" href="https://github.com/LarsGittenberg">GitHub</a></p></div><span class="ds-cap">ink on amber</span></div>
     <div><div class="ds-ground" style="background:var(--mint);color:var(--ink)" data-ground="--mint"><p style="margin:0">Say hello at <a class="text-link" href="mailto:hello@example.com">email</a></p></div><span class="ds-cap">ink on mint</span></div>
     <div><div class="ds-ground" style="background:var(--teal);color:var(--cream-text)" data-ground="--teal"><p style="margin:0">Back to the <a class="text-link" href="index-test.html">home page</a></p></div><span class="ds-cap">cream on teal</span></div>
     <div><div class="ds-ground" style="background:var(--blue);color:var(--cream-text)" data-ground="--blue"><p style="margin:0">Find me on <a class="text-link" href="https://www.linkedin.com/in/lawrence-getubig">LinkedIn</a></p></div><span class="ds-cap">cream on blue</span></div>
     <div><div class="ds-ground" style="background:var(--night-deep);color:var(--paper)" data-ground="--night-deep"><p style="margin:0">Photos on <a class="text-link" href="https://www.instagram.com/ljgetubig/">Instagram</a></p></div><span class="ds-cap">cream on night (the footer ground)</span></div>
+    <div><div class="ds-ground" style="background:var(--night-deep);color:var(--paper)" data-ground="--night-deep"><p style="margin:0">Find me on <a class="text-link text-link--social" href="https://github.com/LarsGittenberg">GitHub</a></p></div><span class="ds-cap">social link: .text-link + .text-link--social (magenta underline)</span></div>
   </div>
 
   <h3>Button: <code>.btn</code></h3>
@@ -224,6 +225,7 @@
     <tr><td>(prune, see below)</td><td>&mdash;</td><td>Removed the do-nothing Colorful/Toned-Down toggle (menu markup, 3 pasted scripts on 8 pages, 1.3KB of CSS, <code>.overlay-title</code>, 5 legacy variables), plus the unused <code>.start-right</code> and <code>.text-center</code> rules. The 14 experiment files were archived on the <code>experiments-archive</code> branch.</td><td>see the commit</td></tr>
     <tr><td>(wave 4, see below)</td><td>&mdash;</td><td><code>--cut</code> tokens for the cut corner, <code>.kicker</code> and <code>.panel</code> promoted from the about page into the shared stylesheet</td><td>see the commit</td></tr>
     <tr><td>(wave 5, see below)</td><td>&mdash;</td><td>The hero tagline element is <code>.hero-tagline</code> (was <code>.hero-text</code>), and its hard text-shadow uses <code>--shadow-s</code></td><td>see the commit</td></tr>
+    <tr><td>(wave 6, see below)</td><td>&mdash;</td><td>Link underline follows the text colour; the footer's three social links keep the magenta underline through <code>.text-link--social</code>. Chosen with a variant switcher (options A to D).</td><td>see the commit</td></tr>
     <tr><td>pre-cleanup</td><td>(older)</td><td>Last commit with the old draft pages</td><td>checkout the tag to look</td></tr>
   </table></div>
 
@@ -304,9 +306,10 @@
   '<div><div class="ds-slide"><i style="transition:transform var(--t-base) var(--ease-soft)"></i><span>--ease-soft</span></div><span class="ds-cap">' + tok('--ease-soft') + '</span></div>';
 
   /* ---- link grounds: live contrast of the magenta underline ---- */
-  var mag = rgbOf('--magenta');
+  function rgbStr(c) { var m = c.match(/[\d.]+/g); return [+m[0], +m[1], +m[2]]; }
   [].forEach.call(document.querySelectorAll('[data-ground]'), function (g) {
-    var r = ratio(mag, rgbOf(g.getAttribute('data-ground')));
+    var ls = getComputedStyle(g.querySelector('.text-link')), line = ls.textDecorationColor === 'currentcolor' ? ls.color : ls.textDecorationColor;
+    var r = ratio(rgbStr(line), rgbOf(g.getAttribute('data-ground')));
     g.parentNode.querySelector('.ds-cap').insertAdjacentHTML('beforeend', ' &middot; underline contrast ' + r.toFixed(2) + ':1 ' + badge(r));
   });
 
