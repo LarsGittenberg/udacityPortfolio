@@ -1,0 +1,297 @@
+<!doctype html>
+
+<html lang="en">
+<head>
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-2QV625FZN6"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+
+    gtag('config', 'G-2QV625FZN6');
+  </script>
+
+  <title>TEST: gallery layout options (Web Icon Illustration) | Lawrence Getubig</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#feb013">
+  <meta name="description" content="Illustration and graphic design by Lawrence Getubig: web icon sets, animated ads, print materials and a brand style guide adopted by 90+ offices.">
+
+  <!-- Favicons -->
+	<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+	<link rel="icon" href="/favicon.png" sizes="32x32">
+	<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+
+  <!-- CSS -->
+  <link rel="stylesheet" href="css/reskin-blue.css"> <!-- replaces ui.css and main.css on this test page -->
+
+  <link rel="stylesheet" href="css/card-pages.css"> <!-- the header, band, title and card spacing that the category pages share -->
+
+  <style>
+  /* this page's band colour (mint): background, text, and the three shape colours */
+  .band { --band-bg: var(--mint); --band-ink: var(--ink); --s1: var(--magenta); --s2: var(--blue); --s3: var(--purple); }
+
+  /* CARD 3 (DRØM): the dome frame is 4:3 and the picture is 5:3, so "cover" cropped the sides and the curve clipped the D and M. "contain" shows the whole picture at 80%;
+     the picture's own amber fills the strips above and below (eyeballed; tune the hex if a seam shows). To undo, delete this rule */
+  #drom { object-fit: contain; background: #fbba40; }
+  </style>
+
+	<!--fonts-->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link href="https://fonts.googleapis.com/css2?family=Doto:wght@100..900&display=swap" rel="stylesheet">
+	<!--older font choices-->
+	<link href="https://fonts.googleapis.com/css?family=Montserrat:400,600|Source+Code+Pro:300,400" rel="stylesheet">
+
+  <!-- JS libraries -->
+  <script src="https://cdn.jsdelivr.net/npm/js-cookie@2/src/js.cookie.min.js"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg==" crossorigin="anonymous" referrerpolicy="no-referrer">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  <script src="js/noframework.waypoints.min.js"></script>
+
+<style>
+  /* =====================================================================
+     GALLERY LAYOUT OPTIONS (throwaway). Same markup, two looks. "A" needs no html class; C = html.look-c.
+     Photographs get NO decoration (no frame, no shadow): they speak for themselves. They are only 400px wide, so they are never shown larger than 400px.
+     ===================================================================== */
+  .gl { position: relative; padding: clamp(24px, 4vw, 56px) var(--pad) clamp(60px, 8vw, 120px) clamp(8px, 2vw, 28px); max-width: 1040px; }
+  @media (min-width: 900px) { main > .gl { grid-column: 2; } }
+  .gl-crumb { display: flex; flex-wrap: wrap; gap: 6px 0; margin: 0 0 clamp(30px, 4vw, 56px); font-family: var(--font-mono); font-size: var(--fs-s); letter-spacing: .14em; text-transform: uppercase; }
+  .gl-crumb a { color: var(--paper); text-decoration: none; }
+  .gl-crumb a::after { content: "\2192"; margin: 0 .8em; color: var(--magenta); }
+  .gl-crumb a:hover { color: var(--gold); }
+  .gl-side h3 { margin: 0 0 14px; font-family: var(--font-body); font-weight: 600; font-size: var(--fs-heading); line-height: 1.02; letter-spacing: -0.03em; }
+  .gl-side p { margin: 0 0 1em; font-size: var(--fs-l); line-height: 1.65; max-width: 62ch; }
+  .gl-count { margin-top: 22px !important; font-size: var(--fs-s) !important; letter-spacing: .14em; text-transform: uppercase; color: var(--gold); }
+  .gl-back { margin-top: 22px !important; }
+  .gl-grid figure { margin: 0; }
+  .gl-grid img { display: block; width: 100%; height: auto; max-width: 400px; }
+  .gl-grid figcaption { margin-top: 8px; font-family: var(--font-mono); font-size: var(--fs-xs); letter-spacing: .14em; text-transform: uppercase; opacity: .85; transition: color var(--t-quick) ease, opacity var(--t-quick) ease; }
+  .gl-grid figure:hover figcaption { color: var(--gold); opacity: 1; }
+
+  /* ---------- A: PHOTO ESSAY: the statement first, then a three-across contact sheet ---------- */
+  .gl-side { max-width: 68ch; margin-bottom: clamp(40px, 6vw, 80px); }
+  .gl-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: clamp(18px, 2.4vw, 32px) clamp(12px, 1.6vw, 22px); }
+  @media (max-width: 560px) { .gl-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+
+  /* ---------- C: STATEMENT RAIL: the statement stays pinned while you scroll the photographs (from 900px up) ---------- */
+  @media (min-width: 900px) {
+    html.look-c .gl { display: grid; grid-template-columns: minmax(230px, 270px) minmax(0, 1fr); column-gap: clamp(28px, 4vw, 56px); max-width: 1160px; align-items: start; }
+    html.look-c .gl > .gl-crumb { grid-column: 1 / -1; }
+    html.look-c .gl-side { grid-column: 1; max-width: none; margin: 0; position: sticky; top: 110px; }
+    html.look-c .gl-grid { grid-column: 2; grid-template-columns: repeat(2, minmax(0, 400px)); gap: 26px 14px; justify-content: start; }
+  }
+
+  .look-switch { position: fixed; right: 16px; bottom: 16px; z-index: 300; display: flex; flex-wrap: wrap; justify-content: flex-end; gap: 6px; max-width: calc(100vw - 32px); padding: 8px; background: var(--ink); border: 2px solid var(--paper); font-family: var(--font-mono); color: var(--paper); }
+  .look-switch button { font: inherit; font-size: var(--fs-xs); letter-spacing: .1em; text-transform: uppercase; padding: 6px 10px; border: 2px solid var(--paper); background: transparent; color: var(--paper); cursor: pointer; }
+  .look-switch button[aria-pressed="true"] { background: var(--paper); color: var(--ink); }
+  .look-switch .note { flex-basis: 100%; text-align: right; font-size: var(--fs-xs); letter-spacing: .05em; opacity: .9; }
+</style><style>
+  /* ===== additions for the icon page: categories, the rail as a section index, captions that are real copy ===== */
+  .gl-role { margin: 0 0 8px; padding: 0; list-style: none; font-family: var(--font-mono); font-size: var(--fs-s); }
+  .gl-role li { padding: 5px 0; border-bottom: 1px solid #ffffff30; }
+  .gl-index-label { margin-top: 28px !important; }
+  .gl-index { display: flex; flex-direction: column; font-family: var(--font-mono); font-size: var(--fs-xs); letter-spacing: .12em; text-transform: uppercase; }
+  .gl-index a { display: flex; justify-content: space-between; gap: 10px; padding: 9px 0 9px 10px; border-top: 1px solid #ffffff30; border-left: 4px solid transparent; color: var(--paper); text-decoration: none; transition: color var(--t-quick) ease, border-color var(--t-quick) ease; }
+  .gl-index a em { font-style: normal; color: var(--gold); }
+  .gl-index a:hover, .gl-index a.is-here { color: var(--gold); }
+  .gl-index a.is-here { border-left-color: var(--magenta); }   /* a fixed-width bar, so the labels never shift */
+  .gl-cat { max-width: 100%; margin: 0 0 clamp(56px, 8vw, 110px); scroll-margin-top: 110px; }
+  .gl-cat h3 { margin: 0 0 14px; font-family: var(--font-body); font-weight: 600; font-size: var(--fs-heading); line-height: 1.02; letter-spacing: -0.03em; }
+  .gl-cat > p { max-width: 62ch; margin: 0 0 1.4em; font-size: var(--fs-l); line-height: 1.65; }
+  .gl-grid--icons { margin-top: clamp(20px, 3vw, 36px); align-items: start; }
+  .gl-grid--icons figcaption { margin-top: 10px; font-family: var(--font-body); font-size: var(--fs-s); letter-spacing: 0; text-transform: none; line-height: 1.5; opacity: .9; }
+  .gl-grid--icons figure:hover figcaption { color: inherit; }
+  .gl-grid--icons img { max-width: 500px; }
+  /* the page has sections, not just a statement: A puts the index at the top as a row of jump links */
+  html:not(.look-c) .gl-side { display: block; }
+  html:not(.look-c) .gl-index { flex-direction: row; flex-wrap: wrap; gap: 8px 12px; }
+  html:not(.look-c) .gl-index a { border: 2px solid var(--paper); padding: 7px 12px; }
+  html:not(.look-c) .gl-index a.is-here { border-left-color: var(--paper); }
+  html:not(.look-c) .gl-index a:hover { background: var(--paper); color: var(--ink); }
+  html:not(.look-c) .gl-index a em { margin-left: 8px; }
+  @media (min-width: 900px) {
+    html.look-c .gl-grid--icons { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+    html.look-c .gl-grid { grid-column: auto; }
+    html.look-c .gl > .gl-cat { grid-column: 2; }
+    html.look-c .gl-side { grid-row: 2 / span 40; }
+  }
+</style>
+</head>
+
+<body class="card-page">
+
+	<div class="menu-icon-container">
+		<div class="bar1"></div>
+		<div class="bar2"></div>
+		<div class="bar3"></div>
+	</div>
+
+	<div id="myNav" class="overlay pattern-grid-large">
+		<!-- Overlay content. TEST LINKS: the five menu links point at the -test pages so the new look can be browsed end to end. At go-live, point them back at index / webdesign / graphicdesign / photography / about .html -->
+		<div class="overlay-content ">
+			<a href="index-test.html" onclick="gtag('event', 'nav_click', { nav_item: 'home', from_page: window.location.pathname });"> Home </a>
+			<a href="webdesign-test.html" onclick="gtag('event', 'nav_click', { nav_item: 'web_design', from_page: window.location.pathname });"> Web Design </a>
+			<a href="graphicdesign-test.html" onclick="gtag('event', 'nav_click', { nav_item: 'graphic_design', from_page: window.location.pathname });"> Graphic Design </a>
+			<a href="photography-test.html" onclick="gtag('event', 'nav_click', { nav_item: 'photography', from_page: window.location.pathname });"> Photography </a>
+			<a href="about-test.html" onclick="gtag('event', 'nav_click', { nav_item: 'about', from_page: window.location.pathname });"> About </a>
+		</div>
+	</div><!--end my nav-->
+
+<header class="pattern-lines-up-var">
+	<div class="header-container">
+		<h1 class="doto-lg">Lawrence Getubig</h1>
+		<p>Creative Technologist in Product Design</p>
+	</div><!--end header container-->
+</header>
+
+<!-- the sliding band (four copies, so the loop never shows a gap) -->
+<div class="band" aria-hidden="true">
+	<div class="band-track">
+		<span>Web Design <i>●</i> UX/UI <i>▲</i> Visual Design <i>◆</i> Illustration <i>■</i> Brand <i>●</i> Animation <i>▲</i> Product Design <i>◆</i> Photography <i>■</i></span><span>Web Design <i>●</i> UX/UI <i>▲</i> Visual Design <i>◆</i> Illustration <i>■</i> Brand <i>●</i> Animation <i>▲</i> Product Design <i>◆</i> Photography <i>■</i></span><span>Web Design <i>●</i> UX/UI <i>▲</i> Visual Design <i>◆</i> Illustration <i>■</i> Brand <i>●</i> Animation <i>▲</i> Product Design <i>◆</i> Photography <i>■</i></span><span>Web Design <i>●</i> UX/UI <i>▲</i> Visual Design <i>◆</i> Illustration <i>■</i> Brand <i>●</i> Animation <i>▲</i> Product Design <i>◆</i> Photography <i>■</i></span>
+	</div>
+</div><!--end band-->
+
+<main>
+
+<div class="project-header-bar pattern-dots-dense">
+	<div class="h2-wrap">
+		<h2 class="source-code-pro source-code-pro-light">Icons</h2>
+		<p class="h2-descriptor">Web Icon Illustration</p>
+	</div>
+</div>
+
+<article class="gl">
+	<nav class="gl-crumb" aria-label="Breadcrumb"><a href="index-test.html">Home</a><a href="graphicdesign-test.html">Graphic Design</a><span aria-current="page">Web Icon Illustration</span></nav>
+
+	<aside class="gl-side">
+		<p class="kicker source-code-pro">Role</p>
+		<ul class="gl-role"><li>Graphic Designer</li><li>Illustrator</li><li>Brand Designer</li></ul>
+		<p class="kicker source-code-pro gl-index-label">Four icon sets</p>
+		<nav class="gl-index" aria-label="Icon sets"><a href="#holiday"><span>Holiday illustrations</span><em>6</em></a><a href="#fall"><span>Fall campaign</span><em>12</em></a><a href="#math"><span>I ♥ Math campaign</span><em>9</em></a><a href="#grants"><span>Grants and awards</span><em>6</em></a></nav>
+		<p class="gl-back"><a class="text-link" href="graphicdesign-test.html">Back to Graphic Design</a></p>
+	</aside>
+
+	<section class="gl-cat" id="holiday">
+		<p class="kicker source-code-pro">01 &middot; 6 icons</p>
+		<h3>Holiday Illustrations</h3>
+		<p>This icon set was crafted for a personal project: my family's <em>Christmas Holiday Greeting Card 2018</em>. Eschewing the usual photo-op, I opted to illustrate the six members of my family in flat design style, then arranged in a grid for the final printed product.</p>
+		<div class="gl-grid gl-grid--icons">
+			<figure><img loading="lazy" src="images/icons/xmas2018_anika.png" width="600" height="600" alt="Icon: anika"></figure>
+			<figure><img loading="lazy" src="images/icons/xmas2018_lawrence.png" width="600" height="600" alt="Icon: lawrence"></figure>
+			<figure><img loading="lazy" src="images/icons/xmas2018_mom.png" width="600" height="600" alt="Icon: mom"></figure>
+			<figure><img loading="lazy" src="images/icons/xmas2018_king.png" width="600" height="600" alt="Icon: king"></figure>
+			<figure><img loading="lazy" src="images/icons/xmas2018_zach.png" width="600" height="600" alt="Icon: zach"></figure>
+			<figure><img loading="lazy" src="images/icons/xmas2018_dad.png" width="600" height="600" alt="Icon: dad"></figure>
+		</div>
+	</section>
+	<section class="gl-cat" id="fall">
+		<p class="kicker source-code-pro">02 &middot; 12 icons</p>
+		<h3>Web Icons - Fall Campaign</h3>
+		<p>This icon set was crafted to support NCTM's Fall marketing initative of member acquisition and retention. Each icon was designed to complement copy developed for the <em>"Fall for Something New" </em> <a class="text-link" href="https://www.nctm.org/fall/" target="_blank"> NCTM campaign web landing page</a>.</p>
+		<div class="gl-grid gl-grid--icons">
+			<figure><img loading="lazy" src="images/icons/fall_goose.png" width="500" height="500" alt="Icon: goose"><figcaption>"Travel Plans? Head to an NCTM conference near you!"</figcaption></figure>
+			<figure><img loading="lazy" src="images/icons/fall_pumpkin.png" width="500" height="500" alt="Icon: pumpkin"><figcaption>"Something to smile about: purchase NCTM products using AmazonSmile."</figcaption></figure>
+			<figure><img loading="lazy" src="images/icons/fall_leaves.png" width="500" height="500" alt="Icon: leaves"><figcaption>"Change is in the air: check out NCTM professional development services."</figcaption></figure>
+			<figure><img loading="lazy" src="images/icons/fall_ghosts.png" width="500" height="500" alt="Icon: ghosts"><figcaption>"Meet other members! Visit your community portal, MyNCTM!"</figcaption></figure>
+			<figure><img loading="lazy" src="images/icons/fall_acorn.png" width="500" height="500" alt="Icon: acorn"><figcaption>"NCTM offers great resources!"</figcaption></figure>
+			<figure><img loading="lazy" src="images/icons/fall_turkey.png" width="500" height="500" alt="Icon: turkey"><figcaption>Main Fall Campaign motif. Slogan: <em>"Fall for Something New"</em></figcaption></figure>
+			<figure><img loading="lazy" src="images/icons/fall_squirrel.png" width="500" height="500" alt="Icon: squirrel"><figcaption>"Apply for grants - and get them! Read about past awardees inspirational stories."</figcaption></figure>
+			<figure><img loading="lazy" src="images/icons/fall_maple.png" width="500" height="500" alt="Icon: maple"><figcaption>"Itʼs fall and the leaves are turning! The pages of our catalog are turning as well."</figcaption></figure>
+			<figure><img loading="lazy" src="images/icons/fall_hat.png" width="500" height="500" alt="Icon: hat"><figcaption>"Vote for your next board of director leaders"</figcaption></figure>
+			<figure><img loading="lazy" src="images/icons/fall_branch.png" width="500" height="500" alt="Icon: branch"><figcaption>"Don't be the last to know about our exciting online programs!"</figcaption></figure>
+			<figure><img loading="lazy" src="images/icons/fall_hay.png" width="500" height="500" alt="Icon: hay"><figcaption>"Don't let these books and journals stack up like hay!"</figcaption></figure>
+			<figure><img loading="lazy" src="images/icons/fall_umbrella.png" width="500" height="500" alt="Icon: umbrella"><figcaption>"Be ready for anything: stock up on NCTM math supplies..."</figcaption></figure>
+		</div>
+	</section>
+	<section class="gl-cat" id="math">
+		<p class="kicker source-code-pro">03 &middot; 9 icons</p>
+		<h3>I ♥ Math Campaign</h3>
+		<p>This icon set was crafted to support NCTM's February - <em>I  ♥ Math</em> marketing initative to retain and engage members. Each icon was designed to complement copy developed for the <em><a class="text-link" href="https://www.nctm.org/ilovemath/" target="_blank">"I Love Math"</a></em> campaign web landing page.</p>
+		<div class="gl-grid gl-grid--icons">
+			<figure><img loading="lazy" src="images/icons/hand.png" width="500" height="500" alt="Icon: hand"><figcaption>"Give and Show Your Love for Math"</figcaption></figure>
+			<figure><img loading="lazy" src="images/icons/potter.png" width="500" height="500" alt="Icon: potter"><figcaption>Highlights featured article addressing math concepts in Harry Potter Movies</figcaption></figure>
+			<figure><img loading="lazy" src="images/icons/ilovemath.png" width="500" height="500" alt="Icon: I love math bird"><figcaption>Main <em>I Love Math</em> motif for campaign.</figcaption></figure>
+			<figure><img loading="lazy" src="images/icons/eye.png" width="500" height="500" alt="Icon: eye"><figcaption>"Discover Eye-Catching Reads"</figcaption></figure>
+			<figure><img loading="lazy" src="images/icons/find.png" width="500" height="500" alt="Icon: magnifying glass"><figcaption>"Find Journal Articles to Love"</figcaption></figure>
+			<figure><img loading="lazy" src="images/icons/journals.png" width="500" height="500" alt="Icon: journals"><figcaption>"Latest Books and Journals"</figcaption></figure>
+			<figure><img loading="lazy" src="images/icons/target.png" width="500" height="500" alt="Icon: target"><figcaption>"Stay On Target with NCTM Events"</figcaption></figure>
+			<figure><img loading="lazy" src="images/icons/mynctm.png" width="500" height="500" alt="Icon: mynctm logo"><figcaption>"Join the Passionate Community on MyNCTM"</figcaption></figure>
+			<figure><img loading="lazy" src="images/icons/singleout.png" width="500" height="500" alt="Icon: single out"><figcaption>"Single Out the Good Stuff: Resources for Your Classroom"</figcaption></figure>
+		</div>
+	</section>
+	<section class="gl-cat" id="grants">
+		<p class="kicker source-code-pro">04 &middot; 6 icons</p>
+		<h3>Grants and Awards Info</h3>
+		<p>These icons were created as a set of infographics used in NCTM's .org site, supporting the Mathematics Education Trust landing page copy regarding grant application process.</p>
+		<div class="gl-grid gl-grid--icons">
+			<figure><img loading="lazy" src="images/icons/met_megaphone.png" width="500" height="500" alt="Icon: megaphone"><figcaption>"Get inspired. Read the MET Blog to gain insights on the MET grant process..."</figcaption></figure>
+			<figure><img loading="lazy" src="images/icons/met_tree.png" width="500" height="500" alt="Icon: tree"><figcaption>"Grow. Demonstrate the innovative classroom practices or share the educational research you were able to pursue as an award recipient."</figcaption></figure>
+			<figure><img loading="lazy" src="images/icons/met_plane.png" width="500" height="500" alt="Icon: plane"><figcaption>"Submit Proposals"</figcaption></figure>
+			<figure><img loading="lazy" src="images/icons/met_magnifying.png" width="500" height="500" alt="Icon: magnifying glass"><figcaption>"Browse. Find the opportunities that will help you improve classroom practices..."</figcaption></figure>
+			<figure><img loading="lazy" src="images/icons/met_heart.png" width="500" height="500" alt="Icon: heart"><figcaption>"Give Back"</figcaption></figure>
+			<figure><img loading="lazy" src="images/icons/met_start.png" width="500" height="500" alt="Icon: start play button"><figcaption>"Get Started: be prepared..."</figcaption></figure>
+		</div>
+	</section>
+</article>
+
+</main>
+
+<footer class="pattern-dots-dense">
+	<p>Find me in:</p><br>
+	<p class="footer"><a class="text-link text-link--social" href="https://github.com/LarsGittenberg" onclick="gtag('event', 'footer_click', { destination: 'github', from_page: window.location.pathname });"><i class="fa-brands fa-github" aria-hidden="true"></i> GitHub</a></p>
+	<br>
+	<p class="footer"><a class="text-link text-link--social" href="https://www.linkedin.com/in/lawrence-getubig" onclick="gtag('event', 'footer_click', { destination: 'linkedin', from_page: window.location.pathname });"><i class="fa-brands fa-linkedin" aria-hidden="true"></i> LinkedIn</a></p> 
+	<br>
+	<p class="footer"><a class="text-link text-link--social" href="https://www.instagram.com/ljgetubig/" onclick="gtag('event', 'footer_click', { destination: 'instagram', from_page: window.location.pathname });"><i class="fa-brands fa-instagram" aria-hidden="true"></i> Instagram</a></p>
+	<br>
+	<p class="copyright"><small>Copyright Lawrence Getubig 2026</small></p>
+	<!--  want to change the copyright date for all html files? use: perl -pi -w -e 's/Getubig\ 2018/Getubig\ 2019/g;' *.html -->
+</footer>
+
+
+<script src="js/design.js"></script>
+
+<!-- Start of StatCounter Code for Default Guide -->
+<script type="text/javascript">
+var sc_project=5156734;
+var sc_invisible=1;
+var sc_security="8c976dcb";
+</script>
+<script type="text/javascript"
+src="https://www.statcounter.com/counter/counter.js"
+async></script>
+<noscript><div class="statcounter"><a title="site stats"
+href="http://statcounter.com/" target="_blank"><img
+class="statcounter"
+src="//c.statcounter.com/5156734/0/8c976dcb/1/" alt="site
+stats"></a></div></noscript>
+<!-- End of StatCounter Code for Default Guide -->
+
+
+<!-- ===== VARIANT SWITCHER (throwaway): the gallery layout ===== -->
+<div class="look-switch" role="group" aria-label="Gallery layout">
+  <button type="button" data-look="a">A &middot; Photo essay</button>
+  <button type="button" data-look="c">C &middot; Statement rail</button>
+  <span class="note" id="lookNote"></span>
+</div>
+<script>
+(function () {
+  var root = document.documentElement, buttons = document.querySelectorAll('.look-switch button'), looks = ['a', 'c'], note = document.getElementById('lookNote');
+  var NOTES = { a: 'the role and a row of jump links first, then each icon set in turn, three across', c: 'a sticky index of the four icon sets on the left (from 900px up), with a you-are-here marker; icons two across' };
+  function show(look) { looks.forEach(function (l) { root.classList.remove('look-' + l); }); if (look !== 'a') root.classList.add('look-' + look); buttons.forEach(function (b) { b.setAttribute('aria-pressed', b.dataset.look === look); }); note.textContent = NOTES[look]; }
+  buttons.forEach(function (b) { b.addEventListener('click', function () { show(b.dataset.look); }); });
+  var asked = new URLSearchParams(location.search).get('look'); show(looks.indexOf(asked) > -1 ? asked : 'a');
+})();
+</script>
+<script>
+/* "you are here" marker for the rail's index (throwaway) */
+(function () {
+  var links = [].slice.call(document.querySelectorAll('.gl-index a')), secs = links.map(function (a) { return document.querySelector(a.getAttribute('href')); });
+  function mark() { var y = window.scrollY + 160, cur = 0; secs.forEach(function (s, i) { if (s.getBoundingClientRect().top + window.scrollY <= y) cur = i; }); links.forEach(function (a, i) { a.classList.toggle('is-here', i === cur); }); }
+  window.addEventListener('scroll', mark, { passive: true }); mark();
+})();
+</script>
+</body>
+</html>

@@ -1,0 +1,325 @@
+<!doctype html>
+
+<html lang="en">
+<head>
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-2QV625FZN6"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+
+    gtag('config', 'G-2QV625FZN6');
+  </script>
+
+  <title>TEST: case study layout options (Swiss Post) | Lawrence Getubig</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#feb013">
+  <meta name="description" content="Front-end web design by Lawrence Getubig: responsive HTML, CSS and JavaScript builds, interactive games, and UI/UX work from Udacity to Pride365.">
+
+  <!-- Favicons -->
+	<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+	<link rel="icon" href="/favicon.png" sizes="32x32">
+	<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+
+  <!-- CSS -->
+  <link rel="stylesheet" href="css/reskin-blue.css"> <!-- replaces ui.css and main.css on this test page -->
+
+  <link rel="stylesheet" href="css/card-pages.css"> <!-- the header, band, title and card spacing that the category pages share -->
+
+  <style>
+  /* this page's band colour (magenta): background, text, and the three shape colours */
+  .band { --band-bg: var(--magenta); --band-ink: var(--cream-text); --s1: var(--amber); --s2: var(--mint); --s3: var(--cream-text); }
+  </style>
+
+	<!--fonts-->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link href="https://fonts.googleapis.com/css2?family=Doto:wght@100..900&display=swap" rel="stylesheet">
+	<!--older font choices-->
+	<link href="https://fonts.googleapis.com/css?family=Montserrat:400,600|Source+Code+Pro:300,400" rel="stylesheet">
+
+  <!-- JS libraries -->
+  <script src="https://cdn.jsdelivr.net/npm/js-cookie@2/src/js.cookie.min.js"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg==" crossorigin="anonymous" referrerpolicy="no-referrer">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  <script src="js/noframework.waypoints.min.js"></script>
+
+<style>
+  /* =====================================================================
+     CASE STUDY LAYOUT OPTIONS (throwaway). Same markup, three layouts. "A" needs no html class; B = html.look-b; C = html.look-c.
+     Everything uses the real design-system tokens and components (.kicker, .text-link, the heading and type tokens, hard shadows, cut corners).
+     ===================================================================== */
+  .cs { position: relative; padding: clamp(24px, 4vw, 56px) var(--pad) clamp(60px, 8vw, 120px) clamp(8px, 2vw, 28px); max-width: 1040px; }
+  @media (min-width: 900px) { main > .cs { grid-column: 2; } }
+  .cs h3 { margin: 0 0 14px; font-family: var(--font-body); font-weight: 600; font-size: var(--fs-heading); line-height: 1.02; letter-spacing: -0.03em; }
+  .cs h4 { margin: 30px 0 8px; font-weight: 400; font-size: var(--fs-s); letter-spacing: .12em; text-transform: uppercase; color: var(--orange); }
+  .cs p { margin: 0 0 1em; font-size: var(--fs-l); line-height: 1.65; }
+  .cs ul { margin: 0; padding: 0; list-style: none; }
+  .cs-role li { padding: 8px 0; border-bottom: 1px solid #ffffff30; font-family: var(--font-mono); font-size: var(--fs-l); }
+  .cs-crumb { display: flex; flex-wrap: wrap; gap: 6px 0; margin: 0 0 clamp(30px, 4vw, 56px); font-family: var(--font-mono); font-size: var(--fs-s); letter-spacing: .14em; text-transform: uppercase; }
+  .cs-crumb a { color: var(--paper); text-decoration: none; }
+  .cs-crumb a::after { content: "\2192"; margin: 0 .8em; color: var(--magenta); }
+  .cs-crumb a:hover { color: var(--gold); }
+  .cs-fig { margin: clamp(32px, 5vw, 72px) 0; }
+  .cs-fig img { display: block; width: 100%; height: auto; }
+  .cs-fig figcaption { max-width: 70ch; margin-top: 12px; font-family: var(--font-mono); font-size: var(--fs-s); letter-spacing: .04em; line-height: 1.55; opacity: .85; }
+  .cs-fig--pair img + img { margin-top: 14px; }
+  .cs-fig--tall img { max-width: min(100%, 640px); }
+  .cs blockquote { margin: 14px 0 0; }
+  .cs cite { display: block; margin-top: 8px; font-family: var(--font-mono); font-size: var(--fs-s); font-style: normal; letter-spacing: .06em; text-transform: uppercase; color: var(--gold); }
+  .cs-back { margin: 60px 0 0; }
+  .cs-index { display: none; }
+
+  /* ---------- A: EDITORIAL COLUMN: calm, one readable column, wide figures, quotes with a magenta bar ---------- */
+  .cs-sec { max-width: 68ch; margin: 0 0 clamp(36px, 5vw, 72px); }
+  .cs blockquote { padding-left: 20px; border-left: 6px solid var(--magenta); }
+  .cs blockquote p { font-family: var(--font-mono); font-weight: 300; font-size: var(--fs-quote); line-height: 1.3; letter-spacing: -0.03em; }
+  .cs blockquote p { font-size: clamp(1.1rem, 2.2vw, 1.5rem); }
+
+  /* ---------- B: PANEL SPREAD: every section is a tilted cut-corner panel; figures get cut corners and hard shadows ---------- */
+  html.look-b .cs-sec { max-width: none; padding: clamp(26px, 3vw, 44px); margin-bottom: clamp(48px, 6vw, 84px); background: var(--panel-bg); color: var(--panel-ink, var(--ink)); box-shadow: var(--shadow-l) var(--shadow-l) 0 var(--panel-shadow, var(--amber)); transform: rotate(var(--tilt, 0deg)); border-radius: var(--cut-tr); }
+  html.look-b .cs-sec p { max-width: 62ch; }
+  html.look-b .cs-sec:nth-of-type(7n+1) { --panel-bg: var(--amber); --panel-shadow: var(--paper); --tilt: -0.8deg; }
+  html.look-b .cs-sec:nth-of-type(7n+2) { --panel-bg: var(--paper); --tilt: 0.7deg; border-radius: var(--cut-tl); }
+  html.look-b .cs-sec:nth-of-type(7n+3) { --panel-bg: var(--mint); --tilt: -0.5deg; }
+  html.look-b .cs-sec:nth-of-type(7n+4) { --panel-bg: var(--blue); --panel-ink: var(--cream-text); --kicker-mark: var(--amber); --tilt: 0.9deg; border-radius: var(--cut-tl); }
+  html.look-b .cs-sec:nth-of-type(7n+5) { --panel-bg: var(--teal); --panel-ink: var(--cream-text); --kicker-mark: var(--gold); --tilt: -0.6deg; }
+  html.look-b .cs-sec:nth-of-type(7n+6) { --panel-bg: var(--purple); --panel-ink: var(--cream-text); --kicker-mark: var(--gold); --tilt: 0.5deg; border-radius: var(--cut-tl); }
+  html.look-b .cs-sec:nth-of-type(7n+7) { --panel-bg: var(--orange); --panel-shadow: var(--paper); --tilt: -0.7deg; }
+  html.look-b .cs-sec h4 { color: inherit; opacity: .9; }
+  html.look-b .cs blockquote { margin-top: 14px; padding: 14px 18px; background: var(--paper); color: var(--ink); border-left: 0; border: 3px solid var(--ink); box-shadow: var(--shadow-s) var(--shadow-s) 0 var(--magenta); }
+  html.look-b .cs blockquote cite { color: var(--ink); opacity: .8; }
+
+  /* ---------- C: RAIL + CONTENT: a sticky section index on the left, the story on the right (from 900px up) ---------- */
+  @media (min-width: 900px) {
+    html.look-c .cs { display: grid; grid-template-columns: minmax(150px, 190px) minmax(0, 1fr); column-gap: clamp(28px, 4vw, 64px); max-width: 1160px; align-items: start; }
+    html.look-c .cs > .cs-crumb { grid-column: 1 / -1; }
+    html.look-c .cs > :not(.cs-crumb):not(.cs-index) { grid-column: 2; }
+    html.look-c .cs-index { display: flex; flex-direction: column; grid-column: 1; grid-row: 2 / span 30; position: sticky; top: 110px; font-family: var(--font-mono); font-size: var(--fs-xs); letter-spacing: .14em; text-transform: uppercase; }
+    html.look-c .cs-index a { padding: 9px 0; border-top: 1px solid #ffffff30; color: var(--paper); text-decoration: none; }
+    html.look-c .cs-index a:hover { color: var(--gold); }
+    html.look-c .cs-sec { max-width: none; padding-top: 22px; border-top: 3px solid var(--paper); }
+    html.look-c .cs-sec p { max-width: 66ch; }
+  }
+  html.look-c .cs blockquote { padding: 16px 20px; background: var(--paper); color: var(--ink); border-left: 0; box-shadow: var(--shadow-s) var(--shadow-s) 0 var(--magenta); border-radius: var(--cut-tr); }
+  html.look-c .cs blockquote cite { color: var(--ink); opacity: .8; }
+
+  .look-switch { position: fixed; right: 16px; bottom: 16px; z-index: 300; display: flex; flex-wrap: wrap; justify-content: flex-end; gap: 6px; max-width: calc(100vw - 32px); padding: 8px; background: var(--ink); border: 2px solid var(--paper); font-family: var(--font-mono); color: var(--paper); }
+  .look-switch button { font: inherit; font-size: var(--fs-xs); letter-spacing: .1em; text-transform: uppercase; padding: 6px 10px; border: 2px solid var(--paper); background: transparent; color: var(--paper); cursor: pointer; }
+  .look-switch button[aria-pressed="true"] { background: var(--paper); color: var(--ink); }
+  .look-switch .note { flex-basis: 100%; text-align: right; font-size: var(--fs-xs); letter-spacing: .05em; opacity: .9; }
+</style>
+<style>
+  /* ===== additions for Swiss Post's different shapes of content: call-outs, lists, a row of screens ===== */
+  .cs-list li { position: relative; padding: 7px 0 7px 24px; font-size: var(--fs-l); line-height: 1.55; }
+  .cs-list li::before { content: ""; position: absolute; left: 0; top: 1.05em; width: 10px; height: 10px; background: var(--kicker-mark, var(--magenta)); }
+  .cs-list { margin: 0 0 1em; }
+  /* the call-out: a highlighted question or consideration */
+  .cs-callout { margin: 22px 0; padding: 14px 0 14px 20px; border-left: 6px solid var(--gold); }
+  .cs-callout b { display: block; margin-bottom: 6px; font-family: var(--font-mono); font-weight: 400; font-size: var(--fs-s); letter-spacing: .14em; text-transform: uppercase; color: var(--gold); }
+  html.look-b .cs-callout, html.look-c .cs-callout { padding: 14px 18px; background: var(--paper); color: var(--ink); border: 3px solid var(--ink); border-left-width: 3px; box-shadow: var(--shadow-s) var(--shadow-s) 0 var(--magenta); }
+  html.look-c .cs-callout { border: 0; border-radius: var(--cut-tr); }
+  html.look-b .cs-callout b, html.look-c .cs-callout b { color: var(--ink); opacity: .8; }
+  /* four product screens in a row: a 2 x 2 grid */
+  .cs-shots { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 28px 24px; margin: clamp(32px, 5vw, 72px) 0; }
+  @media (max-width: 700px) { .cs-shots { grid-template-columns: 1fr; } }
+  .cs-shots .cs-fig { margin: 0; }
+  @media (min-width: 900px) { html.look-c .cs > .cs-shots { grid-column: 2; } }
+</style>
+<style>
+  /* ===== D: RAIL + WIDE FIGURES. It is look C plus these overrides (the switcher puts BOTH look-c and look-d on the page).
+     The text keeps its reading measure; the rail is slimmer; the figures use the whole content column and bleed toward the right edge. ===== */
+  @media (min-width: 900px) {
+    html.look-d .cs { grid-template-columns: minmax(118px, 140px) minmax(0, 1fr); column-gap: clamp(20px, 2.4vw, 32px); max-width: none; }
+    html.look-d .cs-index { letter-spacing: .1em; }
+    html.look-d .cs > .cs-fig, html.look-d .cs > .cs-pair, html.look-d .cs > .cs-shots { margin-right: calc(var(--pad) * -0.6); }
+  }
+</style>
+</head>
+
+<body class="card-page">
+
+	<div class="menu-icon-container">
+		<div class="bar1"></div>
+		<div class="bar2"></div>
+		<div class="bar3"></div>
+	</div>
+
+	<div id="myNav" class="overlay pattern-grid-large">
+		<!-- Overlay content. TEST LINKS: the five menu links point at the -test pages so the new look can be browsed end to end. At go-live, point them back at index / webdesign / graphicdesign / photography / about .html -->
+		<div class="overlay-content ">
+			<a href="index-test.html" onclick="gtag('event', 'nav_click', { nav_item: 'home', from_page: window.location.pathname });"> Home </a>
+			<a href="webdesign-test.html" onclick="gtag('event', 'nav_click', { nav_item: 'web_design', from_page: window.location.pathname });"> Web Design </a>
+			<a href="graphicdesign-test.html" onclick="gtag('event', 'nav_click', { nav_item: 'graphic_design', from_page: window.location.pathname });"> Graphic Design </a>
+			<a href="photography-test.html" onclick="gtag('event', 'nav_click', { nav_item: 'photography', from_page: window.location.pathname });"> Photography </a>
+			<a href="about-test.html" onclick="gtag('event', 'nav_click', { nav_item: 'about', from_page: window.location.pathname });"> About </a>
+		</div>
+	</div><!--end my nav-->
+
+<header class="pattern-dots-sparse">
+	<div class="header-container">
+		<h1 class="doto-lg">Lawrence Getubig</h1>
+		<p>Creative Technologist in Product Design</p>
+	</div><!--end header container-->
+</header>
+
+<!-- the sliding band (four copies, so the loop never shows a gap) -->
+<div class="band" aria-hidden="true">
+	<div class="band-track">
+		<span>Web Design <i>●</i> UX/UI <i>▲</i> Visual Design <i>◆</i> Illustration <i>■</i> Brand <i>●</i> Animation <i>▲</i> Product Design <i>◆</i> Photography <i>■</i></span><span>Web Design <i>●</i> UX/UI <i>▲</i> Visual Design <i>◆</i> Illustration <i>■</i> Brand <i>●</i> Animation <i>▲</i> Product Design <i>◆</i> Photography <i>■</i></span><span>Web Design <i>●</i> UX/UI <i>▲</i> Visual Design <i>◆</i> Illustration <i>■</i> Brand <i>●</i> Animation <i>▲</i> Product Design <i>◆</i> Photography <i>■</i></span><span>Web Design <i>●</i> UX/UI <i>▲</i> Visual Design <i>◆</i> Illustration <i>■</i> Brand <i>●</i> Animation <i>▲</i> Product Design <i>◆</i> Photography <i>■</i></span>
+	</div>
+</div><!--end band-->
+
+<main>
+
+<div class="project-header-bar pattern-dots-dense">
+	<div class="h2-wrap">
+		<h2 class="source-code-pro source-code-pro-light">Swiss Post</h2>
+		<p class="h2-descriptor">AI Tool</p>
+	</div>
+</div>
+
+<article class="cs">
+	<nav class="cs-crumb" aria-label="Breadcrumb"><a href="index-test.html">Home</a><a href="webdesign-test.html">Web Design</a><span aria-current="page">Swiss Post AI Tool</span></nav>
+
+	<nav class="cs-index" aria-label="In this case study">
+		<a href="#role">Role</a><a href="#challenge">The challenge</a><a href="#persona">Persona</a><a href="#atoms">Atomic design</a><a href="#journeys">Journeys</a><a href="#desktop">Desktop</a><a href="#responsive">Responsive</a><a href="#next">Next steps</a>
+	</nav>
+
+	<section class="cs-sec cs-role" id="role">
+		<p class="kicker source-code-pro">01 &middot; Role</p>
+		<ul><li>Product Designer</li><li>Visual Designer</li><li>UX/UI Designer</li><li>Illustrator</li><li>Brand Designer</li></ul>
+	</section>
+
+	<section class="cs-sec" id="challenge">
+		<p class="kicker source-code-pro">02 &middot; The challenge</p>
+		<h3>Framing the Challenge</h3>
+		<p>This project is a scrubbed case study derived from work I completed for one of the largest government&#8209;run mail and logistics systems in the world. While the visual design, UX, and UI are entirely new, the journey and business value mirror the kinds of strategic questions that the LLM&#8209;powered generative AI assistant can help answer.</p>
+		<p class="cs-callout"><b>Framing Question</b>How can Swiss Post decision&#8209;makers leverage AI tools to quickly generate insights in performance, sales, marketing, and logistics&mdash;driving smarter business decisions?</p>
+		<p>To begin, I conducted comparative market research into Swiss Post&rsquo;s brand identity, rooted in Helvetica and Swiss design principles, and explored how those traditions of clarity and precision could inform a modern AI interface.</p>
+		<p><a class="text-link" href="https://www.lawrencegetubig.com/pdfs/swisspost.pdf" target="_blank">Download PDF Deck</a></p>
+	</section>
+
+	<figure class="cs-fig"><img src="images/swisspost/brand analysis long.webp" width="2374" height="576" alt="Moodboarding and visual design research examples."><figcaption>Above: Moodboarding and visual design research examples.</figcaption></figure>
+
+	<section class="cs-sec" id="persona">
+		<p class="kicker source-code-pro">03 &middot; Persona</p>
+		<h3>Designing the Persona</h3>
+		<p>Drawing from brand research, I sketched concepts for the AI&rsquo;s visual persona.</p>
+		<p>We set out to create an AI identity that feels warm and approachable while maintaining reliability and trust. Should the AI avatar lean anthropomorphic, suggesting friendliness? Or remain abstract, signaling neutrality and focus?</p>
+		<p class="cs-callout"><b>Guiding Question</b>What visual symbol best represents a tool that engages naturally&mdash;free from the rigid, mechanical feel often associated with artificial intelligence?</p>
+	</section>
+
+	<figure class="cs-fig cs-fig--tall"><img loading="lazy" src="images/swisspost/visual_design_research.svg" width="1018" height="1160" alt="Swiss Post avatar character exploration"><figcaption>Above: Examples of early sketches and illustrations for AI avatar iconography and branding.</figcaption></figure>
+
+	<section class="cs-sec" id="atoms">
+		<p class="kicker source-code-pro">04 &middot; System</p>
+		<h3>Atomic Design Foundations</h3>
+		<p>The design team adopted an atomic design approach, starting with elemental UI units&mdash;buttons, inputs, icons&mdash;and progressively assembling them into larger &ldquo;molecules,&rdquo; then full interactive components.</p>
+		<p>This modular system ensured consistency and scalability across the product.</p>
+	</section>
+
+	<figure class="cs-fig cs-fig--tall"><img loading="lazy" src="images/swisspost/atoms.svg" width="968" height="1410" alt="Samples of new visual assets made"><figcaption>Above: Example designs of the atomic UI building blocks. Credit: Thin-line icons from Phorphoricons.com</figcaption></figure>
+
+	<section class="cs-sec" id="journeys">
+		<p class="kicker source-code-pro">05 &middot; Journeys</p>
+		<h3>Building Journeys</h3>
+		<p>With a solid atomic foundation, we combined UI atoms into molecules that support specific user journeys. Like an alphabet forming words and sentences, these molecules created a coherent, extensible GUI, providing clean UX/UI.</p>
+	</section>
+
+	<figure class="cs-fig"><img loading="lazy" src="images/swisspost/molecules.svg" width="1470" height="638" alt="Examples of more complex UI elements called molecules"><figcaption>Above: Examples of how the UI atoms combine to form more complex UI molecules.</figcaption></figure>
+
+	<section class="cs-sec" id="desktop">
+		<p class="kicker source-code-pro">06 &middot; Desktop</p>
+		<h3>Desktop Experience</h3>
+		<p>We illustrated key scenarios of the AI tool in desktop view:</p>
+		<ul class="cs-list">
+			<li>Landing page introducing the AI assistant.</li>
+			<li>Prompt&#8209;response GUI offering multiple options based on user input.</li>
+			<li>Complex query handling with tables, charts, and data manipulation.</li>
+			<li>Feedback modal triggered by a thumbs&#8209;down, allowing users to specify issues (e.g., &ldquo;inaccurate answer,&rdquo; &ldquo;forgot context,&rdquo; &ldquo;factually wrong&rdquo;).</li>
+		</ul>
+		<p>For a detailed desktop view: <a class="text-link" href="https://www.lawrencegetubig.com/pdfs/swisspost.pdf" target="_blank">Download PDF Deck</a></p>
+	</section>
+
+	<div class="cs-shots">
+		<figure class="cs-fig cs-fig--shot"><img loading="lazy" src="images/swisspost/product_landing_page.svg" width="2111" height="1258" alt="Swiss Post landing page of the AI assistant"><figcaption>Above: Swiss Post&rsquo;s (proof-of-concept) landing page interface of the LLM&#8209;powered generative AI assistant.</figcaption></figure>
+		<figure class="cs-fig cs-fig--shot"><img loading="lazy" src="images/swisspost/product_prepopulated_option.svg" width="2111" height="1258" alt="Pre-populated options based on prior prompts"><figcaption>Above: Screen illustrating how the AI presents pre-populated options based on prior prompts.</figcaption></figure>
+		<figure class="cs-fig cs-fig--shot"><img loading="lazy" src="images/swisspost/product_complex_prompt.svg" width="2111" height="1258" alt="A complex prompt with visualizations"><figcaption>Above: Example of the AI tool handling a complex prompt based on previous answers and visualizations.</figcaption></figure>
+		<figure class="cs-fig cs-fig--shot"><img loading="lazy" src="images/swisspost/product_course_correction.svg" width="2111" height="1258" alt="The course-correction journey"><figcaption>Above: Example of the course-correction journey, providing feedback for an inaccurate AI answer.</figcaption></figure>
+	</div>
+
+	<section class="cs-sec" id="responsive">
+		<p class="kicker source-code-pro">07 &middot; Responsive</p>
+		<h3>Responsive Design</h3>
+		<p>We extended the design system to tablet and mobile, ensuring the AI experience remained seamless across touchpoints.</p>
+	</section>
+
+	<figure class="cs-fig"><img loading="lazy" src="images/swisspost/responsive_examples.svg" width="1469" height="1057" alt="Responsive examples of the AI tool"></figure>
+
+	<section class="cs-sec" id="next">
+		<p class="kicker source-code-pro">08 &middot; Next steps</p>
+		<h3>Discussion and Next Steps</h3>
+		<p>If deployed, the product lifecycle would include:</p>
+		<ul class="cs-list"><li>Usability testing and analytics to identify pain points.</li><li>Iterative improvements based on evidence&#8209;driven design.</li><li>Amplification of positive interactions uncovered in data.</li></ul>
+		<p class="cs-callout"><b>Future Considerations</b>Which digital touchpoint&mdash;mobile, tablet, laptop, desktop&mdash;dominates usage? Prioritize UX/UI optimization accordingly. Investigate low&#8209;engagement touchpoints: are they contextual or design&#8209;related? Refine usability to encourage adoption.</p>
+		<p>Caveat: This fictitious scenario is based on a real proof of concept. In practice, early design&#8209;thinking research&mdash;interviews, pain point mapping, demand assessment to identify if this tool will truly solve existing user problems&mdash;would be essential before product design begins.</p>
+	</section>
+
+	<p class="cs-back"><a class="text-link" href="index-test.html">Back to Home</a></p>
+</article>
+
+</main>
+
+<footer class="pattern-dots-dense">
+	<p>Find me in:</p><br>
+	<p class="footer"><a class="text-link text-link--social" href="https://github.com/LarsGittenberg" onclick="gtag('event', 'footer_click', { destination: 'github', from_page: window.location.pathname });"><i class="fa-brands fa-github" aria-hidden="true"></i> GitHub</a></p>
+	<br>
+	<p class="footer"><a class="text-link text-link--social" href="https://www.linkedin.com/in/lawrence-getubig" onclick="gtag('event', 'footer_click', { destination: 'linkedin', from_page: window.location.pathname });"><i class="fa-brands fa-linkedin" aria-hidden="true"></i> LinkedIn</a></p> 
+	<br>
+	<p class="footer"><a class="text-link text-link--social" href="https://www.instagram.com/ljgetubig/" onclick="gtag('event', 'footer_click', { destination: 'instagram', from_page: window.location.pathname });"><i class="fa-brands fa-instagram" aria-hidden="true"></i> Instagram</a></p>
+	<br>
+	<p class="copyright"><small>Copyright Lawrence Getubig 2026</small></p>
+	<!--  want to change the copyright date for all html files? use: perl -pi -w -e 's/Getubig\ 2018/Getubig\ 2019/g;' *.html -->
+</footer>
+
+<script src="js/design.js"></script>
+
+<!-- Start of StatCounter Code for Default Guide -->
+<script type="text/javascript">
+var sc_project=5156734;
+var sc_invisible=1;
+var sc_security="8c976dcb";
+</script>
+<script type="text/javascript"
+src="https://www.statcounter.com/counter/counter.js"
+async></script>
+<noscript><div class="statcounter"><a title="site stats"
+href="http://statcounter.com/" target="_blank"><img
+class="statcounter"
+src="//c.statcounter.com/5156734/0/8c976dcb/1/" alt="site
+stats"></a></div></noscript>
+<!-- End of StatCounter Code for Default Guide -->
+
+
+<!-- ===== VARIANT SWITCHER (throwaway): the case study layout ===== -->
+<div class="look-switch" role="group" aria-label="Case study layout">
+  <button type="button" data-look="a">A &middot; Editorial column</button>
+  <button type="button" data-look="b">B &middot; Panel spread</button>
+  <button type="button" data-look="c">C &middot; Rail + content</button>
+  <button type="button" data-look="d">D &middot; Rail, wide figures</button>
+  <span class="note" id="lookNote"></span>
+</div>
+<script>
+(function () {
+  var root = document.documentElement, buttons = document.querySelectorAll('.look-switch button'), looks = ['a', 'b', 'c', 'd'], note = document.getElementById('lookNote');
+  var NOTES = { a: 'one calm reading column; wide figures; quotes with a magenta bar', b: 'every section a tilted cut-corner panel, like the about page and the cards', c: 'sticky section index on the left (from 900px up); the story on the right', d: 'rail + wide figures: look C with a slimmer rail, and the images wider than the text (from 900px up)' };
+  function show(look) { looks.forEach(function (l) { root.classList.remove('look-' + l); }); if (look !== 'a') root.classList.add('look-' + look); if (look === 'd') root.classList.add('look-c'); buttons.forEach(function (b) { b.setAttribute('aria-pressed', b.dataset.look === look); }); note.textContent = NOTES[look]; }
+  buttons.forEach(function (b) { b.addEventListener('click', function () { show(b.dataset.look); }); });
+  var asked = new URLSearchParams(location.search).get('look'); show(looks.indexOf(asked) > -1 ? asked : 'a');
+})();
+</script>
+</body>
+</html>
