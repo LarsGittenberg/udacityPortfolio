@@ -417,22 +417,26 @@ section.featured-project-card { --mark: var(--magenta); }
 	text-decoration: none;
 	letter-spacing: 0.08em;
 	text-transform: uppercase;
-	box-shadow: var(--shadow-s) var(--shadow-s) 0 var(--orange);
+	box-shadow: var(--shadow-s) var(--shadow-s) 0 var(--btn-shadow, var(--orange)); /* the shadow colour is the variable --btn-shadow: orange unless something sets it (see the modifiers below) */
 	transition: transform var(--t-quick) ease, box-shadow var(--t-quick) ease, background var(--t-quick) ease, color var(--t-quick) ease;
 }
-.btn:hover { transform: translate(-2px, -2px); box-shadow: var(--shadow-m) var(--shadow-m) 0 var(--orange); background: var(--paper); color: var(--ink); }
+.btn:hover { transform: translate(-2px, -2px); box-shadow: var(--shadow-m) var(--shadow-m) 0 var(--btn-shadow, var(--orange)); background: var(--paper); color: var(--ink); }
 /* BUTTON ON A DARK GROUND (.btn--on-dark): the ink button vanishes against night, night-deep and ink, so this one is paper with ink text and a magenta hard shadow.
    Use it as  <a class="btn btn--on-dark">. On hover it turns gold (the link highlight's yellow) and lifts like the other button; the arrow draws itself as usual.
-   The base .btn:hover sets an orange shadow, so the magenta one is restated for the hover state. */
-.btn--on-dark { background: var(--paper); color: var(--ink); box-shadow: var(--shadow-s) var(--shadow-s) 0 var(--magenta); }
-.btn--on-dark:hover { background: var(--gold); box-shadow: var(--shadow-m) var(--shadow-m) 0 var(--magenta); }
+   Its shadow is magenta by default; add .btn--orange for the orange one (see the shadow modifiers below). */
+.btn--on-dark { --btn-shadow: var(--magenta); background: var(--paper); color: var(--ink); }
+.btn--on-dark:hover { background: var(--gold); }
 .btn-text { font-size: var(--fs-s); }
 section.featured-project-card .btn { position: relative; margin: 24px 0 0; } /* the button owns the space above it, so the gap is the same whatever sits above: a paragraph or the Tools list */
-/* orange would vanish against the amber and orange cards (1 and 2), so their stamps cast magenta shadows (were cream; to undo, change var(--magenta) back to var(--paper)) */
-.flex-container-child-projects:nth-child(6n+1) .btn,
-.flex-container-child-projects:nth-child(6n+2) .btn { box-shadow: var(--shadow-s) var(--shadow-s) 0 var(--magenta); }
-.flex-container-child-projects:nth-child(6n+1) .btn:hover,
-.flex-container-child-projects:nth-child(6n+2) .btn:hover { box-shadow: var(--shadow-m) var(--shadow-m) 0 var(--magenta); }
+/* orange would vanish against the amber and orange cards (1 and 2), so their buttons cast magenta shadows (were cream; to undo, change var(--magenta) back to var(--paper)).
+   :where() keeps this rule's priority at zero, so the .btn--orange / .btn--magenta modifiers below can still override it. */
+:where(.flex-container-child-projects:nth-child(6n+1), .flex-container-child-projects:nth-child(6n+2)) .btn { --btn-shadow: var(--magenta); }
+
+/* SHADOW MODIFIERS: a button's hard shadow is orange or magenta, on either face. Add one to a .btn (they come after the other button rules, so they win):
+   ink face (light grounds):   .btn (orange)   or  .btn.btn--magenta
+   paper face (dark grounds):  .btn.btn--on-dark (magenta)   or  .btn.btn--on-dark.btn--orange */
+.btn--orange { --btn-shadow: var(--orange); }
+.btn--magenta { --btn-shadow: var(--magenta); }
 
 /* =====================================================================
    FOOTER: an ink slab with the initials in amber, cropped
