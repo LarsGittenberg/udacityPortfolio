@@ -111,7 +111,7 @@ One more thing, for the observant: the face at the top of this page has two diff
 
   /* the tagline: a fixed box sized in em, so it scales with the type and can never reflow.
      8.76em x 3.6em = Figma's 587 x 240 at 67px; four lines at 90% line-height = 3.6em */
-  .hero-text {
+  .hero-tagline {
     position: absolute;
     grid-column: auto;
     right: calc(31.5 * var(--u));
@@ -125,7 +125,7 @@ One more thing, for the observant: the face at the top of this page has two diff
     letter-spacing: -0.03em;
     text-align: right;
   }
-  .hero-text .tl { display: block; white-space: nowrap; }
+  .hero-tagline .tl { display: block; white-space: nowrap; }
 
   /* the face badge: a 200px amber circle with the five face layers rising into it */
   .badge {
@@ -211,7 +211,7 @@ One more thing, for the observant: the face at the top of this page has two diff
       left: calc(50% - var(--size) / 2); /* centred left-to-right on the screen */
       top: calc(6.3 * var(--u) - 457px); /* 84px from the page top = level with the top of the vertical blurb. (457px = the header's 541px height minus that 84px; the stage starts 6.3u above the header's bottom edge.) If the header's height changes, this number follows */
     }
-    .hero-text {
+    .hero-tagline {
       right: calc(6.8 * var(--u) + 22px); /* the name's right edge: the header's right padding (2.4u) + the gap (4.4u) + the vertical blurb's 22px width. Change the blurb and this follows */
     }
   }
@@ -258,7 +258,7 @@ One more thing, for the observant: the face at the top of this page has two diff
 	<div class="hero-container" id="waypointSignal" aria-hidden="true"></div><!--the blue slab, nothing else-->
 
 	<!-- tagline: four fixed lines in a fixed box. The words are in aria-label, so the scramble below can run without a screen reader reading the noise -->
-	<h2 id="tagline" class="doto-lg hero-text" aria-label="Synthesis with perspective, playful by design">
+	<h2 id="tagline" class="doto-lg hero-tagline" aria-label="Synthesis with perspective, playful by design">
 		<span class="tl" aria-hidden="true">Synthesis with</span>
 		<span class="tl" aria-hidden="true">Perspective,</span>
 		<span class="tl" aria-hidden="true">Playful by</span>

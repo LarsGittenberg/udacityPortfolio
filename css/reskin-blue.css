@@ -241,7 +241,7 @@ div.hero-container {
 }
 div.hero-container.hero-collapsing { transition: none; }
 
-.hero-text {
+.hero-tagline {
 	grid-column: 1;
 	position: relative;
 	z-index: 3;
@@ -251,7 +251,7 @@ div.hero-container.hero-collapsing { transition: none; }
 	letter-spacing: -0.02em;
 	text-transform: uppercase;
 	color: var(--paper); /* cream on blue (ink on blue would not read) */
-	text-shadow: 5px 5px 0 var(--ink);
+	text-shadow: var(--shadow-s) var(--shadow-s) 0 var(--ink);
 }
 
 .hero-face {
@@ -597,7 +597,7 @@ footer::after {
 @media (max-width: 899px) {
 	header { padding-left: var(--pad); padding-top: 84px; }
 	div.hero-container { grid-template-columns: 1fr; padding-top: 100px; min-height: 0; }
-	.hero-text { max-width: 12ch; margin-bottom: 20px; }
+	.hero-tagline { max-width: 12ch; margin-bottom: 20px; }
 	.hero-face { grid-column: 1; justify-self: center; max-width: 440px; }
 	.central-shape { right: -10%; bottom: -8%; width: 80vw; height: 80vw; }
 	.rk-circle { left: auto; right: 8%; top: 8%; }
