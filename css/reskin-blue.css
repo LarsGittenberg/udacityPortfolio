@@ -421,6 +421,11 @@ section.featured-project-card { --mark: var(--magenta); }
 	transition: transform var(--t-quick) ease, box-shadow var(--t-quick) ease, background var(--t-quick) ease, color var(--t-quick) ease;
 }
 .btn:hover { transform: translate(-2px, -2px); box-shadow: var(--shadow-m) var(--shadow-m) 0 var(--orange); background: var(--paper); color: var(--ink); }
+/* BUTTON ON A DARK GROUND (.btn--on-dark): the ink button vanishes against night, night-deep and ink, so this one is paper with ink text and a magenta hard shadow.
+   Use it as  <a class="btn btn--on-dark">. On hover it turns gold (the link highlight's yellow) and lifts like the other button; the arrow draws itself as usual.
+   The base .btn:hover sets an orange shadow, so the magenta one is restated for the hover state. */
+.btn--on-dark { background: var(--paper); color: var(--ink); box-shadow: var(--shadow-s) var(--shadow-s) 0 var(--magenta); }
+.btn--on-dark:hover { background: var(--gold); box-shadow: var(--shadow-m) var(--shadow-m) 0 var(--magenta); }
 .btn-text { font-size: var(--fs-s); }
 section.featured-project-card .btn { position: relative; margin: 24px 0 0; } /* the button owns the space above it, so the gap is the same whatever sits above: a paragraph or the Tools list */
 /* orange would vanish against the amber and orange cards (1 and 2), so their stamps cast magenta shadows (were cream; to undo, change var(--magenta) back to var(--paper)) */
