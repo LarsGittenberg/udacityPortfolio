@@ -152,10 +152,14 @@
   </div>
 
   <h3>Button: <code>.btn</code></h3>
-  <p class="note">Hard shadow grows on hover; the arrow draws itself. Its colours come from the card it sits in (see the cards below); this is the default.</p>
+  <p class="note">The ink button: a hard shadow that grows on hover, an arrow that draws itself. Its shadow is <b>orange</b> by default. On the <b>amber and orange cards</b> (1 and 2) the shadow is <b>magenta</b> instead, because orange vanishes against those grounds. Both are intended; see the next section.</p>
   <div class="ds-ground" style="background:var(--night)">
     <a href="#components" class="btn" onclick="return false"><span class="btn-text">View Case Study</span><span class="btn-arrow"><span class="shaft"></span><span class="wing wing-left"></span><span class="wing wing-right"></span></span></a>
   </div>
+
+  <h3>Button shadow: orange (default) or magenta (cards 1 and 2)</h3>
+  <p class="note">The shadow colour is chosen by the card's <b>position</b> in the cycle (<code>.flex-container-child-projects:nth-child(6n+1)</code> and <code>(6n+2)</code>), not by a class, so it applies to a <code>.btn</code> inside those two cards. Each tile below is drawn from the <b>real computed values</b> of that card's button, and shows how the other colour would fare on the same ground. To use the magenta shadow somewhere that is not card 1 or 2, it would need to become a class (say <code>.btn--magenta</code>); it is not one yet.</p>
+  <div class="ds-grid" id="dsBtnShadows"></div>
 
   <h3>Button on a dark ground: <code>.btn--on-dark</code></h3>
   <p class="note">Add the modifier to <code>.btn</code> where the ink button would vanish (night, night-deep, ink). Paper background, ink text, magenta hard shadow; on hover it turns gold, lifts, and the arrow draws itself. Hover it on each ground.</p>
@@ -352,6 +356,20 @@
       '<ul><li><strong class="gold-color-font">Tools:</strong> HTML5, CSS3</li></ul>' +
       '<a href="#components" class="btn" onclick="return false"><span class="btn-text">View Case Study</span><span class="btn-arrow"><span class="shaft"></span><span class="wing wing-left"></span><span class="wing wing-right"></span></span></a>' +
       '</section></div>';
+  }).join('');
+
+  /* ---- button shadows: read each card's real button, and draw it ---- */
+  var TOK = {}; COLOURS.forEach(function (c) { TOK[toHex(rgbOf(c[0]))] = c[0].replace('--', ''); });
+  var orange = rgbOf('--orange'), magenta = rgbOf('--magenta');
+  function tokName(rgbText) { var m = rgbText.match(/\d+/g); return TOK[toHex([+m[0], +m[1], +m[2]])] || rgbText; }
+  $('dsBtnShadows').innerHTML = [].map.call(document.querySelectorAll('#dsCards .flex-container-child-projects'), function (w, i) {
+    var card = w.querySelector('section.featured-project-card'), btn = w.querySelector('.btn');
+    var ground = getComputedStyle(card).backgroundColor, bs = getComputedStyle(btn), bcs = bs.backgroundColor, bfg = bs.color;
+    var shadow = bs.boxShadow.match(/rgb\([^)]*\)/)[0], px = (bs.boxShadow.match(/(\d+)px/) || [0, ''])[1];
+    var g = rgbStr(ground), sh = rgbStr(shadow), alt = (tokName(shadow) === 'magenta') ? orange : magenta, altName = (tokName(shadow) === 'magenta') ? 'orange' : 'magenta';
+    return '<div class="ds-chip"><div class="sw" style="background:' + ground + ';display:flex;align-items:center;justify-content:center"><span style="display:inline-block;padding:8px 16px;background:' + bcs + ';color:' + bfg + ';box-shadow:' + px + 'px ' + px + 'px 0 ' + shadow + ';font:12px/1 var(--font-mono);letter-spacing:.08em;text-transform:uppercase">View Case Study</span></div>' +
+      '<div class="tx"><b>Card ' + (i + 1) + ' &middot; ' + tokName(ground) + '</b>shadow: <b style="display:inline">' + tokName(shadow) + '</b> ' + ratio(sh, g).toFixed(1) + ':1' +
+      '<span class="role">' + altName + ' would be ' + ratio(alt, g).toFixed(1) + ':1 on this ground</span></div></div>';
   }).join('');
 
   /* ---- drift detector: compare every custom property the stylesheets declare with the lists above ---- */
