@@ -98,8 +98,10 @@ a { color: inherit; }
 
 /* ---------- PANEL: a block of colour with one cut corner, a slight tilt and a hard shadow. Set it with variables on the element:
    --panel-bg (colour), --panel-ink (text colour, ink by default), --panel-shadow (shadow colour), --tilt (angle),
-   --panel-offset (shadow size, --shadow-l by default). Pick the corner with .panel--cut-tr or .panel--cut-tl. Padding and hover belong to the page. ---------- */
-.panel { background: var(--panel-bg); color: var(--panel-ink, var(--ink)); box-shadow: var(--panel-offset, var(--shadow-l)) var(--panel-offset, var(--shadow-l)) 0 var(--panel-shadow); transform: rotate(var(--tilt, 0deg)); }
+   --panel-offset (shadow size, --shadow-l by default). Pick the corner with .panel--cut-tr or .panel--cut-tl. Padding and hover belong to the page.
+   The project cards (section.featured-project-card) share this same rule, so a card is a panel with a border, a hover lift and its own colour cycle. ---------- */
+.panel,
+section.featured-project-card { background: var(--panel-bg); color: var(--panel-ink, var(--ink)); box-shadow: var(--panel-offset, var(--shadow-l)) var(--panel-offset, var(--shadow-l)) 0 var(--panel-shadow); transform: rotate(var(--tilt, 0deg)); }
 .panel--cut-tr { border-radius: var(--cut-tr); }
 .panel--cut-tl { border-radius: var(--cut-tl); }
 
@@ -356,22 +358,20 @@ section.featured-project-card {
 	width: 100%;
 	height: auto !important;
 	padding: clamp(26px, 3vw, 44px);
-	background: var(--card-bg, var(--mint));
-	color: var(--card-ink, var(--ink));
+	--panel-bg: var(--mint);      /* a card with no colour of its own is mint; the cycle below sets the rest */
+	--panel-shadow: var(--amber); /* ink would vanish on the dark page, so the hard shadow is a brand colour */
 	border: 3px solid var(--ink);
-	box-shadow: var(--shadow-l) var(--shadow-l) 0 var(--amber); /* ink would vanish on the dark page, so the hard shadow is a brand colour */
-	transform: rotate(var(--tilt, 0deg));
 	transition: transform var(--t-base) var(--ease-soft), box-shadow var(--t-base) ease;
 }
-section.featured-project-card:hover { transform: rotate(0deg) translate(-4px, -4px); box-shadow: var(--shadow-xl) var(--shadow-xl) 0 var(--amber); }
+section.featured-project-card:hover { transform: rotate(0deg) translate(-4px, -4px); box-shadow: var(--shadow-xl) var(--shadow-xl) 0 var(--panel-shadow); }
 
 /* each card's paper colour, text colour and tilt */
-.flex-container-child-projects:nth-child(6n+1) section.featured-project-card { --card-bg: var(--amber); --card-ink: var(--ink); --tilt: -0.8deg; border-radius: var(--cut-tr); }
-.flex-container-child-projects:nth-child(6n+2) section.featured-project-card { --card-bg: var(--orange);  --card-ink: var(--ink);        --tilt: 1.6deg; }
-.flex-container-child-projects:nth-child(6n+3) section.featured-project-card { --card-bg: var(--teal);    --card-ink: var(--cream-text); --tilt: 1deg; }
-.flex-container-child-projects:nth-child(6n+4) section.featured-project-card { --card-bg: var(--blue);    --card-ink: var(--cream-text); --tilt: -1.4deg; border-radius: var(--cut-tr); }
-.flex-container-child-projects:nth-child(6n+5) section.featured-project-card { --card-bg: var(--purple);  --card-ink: var(--cream-text); --tilt: -0.5deg; border-radius: var(--cut-tl); }
-.flex-container-child-projects:nth-child(6n) section.featured-project-card { --card-bg: var(--mint);    --card-ink: var(--ink);        --tilt: 1.1deg; border-radius: var(--cut-tl); }
+.flex-container-child-projects:nth-child(6n+1) section.featured-project-card { --panel-bg: var(--amber); --panel-ink: var(--ink); --panel-shadow: var(--paper); /* card 1 casts a cream shadow: amber on amber read as a thicker edge of the card itself. Delete --panel-shadow here to bring the amber back */ --tilt: -0.8deg; border-radius: var(--cut-tr); }
+.flex-container-child-projects:nth-child(6n+2) section.featured-project-card { --panel-bg: var(--orange);  --panel-ink: var(--ink);        --tilt: 1.6deg; }
+.flex-container-child-projects:nth-child(6n+3) section.featured-project-card { --panel-bg: var(--teal);    --panel-ink: var(--cream-text); --tilt: 1deg; }
+.flex-container-child-projects:nth-child(6n+4) section.featured-project-card { --panel-bg: var(--blue);    --panel-ink: var(--cream-text); --tilt: -1.4deg; border-radius: var(--cut-tr); }
+.flex-container-child-projects:nth-child(6n+5) section.featured-project-card { --panel-bg: var(--purple);  --panel-ink: var(--cream-text); --tilt: -0.5deg; border-radius: var(--cut-tl); }
+.flex-container-child-projects:nth-child(6n) section.featured-project-card { --panel-bg: var(--mint);    --panel-ink: var(--ink);        --tilt: 1.1deg; border-radius: var(--cut-tl); }
 
 /* outline numerals from the counter, hanging off the top edge of each card */
 section.featured-project-card::before {
@@ -448,9 +448,6 @@ section.featured-project-card li strong { font-weight: 400; letter-spacing: 0.08
 .gold-color-font { color: inherit; text-decoration: none; } /* the "Tools:" label is not a link, so no underline; a small accent square marks it instead */
 .gold-color-font::before { content: "\25A0\00a0"; color: var(--mark); }
 /* the accent colour of the small square before "Tools:": magenta by default, but magenta vanishes on teal (1.1:1) and fades on blue and purple, so those three cards use gold. The cream cards also turn their links yellow on hover (--link-hover) */
-/* card 1 (the amber card, every 6th from the first) casts a cream shadow instead: amber on amber read as a thicker edge of the card itself. Delete these two rules to bring the amber back */
-.flex-container-child-projects:nth-child(6n+1) section.featured-project-card { box-shadow: var(--shadow-l) var(--shadow-l) 0 var(--paper); }
-.flex-container-child-projects:nth-child(6n+1) section.featured-project-card:hover { box-shadow: var(--shadow-xl) var(--shadow-xl) 0 var(--paper); }
 section.featured-project-card { --mark: var(--magenta); }
 .flex-container-child-projects:nth-child(6n+3) section.featured-project-card,
 .flex-container-child-projects:nth-child(6n+4) section.featured-project-card,
