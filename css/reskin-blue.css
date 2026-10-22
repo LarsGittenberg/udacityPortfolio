@@ -199,7 +199,7 @@ header {
 	width: min-content; /* min-content makes "Lawrence" and "Getubig" stack, one word per line */
 	font-family: var(--font-display);
 	font-weight: 900;
-	font-size: clamp(3.8rem, 16vw, 16.5rem);
+	font-size: clamp(3.8rem, 10.5vw, 16.5rem);
 	line-height: 0.8;
 	letter-spacing: -0.03em;
 	text-transform: uppercase;
@@ -208,7 +208,7 @@ header {
 .header-container p {
 	writing-mode: vertical-rl;
 	transform: rotate(180deg); /* reads bottom to top */
-	margin-bottom: 0.4rem;
+	margin-bottom: 1.1rem;
 	font-family: var(--font-mono);
 	font-weight: 400;
 	font-size: var(--fs-m);

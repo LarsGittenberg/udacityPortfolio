@@ -92,7 +92,7 @@ One more thing, for the observant: the face at the top of this page has two diff
     align-items: flex-end; /* the blue page's pillar: the blurb is the tallest item, so it sets the row's height and the name rests at its foot */
     gap: calc(4.4 * var(--u));
   }
-  .header-container h1 { text-align: right; margin-bottom: 10px; } /* nudges the name up 10px off the pillar's foot; delete the margin to undo */
+  .header-container h1 { text-align: right; margin-bottom: 10px; font-size: clamp(3.8rem, 16vw, 16.5rem); } /* nudges the name up 10px off the pillar's foot; delete the margin to undo */
   .header-container p { white-space: nowrap; } /* the row now has a fixed height, so without this the blurb would wrap into two columns */
 
   /* the blue slab: sized from the mockup, with a flat band hiding its lower edge */
