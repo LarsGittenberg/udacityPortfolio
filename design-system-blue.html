@@ -317,7 +317,7 @@
   function chip(t, role, legacy) {
     var c = rgbOf(t), hex = toHex(c);
     return '<div class="ds-chip"><div class="sw" style="background:var(' + t + ')"></div><div class="tx"><b>' + t + '</b>' + hex + '<br>' +
-      'on ink ' + ratio(c, ink).toFixed(1) + ' ' + badge(ratio(c, ink)) + ' &middot; cream ' + ratio(c, cream).toFixed(1) + ' ' + badge(ratio(c, cream)) +
+      'on ink ' + ratio(c, ink).toFixed(1) + ' ' + badge(ratio(c, ink)) + '<br>on cream ' + ratio(c, cream).toFixed(1) + ' ' + badge(ratio(c, cream)) +
       '<span class="role">' + role + '</span></div></div>';
   }
   function chips(L) { return L.map(function (c) { return chip(c[0], c[1]); }).join(''); }
