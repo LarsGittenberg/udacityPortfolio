@@ -69,8 +69,8 @@ One more thing, for the observant: the face at the top of this page has two diff
     /* the tagline's two shared numbers: the tagline AND the face badge read these, so they always stay level */
     --tag-font: clamp(2rem, 6.2vw, 3.5rem); /* 56px ceiling (was 64px; before that 88px = what the site rendered at 1417px) */
     /* top edge = the LARGER of: (a) the original formula, or (b) 16px below the name. Above 1100px (a) wins, so nothing changes;
-       below 1100px (b) wins, so the tagline stops climbing toward the name. (6.3u = the stage's overlap with the header, 10px = the name's nudge, 16px = the gap) */
-    --tag-top: max(calc(21.4 * var(--u) - 2 * var(--tag-font) - 48px), calc(6.3 * var(--u) + 6px));
+       below 1100px (b) wins, so the tagline stops climbing toward the name. (6.3u = the stage's overlap with the header, 10px = the name's nudge, 16px = the gap, 0.22 x font = the tagline's upward lift, see .hero-tagline, handed back so the 16px gap survives) */
+    --tag-top: max(calc(21.4 * var(--u) - 2 * var(--tag-font) - 48px), calc(6.3 * var(--u) + 6px + 0.22 * var(--tag-font)));
     /* the stage's height = the LARGER of: (a) the original proportional height, or (b) "tagline bottom + room for the band, so the tagline-to-band gap stays at its 1100px value (64px)".
        Above 1100px (a) wins and nothing changes; below it (b) wins and the slab grows taller than the window's proportions.
        (b)'s pieces: 3.6 x font = the tagline's height; 139px = 64px gap + the band's 75px lift; 7.34u = the band's own window-scaled parts, measured at 1100px) */
@@ -125,7 +125,7 @@ One more thing, for the observant: the face at the top of this page has two diff
     position: absolute;
     grid-column: auto;
     right: calc(31.5 * var(--u));
-    top: var(--tag-top); /* its centre sits level with the face circle (the badge reads the same --tag-top); see :root for the formula */
+    top: calc(var(--tag-top) - 0.22em); /* its centre sits level with the face circle (the badge reads the same --tag-top; see :root). The 0.22em lifts the box by half the phrase gap below, so the centre stays put */
     width: 8.76em;
     height: 3.6em;
     max-width: none;
@@ -136,6 +136,7 @@ One more thing, for the observant: the face at the top of this page has two diff
     text-align: right;
   }
   .hero-tagline .tl { display: block; white-space: nowrap; }
+  .hero-tagline .tl:nth-child(3) { margin-top: 0.45em; } /* a half-line of air between "Perspective" and "Playful by": it splits the tagline into its two phrases without any punctuation. Delete this and the 0.22em above to undo */
 
   /* the face badge: a 200px amber circle with the five face layers rising into it */
   .badge {
@@ -289,7 +290,7 @@ One more thing, for the observant: the face at the top of this page has two diff
 	<!-- tagline: four fixed lines in a fixed box. The words are in aria-label, so the scramble below can run without a screen reader reading the noise -->
 	<h2 id="tagline" class="doto-lg hero-tagline" aria-label="Synthesis with perspective, playful by design">
 		<span class="tl" aria-hidden="true">Synthesis with</span>
-		<span class="tl" aria-hidden="true">Perspective,</span>
+		<span class="tl" aria-hidden="true">Perspective</span>
 		<span class="tl" aria-hidden="true">Playful by</span>
 		<span class="tl" aria-hidden="true">Design</span>
 	</h2>
