@@ -75,7 +75,7 @@
     pill.className = 'lay-switch';
     pill.setAttribute('role', 'group');
     pill.setAttribute('aria-labelledby', 'layNote'); // the caption above names the group for screen readers
-    pill.innerHTML = '<span class="note" id="layNote">Reading Experience</span><div class="lay-btns"><button type="button" data-layout="column">Column</button><button type="button" data-layout="rail">Rail</button></div>';
+    pill.innerHTML = '<span class="note" id="layNote">Reading Experience</span><div class="lay-btns"><button type="button" data-layout="column"><svg class="ico" viewBox="0 0 20 14" aria-hidden="true"><rect x="5.75" y="0.75" width="8.5" height="12.5"/></svg>Column</button><button type="button" data-layout="rail"><svg class="ico" viewBox="0 0 20 14" aria-hidden="true"><rect class="solid" x="0.75" y="0.75" width="4.5" height="12.5"/><rect x="7.75" y="0.75" width="11.5" height="12.5"/></svg>Rail</button></div>';
     document.body.appendChild(pill);
     var buttons = [].slice.call(pill.querySelectorAll('button'));
     function press() { buttons.forEach(function (b) { b.setAttribute('aria-pressed', b.getAttribute('data-layout') === layout); }); }

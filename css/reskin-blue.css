@@ -706,8 +706,15 @@ footer::after {
 /* Column | Rail, floating at the bottom right. Hidden below 900px, where there is no rail to choose */
 .lay-switch { display: none; position: fixed; right: 16px; bottom: 16px; z-index: 300; flex-direction: column; align-items: center; gap: 8px; padding: 8px; background: var(--paper); color: var(--ink); border: 2px solid var(--ink); font-family: var(--font-mono); } /* a tan pill: dark ink on light paper reads crisper at this size than cream on black */
 .lay-switch button { font: inherit; font-size: var(--fs-xs); letter-spacing: .1em; text-transform: uppercase; padding: 6px 10px; border: 2px solid var(--ink); background: transparent; color: var(--ink); cursor: pointer; transition: background var(--t-quick) ease, color var(--t-quick) ease; }
-.lay-switch button:hover { background: var(--gold); } /* the link highlight's gold */
-.lay-switch button[aria-pressed="true"] { background: var(--ink); color: var(--paper); } /* the chosen layout stays ink, even under the pointer */
+.lay-switch button { position: relative; } /* sits above the sliding block below */
+.lay-switch button:hover:not([aria-pressed="true"]) { background: var(--gold); } /* the link highlight's gold; the chosen button is left alone */
+.lay-switch button[aria-pressed="true"] { background: transparent; color: var(--paper); } /* the chosen layout: paper text, over the ink block that slides in behind it */
+.lay-switch .ico { width: 20px; height: 14px; vertical-align: -2px; margin-right: 7px; } /* a tiny drawing of each layout (Column: one centred column; Rail: a strip beside a column); drawn in currentColor so it follows the text colour */
+.lay-switch .ico * { stroke: currentColor; fill: none; stroke-width: 1.5; }
+.lay-switch .ico .solid { fill: currentColor; }
 .lay-switch .note { white-space: nowrap; text-align: center; font-size: var(--fs-xs); letter-spacing: .1em; text-transform: uppercase; } /* the caption on top, in capitals like the buttons; the pill is two stacked rows, centred, so the box is as wide as the wider row */
-.lay-btns { display: flex; gap: 6px; }
+.lay-btns { position: relative; display: grid; grid-template-columns: 1fr 1fr; gap: 6px; } /* two equal buttons */
+.lay-btns::before { content: ""; position: absolute; top: 0; bottom: 0; left: 0; width: calc(50% - 3px); background: var(--ink); transition: transform var(--t-base) var(--ease-soft); } /* the ink block that shows the chosen layout; --t-base and --ease-soft are the guide's "things that move" pair */
+.lay-btns:has(button[data-layout="rail"][aria-pressed="true"])::before { transform: translateX(calc(100% + 6px)); } /* Rail chosen: the block slides across (needs :has(); in an old browser it just doesn't glide) */
+@media (prefers-reduced-motion: reduce) { .lay-btns::before { transition: none; } }
 @media (min-width: 900px) { .lay-switch { display: flex; } }
