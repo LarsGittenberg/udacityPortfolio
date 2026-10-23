@@ -9,7 +9,8 @@
    Every name must be unique on its page, or the browser silently cancels the transition. That is why each page only ever names its own end.
 
    TO ADD A PROJECT: add one line to each list below, and put data-project="<name>" on the project page's <main>.
-   Link this file only on the category pages and the project pages. The home page and About are left out on purpose.
+   Link this file on the home page, the category pages and the project pages: a transition only runs when BOTH the page you leave and the page you arrive on link it.
+   (Until 2026-10-23 the home page was left out, so cards on the home page had no morph. About is still left out.)
 
    Timing is the guide's "things that move" pair (--t-base, --ease-soft). Reduced motion: no animation at all.
    ===================================================================== */

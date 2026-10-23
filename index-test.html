@@ -39,6 +39,7 @@ One more thing, for the observant: the face at the top of this page has two diff
 
   <!-- CSS -->
   <link rel="stylesheet" href="css/reskin-blue.css"> <!-- replaces ui.css and main.css on this test page: the AMBER version -->
+  <link rel="stylesheet" href="css/transitions.css"> <!-- the card-to-title morph: BOTH pages of a transition must link it, so the home page needs it too -->
 
 	<!--fonts-->
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -230,7 +231,7 @@ One more thing, for the observant: the face at the top of this page has two diff
   .menu-signal { display: none; }
 
 
-  /* PAGE TITLE, as chosen on the graphic design test page: a large pillar ("Home:") with a small descriptor beside it ("Featured Projects"), both hung from the top of the column.
+  /* PAGE TITLE, as chosen on the graphic design test page: a large pillar ("Home", no colon: turned sideways, a Doto colon's dots land side by side and read as "++") with a small descriptor beside it ("Featured Projects"), both hung from the top of the column.
      On desktop the pair is sticky: it rides along as you scroll and lets go 40px above the footer. Below 900px it is an ordinary heading with the descriptor flat underneath. */
   :root { --h2-scale: 0.88; } /* the pillar is 88% of the blue skin's size (1 = the original) */
   .project-header-bar h2 { font-size: var(--fs-title); }
@@ -327,7 +328,7 @@ One more thing, for the observant: the face at the top of this page has two diff
 
 <div class="project-header-bar pattern-dots-sparse">
 	<div class="h2-wrap">
-		<h2 class="source-code-pro source-code-pro-light">Home:</h2>
+		<h2 class="source-code-pro source-code-pro-light">Home</h2>
 		<p class="h2-descriptor">Featured Projects</p>
 	</div>
 </div>
@@ -347,7 +348,7 @@ One more thing, for the observant: the face at the top of this page has two diff
 			<ul>
 				<li><strong class="gold-color-font">Tools:</strong> Figma, Photoshop, Illustrator</li>
 			</ul>
-				<a href="tnecd.html" class="btn" aria-label="Read Case Study: TNECD.com Site Redesign" onclick="gtag('event', 'project_click', { project: 'tnecd', from_page: window.location.pathname });">
+				<a href="tnecd-test.html" class="btn" aria-label="Read Case Study: TNECD.com Site Redesign" onclick="gtag('event', 'project_click', { project: 'tnecd', from_page: window.location.pathname });">
 					<span class="btn-text">Read Case Study</span>
 					<span class="btn-arrow">
 					<span class="shaft"></span>
@@ -370,7 +371,7 @@ One more thing, for the observant: the face at the top of this page has two diff
 			<ul>
 				<li><strong class="gold-color-font">Tools and Skills: </strong>Figma, Web Design, UX/UI Design, Research, Visual Design</li>
 			</ul>
-				<a href="pride.html" class="btn" aria-label="Read Case Study: Pride365 App Marketing" onclick="gtag('event', 'project_click', { project: 'pride', from_page: window.location.pathname });">
+				<a href="pride-test.html" class="btn" aria-label="Read Case Study: Pride365 App Marketing" onclick="gtag('event', 'project_click', { project: 'pride', from_page: window.location.pathname });">
 					<span class="btn-text">Read Case Study</span>
 					<span class="btn-arrow">
 					<span class="shaft"></span>
@@ -393,7 +394,7 @@ One more thing, for the observant: the face at the top of this page has two diff
 			<ul>
 				<li><strong class="gold-color-font">Tools:</strong> Figma, Photoshop, Illustrator</li>
 			</ul>
-				<a href="swisspost.html" class="btn" aria-label="Read Case Study: Swiss Post AI Tool" onclick="gtag('event', 'project_click', { project: 'swisspost', from_page: window.location.pathname });">
+				<a href="swisspost-test.html" class="btn" aria-label="Read Case Study: Swiss Post AI Tool" onclick="gtag('event', 'project_click', { project: 'swisspost', from_page: window.location.pathname });">
 					<span class="btn-text">Read Case Study</span>
 					<span class="btn-arrow">
 					<span class="shaft"></span>
@@ -416,7 +417,7 @@ One more thing, for the observant: the face at the top of this page has two diff
 			<ul>
 				<li><strong class="gold-color-font">Tools:</strong> Illustrator, Photoshop, Product Photography</li>
 			</ul>
-				<a href="print.html" class="btn" aria-label="View Print Samples: DRØM Print and Marketing" onclick="gtag('event', 'project_click', { project: 'print', from_page: window.location.pathname });">
+				<a href="print-test.html" class="btn" aria-label="View Print Samples: DRØM Print and Marketing" onclick="gtag('event', 'project_click', { project: 'print', from_page: window.location.pathname });">
 					<span class="btn-text">View Print Samples</span>
 					<span class="btn-arrow">
 					<span class="shaft"></span>
@@ -440,7 +441,7 @@ One more thing, for the observant: the face at the top of this page has two diff
 			<ul>
 				<li><strong class="gold-color-font">Tools:</strong> HTML, CSS, Photoshop, Illustrator, Squarespace</li>
 			</ul>
-			<a href="45.html" class="btn" aria-label="View Design Process: 45th Parallel Wines" onclick="gtag('event', 'project_click', { project: '45th_parallel_wines', from_page: window.location.pathname });">
+			<a href="45-test.html" class="btn" aria-label="View Design Process: 45th Parallel Wines" onclick="gtag('event', 'project_click', { project: '45th_parallel_wines', from_page: window.location.pathname });">
 			  <span class="btn-text">View Design Process</span>
 			  <span class="btn-arrow">
 			    <span class="shaft"></span>
@@ -463,7 +464,7 @@ One more thing, for the observant: the face at the top of this page has two diff
 		<ul>
 			<li><strong class="gold-color-font">Tools:</strong> Photoshop, Illustrator, After Effects</li>
 		</ul>
-				<a href="ads.html" class="btn" aria-label="View Ads and GIFs: Digital Ads and GIFs" onclick="gtag('event', 'project_click', { project: 'ads', from_page: window.location.pathname });">
+				<a href="ads-test.html" class="btn" aria-label="View Ads and GIFs: Digital Ads and GIFs" onclick="gtag('event', 'project_click', { project: 'ads', from_page: window.location.pathname });">
 					<span class="btn-text">View Ads and GIFs</span>
 					<span class="btn-arrow">
 					<span class="shaft"></span>
