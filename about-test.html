@@ -107,6 +107,30 @@
   .ab-shapes li:nth-child(3) .ab-shape::before { animation-delay: -4.6s; }
   .ab-shapes li:nth-child(4) .ab-shape::before { animation-delay: -1.2s; }
   @keyframes ab-shape-float { 0%, 100% { translate: -50% -20px; } 50% { translate: -50% -30px; } }
+  /* the eye: on hover the amber circle (Evidence) turns into a blinking eye. The eye is an inline SVG that sits exactly over the circle (same size, same float, same hover lift) and is invisible until hover. Its disc is the same amber as the circle, so what appears is the white, iris and pupil. The circle underneath is never removed, which is why there is no flicker when the two swap. */
+  .ab-eye { position: absolute; left: 50%; bottom: 0; height: calc(100% * var(--shape-scale)); aspect-ratio: 1; translate: -50% -20px; opacity: 0; animation: ab-shape-float 7s ease-in-out infinite; transition: transform var(--t-base) ease; }
+  .ab-shapes li:hover .ab-eye { opacity: 1; transform: translateY(-10px); }
+  .eye-disc { fill: var(--amber); }
+  .eye-white, .eye-glint { fill: #fff; }
+  .eye-iris { fill: #c8c8c8; }
+  .eye-pupil { fill: #000; }
+  /* the mask is the "window" the eye is seen through; squashing its height toward the centre line closes both lids together. The blink only runs while hovered, so every hover starts with an open eye and the first blink comes about 0.3s in (startled!). */
+  .eye-window { transform-box: fill-box; transform-origin: 50% 50%; }
+  .ab-shapes li:hover .eye-window { animation: eye-blink 7s infinite; }
+  /* 7s loop (1% = 70ms). Rhythm: blink --- blink-blink ---
+     Single blink: closes in 100ms, shut 30ms, reopens in 130ms. Double blink: faster (70 / 20 / 90ms), ~80ms apart. Rests are ~3s. */
+  @keyframes eye-blink {
+    0%, 4.3%     { transform: scaleY(1); animation-timing-function: ease-in; }
+    5.7%         { transform: scaleY(0); }
+    6.2%         { transform: scaleY(0); animation-timing-function: ease-out; }
+    8%, 50.9%    { transform: scaleY(1); animation-timing-function: ease-in; }
+    51.9%        { transform: scaleY(0); }
+    52.2%        { transform: scaleY(0); animation-timing-function: ease-out; }
+    53.5%, 54.6% { transform: scaleY(1); animation-timing-function: ease-in; }
+    55.6%        { transform: scaleY(0); }
+    55.9%        { transform: scaleY(0); animation-timing-function: ease-out; }
+    57.2%, 100%  { transform: scaleY(1); }
+  }
   .ab-shape-label { font-family: var(--font-display); font-weight: 900; font-size: var(--fs-label-display); line-height: 0.9; text-transform: uppercase; text-align: center; }
   .ab-pull { max-width: 26ch; margin: 200px auto; text-align: center; font-family: var(--font-mono); font-weight: 300; font-size: var(--fs-quote); line-height: 1.2; letter-spacing: -0.03em;text-wrap: balance; } /* centred; 200px of empty space above and below (negative space test; the amber rule and its padding are gone); Source Code Pro Light, the lightest weight the page loads */
 
@@ -148,7 +172,7 @@
   .btn[aria-disabled="true"] { opacity: 0.6; cursor: not-allowed; pointer-events: none; }
   .ab-back { font-size: var(--fs-s); letter-spacing: 0.14em; text-transform: uppercase; color: var(--paper); }
 
-  @media (prefers-reduced-motion: reduce) { .ab-orbit, .ab-shape::before { animation: none; } .ab-note, .ab-shape::before, .ab-photo img { transition: none; } }
+  @media (prefers-reduced-motion: reduce) { .ab-orbit, .ab-shape::before, .ab-eye, .ab-shapes li:hover .eye-window { animation: none; } .ab-note, .ab-shape::before, .ab-eye, .ab-photo img { transition: none; } }
   </style>
 
 	<!--fonts-->
@@ -251,7 +275,22 @@
 	<section class="ab-method">
 		<p class="kicker source-code-pro">Every project becomes a blend of</p>
 		<ul class="ab-shapes">
-			<li><span class="ab-shape s-circle" aria-hidden="true"></span><span class="ab-shape-label doto-lg">Evidence</span></li>
+			<li><span class="ab-shape s-circle" aria-hidden="true">
+				<svg class="ab-eye" viewBox="38 20 264 264" focusable="false">
+					<defs>
+						<mask id="ab-eye-window" maskUnits="userSpaceOnUse" x="0" y="0" width="334" height="308">
+							<path class="eye-window" d="M85 150.5 Q170.5 57 256 150.5 Q170.5 244 85 150.5 Z" fill="#fff"/>
+						</mask>
+					</defs>
+					<circle class="eye-disc" cx="170" cy="152" r="132"/>
+					<g mask="url(#ab-eye-window)">
+						<path class="eye-white" d="M85 150.5 Q170.5 57 256 150.5 Q170.5 244 85 150.5 Z"/>
+						<circle class="eye-iris" cx="170" cy="151" r="28"/>
+						<circle class="eye-pupil" cx="170" cy="151" r="17"/>
+						<circle class="eye-glint" cx="163" cy="157" r="6"/>
+					</g>
+				</svg>
+			</span><span class="ab-shape-label doto-lg">Evidence</span></li>
 			<li><span class="ab-shape s-tri" aria-hidden="true"></span><span class="ab-shape-label doto-lg">Synthesis</span></li>
 			<li><span class="ab-shape s-half" aria-hidden="true"></span><span class="ab-shape-label doto-lg">Surprise</span></li>
 			<li><span class="ab-shape s-diamond" aria-hidden="true"></span><span class="ab-shape-label doto-lg">Delight</span></li>
