@@ -1,0 +1,268 @@
+<!doctype html>
+
+<html lang="en">
+<head>
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-2QV625FZN6"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+
+    gtag('config', 'G-2QV625FZN6');
+  </script>
+
+  <title>RAIL TEST: Pride365 | Lawrence Getubig</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#feb013">
+  <meta name="description" content="Web, visual and front-end designer crafting digital experiences that engage, delight and convert.">
+
+  <!-- Favicons -->
+	<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+	<link rel="icon" href="/favicon.png" sizes="32x32">
+	<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+
+  <!-- CSS -->
+  <link rel="stylesheet" href="css/reskin-blue.css"> <!-- replaces ui.css and main.css on this test page -->
+
+  <link rel="stylesheet" href="css/card-pages.css"> <!-- the header, band, title and card spacing that the category pages share -->
+  <link rel="stylesheet" href="css/transitions.css"> <!-- the card-to-title morph between category pages and project pages -->
+  <link rel="stylesheet" href="css/case-study.css"> <!-- the case-study story: Column and Rail layouts -->
+  <script src="js/layout-switch.js"></script> <!-- picks the layout before paint, builds the rail and the Column | Rail pill -->
+
+  <style>
+  /* this page's band colour (magenta): background, text, and the three shape colours */
+  .band { --band-bg: var(--magenta); --band-ink: var(--cream-text); --s1: var(--amber); --s2: var(--mint); --s3: var(--cream-text); }
+
+  /* RAIL TEST (throwaway): the hairlines go; the active section gets a semi-oval behind its label instead.
+     The oval is the link itself: it spans the height between the old top and bottom hairlines and the width of the old hairline.
+     Left corners square (0), right corners 60px (more than half the height, so the right end is a full half-circle).
+     "a" = the rail as it is today (hairlines + magenta bar). */
+  @media (min-width: 900px) {
+    html.look-b .cs-index a, html.look-c .cs-index a, html.look-d .cs-index a, html.look-e .cs-index a { border-top: 0; border-left: 4px solid transparent; padding: 9px 10px 9px 12px; border-radius: 0 60px 60px 0; transition: color var(--t-quick) ease, background-color var(--t-quick) ease; }
+    html.look-e .cs-index a { border-left: 0; padding-left: 16px; border-bottom: 2px solid transparent; border-radius: 0 20px 0 0; }   /* tab with a bottom line instead of the left bar; the transparent line is on every link so nothing shifts */
+    html.look-e .cs-index a.is-here { background: var(--magenta); color: var(--paper); border-bottom-color: var(--paper); } /* magenta, cream text, cream 2px bottom line */
+    html.look-b .cs-index a.is-here { background: var(--magenta); color: var(--paper); border-left-color: var(--paper); }    /* magenta, cream text, cream bar */
+    html.look-c .cs-index a.is-here { background: var(--amber);   color: var(--ink); border-left-color: var(--paper); }      /* amber, ink text (the home page's strip), cream bar */
+    html.look-d .cs-index a.is-here { background: var(--paper);   color: var(--ink); border-left-color: var(--magenta); }    /* cream, ink text (the Layout View pill), magenta bar */
+    /* "f" = hairlines stay on every link; only the active one turns into the paper block with the magenta bar (its own hairline is hidden so the block is clean) */
+    /* the hairline is drawn as a 1px background strip (a border can't be shortened); it stops 28px short of the right edge so it ends before the curve */
+    html.look-f .cs-index a { border-top-color: transparent; background: linear-gradient(color-mix(in srgb, var(--cream-text) 30%, transparent) 0 0) top left / calc(100% - 28px) 1px no-repeat border-box; transition: color var(--t-quick) ease, background-color var(--t-quick) ease, border-color var(--t-quick) ease; }
+    html.look-f .cs-index a.is-here { background: var(--paper); color: var(--ink); border-left-color: var(--magenta); border-radius: 0 60px 60px 0; padding-right: 10px; }
+  }
+
+  .look-switch { position: fixed; left: 16px; bottom: 16px; z-index: 50; display: flex; gap: 6px; padding: 8px; background: #1d1a16; border: 2px solid #f1e6cc; font-family: 'Source Code Pro', ui-monospace, monospace; }
+  .look-switch button { font: inherit; font-size: 0.72rem; letter-spacing: 0.1em; text-transform: uppercase; padding: 6px 10px; border: 2px solid #f1e6cc; background: transparent; color: #f1e6cc; cursor: pointer; }
+  .look-switch button[aria-pressed="true"] { background: #f1e6cc; color: #1d1a16; }
+  </style>
+
+	<!--fonts-->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link href="https://fonts.googleapis.com/css2?family=Doto:wght@100..900&display=swap" rel="stylesheet">
+	<!--older font choices-->
+	<link href="https://fonts.googleapis.com/css?family=Montserrat:400,600|Source+Code+Pro:300,400" rel="stylesheet">
+
+  <!-- JS libraries -->
+  <script src="https://cdn.jsdelivr.net/npm/js-cookie@2/src/js.cookie.min.js"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg==" crossorigin="anonymous" referrerpolicy="no-referrer">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  <script src="js/noframework.waypoints.min.js"></script>
+
+</head>
+
+<body class="card-page">
+
+	<div class="menu-icon-container">
+		<div class="bar1"></div>
+		<div class="bar2"></div>
+		<div class="bar3"></div>
+	</div>
+
+	<div id="myNav" class="overlay pattern-grid-large">
+		<!-- Overlay content. TEST LINKS: the five menu links point at the -test pages so the new look can be browsed end to end. At go-live, point them back at index / webdesign / graphicdesign / photography / about .html -->
+		<div class="overlay-content ">
+			<a href="index-test.html" onclick="gtag('event', 'nav_click', { nav_item: 'home', from_page: window.location.pathname });"> Home </a>
+			<a href="webdesign-test.html" onclick="gtag('event', 'nav_click', { nav_item: 'web_design', from_page: window.location.pathname });"> Web Design </a>
+			<a href="graphicdesign-test.html" onclick="gtag('event', 'nav_click', { nav_item: 'graphic_design', from_page: window.location.pathname });"> Graphic Design </a>
+			<a href="photography-test.html" onclick="gtag('event', 'nav_click', { nav_item: 'photography', from_page: window.location.pathname });"> Photography </a>
+			<a href="about-test.html" onclick="gtag('event', 'nav_click', { nav_item: 'about', from_page: window.location.pathname });"> About </a>
+		</div>
+	</div><!--end my nav-->
+
+<header class="pattern-dots-sparse">
+	<div class="header-container">
+		<h1 class="doto-lg">Lawrence Getubig</h1>
+		<p>Creative Technologist<br>in Product Design</p>
+	</div><!--end header container-->
+</header>
+
+<!-- the sliding band (four copies, so the loop never shows a gap) -->
+<div class="band" aria-hidden="true">
+	<div class="band-track">
+		<span>Web Design <i>●</i> UX/UI <i>▲</i> Visual Design <i>◆</i> Illustration <i>■</i> Brand <i>●</i> Animation <i>▲</i> Product Design <i>◆</i> Photography <i>■</i></span><span>Web Design <i>●</i> UX/UI <i>▲</i> Visual Design <i>◆</i> Illustration <i>■</i> Brand <i>●</i> Animation <i>▲</i> Product Design <i>◆</i> Photography <i>■</i></span><span>Web Design <i>●</i> UX/UI <i>▲</i> Visual Design <i>◆</i> Illustration <i>■</i> Brand <i>●</i> Animation <i>▲</i> Product Design <i>◆</i> Photography <i>■</i></span><span>Web Design <i>●</i> UX/UI <i>▲</i> Visual Design <i>◆</i> Illustration <i>■</i> Brand <i>●</i> Animation <i>▲</i> Product Design <i>◆</i> Photography <i>■</i></span>
+	</div>
+</div><!--end band-->
+
+<main data-project="pride">
+
+<div class="project-header-bar pattern-dots-dense">
+	<div class="h2-wrap">
+		<h2 class="source-code-pro source-code-pro-light">Pride365</h2>
+		<p class="h2-descriptor">App Marketing</p>
+	</div>
+</div>
+
+<article class="cs">
+	<nav class="cs-crumb" aria-label="Breadcrumb"><a href="index-test.html">Home</a><a href="webdesign-test.html">Web Design</a><span aria-current="page">Pride365 App Marketing</span></nav>
+
+
+	<section class="cs-sec cs-role" id="role">
+		<p class="kicker source-code-pro"><span class="num">01</span><span class="lbl">Role</span></p>
+		<ul><li>UX Researcher</li><li>UX/UI Designer</li><li>Web Designer</li></ul>
+	</section>
+
+	<section class="cs-sec" id="intro">
+		<p class="kicker source-code-pro"><span class="num">02</span><span class="lbl">Intro</span></p>
+		<h3>Two weeks to WorldPride</h3>
+		<p>This project unfolded in the weeks leading up to WorldPrideDC 2025. Our team at Accenture Song was asked to develop a strategy to increase awareness and adoption of the Pride365 app—the official event‑planning tool. I supported the effort by contributing to the UX/UI and visual design recommendations.</p>
+	</section>
+
+	<figure class="cs-fig"><img src="images/pride/prideMiniHero.webp" width="1896" height="716" alt="Pride celebrants in Washington DC"><figcaption>Above: Images courtesy of Capital Pride Alliance.</figcaption></figure>
+
+	<section class="cs-sec" id="problem">
+		<p class="kicker source-code-pro"><span class="num">03</span><span class="lbl">Problem</span></p>
+		<h3>An app nobody could find</h3>
+		<p>WorldPrideDC is a biennial event that took place over two weeks in June 2025. Organized by the DC‑based nonprofit Capital Pride Alliance, the team needed a cohesive digital strategy to promote the Pride365 mobile app. Two websites supported WorldPride 2025 news and promotion: <strong>capitalpride.org</strong> and the flagship site, <strong>worldpridedc.org</strong>. The app was designed to help attendees explore, track, and manage the festival’s diverse events, but:</p>
+		<ul class="cs-list">
+			<li>The Pride365 app had limited online visibility, with promotion confined to the capitalpride.org website. Moreover, the “Download the App” call‑to‑action and related information suffered from poor wayfinding and weak discoverability, making the app difficult for users to locate.</li>
+			<li>Navigation inconsistencies across capitalpride.org and worldpridedc.org disrupted continuity and user wayfinding.</li>
+		</ul>
+	</section>
+
+	<figure class="cs-fig"><img loading="lazy" src="images/pride/twowebsites.webp" width="1871" height="633" alt="laptop rendering of two websites, capitalpride.org and worldpridecd.org"><figcaption>Above, left to right: CapitalPride.org, Pride365 App download page on CapitalPride.org, WorldPrideDC.org.</figcaption></figure>
+
+	<section class="cs-sec" id="insights">
+		<p class="kicker source-code-pro"><span class="num">04</span><span class="lbl">Insights</span></p>
+		<h3>Analysis and Insights</h3>
+		<p>Through site audits and stakeholder context, we identified:</p>
+		<ul class="cs-list">
+			<li>CTA placement gaps: The app was promoted on only one page, not aligned with user wayfinding.</li>
+			<li>Navigation inconsistencies: Some links led internally, others externally, creating abrupt browsing transitions.</li>
+			<li>High‑traffic opportunities: Event pages and event search results were prime candidates for app promotion.</li>
+			<li>Program pillars: The six umbrella landing pages introduced by content creators naturally aligned with user intent patterns, making them ideal CTA anchors.</li>
+			<li>Evidence‑based design: Analytics, usability testing, and A/B testing could refine placement and validate discoverability.</li>
+		</ul>
+	</section>
+
+	<figure class="cs-fig"><img loading="lazy" src="images/pride/cardsorting.webp" width="3671" height="1349" alt="card sorting events with post it notes from figjam app"><figcaption>Above: initial card sorting of events to understand and breakdown the mindsets and personas attending WorldPride 2025.</figcaption></figure>
+
+	<section class="cs-sec" id="solution">
+		<p class="kicker source-code-pro"><span class="num">05</span><span class="lbl">Solution</span></p>
+		<h3>Putting the app in front of visitors</h3>
+		<ul class="cs-list">
+			<li>Strategic CTA placement: Added Pride365 app CTAs across event results pages and the six program pillar landing pages:
+				<ul>
+					<li>Sports</li>
+					<li>Entertainment &amp; Nightlife</li>
+					<li>Advocacy / Human Rights - <a class="text-link" href="https://worldpridedc.org/program-pillars/human-rights/" target="_blank" aria-label="visit live page: Advocacy / Human Rights (opens in a new tab)" onclick="gtag('event', 'outbound_click', { destination: 'worldpride_human_rights', from_page: window.location.pathname });">visit live page</a></li>
+					<li>Celebration - <a class="text-link" href="https://worldpridedc.org/program-pillars/celebration/" target="_blank" aria-label="visit live page: Celebration (opens in a new tab)" onclick="gtag('event', 'outbound_click', { destination: 'worldpride_celebration', from_page: window.location.pathname });">visit live page</a></li>
+					<li>Arts &amp; Culture</li>
+					<li>World Pride 50th Anniversary Related</li>
+				</ul>
+			</li>
+			<li>WorldPride.org optimization: Focused efforts on the flagship site as the “best bang for the buck” for visibility.</li>
+			<li>Navigation parity: Recommended consistent link behavior and clear communication when leaving capitalpride.org.</li>
+			<li>Community integration: Positioned the app as a companion for event discovery, reinforcing inclusivity and accessibility.</li>
+			<li>Usability testing script: <a class="text-link" href="worldpride_usability_testing.pdf" target="_blank" aria-label="Delivered a proof‑of‑concept script for site owners to evaluate app discoverability (PDF, opens in a new tab)" onclick="gtag('event', 'pdf_download', { file: 'worldpride_usability_script', link_position: 'solution', from_page: window.location.pathname });">Delivered a proof‑of‑concept script for site owners to evaluate app discoverability</a>.</li>
+			<li>Scalable experimentation: Suggested analytics, A/B testing, heat‑mapping, and conversion path analysis to refine CTA placement.</li>
+		</ul>
+	</section>
+
+	<figure class="cs-fig"><img loading="lazy" src="images/pride/humanrights.webp" width="1969" height="1204" alt="screenshots of the website pages Human Rights, before and after addition of the Pride365 App marketing blurb"><figcaption>Above: Before and after addition of the Pride365 app CTA on the pillar page "Human Rights".</figcaption></figure>
+
+	<figure class="cs-fig"><img loading="lazy" src="images/pride/celebration.webp" width="1969" height="1300" alt="screenshots of the website pages Celebration, before and after addition of the Pride365 App marketing blurb"><figcaption>Above: Before and after addition of the Pride365 app CTA on the pillar page "Celebration".</figcaption></figure>
+
+	<figure class="cs-fig"><img loading="lazy" src="images/pride/searchresults.webp" width="2169" height="885" alt="screenshots of the website pages search results, before and after addition of the Pride365 App marketing blurb"><figcaption>Above: Before and after addition of the Pride365 app CTA on the search results page.</figcaption></figure>
+
+	<section class="cs-sec" id="impact">
+		<p class="kicker source-code-pro"><span class="num">06</span><span class="lbl">Impact</span></p>
+		<h3>An app that's easy to find</h3>
+		<ul class="cs-list">
+			<li>Elevated app visibility and discoverability, reducing reliance on luck or cognitive effort.</li>
+			<li>Strengthened user continuity and trust by improving navigation flows.</li>
+			<li>Positioned Pride365 as a year‑round engagement tool, not just a festival add‑on.</li>
+			<li>Provided evidence‑based frameworks (analytics, usability testing, personas) for ongoing optimization.</li>
+		</ul>
+	</section>
+
+	<figure class="cs-fig"><img loading="lazy" src="images/pride/closeupcta.svg" width="2712" height="730" alt="close up of the Pride365 marketing blurb"><figcaption>Above: Close up of the CTA on WorldPrideDC.org.</figcaption></figure>
+
+	<section class="cs-sec" id="results">
+		<p class="kicker source-code-pro"><span class="num">07</span><span class="lbl">Results</span></p>
+		<h3>From 100 to 3,000 downloads in a week</h3>
+		<p>After implementing the Pride365 call-to-action placements (seen above close to actual size) on the six program pillar pages and event search results, app downloads surged to <strong>~3,000 in one week compared to ~100 the previous week before optimization</strong><span class="gold-color-font"> — a 30x increase in adoption.</span></p>
+	</section>
+
+	<p class="cs-back"><a class="text-link" href="index-test.html">Back to Home</a></p>
+</article>
+
+</main>
+
+<footer class="pattern-dots-dense">
+	<p>Find me in:</p><br>
+	<p class="footer"><a class="text-link text-link--social" href="https://github.com/LarsGittenberg" onclick="gtag('event', 'footer_click', { destination: 'github', from_page: window.location.pathname });"><i class="fa-brands fa-github" aria-hidden="true"></i> GitHub</a></p>
+	<br>
+	<p class="footer"><a class="text-link text-link--social" href="https://www.linkedin.com/in/lawrence-getubig" onclick="gtag('event', 'footer_click', { destination: 'linkedin', from_page: window.location.pathname });"><i class="fa-brands fa-linkedin" aria-hidden="true"></i> LinkedIn</a></p> 
+	<br>
+	<p class="footer"><a class="text-link text-link--social" href="https://www.instagram.com/ljgetubig/" onclick="gtag('event', 'footer_click', { destination: 'instagram', from_page: window.location.pathname });"><i class="fa-brands fa-instagram" aria-hidden="true"></i> Instagram</a></p>
+	<br>
+	<p class="copyright"><small>Copyright Lawrence Getubig 2026</small></p>
+	<!--  want to change the copyright date for all html files? use: perl -pi -w -e 's/Getubig\ 2018/Getubig\ 2019/g;' *.html -->
+</footer>
+
+<script src="js/design.js"></script>
+
+<!-- Start of StatCounter Code for Default Guide -->
+<script type="text/javascript">
+var sc_project=5156734;
+var sc_invisible=1;
+var sc_security="8c976dcb";
+</script>
+<script type="text/javascript"
+src="https://www.statcounter.com/counter/counter.js"
+async></script>
+<noscript><div class="statcounter"><a title="site stats"
+href="http://statcounter.com/" target="_blank"><img
+class="statcounter"
+src="//c.statcounter.com/5156734/0/8c976dcb/1/" alt="site
+stats"></a></div></noscript>
+<!-- End of StatCounter Code for Default Guide -->
+
+
+<div class="look-switch" role="group" aria-label="Rail">
+  <button type="button" data-look="a">Hairlines (now)</button>
+  <button type="button" data-look="b">Magenta oval</button>
+  <button type="button" data-look="c">Amber oval</button>
+  <button type="button" data-look="d">Cream oval</button>
+  <button type="button" data-look="e">Tab + underline</button>
+  <button type="button" data-look="f">Hairlines + paper</button>
+</div>
+<script>
+(function () {
+  var root = document.documentElement;
+  var buttons = document.querySelectorAll('.look-switch button');
+  var looks = ['a', 'b', 'c', 'd', 'e', 'f'];
+  function show(look) {
+    looks.forEach(function (l) { root.classList.remove('look-' + l); });
+    if (look !== 'a') root.classList.add('look-' + look);
+    buttons.forEach(function (b) { b.setAttribute('aria-pressed', b.dataset.look === look); });
+  }
+  buttons.forEach(function (b) { b.addEventListener('click', function () { show(b.dataset.look); }); });
+  var asked = new URLSearchParams(location.search).get('look');
+  show(looks.indexOf(asked) > -1 ? asked : 'e');
+})();
+</script>
+</body>
+</html>
