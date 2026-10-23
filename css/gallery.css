@@ -37,8 +37,8 @@
 .gl-grid figcaption { margin-top: 8px; font-family: var(--font-mono); font-size: var(--fs-xs); letter-spacing: .14em; text-transform: uppercase; opacity: .85; transition: color var(--t-quick) ease, opacity var(--t-quick) ease; }
 .gl-grid figure:hover figcaption { color: var(--gold); opacity: 1; }
 
-/* a gallery of larger pieces (DRØM's 600px print work): two across, up to their real 600px */
-.gl-grid--wide { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+/* a gallery of larger pieces (DRØM's 600px print work): three across in Column mode (two in Rail, below), up to their real 600px */
+.gl-grid--wide { grid-template-columns: repeat(3, minmax(0, 1fr)); }
 .gl-grid--wide img { max-width: 600px; }
 @media (max-width: 560px) { .gl-grid--wide { grid-template-columns: 1fr; } }
 
