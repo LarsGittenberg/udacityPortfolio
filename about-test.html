@@ -37,7 +37,9 @@
      a vocabulary of pure shapes (circle, triangle, half-circle, diamond), flat colour blocks, and one element that breaks its frame.
      Everything here is prefixed ab- so it cannot collide with the card styles in reskin-blue.css.
      ===================================================================== */
-  .about-grid { grid-template-columns: minmax(0, 1fr); row-gap: clamp(64px, 9vw, 130px); }
+  .about-grid { --row-gap: clamp(64px, 9vw, 130px); grid-template-columns: minmax(0, 1fr); row-gap: var(--row-gap); }
+  /* the pull quote is the last thing in its section, so the grid's row gap is added to its bottom margin. It keeps only the remainder, so the space below the attribution (margin + gap) equals the space above the quote (--quote-space) at every window size */
+  .ab-method .pull-quote { margin-bottom: max(0px, calc(var(--quote-space, 200px) - var(--row-gap))); }
   .about-grid > * { grid-column: 1 / -1; }
   @media (min-width: 900px) { .about-grid { grid-template-columns: repeat(6, minmax(0, 1fr)); } } /* the skin's own 6 columns, back for side by side; every section still spans all six unless it says otherwise */
 
