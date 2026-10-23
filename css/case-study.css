@@ -34,7 +34,7 @@
 .cs-sec .kicker .lbl { display: flex; align-items: center; gap: 10px; }
 .cs-sec .kicker .lbl::before { content: ""; width: 12px; height: 12px; background: var(--kicker-mark, var(--magenta)); }
 
-/* the small quote (.quote--bar) lives in reskin-blue.css, with the other quotes */
+/* the small quote (.quote--small) lives in reskin-blue.css, with the other quotes */
 
 /* lists with small square markers */
 .cs-list { margin: 0 0 1em; }

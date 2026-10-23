@@ -98,7 +98,7 @@ a { color: inherit; }
 .kicker::before { content: ""; width: 12px; height: 12px; background: var(--kicker-mark, var(--magenta)); }
 
 /* ---------- QUOTE (shared base): every quote is a <figure class="quote"> holding a real <blockquote> and a <figcaption> for the attribution.
-   Three voices sit on top of this base: small (.quote--bar), big (.pull-quote), card (.quote--card). Use <figcaption>, never a bare <footer> or <main>: this sheet styles those for the site.
+   Three voices sit on top of this base: small (.quote--small), big (.pull-quote), card (.quote--card). Use <figcaption>, never a bare <footer> or <main>: this sheet styles those for the site.
    The figure and blockquote margins are reset (:where keeps the reset weak, so a voice can set its own). The attribution is one recipe for all three:
    12px tracked mono caps, bold name, colour inherited from the ground. ---------- */
 :where(.quote) { margin: 0; }
@@ -106,11 +106,13 @@ a { color: inherit; }
 .quote figcaption { margin: 24px 0 0; font-family: var(--font-mono); font-size: var(--fs-xs); letter-spacing: 0.1em; line-height: 1.6; text-transform: uppercase; }
 .quote figcaption strong { font-weight: 600; }
 
-/* ---------- SMALL QUOTE (.quote--bar): evidence inside a story. A quiet orange bar on the left, Source Code Pro Light. Markup:
-   <figure class="quote quote--bar"><blockquote><p>&ldquo;...&rdquo;</p></blockquote><figcaption>&mdash; Who</figcaption></figure>
-   .quote.quote--bar p carries both classes so it beats the case-study paragraph rule (.cs p). ---------- */
-.quote--bar { margin: 14px 0 0; padding-left: 20px; border-left: 6px solid var(--orange); }
-.quote.quote--bar p { margin: 0; font-family: var(--font-mono); font-weight: 300; line-height: 1.3; letter-spacing: -0.03em; font-size: clamp(1.1rem, 2.2vw, 1.5rem); }
+/* ---------- SMALL QUOTE (.quote--small): evidence inside a story. Centred like the big quote, but small: Source Code Pro Light, 1.1 to 1.5rem (it had an orange bar on the left until 2026-10-23, when it was renamed from .quote--bar). Markup:
+   <figure class="quote quote--small"><blockquote><p>&ldquo;...&rdquo;</p></blockquote><figcaption>&mdash; Who</figcaption></figure>
+   The width and type sit on the blockquote (below), because the case-study sheet has its own paragraph rules (.cs p, .cs-sec p) that would override anything set on the p. ---------- */
+.quote--small { margin: 40px 0; text-align: center; } /* 40px above and below; the larger of two touching margins wins, so this beats the paragraph above (16px) and the next heading below (30px) */
+/* the type and the width sit on the blockquote, so "ch" is measured in the quote's own mono size and nothing in the case-study sheet (.cs-sec p) can override the cap; the paragraph just inherits. 42ch is about 42 characters per line, balanced so the last line is never a lone word */
+.quote--small blockquote { max-width: 42ch; margin: 0 auto; text-wrap: balance; font-family: var(--font-mono); font-weight: 300; line-height: 1.3; letter-spacing: -0.03em; font-size: clamp(1.1rem, 2.2vw, 1.5rem); }
+.quote.quote--small p { margin: 0; font-size: inherit; line-height: inherit; }
 
 /* ---------- CARD QUOTE (.quote--card): praise from a named person, on a tilted panel. Add .panel and a corner (.panel--cut-tl or .panel--cut-tr) in the markup.
    Colours come from the panel variables (--panel-bg, --panel-shadow, --tilt): paper with a magenta shadow by default, and a page can set its own (About has two).
@@ -127,7 +129,7 @@ a { color: inherit; }
 /* ---------- PULL QUOTE: one big quote with its attribution, centred, with generous empty space around the pair. Born on the About page, shared with the case studies (2026-10-23).
    Markup:  <figure class="quote pull-quote"><blockquote><p>&ldquo;...&rdquo;</p></blockquote><figcaption>&mdash; <strong>Who</strong>, role</figcaption></figure>
    The quote is Source Code Pro Light at --fs-quote, 26 characters wide, balanced. The attribution is small tracked caps (--fs-xs) with a bold name. Colour is inherited, so the ground decides it.
-   It is a real <blockquote> inside a figure (the orange bar of the small quote is a class now, so a blockquote carries no look of its own). The space above and below is --quote-space (200px, a deliberate negative-space gesture); a page or the guide can set a smaller one.
+   It is a real <blockquote> inside a figure (the small quote's look is a class now, so a blockquote carries no look of its own). The space above and below is --quote-space (200px, a deliberate negative-space gesture); a page or the guide can set a smaller one.
    figure.pull-quote p is written with the element so it beats the case-study paragraph rule (.cs p). ---------- */
 .pull-quote { margin: var(--quote-space, 200px) 0; text-align: center; }
 figure.pull-quote p { max-width: 26ch; margin: 0 auto; font-family: var(--font-mono); font-weight: 300; font-size: var(--fs-quote); line-height: 1.2; letter-spacing: -0.03em; text-wrap: balance; }

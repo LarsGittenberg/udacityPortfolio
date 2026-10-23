@@ -201,14 +201,14 @@
   <h3>Quotes: <code>.quote</code></h3>
   <p class="note">Three voices, one family, each with its own job: <b>small</b> for evidence inside a story, <b>big</b> for a statement, <b>card</b> for praise from a named person. Every quote is a <code>&lt;figure class="quote"&gt;</code> holding a real <code>&lt;blockquote&gt;</code> and a <code>&lt;figcaption&gt;</code> for the attribution. A blockquote carries no look of its own; the voice is a class. The attribution is one recipe for all three: <code>--fs-xs</code>, tracked caps, bold name, written <code>&mdash; &lt;strong&gt;Who&lt;/strong&gt;, role</code>, colour inherited from the ground. <b>Use <code>&lt;figcaption&gt;</code>, never a bare <code>&lt;footer&gt;</code> or <code>&lt;main&gt;</code></b>: this stylesheet styles those for the site, and a bare one turns into a miniature site footer (found 2026-10-23).</p>
 
-  <p class="note"><b>Small: <code>.quote--bar</code>.</b> A quiet orange bar on the left, Source Code Pro Light. Used on the TNECD pain points.</p>
+  <p class="note"><b>Small: <code>.quote--small</code>.</b> Centred like the big quote, but small: Source Code Pro Light, 1.1 to 1.5rem, 42 characters wide and balanced, with 40px above and below. Used on the TNECD pain points. (It once had an orange bar on the left and was called <code>.quote--bar</code>.)</p>
   <div class="ds-ground" style="background:var(--ink);color:var(--cream-text)">
-    <figure class="quote quote--bar">
+    <figure class="quote quote--small">
       <blockquote><p>&ldquo;My team uses this site to market our infrastructure...[and] wish that the branding and content reflected our county better.&rdquo;</p></blockquote>
       <figcaption>&mdash; <strong>Tennessee County Chamber of Commerce</strong> Leadership</figcaption>
     </figure>
   </div>
-  <span class="ds-cap">on a dark ground: the bar and the attribution take the ground's cream</span>
+  <span class="ds-cap">on a dark ground: the quote and the attribution take the ground's cream</span>
 
   <p class="note"><b>Big: <code>.pull-quote</code>.</b> One big quote with its attribution, centred, with generous empty space around the pair. Source Code Pro Light at <code>--fs-quote</code>, 26 characters wide, balanced. The space above and below is <code>--quote-space</code>, <b>200px</b> by default (a deliberate negative-space gesture); the specimens here set it to 24px so the page stays compact. Used on the About page and at the end of the TNECD case study.</p>
   <div class="ds-ground" style="background:var(--ink);color:var(--cream-text);--quote-space:24px">
