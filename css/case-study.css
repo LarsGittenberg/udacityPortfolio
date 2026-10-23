@@ -13,7 +13,7 @@
 .cs h4 { margin: 30px 0 8px; font-weight: 400; font-size: var(--fs-s); letter-spacing: .12em; text-transform: uppercase; color: var(--orange); }
 .cs p { margin: 0 0 1em; font-size: var(--fs-l); line-height: 1.65; }
 .cs ul { margin: 0; padding: 0; list-style: none; }
-.cs-role li { padding: 8px 0; border-bottom: 1px solid #ffffff30; font-family: var(--font-mono); font-size: var(--fs-l); }
+.cs-role li { padding: 8px 0; border-bottom: 1px solid color-mix(in srgb, var(--cream-text) 30%, transparent); font-family: var(--font-mono); font-size: var(--fs-l); }
 .cs-crumb { display: flex; flex-wrap: wrap; gap: 6px 0; margin: 0 0 clamp(30px, 4vw, 56px); font-family: var(--font-mono); font-size: var(--fs-s); letter-spacing: .14em; text-transform: uppercase; }
 .cs-crumb a { color: var(--paper); text-decoration: none; }
 .cs-crumb a::after { content: "\2192"; margin: 0 .8em; color: var(--magenta); }
@@ -65,7 +65,7 @@
   html.look-rail .cs > .cs-crumb { grid-column: 1 / -1; }
   html.look-rail .cs > :not(.cs-crumb):not(.cs-index) { grid-column: 2; }
   html.look-rail .cs-index { display: flex; flex-direction: column; grid-column: 1; grid-row: 2 / span 30; position: sticky; top: 110px; font-family: var(--font-mono); font-size: var(--fs-xs); letter-spacing: .14em; text-transform: uppercase; }
-  html.look-rail .cs-index a { padding: 9px 0 9px 10px; border-top: 1px solid #ffffff30; border-left: 4px solid transparent; color: var(--paper); text-decoration: none; transition: color var(--t-quick) ease, border-color var(--t-quick) ease; } /* the transparent bar is always there, so the labels never shift when it turns on */
+  html.look-rail .cs-index a { padding: 9px 0 9px 10px; border-top: 1px solid color-mix(in srgb, var(--cream-text) 30%, transparent); border-left: 4px solid transparent; color: var(--paper); text-decoration: none; transition: color var(--t-quick) ease, border-color var(--t-quick) ease; } /* the transparent bar is always there, so the labels never shift when it turns on */
   html.look-rail .cs-index a:hover { color: var(--gold); }
   html.look-rail .cs-index a.is-here { color: var(--gold); border-left-color: var(--magenta); } /* "you are here" */
   html.look-rail .cs-sec { scroll-margin-top: 110px; } /* a jumped-to heading lands clear of the top of the window */

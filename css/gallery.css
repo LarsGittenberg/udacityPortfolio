@@ -23,7 +23,7 @@
 .gl-rolebox { max-width: 68ch; margin-bottom: clamp(32px, 4vw, 56px); }
 .gl-rolebox .kicker { margin: 0 0 1em; line-height: 1.65; } /* the same kicker spacing as on the case studies (.cs p) */
 .gl-role { margin: 0; padding: 0; list-style: none; font-family: var(--font-mono); font-size: var(--fs-l); } /* the same role list as the case studies (.cs-role): 16px, 8px of padding, a hairline under each */
-.gl-role li { padding: 8px 0; border-bottom: 1px solid #ffffff30; }
+.gl-role li { padding: 8px 0; border-bottom: 1px solid color-mix(in srgb, var(--cream-text) 30%, transparent); }
 .gl-count { margin-top: 22px !important; font-size: var(--fs-s) !important; letter-spacing: .14em; text-transform: uppercase; color: var(--gold); }
 /* the "Back to ..." link has two homes: pinned in the rail (Rail mode, 900px and up), or at the foot of the page (Column mode, and phones). Two copies are in the HTML; CSS shows one. */
 .gl-side .gl-back { display: none; margin-top: 22px; }
