@@ -1,0 +1,55 @@
+/* =====================================================================
+   STATEMENT GALLERY: a statement (or role + description) and the work. One body of work, two ways to read it.
+   COLUMN (the base styles below, the "photo essay"): the statement first, then a contact sheet of the work, three across.
+   RAIL (html.look-rail, switched on by js/layout-switch.js): the statement stays pinned on the left while you scroll the work, two across (from 900px up).
+   The reader chooses with the Column | Rail pill at the bottom right (its styles live in css/reskin-blue.css, with the other site components). Phones always read the column.
+   Markup:  <article class="gl"> .gl-crumb, <aside class="gl-side">, <div class="gl-grid"> of <figure>s.
+   Used by the Cutout Figures, Posed Encounters and DRØM print pages. Photographs get NO decoration (no frame, no shadow): they speak for themselves.
+   ===================================================================== */
+
+/* ---------- COLUMN: the base ---------- */
+.gl { position: relative; padding: clamp(24px, 4vw, 56px) var(--pad) clamp(60px, 8vw, 120px) clamp(8px, 2vw, 28px); max-width: 1040px; }
+@media (min-width: 900px) { main > .gl { grid-column: 2; } }
+.gl-crumb { display: flex; flex-wrap: wrap; gap: 6px 0; margin: 0 0 clamp(30px, 4vw, 56px); font-family: var(--font-mono); font-size: var(--fs-s); letter-spacing: .14em; text-transform: uppercase; }
+.gl-crumb a { color: var(--paper); text-decoration: none; }
+.gl-crumb a::after { content: "\2192"; margin: 0 .8em; color: var(--magenta); }
+.gl-crumb a:hover { color: var(--gold); }
+
+/* the statement */
+.gl-side { max-width: 68ch; margin-bottom: clamp(40px, 6vw, 80px); }
+.gl-side h3 { margin: 0 0 14px; font-family: var(--font-body); font-weight: 600; font-size: var(--fs-heading); line-height: 1.02; letter-spacing: -0.03em; }
+.gl-side p { margin: 0 0 1em; font-size: var(--fs-l); line-height: 1.65; max-width: 62ch; }
+/* a Role list in the main body (DRØM), above the statement, as on the case studies */
+.gl-rolebox { max-width: 68ch; margin-bottom: clamp(32px, 4vw, 56px); }
+.gl-rolebox .kicker { margin: 0 0 1em; line-height: 1.65; } /* the same kicker spacing as on the case studies (.cs p) */
+.gl-role { margin: 0; padding: 0; list-style: none; font-family: var(--font-mono); font-size: var(--fs-l); } /* the same role list as the case studies (.cs-role): 16px, 8px of padding, a hairline under each */
+.gl-role li { padding: 8px 0; border-bottom: 1px solid #ffffff30; }
+.gl-count { margin-top: 22px !important; font-size: var(--fs-s) !important; letter-spacing: .14em; text-transform: uppercase; color: var(--gold); }
+/* the "Back to ..." link has two homes: pinned in the rail (Rail mode, 900px and up), or at the foot of the page (Column mode, and phones). Two copies are in the HTML; CSS shows one. */
+.gl-side .gl-back { display: none; margin-top: 22px; }
+.gl > .gl-back--end { margin: 60px 0 0; }
+
+/* the work: a contact sheet, three across (two on small phones) */
+.gl-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: clamp(18px, 2.4vw, 32px) clamp(12px, 1.6vw, 22px); }
+@media (max-width: 560px) { .gl-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+.gl-grid figure { margin: 0; }
+.gl-grid img { display: block; width: 100%; height: auto; max-width: 400px; } /* these photographs are about 400px wide, so they are never shown larger than that */
+.gl-grid figcaption { margin-top: 8px; font-family: var(--font-mono); font-size: var(--fs-xs); letter-spacing: .14em; text-transform: uppercase; opacity: .85; transition: color var(--t-quick) ease, opacity var(--t-quick) ease; }
+.gl-grid figure:hover figcaption { color: var(--gold); opacity: 1; }
+
+/* a gallery of larger pieces (DRØM's 600px print work): two across, up to their real 600px */
+.gl-grid--wide { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+.gl-grid--wide img { max-width: 600px; }
+@media (max-width: 560px) { .gl-grid--wide { grid-template-columns: 1fr; } }
+
+/* ---------- RAIL: the statement stays pinned while you scroll the work (from 900px up) ---------- */
+@media (min-width: 900px) {
+  html.look-rail .gl { display: grid; grid-template-columns: minmax(230px, 270px) minmax(0, 1fr); column-gap: clamp(28px, 4vw, 56px); max-width: 1160px; align-items: start; }
+  html.look-rail .gl > .gl-crumb { grid-column: 1 / -1; }
+  html.look-rail .gl-side .gl-back { display: block; }
+  html.look-rail .gl > .gl-back--end { display: none; }
+  html.look-rail .gl > .gl-rolebox { grid-column: 2; }
+  html.look-rail .gl-side { grid-column: 1; grid-row: 2 / span 2; max-width: none; margin: 0; position: sticky; top: 110px; max-height: calc(100vh - 130px); overflow-y: auto; padding-right: 6px; } /* pinned; if the statement is taller than the window it scrolls inside itself, so its last lines are never stuck below the fold */
+  html.look-rail .gl-grid { grid-column: 2; grid-row: 3; grid-template-columns: repeat(2, minmax(0, 400px)); gap: 26px 14px; justify-content: start; }
+  html.look-rail .gl-grid--wide { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}

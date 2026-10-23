@@ -12,7 +12,7 @@
     gtag('config', 'G-2QV625FZN6');
   </script>
 
-  <title>TEST: gallery layout options (DRØM Print and Marketing) | Lawrence Getubig</title>
+  <title>TEST: statement gallery with a reader layout switch (DRØM Print and Marketing) | Lawrence Getubig</title>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="theme-color" content="#feb013">
@@ -27,6 +27,8 @@
   <link rel="stylesheet" href="css/reskin-blue.css"> <!-- replaces ui.css and main.css on this test page -->
 
   <link rel="stylesheet" href="css/card-pages.css"> <!-- the header, band, title and card spacing that the category pages share -->
+  <link rel="stylesheet" href="css/gallery.css"> <!-- the statement gallery: Column and Rail layouts -->
+  <script src="js/layout-switch.js"></script> <!-- picks the layout before paint and adds the Column | Rail pill -->
 
   <style>
   /* this page's band colour (mint): background, text, and the three shape colours */
@@ -49,81 +51,6 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg==" crossorigin="anonymous" referrerpolicy="no-referrer">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
   <script src="js/noframework.waypoints.min.js"></script>
-
-<style>
-  /* =====================================================================
-     GALLERY LAYOUT OPTIONS (throwaway). Same markup, two looks. "A" needs no html class; C = html.look-c.
-     Photographs get NO decoration (no frame, no shadow): they speak for themselves. They are only 400px wide, so they are never shown larger than 400px.
-     ===================================================================== */
-  .gl { position: relative; padding: clamp(24px, 4vw, 56px) var(--pad) clamp(60px, 8vw, 120px) clamp(8px, 2vw, 28px); max-width: 1040px; }
-  @media (min-width: 900px) { main > .gl { grid-column: 2; } }
-  .gl-crumb { display: flex; flex-wrap: wrap; gap: 6px 0; margin: 0 0 clamp(30px, 4vw, 56px); font-family: var(--font-mono); font-size: var(--fs-s); letter-spacing: .14em; text-transform: uppercase; }
-  .gl-crumb a { color: var(--paper); text-decoration: none; }
-  .gl-crumb a::after { content: "\2192"; margin: 0 .8em; color: var(--magenta); }
-  .gl-crumb a:hover { color: var(--gold); }
-  .gl-side h3 { margin: 0 0 14px; font-family: var(--font-body); font-weight: 600; font-size: var(--fs-heading); line-height: 1.02; letter-spacing: -0.03em; }
-  .gl-side p { margin: 0 0 1em; font-size: var(--fs-l); line-height: 1.65; max-width: 62ch; }
-  .gl-count { margin-top: 22px !important; font-size: var(--fs-s) !important; letter-spacing: .14em; text-transform: uppercase; color: var(--gold); }
-  .gl-back { margin-top: 22px !important; }
-  .gl-grid figure { margin: 0; }
-  .gl-grid img { display: block; width: 100%; height: auto; max-width: 400px; }
-  .gl-grid figcaption { margin-top: 8px; font-family: var(--font-mono); font-size: var(--fs-xs); letter-spacing: .14em; text-transform: uppercase; opacity: .85; transition: color var(--t-quick) ease, opacity var(--t-quick) ease; }
-  .gl-grid figure:hover figcaption { color: var(--gold); opacity: 1; }
-
-  /* ---------- A: PHOTO ESSAY: the statement first, then a three-across contact sheet ---------- */
-  .gl-side { max-width: 68ch; margin-bottom: clamp(40px, 6vw, 80px); }
-  .gl-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: clamp(18px, 2.4vw, 32px) clamp(12px, 1.6vw, 22px); }
-  @media (max-width: 560px) { .gl-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
-
-  /* ---------- C: STATEMENT RAIL: the statement stays pinned while you scroll the photographs (from 900px up) ---------- */
-  @media (min-width: 900px) {
-    html.look-c .gl { display: grid; grid-template-columns: minmax(230px, 270px) minmax(0, 1fr); column-gap: clamp(28px, 4vw, 56px); max-width: 1160px; align-items: start; }
-    html.look-c .gl > .gl-crumb { grid-column: 1 / -1; }
-    html.look-c .gl-side { grid-column: 1; max-width: none; margin: 0; position: sticky; top: 110px; }
-    html.look-c .gl-grid { grid-column: 2; grid-template-columns: repeat(2, minmax(0, 400px)); gap: 26px 14px; justify-content: start; }
-  }
-
-  .look-switch { position: fixed; right: 16px; bottom: 16px; z-index: 300; display: flex; flex-wrap: wrap; justify-content: flex-end; gap: 6px; max-width: calc(100vw - 32px); padding: 8px; background: var(--ink); border: 2px solid var(--paper); font-family: var(--font-mono); color: var(--paper); }
-  .look-switch button { font: inherit; font-size: var(--fs-xs); letter-spacing: .1em; text-transform: uppercase; padding: 6px 10px; border: 2px solid var(--paper); background: transparent; color: var(--paper); cursor: pointer; }
-  .look-switch button[aria-pressed="true"] { background: var(--paper); color: var(--ink); }
-  .look-switch .note { flex-basis: 100%; text-align: right; font-size: var(--fs-xs); letter-spacing: .05em; opacity: .9; }
-</style><style>
-  /* ===== additions for the icon page: categories, the rail as a section index, captions that are real copy ===== */
-  .gl-role { margin: 0 0 8px; padding: 0; list-style: none; font-family: var(--font-mono); font-size: var(--fs-s); }
-  .gl-role li { padding: 5px 0; border-bottom: 1px solid #ffffff30; }
-  .gl-index-label { margin-top: 28px !important; }
-  .gl-index { display: flex; flex-direction: column; font-family: var(--font-mono); font-size: var(--fs-xs); letter-spacing: .12em; text-transform: uppercase; }
-  .gl-index a { display: flex; justify-content: space-between; gap: 10px; padding: 9px 0 9px 10px; border-top: 1px solid #ffffff30; border-left: 4px solid transparent; color: var(--paper); text-decoration: none; transition: color var(--t-quick) ease, border-color var(--t-quick) ease; }
-  .gl-index a em { font-style: normal; color: var(--gold); }
-  .gl-index a:hover, .gl-index a.is-here { color: var(--gold); }
-  .gl-index a.is-here { border-left-color: var(--magenta); }   /* a fixed-width bar, so the labels never shift */
-  .gl-cat { max-width: 100%; margin: 0 0 clamp(56px, 8vw, 110px); scroll-margin-top: 110px; }
-  .gl-cat h3 { margin: 0 0 14px; font-family: var(--font-body); font-weight: 600; font-size: var(--fs-heading); line-height: 1.02; letter-spacing: -0.03em; }
-  .gl-cat > p { max-width: 62ch; margin: 0 0 1.4em; font-size: var(--fs-l); line-height: 1.65; }
-  .gl-grid--icons { margin-top: clamp(20px, 3vw, 36px); align-items: start; }
-  .gl-grid--icons figcaption { margin-top: 10px; font-family: var(--font-body); font-size: var(--fs-s); letter-spacing: 0; text-transform: none; line-height: 1.5; opacity: .9; }
-  .gl-grid--icons figure:hover figcaption { color: inherit; }
-  .gl-grid--icons img { max-width: 500px; }
-  /* the page has sections, not just a statement: A puts the index at the top as a row of jump links */
-  html:not(.look-c) .gl-side { display: block; }
-  html:not(.look-c) .gl-index { flex-direction: row; flex-wrap: wrap; gap: 8px 12px; }
-  html:not(.look-c) .gl-index a { border: 2px solid var(--paper); padding: 7px 12px; }
-  html:not(.look-c) .gl-index a.is-here { border-left-color: var(--paper); }
-  html:not(.look-c) .gl-index a:hover { background: var(--paper); color: var(--ink); }
-  html:not(.look-c) .gl-index a em { margin-left: 8px; }
-  @media (min-width: 900px) {
-    html.look-c .gl-grid--icons { grid-template-columns: repeat(2, minmax(0, 1fr)); }
-    html.look-c .gl-grid { grid-column: auto; }
-    html.look-c .gl > .gl-cat { grid-column: 2; }
-    html.look-c .gl-side { grid-row: 2 / span 40; }
-  }
-</style><style>
-  /* ===== DRØM: six 600px squares of print work: two across, up to their real 600px size ===== */
-  .gl-grid--print { grid-template-columns: repeat(2, minmax(0, 1fr)); }
-  .gl-grid--print img { max-width: 600px; }
-  @media (min-width: 900px) { html.look-c .gl-grid--print { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
-  @media (max-width: 560px) { .gl-grid--print { grid-template-columns: 1fr; } }
-</style>
 </head>
 
 <body class="card-page">
@@ -171,17 +98,20 @@
 <article class="gl">
 	<nav class="gl-crumb" aria-label="Breadcrumb"><a href="index-test.html">Home</a><a href="graphicdesign-test.html">Graphic Design</a><span aria-current="page">DRØM Print and Marketing</span></nav>
 
-	<aside class="gl-side">
+	<section class="gl-rolebox">
 		<p class="kicker source-code-pro">Role</p>
 		<ul class="gl-role"><li>Graphic Designer</li><li>Illustrator</li><li>Brand Designer</li></ul>
-		<p class="kicker source-code-pro" style="margin-top:28px">About the work</p>
+	</section>
+
+	<aside class="gl-side">
+		<p class="kicker source-code-pro">About the work</p>
 		<h3>DRØM Print and Marketing</h3>
 		<p>DRØM Peppercorns was an online mercantile of boutique Kampot Peppercorns, regarded as one of the finest peppercorns in the world. The Shopify based store ran from 2016 to early 2018. The following is a catalogue of print materials designed for their marketing initiatives, developed in conjuction with their online branding, packaging and visual assets from their email campaigns.</p>
 		<p class="gl-count source-code-pro">6 printed pieces</p>
-		<p class="gl-back"><a class="text-link" href="graphicdesign-test.html">Back to Graphic Design</a></p>
+		<p class="gl-back"><a class="text-link" href="graphicdesign-test.html">Back to Graphic Design</a></p> <!-- the rail copy: shown only in Rail mode from 900px up -->
 	</aside>
 
-	<div class="gl-grid gl-grid--print">
+	<div class="gl-grid gl-grid--wide">
 		<figure><img loading="lazy" src="images/print/drom_original_600.jpg" width="600" height="600" alt="DRØM printed marketing piece: Original"><figcaption>01 &middot; Original</figcaption></figure>
 		<figure><img loading="lazy" src="images/print/drom_infographic_600.jpg" width="600" height="600" alt="DRØM printed marketing piece: Infographic"><figcaption>02 &middot; Infographic</figcaption></figure>
 		<figure><img loading="lazy" src="images/print/drom_bike_600.jpg" width="600" height="600" alt="DRØM printed marketing piece: Bike"><figcaption>03 &middot; Bike</figcaption></figure>
@@ -189,6 +119,8 @@
 		<figure><img loading="lazy" src="images/print/drom_boxes_600.jpg" width="600" height="600" alt="DRØM printed marketing piece: Boxes"><figcaption>05 &middot; Boxes</figcaption></figure>
 		<figure><img loading="lazy" src="images/print/drom_sniff_600.jpg" width="600" height="600" alt="DRØM printed marketing piece: Sniff"><figcaption>06 &middot; Sniff</figcaption></figure>
 	</div>
+
+	<p class="gl-back gl-back--end"><a class="text-link" href="graphicdesign-test.html">Back to Graphic Design</a></p> <!-- the page-end copy: shown in Column mode and on phones -->
 </article>
 
 </main>
@@ -225,20 +157,5 @@ stats"></a></div></noscript>
 <!-- End of StatCounter Code for Default Guide -->
 
 
-<!-- ===== VARIANT SWITCHER (throwaway): the gallery layout ===== -->
-<div class="look-switch" role="group" aria-label="Gallery layout">
-  <button type="button" data-look="a">A &middot; Photo essay</button>
-  <button type="button" data-look="c">C &middot; Statement rail</button>
-  <span class="note" id="lookNote"></span>
-</div>
-<script>
-(function () {
-  var root = document.documentElement, buttons = document.querySelectorAll('.look-switch button'), looks = ['a', 'c'], note = document.getElementById('lookNote');
-  var NOTES = { a: 'role and statement first, then the six pieces two across (up to their real 600px)', c: 'role and statement pinned on the left (from 900px up); the six pieces two across' };
-  function show(look) { looks.forEach(function (l) { root.classList.remove('look-' + l); }); if (look !== 'a') root.classList.add('look-' + look); buttons.forEach(function (b) { b.setAttribute('aria-pressed', b.dataset.look === look); }); note.textContent = NOTES[look]; }
-  buttons.forEach(function (b) { b.addEventListener('click', function () { show(b.dataset.look); }); });
-  var asked = new URLSearchParams(location.search).get('look'); show(looks.indexOf(asked) > -1 ? asked : 'a');
-})();
-</script>
 </body>
 </html>

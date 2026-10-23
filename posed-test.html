@@ -1,0 +1,163 @@
+<!doctype html>
+
+<html lang="en">
+<head>
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-2QV625FZN6"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+
+    gtag('config', 'G-2QV625FZN6');
+  </script>
+
+  <title>TEST: statement gallery with a reader layout switch (Posed Encounters) | Lawrence Getubig</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#feb013">
+  <meta name="description" content="Photography by Lawrence Getubig: an MFA thesis series of paper cut-out figures, studio portraiture and retouching, and cinematic posed encounters.">
+
+  <!-- Favicons -->
+	<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+	<link rel="icon" href="/favicon.png" sizes="32x32">
+	<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+
+  <!-- CSS -->
+  <link rel="stylesheet" href="css/reskin-blue.css"> <!-- replaces ui.css and main.css on this test page -->
+
+  <link rel="stylesheet" href="css/card-pages.css"> <!-- the header, band, title and card spacing that the category pages share -->
+  <link rel="stylesheet" href="css/gallery.css"> <!-- the statement gallery: Column and Rail layouts -->
+  <script src="js/layout-switch.js"></script> <!-- picks the layout before paint and adds the Column | Rail pill -->
+
+  <style>
+  /* this page's band colour (blue): background, text, and the three shape colours */
+  .band { --band-bg: var(--blue); --band-ink: var(--cream-text); --s1: var(--amber); --s2: var(--mint); --s3: var(--orange); }
+
+  /* CARD 2 (retouch): the dome frame is 4:3 and the picture is 5:3, so the default centred crop cut the left half of the "A" block in "AIDEN". Sliding the crop to the left keeps the whole row of blocks. To undo, delete this rule */
+  #retouch { object-position: left center; }
+  </style>
+
+	<!--fonts-->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link href="https://fonts.googleapis.com/css2?family=Doto:wght@100..900&display=swap" rel="stylesheet">
+	<!--older font choices-->
+	<link href="https://fonts.googleapis.com/css?family=Montserrat:400,600|Source+Code+Pro:300,400" rel="stylesheet">
+
+  <!-- JS libraries -->
+  <script src="https://cdn.jsdelivr.net/npm/js-cookie@2/src/js.cookie.min.js"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg==" crossorigin="anonymous" referrerpolicy="no-referrer">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  <script src="js/noframework.waypoints.min.js"></script>
+</head>
+
+<body class="card-page">
+
+	<div class="menu-icon-container">
+		<div class="bar1"></div>
+		<div class="bar2"></div>
+		<div class="bar3"></div>
+	</div>
+
+	<div id="myNav" class="overlay pattern-grid-large">
+		<!-- Overlay content. TEST LINKS: the five menu links point at the -test pages so the new look can be browsed end to end. At go-live, point them back at index / webdesign / graphicdesign / photography / about .html -->
+		<div class="overlay-content ">
+			<a href="index-test.html" onclick="gtag('event', 'nav_click', { nav_item: 'home', from_page: window.location.pathname });"> Home </a>
+			<a href="webdesign-test.html" onclick="gtag('event', 'nav_click', { nav_item: 'web_design', from_page: window.location.pathname });"> Web Design </a>
+			<a href="graphicdesign-test.html" onclick="gtag('event', 'nav_click', { nav_item: 'graphic_design', from_page: window.location.pathname });"> Graphic Design </a>
+			<a href="photography-test.html" onclick="gtag('event', 'nav_click', { nav_item: 'photography', from_page: window.location.pathname });"> Photography </a>
+			<a href="about-test.html" onclick="gtag('event', 'nav_click', { nav_item: 'about', from_page: window.location.pathname });"> About </a>
+		</div>
+	</div><!--end my nav-->
+
+<header class="pattern-dots-sparse">
+	<div class="header-container">
+		<h1 class="doto-lg">Lawrence Getubig</h1>
+		<p>Creative Technologist<br>in Product Design</p>
+	</div><!--end header container-->
+</header>
+
+<!-- the sliding band (four copies, so the loop never shows a gap) -->
+<div class="band" aria-hidden="true">
+	<div class="band-track">
+		<span>Web Design <i>●</i> UX/UI <i>▲</i> Visual Design <i>◆</i> Illustration <i>■</i> Brand <i>●</i> Animation <i>▲</i> Product Design <i>◆</i> Photography <i>■</i></span><span>Web Design <i>●</i> UX/UI <i>▲</i> Visual Design <i>◆</i> Illustration <i>■</i> Brand <i>●</i> Animation <i>▲</i> Product Design <i>◆</i> Photography <i>■</i></span><span>Web Design <i>●</i> UX/UI <i>▲</i> Visual Design <i>◆</i> Illustration <i>■</i> Brand <i>●</i> Animation <i>▲</i> Product Design <i>◆</i> Photography <i>■</i></span><span>Web Design <i>●</i> UX/UI <i>▲</i> Visual Design <i>◆</i> Illustration <i>■</i> Brand <i>●</i> Animation <i>▲</i> Product Design <i>◆</i> Photography <i>■</i></span>
+	</div>
+</div><!--end band-->
+
+<main>
+
+<div class="project-header-bar pattern-dots-dense">
+	<div class="h2-wrap">
+		<h2 class="source-code-pro source-code-pro-light">Posed</h2>
+		<p class="h2-descriptor">Encounters Series</p>
+	</div>
+</div>
+
+<article class="gl">
+	<nav class="gl-crumb" aria-label="Breadcrumb"><a href="index-test.html">Home</a><a href="photography-test.html">Photography</a><span aria-current="page">Posed Encounters Series</span></nav>
+
+	<aside class="gl-side">
+		<p class="kicker source-code-pro">Artist statement</p>
+		<h3>Posed Encounters Series</h3>
+		<p>I am interested in particular cinematic gestures in movies. From Spielberg reels to Godzilla camp, there's a certain reaction shot that is reitereated over and over, employed perhaps to mirror, augment and tap into collective anxieties. I use my own brand of camp and noir-like effect to explore this idea of anxiety and of the sublime.</p>
+		<p class="gl-count source-code-pro">15 photographs</p>
+		<p class="gl-back"><a class="text-link" href="photography-test.html">Back to Photography</a></p> <!-- the rail copy: shown only in Rail mode from 900px up -->
+	</aside>
+
+	<div class="gl-grid">
+		<figure><img loading="lazy" src="images/posed/jeannie.jpg" width="458" height="458" alt="Posed encounter photograph 01 of 15"><figcaption>01</figcaption></figure>
+		<figure><img loading="lazy" src="images/posed/vasia.jpg" width="467" height="467" alt="Posed encounter photograph 02 of 15"><figcaption>02</figcaption></figure>
+		<figure><img loading="lazy" src="images/posed/andrea.jpg" width="530" height="530" alt="Posed encounter photograph 03 of 15"><figcaption>03</figcaption></figure>
+		<figure><img loading="lazy" src="images/posed/winnie.jpg" width="480" height="480" alt="Posed encounter photograph 04 of 15"><figcaption>04</figcaption></figure>
+		<figure><img loading="lazy" src="images/posed/gretchen.jpg" width="467" height="467" alt="Posed encounter photograph 05 of 15"><figcaption>05</figcaption></figure>
+		<figure><img loading="lazy" src="images/posed/matt.jpg" width="485" height="485" alt="Posed encounter photograph 06 of 15"><figcaption>06</figcaption></figure>
+		<figure><img loading="lazy" src="images/posed/todd.jpg" width="470" height="470" alt="Posed encounter photograph 07 of 15"><figcaption>07</figcaption></figure>
+		<figure><img loading="lazy" src="images/posed/chuck.jpg" width="470" height="470" alt="Posed encounter photograph 08 of 15"><figcaption>08</figcaption></figure>
+		<figure><img loading="lazy" src="images/posed/bonnie.jpg" width="514" height="514" alt="Posed encounter photograph 09 of 15"><figcaption>09</figcaption></figure>
+		<figure><img loading="lazy" src="images/posed/david.jpg" width="460" height="460" alt="Posed encounter photograph 10 of 15"><figcaption>10</figcaption></figure>
+		<figure><img loading="lazy" src="images/posed/nick.jpg" width="514" height="514" alt="Posed encounter photograph 11 of 15"><figcaption>11</figcaption></figure>
+		<figure><img loading="lazy" src="images/posed/hoffman.jpg" width="514" height="514" alt="Posed encounter photograph 12 of 15"><figcaption>12</figcaption></figure>
+		<figure><img loading="lazy" src="images/posed/katie.jpg" width="480" height="480" alt="Posed encounter photograph 13 of 15"><figcaption>13</figcaption></figure>
+		<figure><img loading="lazy" src="images/posed/chuck2.jpg" width="400" height="400" alt="Posed encounter photograph 14 of 15"><figcaption>14</figcaption></figure>
+		<figure><img loading="lazy" src="images/posed/shirin.jpg" width="400" height="400" alt="Posed encounter photograph 15 of 15"><figcaption>15</figcaption></figure>
+	</div>
+
+	<p class="gl-back gl-back--end"><a class="text-link" href="photography-test.html">Back to Photography</a></p> <!-- the page-end copy: shown in Column mode and on phones -->
+</article>
+
+</main>
+
+<footer class="pattern-dots-dense">
+	<p>Find me in:</p><br>
+	<p class="footer"><a class="text-link text-link--social" href="https://github.com/LarsGittenberg" onclick="gtag('event', 'footer_click', { destination: 'github', from_page: window.location.pathname });"><i class="fa-brands fa-github" aria-hidden="true"></i> GitHub</a></p>
+	<br>
+	<p class="footer"><a class="text-link text-link--social" href="https://www.linkedin.com/in/lawrence-getubig" onclick="gtag('event', 'footer_click', { destination: 'linkedin', from_page: window.location.pathname });"><i class="fa-brands fa-linkedin" aria-hidden="true"></i> LinkedIn</a></p> 
+	<br>
+	<p class="footer"><a class="text-link text-link--social" href="https://www.instagram.com/ljgetubig/" onclick="gtag('event', 'footer_click', { destination: 'instagram', from_page: window.location.pathname });"><i class="fa-brands fa-instagram" aria-hidden="true"></i> Instagram</a></p>
+	<br>
+	<p class="copyright"><small>Copyright Lawrence Getubig 2026</small></p>
+	<!--  want to change the copyright date for all html files? use: perl -pi -w -e 's/Getubig\ 2018/Getubig\ 2019/g;' *.html -->
+</footer>
+
+<script src="js/design.js"></script>
+
+<!-- Start of StatCounter Code for Default Guide -->
+<script type="text/javascript">
+var sc_project=5156734;
+var sc_invisible=1;
+var sc_security="8c976dcb";
+</script>
+<script type="text/javascript"
+src="https://www.statcounter.com/counter/counter.js"
+async></script>
+<noscript><div class="statcounter"><a title="site stats"
+href="http://statcounter.com/" target="_blank"><img
+class="statcounter"
+src="//c.statcounter.com/5156734/0/8c976dcb/1/" alt="site
+stats"></a></div></noscript>
+<!-- End of StatCounter Code for Default Guide -->
+
+
+</body>
+</html>
