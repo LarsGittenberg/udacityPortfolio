@@ -1,0 +1,68 @@
+/* =====================================================================
+   CASE STUDY LAYOUT: one story, two ways to read it.
+   COLUMN (the base styles below): one calm reading column, wide figures.
+   RAIL (html.look-rail, switched on by js/layout-switch.js): the same story, with a sticky section index on the left (from 900px up).
+   The reader chooses with the Column | Rail pill at the bottom right. Phones (below 900px) always read the column.
+   Uses the real design-system tokens from css/reskin-blue.css (colours, type scale, shadows, --pad).
+   ===================================================================== */
+
+/* ---------- COLUMN: the base ---------- */
+.cs { position: relative; padding: clamp(24px, 4vw, 56px) var(--pad) clamp(60px, 8vw, 120px) clamp(8px, 2vw, 28px); max-width: 1040px; }
+@media (min-width: 900px) { main > .cs { grid-column: 2; } }
+.cs h3 { margin: 0 0 14px; font-family: var(--font-body); font-weight: 600; font-size: var(--fs-heading); line-height: 1.02; letter-spacing: -0.03em; }
+.cs h4 { margin: 30px 0 8px; font-weight: 400; font-size: var(--fs-s); letter-spacing: .12em; text-transform: uppercase; color: var(--orange); }
+.cs p { margin: 0 0 1em; font-size: var(--fs-l); line-height: 1.65; }
+.cs ul { margin: 0; padding: 0; list-style: none; }
+.cs-role li { padding: 8px 0; border-bottom: 1px solid #ffffff30; font-family: var(--font-mono); font-size: var(--fs-l); }
+.cs-crumb { display: flex; flex-wrap: wrap; gap: 6px 0; margin: 0 0 clamp(30px, 4vw, 56px); font-family: var(--font-mono); font-size: var(--fs-s); letter-spacing: .14em; text-transform: uppercase; }
+.cs-crumb a { color: var(--paper); text-decoration: none; }
+.cs-crumb a::after { content: "\2192"; margin: 0 .8em; color: var(--magenta); }
+.cs-crumb a:hover { color: var(--gold); }
+.cs-sec { max-width: 68ch; margin: 0 0 clamp(36px, 5vw, 72px); }
+.cs-fig { margin: clamp(32px, 5vw, 72px) 0; }
+.cs-fig img { display: block; width: 100%; height: auto; }
+.cs-fig figcaption { max-width: 70ch; margin-top: 12px; font-family: var(--font-mono); font-size: var(--fs-s); letter-spacing: .04em; line-height: 1.55; opacity: .85; }
+.cs-fig--pair img + img { margin-top: 14px; }
+.cs-fig--tall img { max-width: min(100%, 640px); }
+.cs-back { margin: 60px 0 0; }
+
+/* quotes: a magenta bar on the left */
+.cs blockquote { margin: 14px 0 0; padding-left: 20px; border-left: 6px solid var(--magenta); }
+.cs blockquote p { font-family: var(--font-mono); font-weight: 300; line-height: 1.3; letter-spacing: -0.03em; font-size: clamp(1.1rem, 2.2vw, 1.5rem); }
+.cs cite { display: block; margin-top: 8px; font-family: var(--font-mono); font-size: var(--fs-s); font-style: normal; letter-spacing: .06em; text-transform: uppercase; color: var(--gold); }
+
+/* lists with small square markers */
+.cs-list { margin: 0 0 1em; }
+.cs-list li { position: relative; padding: 7px 0 7px 24px; font-size: var(--fs-l); line-height: 1.55; }
+.cs-list li::before { content: ""; position: absolute; left: 0; top: 1.05em; width: 10px; height: 10px; background: var(--kicker-mark, var(--magenta)); }
+
+/* the call-out: a highlighted question or consideration, with a gold bar */
+.cs-callout { margin: 22px 0; padding: 14px 0 14px 20px; border-left: 6px solid var(--gold); }
+.cs-callout b { display: block; margin-bottom: 6px; font-family: var(--font-mono); font-weight: 400; font-size: var(--fs-s); letter-spacing: .14em; text-transform: uppercase; color: var(--gold); }
+
+/* a row of product screens: a 2 x 2 grid (one column on small screens) */
+.cs-shots { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 28px 24px; margin: clamp(32px, 5vw, 72px) 0; }
+@media (max-width: 700px) { .cs-shots { grid-template-columns: 1fr; } }
+.cs-shots .cs-fig { margin: 0; }
+
+/* the section index only exists in RAIL mode */
+.cs-index { display: none; }
+
+/* ---------- RAIL: two columns, the index sticks on the left (from 900px up) ---------- */
+@media (min-width: 900px) {
+  html.look-rail .cs { display: grid; grid-template-columns: minmax(150px, 190px) minmax(0, 1fr); column-gap: clamp(28px, 4vw, 64px); max-width: 1160px; align-items: start; }
+  html.look-rail .cs > .cs-crumb { grid-column: 1 / -1; }
+  html.look-rail .cs > :not(.cs-crumb):not(.cs-index) { grid-column: 2; }
+  html.look-rail .cs-index { display: flex; flex-direction: column; grid-column: 1; grid-row: 2 / span 30; position: sticky; top: 110px; font-family: var(--font-mono); font-size: var(--fs-xs); letter-spacing: .14em; text-transform: uppercase; }
+  html.look-rail .cs-index a { padding: 9px 0 9px 10px; border-top: 1px solid #ffffff30; border-left: 4px solid transparent; color: var(--paper); text-decoration: none; transition: color var(--t-quick) ease, border-color var(--t-quick) ease; } /* the transparent bar is always there, so the labels never shift when it turns on */
+  html.look-rail .cs-index a:hover { color: var(--gold); }
+  html.look-rail .cs-index a.is-here { color: var(--gold); border-left-color: var(--magenta); } /* "you are here" */
+  html.look-rail .cs-sec { scroll-margin-top: 110px; } /* a jumped-to heading lands clear of the top of the window */
+  html.look-rail .cs-sec p { max-width: 66ch; }
+}
+
+/* ---------- THE READER'S PILL: Column | Rail, floating at the bottom right. Hidden below 900px, where there is no rail to choose ---------- */
+.lay-switch { display: none; position: fixed; right: 16px; bottom: 16px; z-index: 300; gap: 6px; padding: 8px; background: var(--ink); border: 2px solid var(--paper); font-family: var(--font-mono); }
+.lay-switch button { font: inherit; font-size: var(--fs-xs); letter-spacing: .1em; text-transform: uppercase; padding: 6px 10px; border: 2px solid var(--paper); background: transparent; color: var(--paper); cursor: pointer; }
+.lay-switch button[aria-pressed="true"] { background: var(--paper); color: var(--ink); }
+@media (min-width: 900px) { .lay-switch { display: flex; } }
