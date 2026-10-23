@@ -59,6 +59,9 @@
 	--shadow-l: 10px;  /* cards at rest, the about-page panels */
 	--shadow-xl: 14px; /* cards on hover, the about intro panel */
 
+	/* corner softness for gallery images (cutouts, posed, print, ads) */
+	--radius-img: 10px;
+
 	/* motion: how long hover and feedback animations take, and how they accelerate. (The hero entrance, the arrow button and the old toggle switch have their own timings on purpose.) */
 	--t-quick: 200ms;  /* small feedback: colour fades, buttons, menu links, the pancake */
 	--t-base: 300ms;   /* things that move: cards, images, shapes, notes, the link highlight */
