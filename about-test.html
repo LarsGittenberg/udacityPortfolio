@@ -88,14 +88,13 @@
   .ab-figure-note { max-width: 56ch; }
   .ab-figure-note p { margin: 0; font-size: var(--fs-s); letter-spacing: 0.18em; text-transform: uppercase; }
   .ab-figure-note blockquote { margin: 14px 0; font-family: var(--font-body); font-weight: 600; font-size: clamp(1.3rem, 2.2vw, 2rem); line-height: 1.2; letter-spacing: -0.02em; }
-  .ab-figure-note .ab-by { opacity: 0.85; }
 
   /* ---------- 03 A BLEND OF: the intro's own sentence, made literal ---------- */
   .ab-method { color: var(--paper); }
   .ab-shapes { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 28px var(--gap); margin: 0; padding: 0; list-style: none; }
   @media (min-width: 700px) { .ab-shapes { grid-template-columns: repeat(4, minmax(0, 1fr)); } }
   .ab-shapes li { display: flex; flex-direction: column; gap: 14px; }
-  .ab-shape { --shape-scale: 0.75; /* every shape is drawn at 75% of its box, centred in its column */ position: relative; height: clamp(90px, 12vw, 170px); border-bottom: 3px solid var(--paper); } /* the border is the floor the shape stands on */
+  .ab-shape { --shape-scale: 0.75; /* every shape is drawn at 75% of its box, centred in its column */ position: relative; height: clamp(90px, 12vw, 170px); border-bottom: 1px solid var(--paper); } /* the border is the floor the shape stands on */
   .ab-shape::before { content: ""; position: absolute; left: 50%; translate: -50% 0; bottom: 0; height: calc(100% * var(--shape-scale)); aspect-ratio: 1; background: var(--c); transition: transform var(--t-base) ease; }
   .s-circle { --c: var(--amber); }   .s-circle::before { border-radius: 50%; }
   .s-tri { --c: var(--magenta); }    .s-tri::before { clip-path: polygon(0 100%, 100% 100%, 0 0); }
@@ -132,8 +131,10 @@
   .ab-note::before { content: "\201C"; position: absolute; left: 14px; top: -0.38em; z-index: 2; font-family: var(--font-display); font-weight: 900;
     font-size: var(--qm-size); line-height: 1; color: var(--paper); -webkit-text-stroke: 3px var(--ink); paint-order: stroke fill; }
   .ab-note p { max-width: 52ch; margin: 0 0 1em; font-size: var(--fs-l); line-height: 1.65; }
-  .ab-note .ab-by { margin: 18px 0 0; font-size: var(--fs-xs); letter-spacing: 0.1em; line-height: 1.6; text-transform: uppercase; }
-  .ab-note .ab-by strong { font-weight: 600; }
+  /* THE ATTRIBUTION ("— Name, role"): one style for every quote on the page. The colour is inherited (ink on the paper and mint cards, cream on the blue panel), so only the background decides it.
+     It has to beat the panel's own caption rule (.ab-figure-note p) and the card paragraph rule (.ab-note p), which is why it is written with the extra class. */
+  .ab-figure-note p.ab-by, .ab-note p.ab-by { margin: 18px 0 0; font-size: var(--fs-xs); letter-spacing: 0.1em; line-height: 1.6; text-transform: uppercase; }
+  .ab-by strong { font-weight: 600; }
   .ab-note-1 { --panel-bg: var(--paper); --panel-shadow: var(--magenta); --tilt: -1.2deg; }
   .ab-note-2 { --panel-bg: var(--mint); --panel-shadow: var(--orange); --tilt: 1.1deg; }
   @media (min-width: 900px) { /* side by side only; stacked on phones neither card has an offset */
@@ -242,7 +243,7 @@
 		<div class="ab-figure-note">
 			<p class="source-code-pro">Percentage lift in email subscriptions on one A/B test</p>
 			<blockquote>“…50x better at increasing email subscriptions over the control…”</blockquote>
-			<p class="source-code-pro ab-by">— Yorkey Ng, Accenture Federal Services</p>
+			<p class="source-code-pro ab-by">— <strong>Yorkey Ng</strong>, Accenture Federal Services</p>
 		</div>
 	</section>
 
