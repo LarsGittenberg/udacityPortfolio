@@ -27,6 +27,7 @@
   <link rel="stylesheet" href="css/reskin-blue.css"> <!-- replaces ui.css and main.css on this test page -->
 
   <link rel="stylesheet" href="css/card-pages.css"> <!-- the header, band, title and card spacing that the category pages share -->
+  <link rel="stylesheet" href="css/transitions.css"> <!-- the card-to-title morph between category pages and project pages -->
   <link rel="stylesheet" href="css/case-study.css"> <!-- the case-study story: Column and Rail layouts -->
   <script src="js/layout-switch.js"></script> <!-- picks the layout before paint, builds the rail and the Column | Rail pill -->
 
@@ -83,7 +84,7 @@
 	</div>
 </div><!--end band-->
 
-<main>
+<main data-project="swisspost">
 
 <div class="project-header-bar pattern-dots-dense">
 	<div class="h2-wrap">
@@ -103,7 +104,7 @@
 
 	<section class="cs-sec" id="challenge">
 		<p class="kicker source-code-pro"><span class="num">02</span><span class="lbl">The challenge</span></p>
-		<h3>Framing the Challenge</h3>
+		<h3>Could AI answer a decision-maker&rsquo;s questions?</h3>
 		<p>This project is a scrubbed case study derived from work I completed for one of the largest government&#8209;run mail and logistics systems in the world. While the visual design, UX, and UI are entirely new, the journey and business value mirror the kinds of strategic questions that the LLM&#8209;powered generative AI assistant can help answer.</p>
 		<p class="cs-callout"><b>Framing Question</b>How can Swiss Post decision&#8209;makers leverage AI tools to quickly generate insights in performance, sales, marketing, and logistics&mdash;driving smarter business decisions?</p>
 		<p>To begin, I conducted comparative market research into Swiss Post&rsquo;s brand identity, rooted in Helvetica and Swiss design principles, and explored how those traditions of clarity and precision could inform a modern AI interface.</p>
@@ -114,7 +115,7 @@
 
 	<section class="cs-sec" id="persona">
 		<p class="kicker source-code-pro"><span class="num">03</span><span class="lbl">Persona</span></p>
-		<h3>Designing the Persona</h3>
+		<h3>Warm, but still trustworthy</h3>
 		<p>Drawing from brand research, I sketched concepts for the AI&rsquo;s visual persona.</p>
 		<p>We set out to create an AI identity that feels warm and approachable while maintaining reliability and trust. Should the AI avatar lean anthropomorphic, suggesting friendliness? Or remain abstract, signaling neutrality and focus?</p>
 		<p class="cs-callout"><b>Guiding Question</b>What visual symbol best represents a tool that engages naturally&mdash;free from the rigid, mechanical feel often associated with artificial intelligence?</p>
@@ -124,7 +125,7 @@
 
 	<section class="cs-sec" id="atoms">
 		<p class="kicker source-code-pro"><span class="num">04</span><span class="lbl">System</span></p>
-		<h3>Atomic Design Foundations</h3>
+		<h3>Start with the smallest pieces</h3>
 		<p>The design team adopted an atomic design approach, starting with elemental UI units&mdash;buttons, inputs, icons&mdash;and progressively assembling them into larger &ldquo;molecules,&rdquo; then full interactive components.</p>
 		<p>This modular system ensured consistency and scalability across the product.</p>
 	</section>
@@ -133,7 +134,7 @@
 
 	<section class="cs-sec" id="journeys">
 		<p class="kicker source-code-pro"><span class="num">05</span><span class="lbl">Journeys</span></p>
-		<h3>Building Journeys</h3>
+		<h3>From atoms to journeys</h3>
 		<p>With a solid atomic foundation, we combined UI atoms into molecules that support specific user journeys. Like an alphabet forming words and sentences, these molecules created a coherent, extensible GUI, providing clean UX/UI.</p>
 	</section>
 
@@ -141,7 +142,7 @@
 
 	<section class="cs-sec" id="desktop">
 		<p class="kicker source-code-pro"><span class="num">06</span><span class="lbl">Desktop</span></p>
-		<h3>Desktop Experience</h3>
+		<h3>Ask, answer, correct course</h3>
 		<p>We illustrated key scenarios of the AI tool in desktop view:</p>
 		<ul class="cs-list">
 			<li>Landing page introducing the AI assistant.</li>
@@ -161,7 +162,7 @@
 
 	<section class="cs-sec" id="responsive">
 		<p class="kicker source-code-pro"><span class="num">07</span><span class="lbl">Responsive</span></p>
-		<h3>Responsive Design</h3>
+		<h3>The same assistant on every screen</h3>
 		<p>We extended the design system to tablet and mobile, ensuring the AI experience remained seamless across touchpoints.</p>
 	</section>
 
@@ -169,11 +170,11 @@
 
 	<section class="cs-sec" id="next">
 		<p class="kicker source-code-pro"><span class="num">08</span><span class="lbl">Next steps</span></p>
-		<h3>Discussion and Next Steps</h3>
+		<h3>What I&rsquo;d test next</h3>
 		<p>If deployed, the product lifecycle would include:</p>
 		<ul class="cs-list"><li>Usability testing and analytics to identify pain points.</li><li>Iterative improvements based on evidence&#8209;driven design.</li><li>Amplification of positive interactions uncovered in data.</li></ul>
 		<p class="cs-callout"><b>Future Considerations</b>Which digital touchpoint&mdash;mobile, tablet, laptop, desktop&mdash;dominates usage? Prioritize UX/UI optimization accordingly. Investigate low&#8209;engagement touchpoints: are they contextual or design&#8209;related? Refine usability to encourage adoption.</p>
-		<p>Caveat: This fictitious scenario is based on a real proof of concept. In practice, early design&#8209;thinking research&mdash;interviews, pain point mapping, demand assessment to identify if this tool will truly solve existing user problems&mdash;would be essential before product design begins.</p>
+		<p><strong>Proof of concept, not proof of value.</strong> This fictitious scenario is based on a real proof of concept. In practice, early design&#8209;thinking research&mdash;interviews, pain point mapping, demand assessment to identify if this tool will truly solve existing user problems&mdash;would be essential before product design begins.</p>
 	</section>
 
 	<p class="cs-back"><a class="text-link" href="index-test.html">Back to Home</a></p>
