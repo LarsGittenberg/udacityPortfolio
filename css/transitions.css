@@ -1,0 +1,47 @@
+/* =====================================================================
+   PAGE TRANSITIONS: a project card's headline flies into the project page's big title, and back again.
+   (Cross-document view transitions: Chrome, Edge and Safari do it; any other browser just loads the page normally.
+    They only run over http(s), never from a file:// address.)
+
+   HOW IT WORKS: a "view transition" morphs one named element on the old page into the element with the SAME name on the new page.
+     - On a category page, the card whose button points at a project names its headline <project>-title (the first list below).
+     - On the project page, <main data-project="..."> names the big vertical title the same way (the second list).
+   Every name must be unique on its page, or the browser silently cancels the transition. That is why each page only ever names its own end.
+
+   TO ADD A PROJECT: add one line to each list below, and put data-project="<name>" on the project page's <main>.
+   Link this file only on the category pages and the project pages. The home page and About are left out on purpose.
+
+   Timing is the guide's "things that move" pair (--t-base, --ease-soft). Reduced motion: no animation at all.
+   ===================================================================== */
+@view-transition { navigation: auto; }
+
+/* the cards: the card whose button starts with this file name (so it keeps working when "-test" comes off at go-live) */
+.featured-project-card:has(a[href^="tnecd"]) h3 { view-transition-name: tnecd-title; }
+.featured-project-card:has(a[href^="pride"]) h3 { view-transition-name: pride-title; }
+.featured-project-card:has(a[href^="45"]) h3 { view-transition-name: p45-title; }
+.featured-project-card:has(a[href^="newsletter"]) h3 { view-transition-name: newsletter-title; }
+.featured-project-card:has(a[href^="swisspost"]) h3 { view-transition-name: swisspost-title; }
+.featured-project-card:has(a[href^="styleguide"]) h3 { view-transition-name: styleguide-title; }
+.featured-project-card:has(a[href^="print"]) h3 { view-transition-name: print-title; }
+.featured-project-card:has(a[href^="ads"]) h3 { view-transition-name: ads-title; }
+.featured-project-card:has(a[href^="icons"]) h3 { view-transition-name: icons-title; }
+.featured-project-card:has(a[href^="cutouts"]) h3 { view-transition-name: cutouts-title; }
+.featured-project-card:has(a[href^="posed"]) h3 { view-transition-name: posed-title; }
+
+/* the project pages: the big vertical title */
+main[data-project="tnecd"] .project-header-bar h2 { view-transition-name: tnecd-title; }
+main[data-project="pride"] .project-header-bar h2 { view-transition-name: pride-title; }
+main[data-project="45"] .project-header-bar h2 { view-transition-name: p45-title; }
+main[data-project="newsletter"] .project-header-bar h2 { view-transition-name: newsletter-title; }
+main[data-project="swisspost"] .project-header-bar h2 { view-transition-name: swisspost-title; }
+main[data-project="styleguide"] .project-header-bar h2 { view-transition-name: styleguide-title; }
+main[data-project="print"] .project-header-bar h2 { view-transition-name: print-title; }
+main[data-project="ads"] .project-header-bar h2 { view-transition-name: ads-title; }
+main[data-project="icons"] .project-header-bar h2 { view-transition-name: icons-title; }
+main[data-project="cutouts"] .project-header-bar h2 { view-transition-name: cutouts-title; }
+main[data-project="posed"] .project-header-bar h2 { view-transition-name: posed-title; }
+
+/* timing */
+::view-transition-group(*) { animation-duration: var(--t-base); animation-timing-function: var(--ease-soft); }
+::view-transition-old(root), ::view-transition-new(root) { animation-duration: var(--t-base); }
+@media (prefers-reduced-motion: reduce) { ::view-transition-group(*), ::view-transition-old(*), ::view-transition-new(*) { animation: none !important; } }

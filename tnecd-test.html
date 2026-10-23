@@ -27,6 +27,7 @@
   <link rel="stylesheet" href="css/reskin-blue.css"> <!-- replaces ui.css and main.css on this test page -->
 
   <link rel="stylesheet" href="css/card-pages.css"> <!-- the header, band, title and card spacing that the category pages share -->
+  <link rel="stylesheet" href="css/transitions.css"> <!-- the card-to-title morph between category pages and project pages -->
   <link rel="stylesheet" href="css/case-study.css"> <!-- the case-study story: Column and Rail layouts -->
   <script src="js/layout-switch.js"></script> <!-- picks the layout before paint, builds the rail and the Column | Rail pill -->
 
@@ -83,7 +84,7 @@
 	</div>
 </div><!--end band-->
 
-<main>
+<main data-project="tnecd">
 
 <div class="project-header-bar pattern-dots-dense">
 	<div class="h2-wrap">
@@ -114,9 +115,9 @@
 		<p class="kicker source-code-pro"><span class="num">03</span><span class="lbl">Research</span></p>
 		<h3>Listening to the focus groups</h3>
 		<p>MP&amp;F conducted focus group interviews and shared the transcripts with the design team. We analyzed these conversations, surfacing pain points, user sentiment, and actionable insights about the website experience.</p>
-		<div class="cs-pain"><h4 class="source-code-pro">Pain Point #1</h4><p>Regional economic development leaders use the website to promote their counties, but struggle to fully leverage its content.</p><blockquote><p>&ldquo;My team uses this site to market our infrastructure...[and] wish that the branding and content reflected our county better.&rdquo;</p><cite>&mdash; Tennessee County Chamber of Commerce Leadership</cite></blockquote></div>
-		<div class="cs-pain"><h4 class="source-code-pro">Pain Point #2</h4><p>Content owners report that the site no longer meets their marketing and communications needs.</p><blockquote><p>&ldquo;...important content that we should willingly share with [prospective] companies is hidden behind subscription requests...[as an additional example] this brochure call-to-action is hard to find.&rdquo;</p><cite>&mdash; Tennessee Department of Economic and Community Development Leadership</cite></blockquote></div>
-		<div class="cs-pain"><h4 class="source-code-pro">Pain Point #3</h4><p>Third-party real-estate site selectors hired by prospective companies cite difficult-to-find content as a major pain point.</p><blockquote><p>&ldquo;In the selection process [to help companies decide where to build their plant] some states get overlooked because content and information is unavailable or hard to find&mdash;incentives and grants, for example.&rdquo;</p><cite>&mdash; Site Selector Leadership, Americas Consulting | Location Incentives</cite></blockquote></div>
+		<div class="cs-pain"><h4 class="source-code-pro">Pain Point #1</h4><p>Regional economic development leaders use the website to promote their counties, but struggle to fully leverage its content.</p><figure class="quote quote--bar"><blockquote><p>&ldquo;My team uses this site to market our infrastructure...[and] wish that the branding and content reflected our county better.&rdquo;</p></blockquote><figcaption>&mdash; Tennessee County Chamber of Commerce Leadership</figcaption></figure></div>
+		<div class="cs-pain"><h4 class="source-code-pro">Pain Point #2</h4><p>Content owners report that the site no longer meets their marketing and communications needs.</p><figure class="quote quote--bar"><blockquote><p>&ldquo;...important content that we should willingly share with [prospective] companies is hidden behind subscription requests...[as an additional example] this brochure call-to-action is hard to find.&rdquo;</p></blockquote><figcaption>&mdash; Tennessee Department of Economic and Community Development Leadership</figcaption></figure></div>
+		<div class="cs-pain"><h4 class="source-code-pro">Pain Point #3</h4><p>Third-party real-estate site selectors hired by prospective companies cite difficult-to-find content as a major pain point.</p><figure class="quote quote--bar"><blockquote><p>&ldquo;In the selection process [to help companies decide where to build their plant] some states get overlooked because content and information is unavailable or hard to find&mdash;incentives and grants, for example.&rdquo;</p></blockquote><figcaption>&mdash; Site Selector Leadership, Americas Consulting | Location Incentives</figcaption></figure></div>
 	</section>
 
 	<section class="cs-sec" id="approach">
@@ -128,7 +129,7 @@
 	<figure class="cs-fig"><img loading="lazy" src="images/tnecd/tnecd_atomic_design.webp" width="1953" height="553" alt="Atomic design elements for the TNECD redesign: buttons, cards and modules"><figcaption>Above: Early examples of the atomic design elements.</figcaption></figure>
 
 	<section class="cs-sec" id="solution-1" data-rail="Solution 1">
-		<p class="kicker source-code-pro"><span class="num">05</span><span class="lbl">Solution</span></p>
+		<p class="kicker source-code-pro"><span class="num">05</span><span class="lbl">Solution 1</span></p>
 		<h3>Put counties front and center</h3>
 		<p>The team proposed a user experience that places regional economic development leaders&rsquo; counties and infrastructure front and center. This was achieved by positioning key content on the homepage and throughout high-impact pages in the user journey.</p>
 	</section>
@@ -136,7 +137,7 @@
 	<figure class="cs-fig cs-fig--tall"><img loading="lazy" src="images/tnecd/pain_point_solution_one.webp" width="1433" height="1529" alt="Annotated partial screenshot of the Business Climate page showing regions, county map and certified sites"><figcaption>Above: Partial screenshot of the key page, Business Climate. A) Create and place content that showcases the strengths of the three grand regions of Tennessee. B) Sequentially, allow the user to dive deeper with an interactive tool that allows them to see and select the counties of the state, along with quick facts associated with the area. C) Coordinate communications to market shovel-ready certified sites that the regional leaders want featured. With this approach, the website can feature each of the regions and multiple counties, empowering regional leaders with a centralized website and communications platform that represents the whole of Tennessee.</figcaption></figure>
 
 	<section class="cs-sec" id="solution-2" data-rail="Solutions 2 &amp; 3">
-		<p class="kicker source-code-pro"><span class="num">06</span><span class="lbl">Solution</span></p>
+		<p class="kicker source-code-pro"><span class="num">06</span><span class="lbl">Solutions 2 &amp; 3</span></p>
 		<h3>Make high-value content impossible to miss</h3>
 		<p>Whether it was TNECD&rsquo;s team struggling to get key content in front of prospects, or site selectors overlooking Tennessee because incentives were hard to find, the fix was the same: make high-value content impossible to miss. Our designs gave incentives and grants real estate on the homepage, clear signposting in the navigation, and placement on high-traffic pages.</p>
 	</section>
@@ -150,6 +151,11 @@
 	</section>
 
 	<figure class="cs-fig cs-fig--pair"><img loading="lazy" src="images/tnecd/before.webp" width="2000" height="335" alt="Laptops showing the old TNECD.com pages"><img loading="lazy" src="images/tnecd/after.webp" width="2000" height="336" alt="Laptops showing the new TNECD.com pages"><figcaption>Above: Select pages of TNECD.com before and after the redesign.</figcaption></figure>
+
+	<figure class="quote pull-quote">
+		<blockquote><p>&ldquo;This first pass is so beautiful. It&rsquo;s pretty awesome. It&rsquo;s so clean, refreshing, navigable. I want to be on this website.&rdquo;</p></blockquote>
+		<figcaption>&mdash; <strong>TNECD client</strong></figcaption>
+	</figure>
 
 	<p class="cs-back"><a class="text-link" href="index-test.html">Back to Home</a></p>
 </article>

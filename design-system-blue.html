@@ -130,6 +130,9 @@
   <p class="note">Hover a track to feel it. Each ball travels the same distance; only the token changes. The hero entrance, the arrow button and the old toggle switch have their own timings on purpose.</p>
   <div class="ds-motion" id="dsMotion"></div>
 
+  <h3>Page transition: the card-to-title morph</h3>
+  <p class="note">When you click a project card, its headline flies into the project page's big vertical title (and back again with the breadcrumb). It is a <b>cross-document view transition</b>: the browser morphs one <i>named</i> element on the old page into the element with the same name on the new page. The timing is the pair above (<code>--t-base</code>, <code>--ease-soft</code>), so it adds no new token. Everything lives in <code>css/transitions.css</code>; to add a project, add one line to each of its two lists and put <code>data-project="name"</code> on the project page's <code>&lt;main&gt;</code>. Two things to remember: <b>a name must be unique on its page</b> (a duplicate silently cancels the whole transition), and it <b>only runs over http(s)</b>, never from a <code>file://</code> address. Browsers that cannot do it simply load the page normally, and reduced motion switches it off. See it on <a href="webdesign-test.html">webdesign-test.html</a> (open it from <code>http://localhost</code>).</p>
+
   <!-- ===================================================== SHAPES -->
   <h2 id="shapes">05 &middot; Shapes</h2>
   <p class="note">The vocabulary the whole site is cut from. The cut corner is a token: <code>--cut</code> is <b id="dsCut"></b>, with two named shapes, <code>--cut-tr</code> and <code>--cut-tl</code>.</p>
@@ -195,6 +198,43 @@
     <div><div class="ds-ground" style="background:var(--blue);color:var(--cream-text);--kicker-mark:var(--amber)"><p class="kicker source-code-pro" style="margin:0">Wow!</p></div><span class="ds-cap">--kicker-mark: var(--amber) on blue</span></div>
   </div>
 
+  <h3>Quotes: <code>.quote</code></h3>
+  <p class="note">Three voices, one family, each with its own job: <b>small</b> for evidence inside a story, <b>big</b> for a statement, <b>card</b> for praise from a named person. Every quote is a <code>&lt;figure class="quote"&gt;</code> holding a real <code>&lt;blockquote&gt;</code> and a <code>&lt;figcaption&gt;</code> for the attribution. A blockquote carries no look of its own; the voice is a class. The attribution is one recipe for all three: <code>--fs-xs</code>, tracked caps, bold name, written <code>&mdash; &lt;strong&gt;Who&lt;/strong&gt;, role</code>, colour inherited from the ground. <b>Use <code>&lt;figcaption&gt;</code>, never a bare <code>&lt;footer&gt;</code> or <code>&lt;main&gt;</code></b>: this stylesheet styles those for the site, and a bare one turns into a miniature site footer (found 2026-10-23).</p>
+
+  <p class="note"><b>Small: <code>.quote--bar</code>.</b> A quiet orange bar on the left, Source Code Pro Light. Used on the TNECD pain points.</p>
+  <div class="ds-ground" style="background:var(--ink);color:var(--cream-text)">
+    <figure class="quote quote--bar">
+      <blockquote><p>&ldquo;My team uses this site to market our infrastructure...[and] wish that the branding and content reflected our county better.&rdquo;</p></blockquote>
+      <figcaption>&mdash; <strong>Tennessee County Chamber of Commerce</strong> Leadership</figcaption>
+    </figure>
+  </div>
+  <span class="ds-cap">on a dark ground: the bar and the attribution take the ground's cream</span>
+
+  <p class="note"><b>Big: <code>.pull-quote</code>.</b> One big quote with its attribution, centred, with generous empty space around the pair. Source Code Pro Light at <code>--fs-quote</code>, 26 characters wide, balanced. The space above and below is <code>--quote-space</code>, <b>200px</b> by default (a deliberate negative-space gesture); the specimens here set it to 24px so the page stays compact. Used on the About page and at the end of the TNECD case study.</p>
+  <div class="ds-ground" style="background:var(--ink);color:var(--cream-text);--quote-space:24px">
+    <figure class="quote pull-quote">
+      <blockquote><p>&ldquo;This first pass is so beautiful. It&rsquo;s pretty awesome. It&rsquo;s so clean, refreshing, navigable. I want to be on this website.&rdquo;</p></blockquote>
+      <figcaption>&mdash; <strong>TNECD client</strong></figcaption>
+    </figure>
+  </div>
+  <span class="ds-cap">on a dark ground (the site's own): cream text</span>
+  <div class="ds-ground" style="background:var(--paper);color:var(--ink);--quote-space:24px;margin-top:14px">
+    <figure class="quote pull-quote">
+      <blockquote><p>&ldquo;I design with data, curiosity, and a belief that the best ideas arrive when you leave room for thoughtful, rule&#8209;bending play.&rdquo;</p></blockquote>
+      <figcaption>&mdash; <strong>me</strong>, but I don&rsquo;t always sound like this :)</figcaption>
+    </figure>
+  </div>
+  <span class="ds-cap">on a light ground: ink text, same component</span>
+
+  <p class="note"><b>Card: <code>.quote--card</code>.</b> A panel with a Doto quote mark hanging over its top edge. Add <code>.panel</code> and a corner (<code>.panel--cut-tl</code> or <code>.panel--cut-tr</code>); the colours come from the panel variables (paper with a magenta shadow by default). <code>--qm-size</code> sets the size of the quote mark, which hangs 0.38em above the card, so leave that much room above it. Used on the About page (two cards, each with its own colours).</p>
+  <div class="ds-ground" style="padding-top:calc(clamp(7rem, 12vw, 12rem) * 0.38 + 18px)">
+    <figure class="quote quote--card panel panel--cut-tl" style="max-width:560px">
+      <blockquote><p>&ldquo;This first pass is so beautiful. It&rsquo;s pretty awesome. It&rsquo;s so clean, refreshing, navigable. I want to be on this website.&rdquo;</p></blockquote>
+      <figcaption>&mdash; <strong>L.B.</strong>, public sector client</figcaption>
+    </figure>
+  </div>
+  <span class="ds-cap">default colours: paper, magenta shadow, no tilt (a page sets <code>--tilt</code> and its own colours)</span>
+
   <h3>Panel: <code>.panel</code></h3>
   <p class="note">A block of colour with one cut corner, a slight tilt and a hard shadow. Set it with variables (<code>--panel-bg</code>, <code>--panel-ink</code>, <code>--panel-shadow</code>, <code>--tilt</code>, and <code>--panel-offset</code> for a bigger shadow); pick the corner with <code>.panel--cut-tr</code> or <code>.panel--cut-tl</code>. Padding and hover belong to the page. The project cards share the same rule (a card is a panel with a border, a hover lift and its own six-colour cycle), so the cycle below sets the same <code>--panel-bg</code>, <code>--panel-ink</code> and <code>--panel-shadow</code>.</p>
   <div class="ds-grounds" style="padding:0 16px 24px 0">
@@ -219,6 +259,7 @@
     <tr><td>Title pillar (page name)</td><td>card-pages.css <code>.project-header-bar h2</code>, <code>--fs-title</code></td><td><a href="photography-test.html">photography-test.html</a></td></tr>
     <tr><td>Pancake + circle menu</td><td>reskin-blue.css <code>.menu-icon-container</code>, <code>#myNav</code>; js/design.js</td><td>every test page</td></tr>
     <tr><td>Footer</td><td>reskin-blue.css <code>footer</code>, <code>footer p.footer</code></td><td>bottom of any test page</td></tr>
+    <tr><td>Card-to-title morph</td><td>css/transitions.css; <code>data-project</code> on each project page's <code>&lt;main&gt;</code></td><td>click any card on <a href="webdesign-test.html">webdesign-test.html</a> (over http, not file)</td></tr>
     <tr><td>Hero</td><td>reskin-blue.css hero rules; index-test.html inline</td><td><a href="index-test.html">index-test.html</a></td></tr>
   </table></div>
 

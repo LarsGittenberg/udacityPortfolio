@@ -27,6 +27,7 @@
   <link rel="stylesheet" href="css/reskin-blue.css"> <!-- replaces ui.css and main.css on this test page -->
 
   <link rel="stylesheet" href="css/card-pages.css"> <!-- the header, band, title and card spacing that the category pages share -->
+  <link rel="stylesheet" href="css/transitions.css"> <!-- the card-to-title morph between category pages and project pages -->
 
   <style>
   /* this page's band colour (mint): background, text, and the three shape colours */
@@ -97,6 +98,10 @@
   .gl-index a em { font-style: normal; color: var(--gold); }
   .gl-index a:hover, .gl-index a.is-here { color: var(--gold); }
   .gl-index a.is-here { border-left-color: var(--magenta); }   /* a fixed-width bar, so the labels never shift */
+  /* the rail look (C) matches the case-study rail: no hairlines; the active link is a paper block with a magenta bar and a half-circle right end */
+  html.look-c .gl-index a { border-top: 0; padding: 9px 10px 9px 12px; border-radius: 0 60px 60px 0; transition: color var(--t-quick) ease, background-color var(--t-quick) ease, border-color var(--t-quick) ease; }
+  html.look-c .gl-index a.is-here { background: var(--paper); color: var(--ink); }
+  html.look-c .gl-index a.is-here em { color: inherit; }   /* the gold count would be hard to read on paper */
   .gl-cat { max-width: 100%; margin: 0 0 clamp(56px, 8vw, 110px); scroll-margin-top: 110px; }
   .gl-cat h3 { margin: 0 0 14px; font-family: var(--font-body); font-weight: 600; font-size: var(--fs-heading); line-height: 1.02; letter-spacing: -0.03em; }
   .gl-cat > p { max-width: 62ch; margin: 0 0 1.4em; font-size: var(--fs-l); line-height: 1.65; }
@@ -153,7 +158,7 @@
 	</div>
 </div><!--end band-->
 
-<main>
+<main data-project="icons">
 
 <div class="project-header-bar pattern-dots-dense">
 	<div class="h2-wrap">
