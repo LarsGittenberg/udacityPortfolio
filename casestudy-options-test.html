@@ -12,7 +12,7 @@
     gtag('config', 'G-2QV625FZN6');
   </script>
 
-  <title>TEST: case study layout options (TNECD) | Lawrence Getubig</title>
+  <title>TEST: case study with a reader layout switch (TNECD) | Lawrence Getubig</title>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="theme-color" content="#feb013">
@@ -27,6 +27,8 @@
   <link rel="stylesheet" href="css/reskin-blue.css"> <!-- replaces ui.css and main.css on this test page -->
 
   <link rel="stylesheet" href="css/card-pages.css"> <!-- the header, band, title and card spacing that the category pages share -->
+  <link rel="stylesheet" href="css/case-study.css"> <!-- the case-study story: Column and Rail layouts -->
+  <script src="js/layout-switch.js"></script> <!-- picks the layout before paint, builds the rail and the Column | Rail pill -->
 
   <style>
   /* this page's band colour (magenta): background, text, and the three shape colours */
@@ -46,80 +48,6 @@
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
   <script src="js/noframework.waypoints.min.js"></script>
 
-<style>
-  /* =====================================================================
-     CASE STUDY LAYOUT OPTIONS (throwaway). Same markup, three layouts. "A" needs no html class; B = html.look-b; C = html.look-c.
-     Everything uses the real design-system tokens and components (.kicker, .text-link, the heading and type tokens, hard shadows, cut corners).
-     ===================================================================== */
-  .cs { position: relative; padding: clamp(24px, 4vw, 56px) var(--pad) clamp(60px, 8vw, 120px) clamp(8px, 2vw, 28px); max-width: 1040px; }
-  @media (min-width: 900px) { main > .cs { grid-column: 2; } }
-  .cs h3 { margin: 0 0 14px; font-family: var(--font-body); font-weight: 600; font-size: var(--fs-heading); line-height: 1.02; letter-spacing: -0.03em; }
-  .cs h4 { margin: 30px 0 8px; font-weight: 400; font-size: var(--fs-s); letter-spacing: .12em; text-transform: uppercase; color: var(--orange); }
-  .cs p { margin: 0 0 1em; font-size: var(--fs-l); line-height: 1.65; }
-  .cs ul { margin: 0; padding: 0; list-style: none; }
-  .cs-role li { padding: 8px 0; border-bottom: 1px solid #ffffff30; font-family: var(--font-mono); font-size: var(--fs-l); }
-  .cs-crumb { display: flex; flex-wrap: wrap; gap: 6px 0; margin: 0 0 clamp(30px, 4vw, 56px); font-family: var(--font-mono); font-size: var(--fs-s); letter-spacing: .14em; text-transform: uppercase; }
-  .cs-crumb a { color: var(--paper); text-decoration: none; }
-  .cs-crumb a::after { content: "\2192"; margin: 0 .8em; color: var(--magenta); }
-  .cs-crumb a:hover { color: var(--gold); }
-  .cs-fig { margin: clamp(32px, 5vw, 72px) 0; }
-  .cs-fig img { display: block; width: 100%; height: auto; }
-  .cs-fig figcaption { max-width: 70ch; margin-top: 12px; font-family: var(--font-mono); font-size: var(--fs-s); letter-spacing: .04em; line-height: 1.55; opacity: .85; }
-  .cs-fig--pair img + img { margin-top: 14px; }
-  .cs-fig--tall img { max-width: min(100%, 640px); }
-  .cs blockquote { margin: 14px 0 0; }
-  .cs cite { display: block; margin-top: 8px; font-family: var(--font-mono); font-size: var(--fs-s); font-style: normal; letter-spacing: .06em; text-transform: uppercase; color: var(--gold); }
-  .cs-back { margin: 60px 0 0; }
-  .cs-index { display: none; }
-
-  /* ---------- A: EDITORIAL COLUMN: calm, one readable column, wide figures, quotes with a magenta bar ---------- */
-  .cs-sec { max-width: 68ch; margin: 0 0 clamp(36px, 5vw, 72px); }
-  .cs blockquote { padding-left: 20px; border-left: 6px solid var(--magenta); }
-  .cs blockquote p { font-family: var(--font-mono); font-weight: 300; font-size: var(--fs-quote); line-height: 1.3; letter-spacing: -0.03em; }
-  .cs blockquote p { font-size: clamp(1.1rem, 2.2vw, 1.5rem); }
-
-  /* ---------- B: PANEL SPREAD: every section is a tilted cut-corner panel; figures get cut corners and hard shadows ---------- */
-  html.look-b .cs-sec { max-width: none; padding: clamp(26px, 3vw, 44px); margin-bottom: clamp(48px, 6vw, 84px); background: var(--panel-bg); color: var(--panel-ink, var(--ink)); box-shadow: var(--shadow-l) var(--shadow-l) 0 var(--panel-shadow, var(--amber)); transform: rotate(var(--tilt, 0deg)); border-radius: var(--cut-tr); }
-  html.look-b .cs-sec p { max-width: 62ch; }
-  html.look-b .cs-sec:nth-of-type(1) { --panel-bg: var(--amber); --panel-shadow: var(--paper); --tilt: -0.8deg; }
-  html.look-b .cs-sec:nth-of-type(2) { --panel-bg: var(--paper); --tilt: 0.7deg; border-radius: var(--cut-tl); }
-  html.look-b .cs-sec:nth-of-type(3) { --panel-bg: var(--mint); --tilt: -0.5deg; }
-  html.look-b .cs-sec:nth-of-type(4) { --panel-bg: var(--blue); --panel-ink: var(--cream-text); --kicker-mark: var(--amber); --tilt: 0.9deg; border-radius: var(--cut-tl); }
-  html.look-b .cs-sec:nth-of-type(5) { --panel-bg: var(--teal); --panel-ink: var(--cream-text); --kicker-mark: var(--gold); --tilt: -0.6deg; }
-  html.look-b .cs-sec:nth-of-type(6) { --panel-bg: var(--purple); --panel-ink: var(--cream-text); --kicker-mark: var(--gold); --tilt: 0.5deg; border-radius: var(--cut-tl); }
-  html.look-b .cs-sec:nth-of-type(7) { --panel-bg: var(--orange); --panel-shadow: var(--paper); --tilt: -0.7deg; }
-  html.look-b .cs-sec h4 { color: inherit; opacity: .9; }
-  html.look-b .cs blockquote { margin-top: 14px; padding: 14px 18px; background: var(--paper); color: var(--ink); border-left: 0; border: 3px solid var(--ink); box-shadow: var(--shadow-s) var(--shadow-s) 0 var(--magenta); }
-  html.look-b .cs blockquote cite { color: var(--ink); opacity: .8; }
-
-  /* ---------- C: RAIL + CONTENT: a sticky section index on the left, the story on the right (from 900px up) ---------- */
-  @media (min-width: 900px) {
-    html.look-c .cs { display: grid; grid-template-columns: minmax(150px, 190px) minmax(0, 1fr); column-gap: clamp(28px, 4vw, 64px); max-width: 1160px; align-items: start; }
-    html.look-c .cs > .cs-crumb { grid-column: 1 / -1; }
-    html.look-c .cs > :not(.cs-crumb):not(.cs-index) { grid-column: 2; }
-    html.look-c .cs-index { display: flex; flex-direction: column; grid-column: 1; grid-row: 2 / span 30; position: sticky; top: 110px; font-family: var(--font-mono); font-size: var(--fs-xs); letter-spacing: .14em; text-transform: uppercase; }
-    html.look-c .cs-index a { padding: 9px 0; border-top: 1px solid #ffffff30; color: var(--paper); text-decoration: none; }
-    html.look-c .cs-index a:hover { color: var(--gold); }
-    html.look-c .cs-sec { max-width: none; padding-top: 22px; border-top: 3px solid var(--paper); }
-    html.look-c .cs-sec p { max-width: 66ch; }
-  }
-  html.look-c .cs blockquote { padding: 16px 20px; background: var(--paper); color: var(--ink); border-left: 0; box-shadow: var(--shadow-s) var(--shadow-s) 0 var(--magenta); border-radius: var(--cut-tr); }
-  html.look-c .cs blockquote cite { color: var(--ink); opacity: .8; }
-
-  .look-switch { position: fixed; right: 16px; bottom: 16px; z-index: 300; display: flex; flex-wrap: wrap; justify-content: flex-end; gap: 6px; max-width: calc(100vw - 32px); padding: 8px; background: var(--ink); border: 2px solid var(--paper); font-family: var(--font-mono); color: var(--paper); }
-  .look-switch button { font: inherit; font-size: var(--fs-xs); letter-spacing: .1em; text-transform: uppercase; padding: 6px 10px; border: 2px solid var(--paper); background: transparent; color: var(--paper); cursor: pointer; }
-  .look-switch button[aria-pressed="true"] { background: var(--paper); color: var(--ink); }
-  .look-switch .note { flex-basis: 100%; text-align: right; font-size: var(--fs-xs); letter-spacing: .05em; opacity: .9; }
-</style>
-<style>
-  /* ===== D: RAIL + WIDE FIGURES. It is look C plus these overrides (the switcher puts BOTH look-c and look-d on the page).
-     The text keeps its reading measure; the rail is slimmer; the figures use the whole content column and bleed toward the right edge. ===== */
-  @media (min-width: 900px) {
-    html.look-d .cs { grid-template-columns: minmax(118px, 140px) minmax(0, 1fr); column-gap: clamp(20px, 2.4vw, 32px); max-width: none; }
-    html.look-d .cs-index { letter-spacing: .1em; }
-    html.look-d .cs > .cs-fig, html.look-d .cs > .cs-pair, html.look-d .cs > .cs-shots { margin-right: calc(var(--pad) * -0.6); }
-  }
-</style>
 </head>
 
 <body class="card-page">
@@ -167,9 +95,6 @@
 <article class="cs">
 	<nav class="cs-crumb" aria-label="Breadcrumb"><a href="index-test.html">Home</a><a href="webdesign-test.html">Web Design</a><span aria-current="page">TNECD.com Site Redesign</span></nav>
 
-	<nav class="cs-index" aria-label="In this case study">
-		<a href="#role">Role</a><a href="#challenge">The challenge</a><a href="#research">Research</a><a href="#approach">Design approach</a><a href="#solution-1">Solution 1</a><a href="#solution-2">Solutions 2 and 3</a><a href="#live">Live site</a>
-	</nav>
 
 	<section class="cs-sec cs-role" id="role">
 		<p class="kicker source-code-pro">01 &middot; Role</p>
@@ -202,7 +127,7 @@
 
 	<figure class="cs-fig"><img loading="lazy" src="images/tnecd/tnecd_atomic_design.webp" width="1953" height="553" alt="Atomic design elements for the TNECD redesign: buttons, cards and modules"><figcaption>Above: Early examples of the atomic design elements.</figcaption></figure>
 
-	<section class="cs-sec" id="solution-1">
+	<section class="cs-sec" id="solution-1" data-rail="Solution 1">
 		<p class="kicker source-code-pro">05 &middot; Solution</p>
 		<h3>Pain Point #1 Solution</h3>
 		<p>The team proposed a user experience that places regional economic development leaders&rsquo; counties and infrastructure front and center. This was achieved by positioning key content on the homepage and throughout high-impact pages in the user journey.</p>
@@ -210,7 +135,7 @@
 
 	<figure class="cs-fig cs-fig--tall"><img loading="lazy" src="images/tnecd/pain_point_solution_one.webp" width="1433" height="1529" alt="Annotated partial screenshot of the Business Climate page showing regions, county map and certified sites"><figcaption>Above: Partial screenshot of the key page, Business Climate. A) Create and place content that showcases the strengths of the three grand regions of Tennessee. B) Sequentially, allow the user to dive deeper with an interactive tool that allows them to see and select the counties of the state, along with quick facts associated with the area. C) Coordinate communications to market shovel-ready certified sites that the regional leaders want featured. With this approach, the website can feature each of the regions and multiple counties, empowering regional leaders with a centralized website and communications platform that represents the whole of Tennessee.</figcaption></figure>
 
-	<section class="cs-sec" id="solution-2">
+	<section class="cs-sec" id="solution-2" data-rail="Solutions 2 &amp; 3">
 		<p class="kicker source-code-pro">06 &middot; Solution</p>
 		<h3>Pain Points #2 &amp; #3 Solution</h3>
 		<p>Whether it was TNECD&rsquo;s team struggling to get key content in front of prospects, or site selectors overlooking Tennessee because incentives were hard to find, the fix was the same: make high-value content impossible to miss. Our designs gave incentives and grants real estate on the homepage, clear signposting in the navigation, and placement on high-traffic pages.</p>
@@ -262,22 +187,5 @@ stats"></a></div></noscript>
 <!-- End of StatCounter Code for Default Guide -->
 
 
-<!-- ===== VARIANT SWITCHER (throwaway): the case study layout ===== -->
-<div class="look-switch" role="group" aria-label="Case study layout">
-  <button type="button" data-look="a">A &middot; Editorial column</button>
-  <button type="button" data-look="b">B &middot; Panel spread</button>
-  <button type="button" data-look="c">C &middot; Rail + content</button>
-  <button type="button" data-look="d">D &middot; Rail, wide figures</button>
-  <span class="note" id="lookNote"></span>
-</div>
-<script>
-(function () {
-  var root = document.documentElement, buttons = document.querySelectorAll('.look-switch button'), looks = ['a', 'b', 'c', 'd'], note = document.getElementById('lookNote');
-  var NOTES = { a: 'one calm reading column; wide figures; quotes with a magenta bar', b: 'every section a tilted cut-corner panel, like the about page and the cards', c: 'sticky section index on the left (from 900px up); the story on the right', d: 'rail + wide figures: look C with a slimmer rail, and the images wider than the text (from 900px up)' };
-  function show(look) { looks.forEach(function (l) { root.classList.remove('look-' + l); }); if (look !== 'a') root.classList.add('look-' + look); if (look === 'd') root.classList.add('look-c'); buttons.forEach(function (b) { b.setAttribute('aria-pressed', b.dataset.look === look); }); note.textContent = NOTES[look]; }
-  buttons.forEach(function (b) { b.addEventListener('click', function () { show(b.dataset.look); }); });
-  var asked = new URLSearchParams(location.search).get('look'); show(looks.indexOf(asked) > -1 ? asked : 'a');
-})();
-</script>
 </body>
 </html>

@@ -698,3 +698,16 @@ footer::after {
 .btn:hover .btn-arrow .wing {
   opacity: 1;
 }
+
+/* =====================================================================
+   READER LAYOUT PILL (a site component): used by every page with a Column | Rail choice (case studies and statement galleries).
+   js/layout-switch.js builds it; the layout styles live in css/case-study.css and css/gallery.css.
+   ===================================================================== */
+/* Column | Rail, floating at the bottom right. Hidden below 900px, where there is no rail to choose */
+.lay-switch { display: none; position: fixed; right: 16px; bottom: 16px; z-index: 300; flex-direction: column; align-items: center; gap: 8px; padding: 8px; background: var(--paper); color: var(--ink); border: 2px solid var(--ink); font-family: var(--font-mono); } /* a tan pill: dark ink on light paper reads crisper at this size than cream on black */
+.lay-switch button { font: inherit; font-size: var(--fs-xs); letter-spacing: .1em; text-transform: uppercase; padding: 6px 10px; border: 2px solid var(--ink); background: transparent; color: var(--ink); cursor: pointer; transition: background var(--t-quick) ease, color var(--t-quick) ease; }
+.lay-switch button:hover { background: var(--gold); } /* the link highlight's gold */
+.lay-switch button[aria-pressed="true"] { background: var(--ink); color: var(--paper); } /* the chosen layout stays ink, even under the pointer */
+.lay-switch .note { white-space: nowrap; text-align: center; font-size: var(--fs-xs); letter-spacing: .1em; text-transform: uppercase; } /* the caption on top, in capitals like the buttons; the pill is two stacked rows, centred, so the box is as wide as the wider row */
+.lay-btns { display: flex; gap: 6px; }
+@media (min-width: 900px) { .lay-switch { display: flex; } }

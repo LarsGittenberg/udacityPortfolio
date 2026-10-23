@@ -2,7 +2,7 @@
    CASE STUDY LAYOUT: one story, two ways to read it.
    COLUMN (the base styles below): one calm reading column, wide figures.
    RAIL (html.look-rail, switched on by js/layout-switch.js): the same story, with a sticky section index on the left (from 900px up).
-   The reader chooses with the Column | Rail pill at the bottom right. Phones (below 900px) always read the column.
+   The reader chooses with the Column | Rail pill at the bottom right (its styles live in css/reskin-blue.css, with the other site components). Phones (below 900px) always read the column.
    Uses the real design-system tokens from css/reskin-blue.css (colours, type scale, shadows, --pad).
    ===================================================================== */
 
@@ -45,6 +45,17 @@
 @media (max-width: 700px) { .cs-shots { grid-template-columns: 1fr; } }
 .cs-shots .cs-fig { margin: 0; }
 
+/* two small pictures side by side (one column on small screens) */
+.cs-pair { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 24px; align-items: end; margin: clamp(32px, 5vw, 72px) 0; }
+@media (max-width: 700px) { .cs-pair { grid-template-columns: 1fr; } }
+.cs-pair .cs-fig { margin: 0; }
+
+/* a half-width, near-square picture */
+.cs-fig--half img { max-width: min(100%, 480px); }
+
+/* bold lead-ins inside list items */
+.cs-list li b { font-weight: 600; }
+
 /* the section index only exists in RAIL mode */
 .cs-index { display: none; }
 
@@ -60,9 +71,3 @@
   html.look-rail .cs-sec { scroll-margin-top: 110px; } /* a jumped-to heading lands clear of the top of the window */
   html.look-rail .cs-sec p { max-width: 66ch; }
 }
-
-/* ---------- THE READER'S PILL: Column | Rail, floating at the bottom right. Hidden below 900px, where there is no rail to choose ---------- */
-.lay-switch { display: none; position: fixed; right: 16px; bottom: 16px; z-index: 300; gap: 6px; padding: 8px; background: var(--ink); border: 2px solid var(--paper); font-family: var(--font-mono); }
-.lay-switch button { font: inherit; font-size: var(--fs-xs); letter-spacing: .1em; text-transform: uppercase; padding: 6px 10px; border: 2px solid var(--paper); background: transparent; color: var(--paper); cursor: pointer; }
-.lay-switch button[aria-pressed="true"] { background: var(--paper); color: var(--ink); }
-@media (min-width: 900px) { .lay-switch { display: flex; } }
