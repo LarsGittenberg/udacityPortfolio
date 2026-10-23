@@ -6,7 +6,7 @@
      1. Picks the layout BEFORE the page paints, so nobody sees the wrong layout flash by.
         Order of choice: ?layout=column or ?layout=rail in the address, then the reader's saved choice, then the default (rail).
      2. Case studies only: builds the rail (the section index) from the sections themselves: every  <section class="cs-sec" id="...">  becomes a link.
-        The label is the kicker's name with its number dropped ("02 · The challenge" becomes "The challenge").
+        The label is the kicker's name without its numeral (the .lbl in <span class="num">02</span><span class="lbl">The challenge</span>).
         To use different wording, put  data-rail="My wording"  on the section.
      3. Adds the Column | Rail pill, and remembers the reader's choice (browser storage, which can be blocked, so it is wrapped in try/catch).
      4. Keeps the reader's place when the layout changes: the line of text at the reading line stays where it was in the window, so the screen never jumps.
@@ -40,7 +40,8 @@
         var a = document.createElement('a');
         var kicker = s.querySelector('.kicker');
         a.href = '#' + s.id;
-        a.textContent = s.getAttribute('data-rail') || (kicker ? kicker.textContent.replace(/^\s*\d+\s*\u00b7\s*/, '') : s.id);
+        var lbl = s.querySelector('.kicker .lbl'); /* the kicker's label, without its numeral; older markup ("01 \u00b7 Role" as plain text) still works */
+        a.textContent = s.getAttribute('data-rail') || (lbl ? lbl.textContent : kicker ? kicker.textContent.replace(/^\s*\d+\s*\u00b7\s*/, '') : s.id);
         rail.appendChild(a);
       });
       var crumb = cs.querySelector('.cs-crumb');
