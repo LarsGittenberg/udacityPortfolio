@@ -24,12 +24,11 @@
 	<link rel="apple-touch-icon" href="/apple-touch-icon.png">
 
   <!-- CSS -->
-  <link rel="stylesheet" href="css/reskin-blue.css"> <!-- replaces ui.css and main.css on this test page -->
-
-  <link rel="stylesheet" href="css/card-pages.css"> <!-- the header, band, title and card spacing that the category pages share -->
-  <link rel="stylesheet" href="css/transitions.css"> <!-- the card-to-title morph between category pages and project pages -->
-  <link rel="stylesheet" href="css/case-study.css"> <!-- the case-study story: Column and Rail layouts -->
-  <script src="js/layout-switch.js"></script> <!-- picks the layout before paint, builds the rail and the Column | Rail pill -->
+  <!-- the skin switch picks the skin before paint and writes that skin's stylesheets (js/skin-switch.js): 2017 = the old stylesheets plus the 2017 overlays, 1986 = blue -->
+  <script src="js/skin-switch.js" data-2017="css/ui.css,css/main.css,css/transitions.css,css/common-2017.css,css/case-study-2017.css" data-1986="css/reskin-blue.css,css/card-pages.css,css/transitions.css,css/case-study.css"></script>
+  <link rel="stylesheet" href="css/skin-switch.css"> <!-- the switch itself looks the same in both skins, so it has its own file, loaded after the skin -->
+  <noscript><link rel="stylesheet" href="css/ui.css"><link rel="stylesheet" href="css/main.css"><link rel="stylesheet" href="css/transitions.css"><link rel="stylesheet" href="css/common-2017.css"><link rel="stylesheet" href="css/case-study-2017.css"></noscript> <!-- without JavaScript: the default skin (2017) -->
+  <script src="js/layout-switch.js"></script> <!-- picks the layout before paint and adds the Column | Rail pill (the 2017 skin hides the pill and the rail: css/case-study-2017.css) -->
 
   <style>
   /* this page's band colour (magenta): background, text, and the three shape colours */
@@ -73,7 +72,7 @@
 <header class="pattern-dots-sparse">
 	<div class="header-container">
 		<h1 class="doto-lg">Lawrence Getubig</h1>
-		<p>Creative Technologist<br>in Product Design</p>
+		<p>Creative Technologist <br>in Product Design</p>
 	</div><!--end header container-->
 </header>
 
@@ -93,71 +92,87 @@
 	</div>
 </div>
 
-<article class="cs">
-	<nav class="cs-crumb" aria-label="Breadcrumb"><a href="index-test.html" onclick="gtag('event', 'breadcrumb_click', { breadcrumb_item: 'home', from_page: window.location.pathname });">Home</a><a href="webdesign-test.html" onclick="gtag('event', 'breadcrumb_click', { breadcrumb_item: 'web_design', from_page: window.location.pathname });">Web Design</a><span aria-current="page">TNECD.com Site Redesign</span></nav>
+<article class="cs csl pattern-grid-small">
+	<nav class="cs-crumb info-box" aria-label="Breadcrumb"><a href="index-test.html" onclick="gtag('event', 'breadcrumb_click', { breadcrumb_item: 'home', from_page: window.location.pathname });">Home</a><a href="webdesign-test.html" onclick="gtag('event', 'breadcrumb_click', { breadcrumb_item: 'web_design', from_page: window.location.pathname });">Web Design</a><span aria-current="page">TNECD.com Site Redesign</span></nav>
 
 
-	<section class="cs-sec cs-role" id="role">
+	<div class="intro-row indent-left indent-right">
+	<section class="cs-sec cs-role info-box" id="role">
+		<div class="info-box-left role">
 		<p class="kicker source-code-pro"><span class="num">01</span><span class="lbl">Role</span></p>
 		<ul><li>Web Designer</li><li>Visual Designer</li><li>UX/UI Designer</li></ul>
+		</div>
 	</section>
 
-	<section class="cs-sec" id="challenge">
+	<section class="cs-sec info-box" id="challenge">
+		<div class="info-box-left">
 		<p class="kicker source-code-pro"><span class="num">02</span><span class="lbl">The challenge</span></p>
 		<h3>A 10-year-old front door</h3>
 		<p>As the digital storefront for Tennessee&rsquo;s economic development efforts&mdash;including $49B+ in foreign investment and 160K+ jobs&mdash;the TNECD.com (Tennessee Department of Economic and Community Development) website plays a critical role in shaping first impressions and guiding strategic conversations. TNECD engaged Accenture Song and Nashville-based creative agency <a class="text-link" href="https://www.mpf.com" target="_blank" aria-label="MP&F website (opens in a new tab)" onclick="gtag('event', 'outbound_click', { destination: 'mpf', from_page: window.location.pathname });">MP&amp;F</a> to refresh the brand and website. At over 10 years old, the site no longer reflected the dynamic, evolving identity of the state.</p>
 		<p>Working under MP&amp;F&rsquo;s creative leadership, I served as the visual and UX/UI designer: I created the design proposals, built the design system in Figma, and helped shape the content architecture from stakeholder research.</p>
+		</div>
 	</section>
+	</div><!--end intro row-->
 
-	<figure class="cs-fig"><img src="images/tnecd/olddesign.webp" width="2100" height="1223" alt="Homepage of the TNECD website before the redesign"><figcaption>Above: Homepage of TNECD.com before the redesign.</figcaption></figure>
+	<figure class="cs-fig indent-left"><img class="two-thirds" src="images/tnecd/olddesign.webp" width="2100" height="1223" alt="Homepage of the TNECD website before the redesign"><figcaption class="caption float-left">Above: Homepage of TNECD.com before the redesign.</figcaption></figure>
 
-	<section class="cs-sec" id="research">
+	<section class="cs-sec info-box indent-right" id="research">
+		<div class="info-box-right">
 		<p class="kicker source-code-pro"><span class="num">03</span><span class="lbl">Research</span></p>
 		<h3>Listening to the focus groups</h3>
 		<p>MP&amp;F conducted focus group interviews and shared the transcripts with the design team. We analyzed these conversations, surfacing pain points, user sentiment, and actionable insights about the website experience.</p>
 		<div class="cs-pain"><h4 class="source-code-pro">Pain Point #1</h4><p>Regional economic development leaders use the website to promote their counties, but struggle to fully leverage its content.</p><figure class="quote quote--small"><blockquote><p>&ldquo;My team uses this site to market our infrastructure...[and] wish that the branding and content reflected our county better.&rdquo;</p></blockquote><figcaption>&mdash; Tennessee County Chamber of Commerce Leadership</figcaption></figure></div>
 		<div class="cs-pain"><h4 class="source-code-pro">Pain Point #2</h4><p>Content owners report that the site no longer meets their marketing and communications needs.</p><figure class="quote quote--small"><blockquote><p>&ldquo;...important content that we should willingly share with [prospective] companies is hidden behind subscription requests...[as an additional example] this brochure call-to-action is hard to find.&rdquo;</p></blockquote><figcaption>&mdash; Tennessee Department of Economic and Community Development Leadership</figcaption></figure></div>
 		<div class="cs-pain"><h4 class="source-code-pro">Pain Point #3</h4><p>Third-party real-estate site selectors hired by prospective companies cite difficult-to-find content as a major pain point.</p><figure class="quote quote--small"><blockquote><p>&ldquo;In the selection process [to help companies decide where to build their plant] some states get overlooked because content and information is unavailable or hard to find&mdash;incentives and grants, for example.&rdquo;</p></blockquote><figcaption>&mdash; Site Selector Leadership, Americas Consulting | Location Incentives</figcaption></figure></div>
+		</div>
 	</section>
 
-	<section class="cs-sec" id="approach">
+	<section class="cs-sec info-box indent-left" id="approach">
+		<div class="info-box-left">
 		<p class="kicker source-code-pro"><span class="num">04</span><span class="lbl">Approach</span></p>
 		<h3>A design system from scratch</h3>
 		<p>The creative director and MP&amp;F team provided the new TNECD logo, color palette, and typography. From this baseline brand guideline, I built a design system library from scratch using an atomic design approach.</p>
+		</div>
 	</section>
 
-	<figure class="cs-fig"><img loading="lazy" src="images/tnecd/tnecd_atomic_design.webp" width="1953" height="553" alt="Atomic design elements for the TNECD redesign: buttons, cards and modules"><figcaption>Above: Early examples of the atomic design elements.</figcaption></figure>
+	<figure class="cs-fig"><img loading="lazy" src="images/tnecd/tnecd_atomic_design.webp" width="1953" height="553" alt="Atomic design elements for the TNECD redesign: buttons, cards and modules"><figcaption class="caption">Above: Early examples of the atomic design elements.</figcaption></figure>
 
-	<section class="cs-sec" id="solution-1" data-rail="Solution 1">
+	<section class="cs-sec info-box indent-right" id="solution-1" data-rail="Solution 1">
+		<div class="info-box-right">
 		<p class="kicker source-code-pro"><span class="num">05</span><span class="lbl">Solution 1</span></p>
 		<h3>Put counties front and center</h3>
 		<p>The team proposed a user experience that places regional economic development leaders&rsquo; counties and infrastructure front and center. This was achieved by positioning key content on the homepage and throughout high-impact pages in the user journey.</p>
+		</div>
 	</section>
 
-	<figure class="cs-fig cs-fig--tall"><img loading="lazy" src="images/tnecd/pain_point_solution_one.webp" width="1433" height="1529" alt="Annotated partial screenshot of the Business Climate page showing regions, county map and certified sites"><figcaption>Above: Partial screenshot of the key page, Business Climate. A) Create and place content that showcases the strengths of the three grand regions of Tennessee. B) Sequentially, allow the user to dive deeper with an interactive tool that allows them to see and select the counties of the state, along with quick facts associated with the area. C) Coordinate communications to market shovel-ready certified sites that the regional leaders want featured. With this approach, the website can feature each of the regions and multiple counties, empowering regional leaders with a centralized website and communications platform that represents the whole of Tennessee.</figcaption></figure>
+	<figure class="cs-fig cs-fig--tall"><img class="two-thirds tablet-float-left" loading="lazy" src="images/tnecd/pain_point_solution_one.webp" width="1433" height="1529" alt="Annotated partial screenshot of the Business Climate page showing regions, county map and certified sites"><figcaption class="caption float-left">Above: Partial screenshot of the key page, Business Climate. A) Create and place content that showcases the strengths of the three grand regions of Tennessee. B) Sequentially, allow the user to dive deeper with an interactive tool that allows them to see and select the counties of the state, along with quick facts associated with the area. C) Coordinate communications to market shovel-ready certified sites that the regional leaders want featured. With this approach, the website can feature each of the regions and multiple counties, empowering regional leaders with a centralized website and communications platform that represents the whole of Tennessee.</figcaption></figure>
 
-	<section class="cs-sec" id="solution-2" data-rail="Solutions 2 &amp; 3">
+	<section class="cs-sec info-box" id="solution-2" data-rail="Solutions 2 &amp; 3">
+		<div class="info-box-left indent-left">
 		<p class="kicker source-code-pro"><span class="num">06</span><span class="lbl">Solutions 2 &amp; 3</span></p>
 		<h3>Make high-value content impossible to miss</h3>
 		<p>Whether it was TNECD&rsquo;s team struggling to get key content in front of prospects, or site selectors overlooking Tennessee because incentives were hard to find, the fix was the same: make high-value content impossible to miss. Our designs gave incentives and grants real estate on the homepage, clear signposting in the navigation, and placement on high-traffic pages.</p>
+		</div>
 	</section>
 
-	<figure class="cs-fig cs-fig--tall"><img loading="lazy" src="images/tnecd/pain_point_solution_two.webp" width="952" height="1019" alt="Annotated partial screenshot of the TNECD homepage highlighting the Incentives and Grants section"><figcaption>Above: Partial screenshot of the homepage. A) We ensured that incentives and grants content had real estate on the homepage, as well as visibility (through visual design) on other key, high-traffic pages.</figcaption></figure>
+	<figure class="cs-fig cs-fig--tall"><img class="two-thirds tablet-float-right" loading="lazy" src="images/tnecd/pain_point_solution_two.webp" width="952" height="1019" alt="Annotated partial screenshot of the TNECD homepage highlighting the Incentives and Grants section"><figcaption class="caption center">Above: Partial screenshot of the homepage. A) We ensured that incentives and grants content had real estate on the homepage, as well as visibility (through visual design) on other key, high-traffic pages.</figcaption></figure>
 
-	<section class="cs-sec" id="live">
+	<section class="cs-sec cs-sec--gold info-box indent-left" id="live">
+		<div class="info-box-left">
 		<p class="kicker source-code-pro"><span class="num">07</span><span class="lbl">Result</span></p>
 		<h3>A new front door</h3>
 		<p>The redesigned TNECD.com is live and now serves as the front door for Tennessee&rsquo;s pitch to global companies. <a class="text-link" href="https://tnecd.com" target="_blank" aria-label="Visit TNECD.com (opens in a new tab)" onclick="gtag('event', 'outbound_click', { destination: 'tnecd', from_page: window.location.pathname });">Visit TNECD.com</a></p>
+		</div>
 	</section>
 
-	<figure class="cs-fig cs-fig--pair"><img loading="lazy" src="images/tnecd/before.webp" width="2000" height="335" alt="Laptops showing the old TNECD.com pages"><img loading="lazy" src="images/tnecd/after.webp" width="2000" height="336" alt="Laptops showing the new TNECD.com pages"><figcaption>Above: Select pages of TNECD.com before and after the redesign.</figcaption></figure>
+	<figure class="cs-fig cs-fig--pair"><img class="img-inset" loading="lazy" src="images/tnecd/before.webp" width="2000" height="335" alt="Laptops showing the old TNECD.com pages"><img class="img-inset" loading="lazy" src="images/tnecd/after.webp" width="2000" height="336" alt="Laptops showing the new TNECD.com pages"><figcaption class="tablet-float-left caption">Above: Select pages of TNECD.com before and after the redesign.</figcaption></figure>
 
 	<figure class="quote pull-quote">
 		<blockquote><p>&ldquo;This first pass is so beautiful. It&rsquo;s pretty awesome. It&rsquo;s so clean, refreshing, navigable. I want to be on this website.&rdquo;</p></blockquote>
 		<figcaption>&mdash; <strong>TNECD client</strong></figcaption>
 	</figure>
 
-	<p class="cs-back"><a class="text-link" href="index-test.html" onclick="gtag('event', 'footer_click', { footer_item: 'home', from_page: window.location.pathname });">Back to Home</a></p>
+	<p class="cs-back back-link" style="--back-link-nudge: 24px"><a class="text-link" href="index-test.html" onclick="gtag('event', 'footer_click', { footer_item: 'home', from_page: window.location.pathname });">Back to Home</a></p>
 </article>
 
 </main>
