@@ -107,7 +107,7 @@
 </div>
 
 <article class="gl gl--sets">
-	<nav class="gl-crumb" aria-label="Breadcrumb"><a href="index-test.html">Home</a><a href="graphicdesign-test.html">Graphic Design</a><span aria-current="page">Web Icon Illustration</span></nav>
+	<nav class="gl-crumb" aria-label="Breadcrumb"><a href="index-test.html" onclick="gtag('event', 'breadcrumb_click', { breadcrumb_item: 'home', from_page: window.location.pathname });">Home</a><a href="graphicdesign-test.html" onclick="gtag('event', 'breadcrumb_click', { breadcrumb_item: 'graphic_design', from_page: window.location.pathname });">Graphic Design</a><span aria-current="page">Web Icon Illustration</span></nav>
 
 	<section class="gl-rolebox">
 		<p class="kicker source-code-pro">Role</p>
@@ -117,7 +117,7 @@
 	<aside class="gl-side">
 		<p class="kicker source-code-pro">Four icon sets</p>
 		<nav class="gl-index" aria-label="Icon sets"><a href="#holiday"><span>Holiday illustrations</span><em>6</em></a><a href="#fall"><span>Fall campaign</span><em>12</em></a><a href="#math"><span>I ♥ Math campaign</span><em>9</em></a><a href="#grants"><span>Grants and awards</span><em>6</em></a></nav>
-		<p class="gl-back"><a class="text-link" href="graphicdesign-test.html">Back to Graphic Design</a></p>
+		<p class="gl-back"><a class="text-link" href="graphicdesign-test.html" onclick="gtag('event', 'footer_click', { footer_item: 'graphic_design', from_page: window.location.pathname });">Back to Graphic Design</a></p>
 	</aside>
 
 	<section class="gl-cat" id="holiday">
@@ -182,7 +182,7 @@
 		</div>
 	</section>
 
-	<p class="gl-back gl-back--end"><a class="text-link" href="graphicdesign-test.html">Back to Graphic Design</a></p> <!-- the page-end copy: shown in Column mode and on phones -->
+	<p class="gl-back gl-back--end"><a class="text-link" href="graphicdesign-test.html" onclick="gtag('event', 'footer_click', { footer_item: 'graphic_design', from_page: window.location.pathname });">Back to Graphic Design</a></p> <!-- the page-end copy: shown in Column mode and on phones -->
 </article>
 
 </main>

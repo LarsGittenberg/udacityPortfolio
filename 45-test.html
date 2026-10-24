@@ -100,7 +100,7 @@
 </div>
 
 <article class="cs">
-	<nav class="cs-crumb" aria-label="Breadcrumb"><a href="index-test.html">Home</a><a href="webdesign-test.html">Web Design</a><span aria-current="page">45th Parallel Wines</span></nav>
+	<nav class="cs-crumb" aria-label="Breadcrumb"><a href="index-test.html" onclick="gtag('event', 'breadcrumb_click', { breadcrumb_item: 'home', from_page: window.location.pathname });">Home</a><a href="webdesign-test.html" onclick="gtag('event', 'breadcrumb_click', { breadcrumb_item: 'web_design', from_page: window.location.pathname });">Web Design</a><span aria-current="page">45th Parallel Wines</span></nav>
 
 
 	<section class="cs-sec cs-role" id="role">
@@ -162,7 +162,7 @@
 		</ul>
 	</section>
 
-	<p class="cs-back"><a class="text-link" href="index-test.html">Back to Home</a></p>
+	<p class="cs-back"><a class="text-link" href="index-test.html" onclick="gtag('event', 'footer_click', { footer_item: 'home', from_page: window.location.pathname });">Back to Home</a></p>
 </article>
 
 </main>
