@@ -25,4 +25,9 @@
 .gl-side .info-box-left > .gl-back { display: none; } /* the rail's copy of the back link: there is no rail in 2017 (written with the same weight as the rules above, which would otherwise make it inline again) */
 
 /* captions under the photos (new copy: "01 · Dragon"): centred, 14px, like the old gallery's captions */
-.gl figcaption { width: 300px; margin: 0 auto; text-align: center; font-size: var(--body-text-14); } /* as wide as the photo, so it centres under it (the old figcaption rule is 66% wide, written for the About page) */
+.gl figcaption { width: 300px; margin: 8px auto 0; text-align: left; font-size: var(--body-text-14); } /* as wide as the photo and centred under it, so its left edge lines up with the photo's; the text is left-justified with 8px of space above it, as on blue (gallery.css: .gl-grid figcaption). The old figcaption rule is 66% wide, written for the About page */
+
+/* the Role box (Print): the old box is .info-box-left.role (orange, main.css) holding an h3 and a list; blue writes the heading as a kicker, so it takes the old .info-box h3 look:
+   20px on phones; from 890px up 26px, lighter, with a 1.5em line and 20px below (main.css) */
+.gl-rolebox .info-box-left > .kicker { display: block; font-size: var(--heading-20); font-weight: bold; } /* (an h3 is bold by default; a kicker is a paragraph) */
+@media (min-width: 890px) { .gl-rolebox .info-box-left > .kicker { font-size: var(--heading-26); font-weight: lighter; line-height: 1.5em; margin-bottom: 20px; } }

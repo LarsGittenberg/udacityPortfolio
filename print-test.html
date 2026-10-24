@@ -24,21 +24,14 @@
 	<link rel="apple-touch-icon" href="/apple-touch-icon.png">
 
   <!-- CSS -->
-  <link rel="stylesheet" href="css/reskin-blue.css"> <!-- replaces ui.css and main.css on this test page -->
-
-  <link rel="stylesheet" href="css/card-pages.css"> <!-- the header, band, title and card spacing that the category pages share -->
-  <link rel="stylesheet" href="css/transitions.css"> <!-- the card-to-title morph between category pages and project pages -->
-  <link rel="stylesheet" href="css/gallery.css"> <!-- the statement gallery: Column and Rail layouts -->
-  <script src="js/layout-switch.js"></script> <!-- picks the layout before paint and adds the Column | Rail pill -->
-
-  <style>
-  /* this page's band colour (mint): background, text, and the three shape colours */
-  .band { --band-bg: var(--mint); --band-ink: var(--ink); --s1: var(--magenta); --s2: var(--blue); --s3: var(--purple); }
-
-  /* CARD 3 (DRØM): the dome frame is 4:3 and the picture is 5:3, so "cover" cropped the sides and the curve clipped the D and M. "contain" shows the whole picture at 80%;
-     the picture's own amber fills the strips above and below (eyeballed; tune the hex if a seam shows). To undo, delete this rule */
-  #drom { object-fit: contain; background: #fbba40; }
-  </style>
+  <!-- the skin switch picks the skin before paint and writes that skin's stylesheets (js/skin-switch.js).
+       2017 = ui.css + main.css + common-2017.css (what every page needs for blue's shared markup) + gallery-2017.css (the old gallery's look, drawn on the new gallery markup).
+       1986 = blue: reskin-blue.css + card-pages.css + gallery.css (the statement gallery: Column and Rail layouts) + print-1986.css (this page's own CSS, formerly inline).
+       transitions.css (the card-to-title morph between category pages and project pages) belongs to both -->
+  <script src="js/skin-switch.js" data-2017="css/ui.css,css/main.css,css/transitions.css,css/common-2017.css,css/gallery-2017.css" data-1986="css/reskin-blue.css,css/card-pages.css,css/transitions.css,css/gallery.css,css/print-1986.css"></script>
+  <link rel="stylesheet" href="css/skin-switch.css"> <!-- the switch itself looks the same in both skins, so it has its own file, loaded after the skin -->
+  <noscript><link rel="stylesheet" href="css/ui.css"><link rel="stylesheet" href="css/main.css"><link rel="stylesheet" href="css/transitions.css"><link rel="stylesheet" href="css/common-2017.css"><link rel="stylesheet" href="css/gallery-2017.css"></noscript> <!-- without JavaScript: the default skin (2017) -->
+  <script src="js/layout-switch.js"></script> <!-- picks the layout before paint and adds the Column | Rail pill (the 2017 skin hides the pill: css/gallery-2017.css) -->
 
 	<!--fonts-->
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -76,7 +69,7 @@
 <header class="pattern-lines-up-var">
 	<div class="header-container">
 		<h1 class="doto-lg">Lawrence Getubig</h1>
-		<p>Creative Technologist<br>in Product Design</p>
+		<p>Creative Technologist <br>in Product Design</p>
 	</div><!--end header container-->
 </header>
 
@@ -96,31 +89,35 @@
 	</div>
 </div>
 
-<article class="gl">
-	<nav class="gl-crumb" aria-label="Breadcrumb"><a href="index-test.html" onclick="gtag('event', 'breadcrumb_click', { breadcrumb_item: 'home', from_page: window.location.pathname });">Home</a><a href="graphicdesign-test.html" onclick="gtag('event', 'breadcrumb_click', { breadcrumb_item: 'graphic_design', from_page: window.location.pathname });">Graphic Design</a><span aria-current="page">DRØM Print and Marketing</span></nav>
+<article class="gl pattern-grid-small">
+	<nav class="gl-crumb info-box" aria-label="Breadcrumb"><a href="index-test.html" onclick="gtag('event', 'breadcrumb_click', { breadcrumb_item: 'home', from_page: window.location.pathname });">Home</a><a href="graphicdesign-test.html" onclick="gtag('event', 'breadcrumb_click', { breadcrumb_item: 'graphic_design', from_page: window.location.pathname });">Graphic Design</a><span aria-current="page">DRØM Print and Marketing</span></nav>
 
-	<section class="gl-rolebox">
+	<section class="gl-rolebox info-box indent-left">
+		<div class="info-box-left role">
 		<p class="kicker source-code-pro">Role</p>
 		<ul class="gl-role"><li>Graphic Designer</li><li>Illustrator</li><li>Brand Designer</li></ul>
+		</div>
 	</section>
 
-	<aside class="gl-side">
+	<aside class="gl-side info-box indent-left">
+		<div class="info-box-left">
 		<p class="kicker source-code-pro">About the work</p>
 		<p>DRØM Peppercorns was an online mercantile of boutique Kampot Peppercorns, regarded as one of the finest peppercorns in the world. The Shopify based store ran from 2016 to early 2018. The following is a catalogue of print materials designed for their marketing initiatives, developed in conjunction with their online branding, packaging and visual assets from their email campaigns.</p>
 		<p class="gl-count source-code-pro">6 printed pieces</p>
 		<p class="gl-back"><a class="text-link" href="graphicdesign-test.html" onclick="gtag('event', 'footer_click', { footer_item: 'graphic_design', from_page: window.location.pathname });">Back to Graphic Design</a></p> <!-- the rail copy: shown only in Rail mode from 900px up -->
+		</div>
 	</aside>
 
 	<div class="gl-grid gl-grid--wide">
-		<figure><img loading="lazy" src="images/print/drom_original_600.jpg" width="600" height="600" alt="DRØM printed marketing piece: Original"><figcaption>01 &middot; Original</figcaption></figure>
-		<figure><img loading="lazy" src="images/print/drom_infographic_600.jpg" width="600" height="600" alt="DRØM printed marketing piece: Infographic"><figcaption>02 &middot; Infographic</figcaption></figure>
-		<figure><img loading="lazy" src="images/print/drom_bike_600.jpg" width="600" height="600" alt="DRØM printed marketing piece: Bike"><figcaption>03 &middot; Bike</figcaption></figure>
-		<figure><img loading="lazy" src="images/print/drom_news_600.jpg" width="600" height="600" alt="DRØM printed marketing piece: News"><figcaption>04 &middot; News</figcaption></figure>
-		<figure><img loading="lazy" src="images/print/drom_boxes_600.jpg" width="600" height="600" alt="DRØM printed marketing piece: Boxes"><figcaption>05 &middot; Boxes</figcaption></figure>
-		<figure><img loading="lazy" src="images/print/drom_sniff_600.jpg" width="600" height="600" alt="DRØM printed marketing piece: Sniff"><figcaption>06 &middot; Sniff</figcaption></figure>
+		<figure class="flex-container-child-gallery"><img class="gallery-print-img" loading="lazy" src="images/print/drom_original_600.jpg" width="600" height="600" alt="DRØM printed marketing piece: Original"><figcaption>01 &middot; Original</figcaption></figure>
+		<figure class="flex-container-child-gallery"><img class="gallery-print-img" loading="lazy" src="images/print/drom_infographic_600.jpg" width="600" height="600" alt="DRØM printed marketing piece: Infographic"><figcaption>02 &middot; Infographic</figcaption></figure>
+		<figure class="flex-container-child-gallery"><img class="gallery-print-img" loading="lazy" src="images/print/drom_bike_600.jpg" width="600" height="600" alt="DRØM printed marketing piece: Bike"><figcaption>03 &middot; Bike</figcaption></figure>
+		<figure class="flex-container-child-gallery"><img class="gallery-print-img" loading="lazy" src="images/print/drom_news_600.jpg" width="600" height="600" alt="DRØM printed marketing piece: News"><figcaption>04 &middot; News</figcaption></figure>
+		<figure class="flex-container-child-gallery"><img class="gallery-print-img" loading="lazy" src="images/print/drom_boxes_600.jpg" width="600" height="600" alt="DRØM printed marketing piece: Boxes"><figcaption>05 &middot; Boxes</figcaption></figure>
+		<figure class="flex-container-child-gallery"><img class="gallery-print-img" loading="lazy" src="images/print/drom_sniff_600.jpg" width="600" height="600" alt="DRØM printed marketing piece: Sniff"><figcaption>06 &middot; Sniff</figcaption></figure>
 	</div>
 
-	<p class="gl-back gl-back--end"><a class="text-link" href="graphicdesign-test.html" onclick="gtag('event', 'footer_click', { footer_item: 'graphic_design', from_page: window.location.pathname });">Back to Graphic Design</a></p> <!-- the page-end copy: shown in Column mode and on phones -->
+	<p class="gl-back gl-back--end back-link" style="--back-link-nudge: 25px"><a class="text-link" href="graphicdesign-test.html" onclick="gtag('event', 'footer_click', { footer_item: 'graphic_design', from_page: window.location.pathname });">Back to Graphic Design</a></p> <!-- the page-end copy: shown in Column mode and on phones -->
 </article>
 
 </main>
