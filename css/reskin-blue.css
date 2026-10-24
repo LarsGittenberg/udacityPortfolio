@@ -242,7 +242,6 @@ header {
 .header-container {
 	display: flex;
 	align-items: flex-end;
-	gap: clamp(12px, 2vw, 28px);
 }
 .header-container h1 {
 	width: min-content; /* min-content makes "Lawrence" and "Getubig" stack, one word per line */
@@ -280,30 +279,11 @@ main {
 	.flex-container-main { grid-column: 2; }
 }
 
-/* ---------- hero: a diagonal amber slab ---------- */
-div.hero-container {
-	position: relative;
-	display: grid;
-	grid-template-columns: minmax(0, 1.1fr) minmax(0, 1fr);
-	align-items: center;
-	min-height: clamp(460px, 58vw, 800px);
-	margin-top: calc(-1 * clamp(36px, 8vw, 120px));
-	padding: clamp(110px, 13vw, 190px) var(--pad) clamp(70px, 9vw, 130px);
-	background: var(--blue);
-	clip-path: polygon(0 7%, 100% 0, 100% 93%, 0 100%);
-	overflow: hidden;
-	height: auto !important; /* design.js collapses the hero to 0 after the intro; this scouting skin keeps it open */
-}
+/* ---------- hero: the home page's hero lives in css/home-1986.css (the container, the slab, the tagline's size and place); only what it does not set itself is here ---------- */
 div.hero-container.hero-collapsing { transition: none; }
 
 .hero-tagline {
-	grid-column: 1;
-	position: relative;
 	z-index: 3;
-	max-width: 10ch;
-	font-size: clamp(2rem, 6.2vw, 6.6rem);
-	line-height: 0.95;
-	letter-spacing: -0.02em;
 	text-transform: uppercase;
 	color: var(--paper); /* cream on blue (ink on blue would not read) */
 	text-shadow: var(--shadow-s) var(--shadow-s) 0 var(--ink);
@@ -314,7 +294,6 @@ div.hero-container.hero-collapsing { transition: none; }
 .project-header-bar h2 {
 	font-family: var(--font-display);
 	font-weight: 900;
-	font-size: clamp(3rem, 8.4vw, 9.4rem);
 	line-height: 0.85;
 	letter-spacing: -0.02em;
 	text-transform: uppercase;
@@ -325,7 +304,7 @@ div.hero-container.hero-collapsing { transition: none; }
 }
 @media (max-width: 899px) {
 	.project-header-bar { padding: 36px var(--pad) 0; }
-	.project-header-bar h2 { writing-mode: horizontal-tb; transform: none; white-space: normal; font-size: clamp(2.4rem, 11vw, 4.4rem); }
+	.project-header-bar h2 { writing-mode: horizontal-tb; transform: none; white-space: normal; }
 
 	/* BREADCRUMB BEFORE THE TITLE, on phones (case studies and galleries; chosen by eye on 2026-10-24 after an A/B trial): the trail says where you are, then the title says what this is.
 	   The crumb lives inside the <article> and the title bar beside it, and CSS order only reorders siblings, so the article steps aside (display: contents) and its children become <main>'s grid items.
@@ -627,8 +606,6 @@ footer::after {
    ===================================================================== */
 @media (max-width: 899px) {
 	header { padding-left: var(--pad); padding-top: 84px; }
-	div.hero-container { grid-template-columns: 1fr; padding-top: 100px; min-height: 0; }
-	.hero-tagline { max-width: 12ch; margin-bottom: 20px; }
 	.flex-container-main { grid-template-columns: 1fr; padding-left: var(--pad); }
 	.flex-container-child-projects { grid-column: 1 / -1 !important; margin-top: 0 !important; }
 	section.featured-project-card { transform: none; }
