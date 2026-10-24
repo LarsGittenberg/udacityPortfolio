@@ -31,3 +31,10 @@
    20px on phones; from 890px up 26px, lighter, with a 1.5em line and 20px below (main.css) */
 .gl-rolebox .info-box-left > .kicker { display: block; font-size: var(--heading-20); font-weight: bold; } /* (an h3 is bold by default; a kicker is a paragraph) */
 @media (min-width: 890px) { .gl-rolebox .info-box-left > .kicker { font-size: var(--heading-26); font-weight: lighter; line-height: 1.5em; margin-bottom: 20px; } }
+
+/* Retouching: each tile is a 300 x 300 window onto the LEFT half (the finished piece) of an 800 x 400 picture, and hovering the tile shows the RIGHT half (the original),
+   as the old background sprite did (background-position 0 -> -300px). With a real <img>, object-fit: cover scales the picture to the tile's height (800 x 400 -> 600 x 300) and object-position picks the half.
+   On a screen that cannot hover, js/before-after.js adds .is-before on a tap (and keyboard focus works too): small extras the old page did not have */
+.gl-ba img.gallery-retouch-photo { width: 300px; height: 300px; object-fit: cover; object-position: left center; } /* (the old 300px size came from photography.css, a stylesheet of per-photo background rules that the new pages do not load) */
+.gl-ba img.gallery-retouch-photo:hover, .gl-ba:focus-visible img.gallery-retouch-photo, .gl-ba.is-before img.gallery-retouch-photo { object-position: right center; }
+.gl-side .info-box-left > p.small-font { display: block; } /* the hint ("Hover over it...") on its own line, orange and small, as the old "Hover on images for before and after" */

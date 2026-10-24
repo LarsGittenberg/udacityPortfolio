@@ -24,18 +24,14 @@
 	<link rel="apple-touch-icon" href="/apple-touch-icon.png">
 
   <!-- CSS -->
-  <link rel="stylesheet" href="css/reskin-blue.css"> <!-- replaces ui.css and main.css on this test page -->
-
-  <link rel="stylesheet" href="css/card-pages.css"> <!-- the header, band, title and card spacing that the category pages share -->
-  <link rel="stylesheet" href="css/transitions.css"> <!-- the card-to-title morph between category pages and project pages -->
-  <link rel="stylesheet" href="css/gallery.css"> <!-- the statement gallery: Column and Rail layouts -->
-  <script src="js/layout-switch.js"></script> <!-- picks the layout before paint and adds the Column | Rail pill -->
-  <script src="js/before-after.js" defer></script> <!-- on touch screens a tap flips a photograph between before and after -->
-
-  <style>
-  /* this page's band colour (blue): background, text, and the three shape colours */
-  .band { --band-bg: var(--blue); --band-ink: var(--cream-text); --s1: var(--amber); --s2: var(--mint); --s3: var(--orange); }
-  </style>
+  <!-- the skin switch picks the skin before paint and writes that skin's stylesheets (js/skin-switch.js).
+       2017 = ui.css + main.css + common-2017.css (what every page needs for blue's shared markup) + gallery-2017.css (the old gallery's look, drawn on the new gallery markup).
+       1986 = blue: reskin-blue.css + card-pages.css + gallery.css (the statement gallery: Column and Rail layouts) + retouch-1986.css (this page's own CSS, formerly inline).
+       transitions.css (the card-to-title morph between category pages and project pages) belongs to both -->
+  <script src="js/skin-switch.js" data-2017="css/ui.css,css/main.css,css/transitions.css,css/common-2017.css,css/gallery-2017.css" data-1986="css/reskin-blue.css,css/card-pages.css,css/transitions.css,css/gallery.css,css/retouch-1986.css"></script>
+  <link rel="stylesheet" href="css/skin-switch.css"> <!-- the switch itself looks the same in both skins, so it has its own file, loaded after the skin -->
+  <noscript><link rel="stylesheet" href="css/ui.css"><link rel="stylesheet" href="css/main.css"><link rel="stylesheet" href="css/transitions.css"><link rel="stylesheet" href="css/common-2017.css"><link rel="stylesheet" href="css/gallery-2017.css"></noscript> <!-- without JavaScript: the default skin (2017) -->
+  <script src="js/layout-switch.js"></script> <!-- picks the layout before paint and adds the Column | Rail pill (the 2017 skin hides the pill: css/gallery-2017.css) -->
 
 	<!--fonts-->
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -73,7 +69,7 @@
 <header class="pattern-dots-sparse">
 	<div class="header-container">
 		<h1 class="doto-lg">Lawrence Getubig</h1>
-		<p>Creative Technologist<br>in Product Design</p>
+		<p>Creative Technologist <br>in Product Design</p>
 	</div><!--end header container-->
 </header>
 
@@ -93,42 +89,44 @@
 	</div>
 </div>
 
-<article class="gl">
-	<nav class="gl-crumb" aria-label="Breadcrumb"><a href="index-test.html" onclick="gtag('event', 'breadcrumb_click', { breadcrumb_item: 'home', from_page: window.location.pathname });">Home</a><a href="photography-test.html" onclick="gtag('event', 'breadcrumb_click', { breadcrumb_item: 'photography', from_page: window.location.pathname });">Photography</a><span aria-current="page">Photoshop Retouching</span></nav>
+<article class="gl pattern-grid-small">
+	<nav class="gl-crumb info-box" aria-label="Breadcrumb"><a href="index-test.html" onclick="gtag('event', 'breadcrumb_click', { breadcrumb_item: 'home', from_page: window.location.pathname });">Home</a><a href="photography-test.html" onclick="gtag('event', 'breadcrumb_click', { breadcrumb_item: 'photography', from_page: window.location.pathname });">Photography</a><span aria-current="page">Photoshop Retouching</span></nav>
 
-	<aside class="gl-side">
+	<aside class="gl-side info-box indent-left">
+		<div class="info-box-left">
 		<p class="kicker source-code-pro">About the work</p>
 		<p>Composite and retouch digital photography using industry standard retouching techniques.</p>
-		<p>Each photograph opens on the finished piece. Hover over it, or tap it, to see the original.</p>
+		<p class="orange-color-font small-font">Each photograph opens on the finished piece. Hover over it, or tap it, to see the original.</p>
 		<p class="gl-count source-code-pro">21 before-and-afters</p>
 		<p class="gl-back"><a class="text-link" href="photography-test.html" onclick="gtag('event', 'footer_click', { footer_item: 'photography', from_page: window.location.pathname });">Back to Photography</a></p> <!-- the rail copy: shown only in Rail mode from 900px up -->
+		</div>
 	</aside>
 
 	<div class="gl-grid">
-		<figure class="gl-ba" tabindex="0"><img loading="lazy" src="images/retouch/anika.jpg" width="800" height="400" alt="Retouching example 01: the finished photograph (left half) and the original (right half)"></figure>
-		<figure class="gl-ba" tabindex="0"><img loading="lazy" src="images/retouch/sujo.jpg" width="800" height="400" alt="Retouching example 02: the finished photograph (left half) and the original (right half)"></figure>
-		<figure class="gl-ba" tabindex="0"><img loading="lazy" src="images/retouch/stephanie.jpg" width="800" height="400" alt="Retouching example 03: the finished photograph (left half) and the original (right half)"></figure>
-		<figure class="gl-ba" tabindex="0"><img loading="lazy" src="images/retouch/wedding.jpg" width="800" height="400" alt="Retouching example 04: the finished photograph (left half) and the original (right half)"></figure>
-		<figure class="gl-ba" tabindex="0"><img loading="lazy" src="images/retouch/kathy.jpg" width="800" height="400" alt="Retouching example 05: the finished photograph (left half) and the original (right half)"></figure>
-		<figure class="gl-ba" tabindex="0"><img loading="lazy" src="images/retouch/juris.jpg" width="800" height="400" alt="Retouching example 06: the finished photograph (left half) and the original (right half)"></figure>
-		<figure class="gl-ba" tabindex="0"><img loading="lazy" src="images/retouch/apa.jpg" width="800" height="400" alt="Retouching example 07: the finished photograph (left half) and the original (right half)"></figure>
-		<figure class="gl-ba" tabindex="0"><img loading="lazy" src="images/retouch/boxer1.jpg" width="800" height="400" alt="Retouching example 08: the finished photograph (left half) and the original (right half)"></figure>
-		<figure class="gl-ba" tabindex="0"><img loading="lazy" src="images/retouch/nico.jpg" width="800" height="400" alt="Retouching example 09: the finished photograph (left half) and the original (right half)"></figure>
-		<figure class="gl-ba" tabindex="0"><img loading="lazy" src="images/retouch/aiden.jpg" width="800" height="400" alt="Retouching example 10: the finished photograph (left half) and the original (right half)"></figure>
-		<figure class="gl-ba" tabindex="0"><img loading="lazy" src="images/retouch/kevin.jpg" width="800" height="400" alt="Retouching example 11: the finished photograph (left half) and the original (right half)"></figure>
-		<figure class="gl-ba" tabindex="0"><img loading="lazy" src="images/retouch/hobbes.jpg" width="800" height="400" alt="Retouching example 12: the finished photograph (left half) and the original (right half)"></figure>
-		<figure class="gl-ba" tabindex="0"><img loading="lazy" src="images/retouch/family.jpg" width="800" height="400" alt="Retouching example 13: the finished photograph (left half) and the original (right half)"></figure>
-		<figure class="gl-ba" tabindex="0"><img loading="lazy" src="images/retouch/boxer2.jpg" width="800" height="400" alt="Retouching example 14: the finished photograph (left half) and the original (right half)"></figure>
-		<figure class="gl-ba" tabindex="0"><img loading="lazy" src="images/retouch/shannon.jpg" width="800" height="400" alt="Retouching example 15: the finished photograph (left half) and the original (right half)"></figure>
-		<figure class="gl-ba" tabindex="0"><img loading="lazy" src="images/retouch/tron.jpg" width="800" height="400" alt="Retouching example 16: the finished photograph (left half) and the original (right half)"></figure>
-		<figure class="gl-ba" tabindex="0"><img loading="lazy" src="images/retouch/jack.jpg" width="800" height="400" alt="Retouching example 17: the finished photograph (left half) and the original (right half)"></figure>
-		<figure class="gl-ba" tabindex="0"><img loading="lazy" src="images/retouch/julia.jpg" width="800" height="400" alt="Retouching example 18: the finished photograph (left half) and the original (right half)"></figure>
-		<figure class="gl-ba" tabindex="0"><img loading="lazy" src="images/retouch/aiden2.jpg" width="800" height="400" alt="Retouching example 19: the finished photograph (left half) and the original (right half)"></figure>
-		<figure class="gl-ba" tabindex="0"><img loading="lazy" src="images/retouch/milette.jpg" width="800" height="400" alt="Retouching example 20: the finished photograph (left half) and the original (right half)"></figure>
-		<figure class="gl-ba" tabindex="0"><img loading="lazy" src="images/retouch/dad.jpg" width="800" height="400" alt="Retouching example 21: the finished photograph (left half) and the original (right half)"></figure>
+		<figure class="gl-ba flex-container-child-gallery" tabindex="0"><img class="gallery-item gallery-retouch-photo" loading="lazy" src="images/retouch/anika.jpg" width="800" height="400" alt="Retouching example 01: the finished photograph (left half) and the original (right half)"></figure>
+		<figure class="gl-ba flex-container-child-gallery" tabindex="0"><img class="gallery-item gallery-retouch-photo" loading="lazy" src="images/retouch/sujo.jpg" width="800" height="400" alt="Retouching example 02: the finished photograph (left half) and the original (right half)"></figure>
+		<figure class="gl-ba flex-container-child-gallery" tabindex="0"><img class="gallery-item gallery-retouch-photo" loading="lazy" src="images/retouch/stephanie.jpg" width="800" height="400" alt="Retouching example 03: the finished photograph (left half) and the original (right half)"></figure>
+		<figure class="gl-ba flex-container-child-gallery" tabindex="0"><img class="gallery-item gallery-retouch-photo" loading="lazy" src="images/retouch/wedding.jpg" width="800" height="400" alt="Retouching example 04: the finished photograph (left half) and the original (right half)"></figure>
+		<figure class="gl-ba flex-container-child-gallery" tabindex="0"><img class="gallery-item gallery-retouch-photo" loading="lazy" src="images/retouch/kathy.jpg" width="800" height="400" alt="Retouching example 05: the finished photograph (left half) and the original (right half)"></figure>
+		<figure class="gl-ba flex-container-child-gallery" tabindex="0"><img class="gallery-item gallery-retouch-photo" loading="lazy" src="images/retouch/juris.jpg" width="800" height="400" alt="Retouching example 06: the finished photograph (left half) and the original (right half)"></figure>
+		<figure class="gl-ba flex-container-child-gallery" tabindex="0"><img class="gallery-item gallery-retouch-photo" loading="lazy" src="images/retouch/apa.jpg" width="800" height="400" alt="Retouching example 07: the finished photograph (left half) and the original (right half)"></figure>
+		<figure class="gl-ba flex-container-child-gallery" tabindex="0"><img class="gallery-item gallery-retouch-photo" loading="lazy" src="images/retouch/boxer1.jpg" width="800" height="400" alt="Retouching example 08: the finished photograph (left half) and the original (right half)"></figure>
+		<figure class="gl-ba flex-container-child-gallery" tabindex="0"><img class="gallery-item gallery-retouch-photo" loading="lazy" src="images/retouch/nico.jpg" width="800" height="400" alt="Retouching example 09: the finished photograph (left half) and the original (right half)"></figure>
+		<figure class="gl-ba flex-container-child-gallery" tabindex="0"><img class="gallery-item gallery-retouch-photo" loading="lazy" src="images/retouch/aiden.jpg" width="800" height="400" alt="Retouching example 10: the finished photograph (left half) and the original (right half)"></figure>
+		<figure class="gl-ba flex-container-child-gallery" tabindex="0"><img class="gallery-item gallery-retouch-photo" loading="lazy" src="images/retouch/kevin.jpg" width="800" height="400" alt="Retouching example 11: the finished photograph (left half) and the original (right half)"></figure>
+		<figure class="gl-ba flex-container-child-gallery" tabindex="0"><img class="gallery-item gallery-retouch-photo" loading="lazy" src="images/retouch/hobbes.jpg" width="800" height="400" alt="Retouching example 12: the finished photograph (left half) and the original (right half)"></figure>
+		<figure class="gl-ba flex-container-child-gallery" tabindex="0"><img class="gallery-item gallery-retouch-photo" loading="lazy" src="images/retouch/family.jpg" width="800" height="400" alt="Retouching example 13: the finished photograph (left half) and the original (right half)"></figure>
+		<figure class="gl-ba flex-container-child-gallery" tabindex="0"><img class="gallery-item gallery-retouch-photo" loading="lazy" src="images/retouch/boxer2.jpg" width="800" height="400" alt="Retouching example 14: the finished photograph (left half) and the original (right half)"></figure>
+		<figure class="gl-ba flex-container-child-gallery" tabindex="0"><img class="gallery-item gallery-retouch-photo" loading="lazy" src="images/retouch/shannon.jpg" width="800" height="400" alt="Retouching example 15: the finished photograph (left half) and the original (right half)"></figure>
+		<figure class="gl-ba flex-container-child-gallery" tabindex="0"><img class="gallery-item gallery-retouch-photo" loading="lazy" src="images/retouch/tron.jpg" width="800" height="400" alt="Retouching example 16: the finished photograph (left half) and the original (right half)"></figure>
+		<figure class="gl-ba flex-container-child-gallery" tabindex="0"><img class="gallery-item gallery-retouch-photo" loading="lazy" src="images/retouch/jack.jpg" width="800" height="400" alt="Retouching example 17: the finished photograph (left half) and the original (right half)"></figure>
+		<figure class="gl-ba flex-container-child-gallery" tabindex="0"><img class="gallery-item gallery-retouch-photo" loading="lazy" src="images/retouch/julia.jpg" width="800" height="400" alt="Retouching example 18: the finished photograph (left half) and the original (right half)"></figure>
+		<figure class="gl-ba flex-container-child-gallery" tabindex="0"><img class="gallery-item gallery-retouch-photo" loading="lazy" src="images/retouch/aiden2.jpg" width="800" height="400" alt="Retouching example 19: the finished photograph (left half) and the original (right half)"></figure>
+		<figure class="gl-ba flex-container-child-gallery" tabindex="0"><img class="gallery-item gallery-retouch-photo" loading="lazy" src="images/retouch/milette.jpg" width="800" height="400" alt="Retouching example 20: the finished photograph (left half) and the original (right half)"></figure>
+		<figure class="gl-ba flex-container-child-gallery" tabindex="0"><img class="gallery-item gallery-retouch-photo" loading="lazy" src="images/retouch/dad.jpg" width="800" height="400" alt="Retouching example 21: the finished photograph (left half) and the original (right half)"></figure>
 	</div>
 
-	<p class="gl-back gl-back--end"><a class="text-link" href="photography-test.html" onclick="gtag('event', 'footer_click', { footer_item: 'photography', from_page: window.location.pathname });">Back to Photography</a></p> <!-- the page-end copy: shown in Column mode and on phones -->
+	<p class="gl-back gl-back--end back-link" style="--back-link-nudge: 25px"><a class="text-link" href="photography-test.html" onclick="gtag('event', 'footer_click', { footer_item: 'photography', from_page: window.location.pathname });">Back to Photography</a></p> <!-- the page-end copy: shown in Column mode and on phones -->
 </article>
 
 </main>
