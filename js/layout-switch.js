@@ -8,6 +8,7 @@
      2. Case studies only: builds the rail (the section index) from the sections themselves: every  <section class="cs-sec" id="...">  becomes a link.
         The label is the kicker's name without its numeral (the .lbl in <span class="num">02</span><span class="lbl">The challenge</span>).
         To use different wording, put  data-rail="My wording"  on the section.
+        The rail also carries a copy of the page's "Back to ..." link (.cs-back) under the index, so the way out stays in reach; the original stays at the foot of the page for Column mode and phones.
      3. Adds the Column | Rail pill, and remembers the reader's choice (browser storage, which can be blocked, so it is wrapped in try/catch).
      4. Keeps the reader's place when the layout changes: the line of text at the reading line stays where it was in the window, so the screen never jumps.
      5. Marks the current section in the rail ("you are here"), and sends a GA4 event when the reader switches.
@@ -48,8 +49,15 @@
         a.textContent = s.getAttribute('data-rail') || (lbl ? lbl.textContent : kicker ? kicker.textContent.replace(/^\s*\d+\s*\u00b7\s*/, '') : s.id);
         rail.appendChild(a);
       });
+      /* the rail lives in a wrapper (.cs-rail), and that wrapper is the pinned part. Under the index goes a copy of the page-end "Back to ..." link, as on the galleries:
+         the rail copy shows in Rail mode (900px and up), the page-end copy in Column mode and on phones (CSS shows one of the two) */
+      var wrap = document.createElement('div');
+      wrap.className = 'cs-rail';
+      wrap.appendChild(rail);
+      var back = cs.querySelector('.cs-back');
+      if (back) { var copy = back.cloneNode(true); copy.classList.add('cs-back--rail'); wrap.appendChild(copy); }
       var crumb = cs.querySelector('.cs-crumb');
-      if (crumb) { crumb.insertAdjacentElement('afterend', rail); } else { cs.insertBefore(rail, cs.firstChild); }
+      if (crumb) { crumb.insertAdjacentElement('afterend', wrap); } else { cs.insertBefore(wrap, cs.firstChild); }
       links = [].slice.call(rail.querySelectorAll('a'));
     }
 

@@ -55,15 +55,18 @@
 /* bold lead-ins inside list items */
 .cs-list li b { font-weight: 600; }
 
-/* the section index only exists in RAIL mode */
-.cs-index { display: none; }
+/* the rail (the section index and the back link under it) only exists in RAIL mode */
+.cs-rail { display: none; }
 
 /* ---------- RAIL: two columns, the index sticks on the left (from 900px up) ---------- */
 @media (min-width: 900px) {
   html.look-rail .cs { display: grid; grid-template-columns: minmax(150px, 190px) minmax(0, 1fr); column-gap: clamp(28px, 4vw, 64px); max-width: 1160px; align-items: start; }
   html.look-rail .cs > .cs-crumb { grid-column: 1 / -1; }
-  html.look-rail .cs > :not(.cs-crumb):not(.cs-index) { grid-column: 2; }
-  html.look-rail .cs-index { display: flex; flex-direction: column; grid-column: 1; grid-row: 2 / span 30; position: sticky; top: 110px; font-family: var(--font-mono); font-size: var(--fs-xs); letter-spacing: .14em; text-transform: uppercase; }
+  html.look-rail .cs > :not(.cs-crumb):not(.cs-rail) { grid-column: 2; }
+  html.look-rail .cs-rail { display: block; grid-column: 1; grid-row: 2 / span 30; position: sticky; top: 110px; } /* the pinned part: the index, and under it the back link */
+  html.look-rail .cs-index { display: flex; flex-direction: column; font-family: var(--font-mono); font-size: var(--fs-xs); letter-spacing: .14em; text-transform: uppercase; }
+  html.look-rail .cs-rail .cs-back { margin: 22px 0 0; } /* the rail copy of the back link (the same gap as the galleries' .gl-back) */
+  html.look-rail .cs > .cs-back { display: none; } /* the page-end copy is for Column mode and phones */
   html.look-rail .cs-index a { padding: 9px 10px 9px 12px; border-left: 4px solid transparent; border-radius: 0 60px 60px 0; color: var(--paper); text-decoration: none; transition: color var(--t-quick) ease, background-color var(--t-quick) ease, border-color var(--t-quick) ease; } /* the transparent bar is always there, so the labels never shift when it turns on; 60px is more than half the height, so the right end is a full half-circle */
   html.look-rail .cs-index a:hover { color: var(--gold); }
   html.look-rail .cs-index a.is-here { background: var(--paper); color: var(--ink); border-left-color: var(--magenta); } /* "you are here": a paper block with a magenta bar and a rounded right end */
