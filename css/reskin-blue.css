@@ -334,6 +334,11 @@ div.hero-container.hero-collapsing { transition: none; }
 	main > :is(.cs, .gl) > :last-child { padding-bottom: clamp(60px, 8vw, 120px); } /* padding, not margin, so it adds to the last paragraph's own bottom margin, as the article's padding did */
 	main > :is(.cs, .gl) > :is(.cs-crumb, .gl-crumb) { order: -1; margin-top: 28px; margin-bottom: 0; }
 	main:has(> :is(.cs, .gl)) > .project-header-bar { padding-bottom: 52px; }
+
+	/* THE NUMERALS NEVER OUTSHOUT THE TITLE (case-study chapters and the gallery sets). The numeral's own size has a 3.6rem floor, while the title keeps shrinking with the screen (11vw), so below about 595px
+	   the "01" overtook the page title (1.44x at 412px). Now the numeral is the smaller of its own size and 85% of the title's: above 595px the first value is already the smaller one, so nothing changes there,
+	   and below it the numeral follows the title (--fs-title-sm), which keeps one source of truth if --h2-scale ever changes */
+	:is(.cs-sec, .gl-cat) .kicker .num { font-size: min(clamp(3.6rem, 6.4vw, 6rem), calc(var(--fs-title-sm) * 0.85)); }
 }
 
 /* =====================================================================
