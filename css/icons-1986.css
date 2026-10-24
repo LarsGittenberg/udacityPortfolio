@@ -2,8 +2,6 @@
    ICONS, 1986 (blue): this page's own CSS, formerly an inline <style> in icons-test.html. It only exists in the 1986 skin (data-1986 in the skin-switch script),
    so it cannot leak into 2017. It loads after reskin-blue.css, card-pages.css, transitions.css and gallery.css, as the inline block always did.
    ===================================================================== */
-  /* this page's band colour (mint): background, text, and the three shape colours */
-  .band { --band-bg: var(--mint); --band-ink: var(--ink); --s1: var(--magenta); --s2: var(--blue); --s3: var(--purple); }
 
   /* ICON SIZE: the four sets were exported with different amounts of transparent margin, so the same box shows circles of different size.
      Measured on the PNGs (visible circle as a share of its box): Holiday 78%, I Love Math 84%, Fall 90%, Grants 100%. Each set is scaled so its circle lands on 90% of the box (Fall's natural size):

@@ -2,8 +2,6 @@
    ABOUT, 1986 (blue): this page's own CSS, formerly an inline <style> in about-test.html. It only exists in the 1986 skin (data-1986 in the skin-switch script),
    so it cannot leak into 2017. It loads after reskin-blue.css and card-pages.css, as the inline block always did.
    ===================================================================== */
-  /* this page's band colour (orange): background, text, and the three shape colours. Ink text, because cream on orange is only about 2:1 contrast (ink on orange is about 8:1) */
-  .band { --band-bg: var(--orange); --band-ink: var(--ink); --s1: var(--mint); --s2: var(--magenta); --s3: var(--paper); } /* --s2 was purple, now magenta; --s3 (every third shape) was yellow, now cream (--paper), which stands out from the orange far better than the yellow did (cream on orange is about 2:1 contrast; yellow was about 1.4:1) */
 
   /* =====================================================================
      ABOUT PAGE: an exhibit-panel spread. Mid-century moves: extreme scale contrast (giant display type beside tiny mono captions),

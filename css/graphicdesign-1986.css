@@ -2,8 +2,6 @@
    GRAPHIC DESIGN, 1986 (blue): this page's own CSS, formerly an inline <style> in graphicdesign-test.html. It only exists in the 1986 skin (data-1986 in the skin-switch script),
    so it cannot leak into 2017. It loads after reskin-blue.css, card-pages.css and transitions.css, as the inline block always did.
    ===================================================================== */
-  /* this page's band colour (mint): background, text, and the three shape colours */
-  .band { --band-bg: var(--mint); --band-ink: var(--ink); --s1: var(--magenta); --s2: var(--blue); --s3: var(--purple); }
 
   /* CARD 3 (DRØM): the dome frame is 4:3 and the picture is 5:3, so "cover" cropped the sides and the curve clipped the D and M. "contain" shows the whole picture at 80%;
      the picture's own amber fills the strips above and below (eyeballed; tune the hex if a seam shows). To undo, delete this rule */

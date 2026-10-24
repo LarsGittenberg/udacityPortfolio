@@ -1,7 +1,0 @@
-/* =====================================================================
-   WEB DESIGN, 1986 (blue): this page's own CSS, formerly an inline <style> in webdesign-test.html. It only exists in the 1986 skin (data-1986 in the skin-switch script),
-   so it cannot leak into 2017. It loads after reskin-blue.css, card-pages.css and transitions.css, as the inline block always did.
-   ===================================================================== */
-  /* this page's band colour (magenta): background, text, and the three shape colours */
-  .band { --band-bg: var(--magenta); --band-ink: var(--cream-text); --s1: var(--amber); --s2: var(--mint); --s3: var(--cream-text); }
-  

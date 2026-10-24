@@ -24,6 +24,14 @@
 .card-page .band-track i:nth-of-type(3n) { color: var(--s3); }
 @media (prefers-reduced-motion: reduce) { .card-page .band-track { animation: none; } }
 
+/* BAND PALETTES: a page picks its band colours by putting a class on its band element, <div class="band band--mint">. A palette is five tokens: the background, the text, and the three shape colours
+   (every third shape takes the next one). Four palettes cover every card page: magenta (Web Design and the case studies), mint (Graphic Design, its galleries, and the Ashoka style guide),
+   blue (Photography and its galleries), orange (About). A fifth colour set would be one more line here, not one more file. */
+.band--magenta { --band-bg: var(--magenta); --band-ink: var(--cream-text); --s1: var(--amber); --s2: var(--mint); --s3: var(--cream-text); }
+.band--mint { --band-bg: var(--mint); --band-ink: var(--ink); --s1: var(--magenta); --s2: var(--blue); --s3: var(--purple); }
+.band--blue { --band-bg: var(--blue); --band-ink: var(--cream-text); --s1: var(--amber); --s2: var(--mint); --s3: var(--orange); }
+.band--orange { --band-bg: var(--orange); --band-ink: var(--ink); --s1: var(--mint); --s2: var(--magenta); --s3: var(--paper); } /* ink text, because cream on orange is only about 2:1 contrast (ink on orange is about 8:1). --s2 was purple, now magenta; --s3 was yellow, now cream (--paper), which stands out from the orange far better than the yellow did (cream on orange is about 2:1 contrast; yellow was about 1.4:1) */
+
 @media (min-width: 900px) {
 	/* band to title = 60px on the widest screens (the home page keeps its own 75px; it does not wear .card-page) */
 	.card-page .project-header-bar { padding-top: 60px; }
