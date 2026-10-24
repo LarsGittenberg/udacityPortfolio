@@ -39,9 +39,8 @@
 .cs-callout { margin: 22px 0; padding: 14px 0 14px 20px; border-left: 6px solid var(--gold); }
 .cs-callout b { display: block; margin-bottom: 6px; font-family: var(--font-mono); font-weight: 400; font-size: var(--fs-s); letter-spacing: .14em; text-transform: uppercase; color: var(--gold); }
 
-/* a row of product screens: a 2 x 2 grid (one column on small screens) */
-.cs-shots { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 28px 24px; margin: clamp(32px, 5vw, 72px) 0; }
-@media (max-width: 700px) { .cs-shots { grid-template-columns: 1fr; } }
+/* product screens, stacked one above the other at the full width of the column (they were a 2 x 2 grid until 2026-10-23: the interface text needs the room). The gap does the spacing, so each figure's own margin is zeroed */
+.cs-shots { display: grid; grid-template-columns: minmax(0, 1fr); gap: clamp(44px, 6vw, 96px); margin: 0 0 clamp(36px, 5vw, 72px); } /* no top margin: the section above already leaves clamp(36px, 5vw, 72px), and in Rail mode (a grid) margins do not merge, so a top margin would double the space above */
 .cs-shots .cs-fig { margin: 0; }
 
 /* two small pictures side by side (one column on small screens) */
