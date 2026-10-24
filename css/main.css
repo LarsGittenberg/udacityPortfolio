@@ -14,7 +14,6 @@
 
 	/* color palette: named by hue; change a value here and the whole site follows */
 	--charcoal: #363636;      /* base background and text-box color */
-	--charcoal-deep: #2c2c2c; /* toned-down card background */
 	--offwhite: #e6e6e6;
 	--white: #FFFFFF;
 	--mint: #66cdaa;          /* links and button hover */
@@ -27,12 +26,6 @@
 
 	/* IMAGE-ASSET COLORS: the color language of the jpg and gif illustrations (the pre-2026 look).
 	   Kept as a reference; these are not meant for web UI */
-	--yellow: #febe13;
-	--light-yellow: #fed361;
-	--mustard: #cb9811;
-	--bright-brown: #7f5f0a;
-	--dull-brown: #785d2f;
-	--dark-brown: #423208;
 
 	/* shadows */
 	--shadow-soft: 5px 5px 3px rgba(0, 0, 0, 0.2);
@@ -52,7 +45,6 @@
 
 	/* weights */
 	--weight-light: 300;
-	--weight-regular: 400;
 	--weight-semibold: 600;
 
 	/* type sizes: the number in each name is the size in px at default browser settings; values are in rem
@@ -71,7 +63,6 @@
 	--display-29: 1.8125rem;
 	--display-31: 1.9375rem;
 	--menu-20: 1.25rem;
-	--menu-30: 1.875rem;
 	--menu-36: 2.25rem;
 
 	/* layout: --indent is responsive (0 below 890px, 60px from 890px, 112px from 1180px; set in the media queries below).
@@ -134,16 +125,6 @@
     background-size: 5px;
 }
 
-html.toned-down {
-	--pattern-lines-up: url(../images/pattern/gray_lines_up.png); /*matched*/
-  --pattern-lines-up-var: url(../images/pattern/gray_lines_up_var.png); /*matched*/
-  --pattern-lines-down: url(../images/pattern/gray_lines_down.png); /*matched*/
-  --pattern-dots-dense: url(../images/pattern/gray_dots_grid_dense.png);/*matched*/
-  --pattern-dots-sparse: url(../images/pattern/gray_dots_grid_sparse.png); /*matched*/
-  --pattern-dots-stagger: url(../images/pattern/gray_dots_stagger.png); /*matched*/
-	--pattern-grid-large: url(../images/pattern/gray_grid.png);/*matched*/
-}
-
 /* Base (mobile-first) */
 
 * {
@@ -175,7 +156,6 @@ ul {
 	margin-top: 12px;
 	font-size: var(--body-text-15);
 }
-
 
 img {
 	display: block;
@@ -281,10 +261,6 @@ figure {
 	font-weight: var(--weight-light);
 }
 
-.source-code-pro-regular {
-	font-weight: var(--weight-regular);
-}
-
 .doto-lg {
   font-family: var(--font-display);
   font-optical-sizing: auto;
@@ -292,40 +268,6 @@ figure {
   font-style: normal;
   font-variation-settings:
     "ROND" 0;
-}
-
-/*background color helper classes*/
-
-.color-yellow {
-	background-color: var(--yellow);
-}
-
-.color-light-yellow {
-	background-color: var(--light-yellow);
-}
-
-.color-mustard-brown {
-	background-color: var(--mustard);
-}
-
-.color-bright-brown {
-	background-color: var(--bright-brown);
-}
-
-.color-dull-brown {
-	background-color: var(--dull-brown);
-}
-
-.color-dark-brown {
-	background-color: var(--dark-brown);
-}
-
-.color-offwhite {
-	background-color: var(--offwhite);
-}
-
-.color-charcoal {
-	background-color: var(--charcoal);
 }
 
 /* hero animation styles
@@ -384,14 +326,6 @@ figure {
 		opacity var(--fade-time) ease var(--fade-delay);
 }
 
-.start-right { /* not used by any face right now */
-	top: 50%;
-	left: 50%;
-	transform: translate(100%, -50%);
-	transition: 2500ms all ease-in-out;
-	opacity: 0;
-}
-
 /* Alternative hero fade: all five pieces fade in together on two shared dials.
    Only applies when index.html adds .fade-shared to <html> (a random coin flip on each load, or ?fade=shared). */
 html.fade-shared .img-layer-absolute {
@@ -430,7 +364,6 @@ html.fade-shared .start-bottom {
 	transform: translate(-50%, -50%);
 	opacity: 1;
 }
-
 
 /*hero area styles*/
 div.hero-container {
@@ -522,14 +455,6 @@ html.colorful .central-shape::before {
   opacity: 1;
 }
 
-
-/* TONED-DOWN MODE → moon */
-html.toned-down .central-shape::before {
-  background-image: url("../images/hero/moon89.svg");
-  opacity: 0.3;
-}
-
-
 @keyframes fadeIn {
   from { opacity: 0; }
   to   { opacity: 1; } /* semi-transparent */
@@ -603,46 +528,6 @@ div.project-header-bar h2 {
 	margin-right: 25px; /* keeps a wrapped label off the right edge */
 	box-shadow: var(--shadow-soft);
 	font-size: var(--heading-19);
-}
-
-div.project-header-bar h3 {
-	line-height: 1.4;
-	background: var(--charcoal);
-	padding: 5px;
-	margin-left: var(--page-inset);
-	margin-right: 25px;
-	box-shadow: var(--shadow-soft);
-	font-size: var(--body-text-15);
-}
-
-/* breadcrumb: each crumb is its own flex item, so a long crumb wraps inside itself
-   and the arrows stay vertically centered between them.
-   The arrow after each link is drawn here, so the HTML only holds the links */
-p.breadcrumb {
-	display: flex;
-	align-items: center;
-	font-size: var(--body-text-14);
-}
-
-/* the breadcrumb text sits 25px from the page edge (the .info-box padding): cancel the paragraph's own left padding.
-   Written with .flex-container-main so it outranks that padding rule */
-.flex-container-main p.breadcrumb {
-	padding-left: 0;
-}
-
-p.breadcrumb a {
-	position: relative;
-	margin-right: 2em; /* room for the arrow */
-	white-space: nowrap; /* links never wrap, so each arrow stays right beside its text; only the current page wraps */
-}
-
-p.breadcrumb a::after {
-	content: "\2192"; /* → */
-	position: absolute; /* out of the text flow, so the link underline stays off the arrow */
-	left: 100%;
-	top: 50%;
-	transform: translateY(-50%);
-	margin-left: 0.5em;
 }
 
 /*featured projects main and subcategories pages styles*/
@@ -734,11 +619,6 @@ p.breadcrumb a::after {
 
 .flex-container-child-projects p {
 	padding: 5px 0 5px 0;
-}
-
-/* captions under the gallery items (Icons page) */
-.flex-container-child-gallery p {
-	font-size: var(--body-text-14);
 }
 
 /* "Back to Home" line at the bottom of a page. Written as p.back-link so it outranks the
@@ -869,11 +749,6 @@ p.back-link {
 	padding: 0 20px 0 20px;
 }
 
-html.toned-down .featured-project-card {
-	background-color: var(--charcoal-deep);
-}
-
-
 section.featured-project-card img {
 	width: 250px;
 	height: 150px;
@@ -925,15 +800,7 @@ section.featured-project-card img {
   opacity: 0;
 }
 
-/* hover captions: the default and hover captions sit in the SAME place, stacked on top of each other */
-.about-photo figcaption {
-  position: absolute;
-  left: 0;
-  right: 0;
-  top: 0;
-  width: 100%;
-  font-size: var(--body-text-12);
-}
+/* the About portrait's two captions ("Mouse over me!" and its surprised reply); the swap on hover is drawn in about-2017.css */
 
 /* default visible, hover hidden */
 .caption-default {
@@ -944,31 +811,7 @@ section.featured-project-card img {
   opacity: 0;
 }
 
-.about-photo-wrapper {
-  display: inline-block;
-  text-align: center;
-  max-width: 350px;
-  width: 100%; /* allows it to shrink on mobile */
-  margin-bottom: 60px;
-}
-
 /*about page figure, photo and figcaption "surprised" hover styling*/
-/*the surprised face hover effect with download cta mouse on*/
-.about-photo-wrapper:hover .photo-hover {
-  opacity: 1;
-}
-
-.about-photo-wrapper:hover .photo-default {
-  opacity: 0;
-}
-
-.about-photo-wrapper:hover .caption-default {
-  opacity: 0;
-}
-
-.about-photo-wrapper:hover .caption-hover {
-  opacity: 1;
-}
 
   footer {
     height: 380px;
@@ -990,13 +833,6 @@ section.featured-project-card img {
 @media (max-width: 529px) {
   .featured-project-card {
     padding-bottom: 100px;
-  }
-}
-
-/* phones and tablets: tighter breadcrumb line spacing (desktop keeps the inherited one) */
-@media (max-width: 889px) {
-  p.breadcrumb {
-    line-height: 1.4;
   }
 }
 
@@ -1057,10 +893,6 @@ section.featured-project-card img {
     font-size: var(--heading-26);
   }
 
-  div.project-header-bar h3 {
-    font-size: var(--heading-20);
-  }
-
   .flex-container-child-projects,
   .flex-container-child-gallery {
     width: 50%;
@@ -1075,10 +907,6 @@ section.featured-project-card img {
 /* from original @media only screen and (min-width: 800px)  */
 	img.two-thirds {
 		width: 66%;
-	}
-
-	img.one-third {
-		width:33%;
 	}
 
 	img.one-half {
@@ -1121,7 +949,6 @@ section.featured-project-card img {
 	.featured-project-card h3 {
 		line-height:1.5em;
 	}
-
 
 }/*end media query*/
 
