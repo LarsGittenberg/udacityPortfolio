@@ -24,21 +24,14 @@
 	<link rel="apple-touch-icon" href="/apple-touch-icon.png">
 
   <!-- CSS -->
-  <link rel="stylesheet" href="css/reskin-blue.css"> <!-- replaces ui.css and main.css on this test page -->
-
-  <link rel="stylesheet" href="css/card-pages.css"> <!-- the header, band, title and card spacing that the category pages share -->
-  <link rel="stylesheet" href="css/transitions.css"> <!-- the card-to-title morph between category pages and project pages -->
-  <link rel="stylesheet" href="css/gallery.css"> <!-- the statement gallery: Column and Rail layouts, the sets and the ad formats -->
-  <script src="js/layout-switch.js"></script> <!-- picks the layout before paint and adds the Column | Rail pill -->
-
-  <style>
-  /* this page's band colour (mint): background, text, and the three shape colours */
-  .band { --band-bg: var(--mint); --band-ink: var(--ink); --s1: var(--magenta); --s2: var(--blue); --s3: var(--purple); }
-
-  /* CARD 3 (DRØM): the dome frame is 4:3 and the picture is 5:3, so "cover" cropped the sides and the curve clipped the D and M. "contain" shows the whole picture at 80%;
-     the picture's own amber fills the strips above and below (eyeballed; tune the hex if a seam shows). To undo, delete this rule */
-  #drom { object-fit: contain; background: #fbba40; }
-  </style>
+  <!-- the skin switch picks the skin before paint and writes that skin's stylesheets (js/skin-switch.js).
+       2017 = ui.css + main.css + common-2017.css (what every page needs for blue's shared markup) + gallery-2017.css (the old gallery's look, drawn on the new gallery markup).
+       1986 = blue: reskin-blue.css + card-pages.css + gallery.css (the statement gallery: Column and Rail layouts) + ads-1986.css (this page's own CSS, formerly inline).
+       transitions.css (the card-to-title morph between category pages and project pages) belongs to both -->
+  <script src="js/skin-switch.js" data-2017="css/ui.css,css/main.css,css/transitions.css,css/common-2017.css,css/gallery-2017.css" data-1986="css/reskin-blue.css,css/card-pages.css,css/transitions.css,css/gallery.css,css/ads-1986.css"></script>
+  <link rel="stylesheet" href="css/skin-switch.css"> <!-- the switch itself looks the same in both skins, so it has its own file, loaded after the skin -->
+  <noscript><link rel="stylesheet" href="css/ui.css"><link rel="stylesheet" href="css/main.css"><link rel="stylesheet" href="css/transitions.css"><link rel="stylesheet" href="css/common-2017.css"><link rel="stylesheet" href="css/gallery-2017.css"></noscript> <!-- without JavaScript: the default skin (2017) -->
+  <script src="js/layout-switch.js"></script> <!-- picks the layout before paint and adds the Column | Rail pill (the 2017 skin hides the pill: css/gallery-2017.css) -->
 
 	<!--fonts-->
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -78,7 +71,7 @@
 <header class="pattern-lines-up-var">
 	<div class="header-container">
 		<h1 class="doto-lg">Lawrence Getubig</h1>
-		<p>Creative Technologist<br>in Product Design</p>
+		<p>Creative Technologist <br>in Product Design</p>
 	</div><!--end header container-->
 </header>
 
@@ -98,20 +91,24 @@
 	</div>
 </div>
 
-<article class="gl gl--sets">
-	<nav class="gl-crumb" aria-label="Breadcrumb"><a href="index-test.html" onclick="gtag('event', 'breadcrumb_click', { breadcrumb_item: 'home', from_page: window.location.pathname });">Home</a><a href="graphicdesign-test.html" onclick="gtag('event', 'breadcrumb_click', { breadcrumb_item: 'graphic_design', from_page: window.location.pathname });">Graphic Design</a><span aria-current="page">Digital Ads and GIFs</span></nav>
+<article class="gl gl--sets pattern-grid-small gallery-compact">
+	<nav class="gl-crumb info-box" aria-label="Breadcrumb"><a href="index-test.html" onclick="gtag('event', 'breadcrumb_click', { breadcrumb_item: 'home', from_page: window.location.pathname });">Home</a><a href="graphicdesign-test.html" onclick="gtag('event', 'breadcrumb_click', { breadcrumb_item: 'graphic_design', from_page: window.location.pathname });">Graphic Design</a><span aria-current="page">Digital Ads and GIFs</span></nav>
 
-	<section class="gl-rolebox">
+	<section class="gl-rolebox info-box indent-left">
+		<div class="info-box-left role">
 		<p class="kicker source-code-pro">Role</p>
 		<ul class="gl-role"><li>Visual Designer</li><li>Illustrator</li><li>Animator</li><li>Brand Designer</li></ul>
+		</div>
 	</section>
 
-	<aside class="gl-side">
+	<aside class="gl-side info-box indent-left">
+		<div class="info-box-left">
 		<p class="kicker source-code-pro">About the work</p>
 		<p>These visual assets were designed as part of the National Council of Teachers of Mathematics&rsquo; marketing campaign. These samples and variants were plugged into web banner ads, social media ads such as in Facebook, as well as deployed into their social media feeds in Twitter, Instagram and LinkedIn.</p>
 		<p class="kicker source-code-pro gl-index-label">Three formats</p>
 		<nav class="gl-index" aria-label="Ad formats"><a href="#instagram"><span>Instagram</span><em>3</em></a><a href="#twitter"><span>Twitter</span><em>3</em></a><a href="#banners"><span>Web banners</span><em>9</em></a></nav>
 		<p class="gl-back"><a class="text-link" href="graphicdesign-test.html" onclick="gtag('event', 'footer_click', { footer_item: 'graphic_design', from_page: window.location.pathname });">Back to Graphic Design</a></p>
+		</div>
 	</aside>
 
 	<section class="gl-cat" id="instagram">
@@ -119,9 +116,9 @@
 		<h3>Stopping the scroll, in a square</h3>
 		<p>Square, 1:1: sized for a social feed. Two of the three are animated GIFs.</p>
 		<div class="gl-grid gl-grid--squares">
-			<figure><img loading="lazy" src="images/ads/ilovemath_instagram.gif" width="1024" height="1024" alt="I Love Math Instagram ad, an animated GIF"><figcaption>01 &middot; I Love Math (GIF)</figcaption></figure>
-			<figure><img loading="lazy" src="images/ads/piday_instagram.png" width="1081" height="1081" alt="Pi Day Instagram ad"><figcaption>02 &middot; Pi Day</figcaption></figure>
-			<figure><img loading="lazy" src="images/ads/euler_instagram.gif" width="600" height="600" alt="Euler Instagram ad, an animated GIF"><figcaption>03 &middot; Euler (GIF)</figcaption></figure>
+			<figure class="flex-container-child-gallery"><img class="gallery-item gallery-photo" loading="lazy" src="images/ads/ilovemath_instagram.gif" width="1024" height="1024" alt="I Love Math Instagram ad, an animated GIF"><figcaption>01 &middot; I Love Math (GIF)</figcaption></figure>
+			<figure class="flex-container-child-gallery"><img class="gallery-item gallery-photo" loading="lazy" src="images/ads/piday_instagram.png" width="1081" height="1081" alt="Pi Day Instagram ad"><figcaption>02 &middot; Pi Day</figcaption></figure>
+			<figure class="flex-container-child-gallery"><img class="gallery-item gallery-photo" loading="lazy" src="images/ads/euler_instagram.gif" width="600" height="600" alt="Euler Instagram ad, an animated GIF"><figcaption>03 &middot; Euler (GIF)</figcaption></figure>
 		</div>
 	</section>
 	<section class="gl-cat" id="twitter">
@@ -129,9 +126,9 @@
 		<h3>Wide enough for the timeline</h3>
 		<p>Wide, 2:1: sized for a Twitter card. One is an animated GIF.</p>
 		<div class="gl-grid gl-grid--cards">
-			<figure><img loading="lazy" src="images/ads/fall_twitter.gif" width="640" height="320" alt="Fall campaign Twitter ad, an animated GIF"><figcaption>01 &middot; Fall (GIF)</figcaption></figure>
-			<figure><img loading="lazy" src="images/ads/dogyear_twitter.png" width="1024" height="512" alt="Dog Year Twitter ad"><figcaption>02 &middot; Dog Year</figcaption></figure>
-			<figure><img loading="lazy" src="images/ads/march_twitter.png" width="450" height="236" alt="March Twitter ad"><figcaption>03 &middot; March</figcaption></figure>
+			<figure class="flex-container-child-gallery"><img class="gallery-icon-gif" loading="lazy" src="images/ads/fall_twitter.gif" width="640" height="320" alt="Fall campaign Twitter ad, an animated GIF"><figcaption>01 &middot; Fall (GIF)</figcaption></figure>
+			<figure class="flex-container-child-gallery"><img class="gallery-icon-gif" loading="lazy" src="images/ads/dogyear_twitter.png" width="1024" height="512" alt="Dog Year Twitter ad"><figcaption>02 &middot; Dog Year</figcaption></figure>
+			<figure class="flex-container-child-gallery"><img class="gallery-icon-gif" loading="lazy" src="images/ads/march_twitter.png" width="450" height="236" alt="March Twitter ad"><figcaption>03 &middot; March</figcaption></figure>
 		</div>
 	</section>
 	<section class="gl-cat" id="banners">
@@ -139,19 +136,19 @@
 		<h3>Small, so every pixel counts</h3>
 		<p>Standard web banners at their real 300 &times; 250 pixels (the first is a 600 &times; 500 version of the same format, shown at 300 &times; 250).</p>
 		<div class="gl-grid gl-grid--banners">
-			<figure><img loading="lazy" src="images/ads/mynctm.png" width="600" height="500" alt="My NCTM web banner ad"><figcaption>01 &middot; My NCTM</figcaption></figure>
-			<figure><img loading="lazy" src="images/ads/summer.png" width="300" height="250" alt="Summer web banner ad"><figcaption>02 &middot; Summer</figcaption></figure>
-			<figure><img loading="lazy" src="images/ads/dr.png" width="300" height="250" alt="Dr web banner ad"><figcaption>03 &middot; Dr</figcaption></figure>
-			<figure><img loading="lazy" src="images/ads/leaders.png" width="300" height="250" alt="Leaders web banner ad"><figcaption>04 &middot; Leaders</figcaption></figure>
-			<figure><img loading="lazy" src="images/ads/webinar.png" width="300" height="250" alt="Webinar web banner ad"><figcaption>05 &middot; Webinar</figcaption></figure>
-			<figure><img loading="lazy" src="images/ads/met.png" width="301" height="250" alt="Met web banner ad"><figcaption>06 &middot; Met</figcaption></figure>
-			<figure><img loading="lazy" src="images/ads/blog.png" width="300" height="250" alt="Blog web banner ad"><figcaption>07 &middot; Blog</figcaption></figure>
-			<figure><img loading="lazy" src="images/ads/onlineevents.png" width="300" height="250" alt="Online events web banner ad"><figcaption>08 &middot; Online events</figcaption></figure>
-			<figure><img loading="lazy" src="images/ads/books.png" width="300" height="250" alt="Books web banner ad"><figcaption>09 &middot; Books</figcaption></figure>
+			<figure class="flex-container-child-gallery"><img class="gallery-item gallery-ad" loading="lazy" src="images/ads/mynctm.png" width="600" height="500" alt="My NCTM web banner ad"><figcaption>01 &middot; My NCTM</figcaption></figure>
+			<figure class="flex-container-child-gallery"><img class="gallery-item gallery-ad" loading="lazy" src="images/ads/summer.png" width="300" height="250" alt="Summer web banner ad"><figcaption>02 &middot; Summer</figcaption></figure>
+			<figure class="flex-container-child-gallery"><img class="gallery-item gallery-ad" loading="lazy" src="images/ads/dr.png" width="300" height="250" alt="Dr web banner ad"><figcaption>03 &middot; Dr</figcaption></figure>
+			<figure class="flex-container-child-gallery"><img class="gallery-item gallery-ad" loading="lazy" src="images/ads/leaders.png" width="300" height="250" alt="Leaders web banner ad"><figcaption>04 &middot; Leaders</figcaption></figure>
+			<figure class="flex-container-child-gallery"><img class="gallery-item gallery-ad" loading="lazy" src="images/ads/webinar.png" width="300" height="250" alt="Webinar web banner ad"><figcaption>05 &middot; Webinar</figcaption></figure>
+			<figure class="flex-container-child-gallery"><img class="gallery-item gallery-ad" loading="lazy" src="images/ads/met.png" width="301" height="250" alt="Met web banner ad"><figcaption>06 &middot; Met</figcaption></figure>
+			<figure class="flex-container-child-gallery"><img class="gallery-item gallery-ad" loading="lazy" src="images/ads/blog.png" width="300" height="250" alt="Blog web banner ad"><figcaption>07 &middot; Blog</figcaption></figure>
+			<figure class="flex-container-child-gallery"><img class="gallery-item gallery-ad" loading="lazy" src="images/ads/onlineevents.png" width="300" height="250" alt="Online events web banner ad"><figcaption>08 &middot; Online events</figcaption></figure>
+			<figure class="flex-container-child-gallery"><img class="gallery-item gallery-ad" loading="lazy" src="images/ads/books.png" width="300" height="250" alt="Books web banner ad"><figcaption>09 &middot; Books</figcaption></figure>
 		</div>
 	</section>
 
-	<p class="gl-back gl-back--end"><a class="text-link" href="graphicdesign-test.html" onclick="gtag('event', 'footer_click', { footer_item: 'graphic_design', from_page: window.location.pathname });">Back to Graphic Design</a></p> <!-- the page-end copy: shown in Column mode and on phones -->
+	<p class="gl-back gl-back--end back-link" style="--back-link-nudge: 25px"><a class="text-link" href="graphicdesign-test.html" onclick="gtag('event', 'footer_click', { footer_item: 'graphic_design', from_page: window.location.pathname });">Back to Graphic Design</a></p> <!-- the page-end copy: shown in Column mode and on phones -->
 </article>
 
 </main>

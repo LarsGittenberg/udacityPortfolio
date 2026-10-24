@@ -38,3 +38,15 @@
 .gl-ba img.gallery-retouch-photo { width: 300px; height: 300px; object-fit: cover; object-position: left center; } /* (the old 300px size came from photography.css, a stylesheet of per-photo background rules that the new pages do not load) */
 .gl-ba img.gallery-retouch-photo:hover, .gl-ba:focus-visible img.gallery-retouch-photo, .gl-ba.is-before img.gallery-retouch-photo { object-position: right center; }
 .gl-side .info-box-left > p.small-font { display: block; } /* the hint ("Hover over it...") on its own line, orange and small, as the old "Hover on images for before and after" */
+
+/* SETS (Ads, Icons): the old galleries were one flat run of rows; the new pages group the work into sets with a kicker, a heading and an intro. In 2017 the set and its grid step aside (display: contents),
+   so the rows are still the article's own flex items, and the set's text sits between the rows, in the old text column (indented like the statement), in the old styles.
+   The big numeral (blue's decoration) and the index of sets (blue's navigation chips) do not exist in 2017 */
+.gl--sets .gl-cat { display: contents; }
+.gl--sets .gl-cat > :is(.kicker, h3, p:not(.kicker)) { flex: 0 0 100%; width: auto; max-width: var(--column-text); margin-left: var(--indent); padding-left: 45px; } /* its own line each (flex: 0 0 100%); indented like the statement: the old --indent as a margin (the old CSS sets it to a bare 0 on phones and 112px on desktop, so it cannot go inside calc()), plus the info box's 25px and the paragraph's 20px as padding */
+.gl--sets .gl-grid::before { content: ""; flex: 0 0 100%; height: 0; } /* a line break before each set's rows: the set's text, held to the old text column, would otherwise leave room beside it and the first photo row would slide up into it */
+.gl--sets .gl-cat > .kicker { margin-top: 20px; color: var(--orange); font-weight: bold; font-size: var(--body-text-12); } /* like the old .card-label */
+.gl--sets .gl-cat > .kicker .num { display: none; }
+.gl--sets .gl-cat > h3 { font-size: var(--heading-20); }
+@media (min-width: 890px) { .gl--sets .gl-cat > h3 { font-size: var(--heading-26); font-weight: lighter; line-height: 1.5em; margin-bottom: 20px; } } /* the old .info-box h3 */
+.gl-side .info-box-left > .gl-index-label, .gl-side .info-box-left > .gl-index { display: none; }
