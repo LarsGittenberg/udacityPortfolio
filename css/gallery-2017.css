@@ -45,11 +45,16 @@
 .gl--sets .gl-cat { display: contents; }
 .gl--sets .gl-cat > :is(.kicker, h3, p:not(.kicker)) { flex: 0 0 100%; width: auto; max-width: var(--column-text); margin-left: var(--indent); padding-left: 45px; } /* its own line each (flex: 0 0 100%); indented like the statement: the old --indent as a margin (the old CSS sets it to a bare 0 on phones and 112px on desktop, so it cannot go inside calc()), plus the info box's 25px and the paragraph's 20px as padding */
 .gl--sets .gl-grid::before { content: ""; flex: 0 0 100%; height: 0; } /* a line break before each set's rows: the set's text, held to the old text column, would otherwise leave room beside it and the first photo row would slide up into it */
-.gl--sets .gl-cat > .kicker { margin-top: 20px; color: var(--orange); font-weight: bold; font-size: var(--body-text-12); } /* like the old .card-label */
-.gl--sets .gl-cat > .kicker .num { display: none; }
-.gl--sets .gl-cat > h3 { font-size: var(--heading-20); }
-@media (min-width: 890px) { .gl--sets .gl-cat > h3 { font-size: var(--heading-26); font-weight: lighter; line-height: 1.5em; margin-bottom: 20px; } } /* the old .info-box h3 */
+.gl--sets .gl-cat > .kicker { display: none; } /* the old pages had no kicker and no numeral: the set's title bar below carries its name */
 .gl-side .info-box-left > .gl-index-label, .gl-side .info-box-left > .gl-index { display: none; }
 
 /* Ads in 2017: the sets' kicker, heading and intro are not shown (the old page was one flat run of ads); only the ads remain. Scoped to Ads (the container with the old gallery-compact class), so the other pages with sets keep their text */
 .gallery-compact .gl-cat > :is(.kicker, h3, p:not(.kicker)) { display: none; }
+
+/* ICONS in 2017: each set opens with the old patterned title bar (main.css: div.project-header-bar), rebuilt here on .gl-set-title because blue styles the old bar's own class name, so it cannot sit on the shared markup.
+   The bar's patterned background comes from pattern-dots-sparse (also in the markup); the charcoal label is the h3. The set's intro is the old info-box text (the .gl--sets paragraph rules above) */
+.gl--sets .gl-set-title { flex: 0 0 100%; min-height: 100px; display: flex; align-items: center; padding: 10px 0; border-radius: var(--radius-sm); margin: 5px 0 3px; }
+.gl--sets .gl-set-title h3 { width: auto; line-height: 1.4; background: var(--charcoal); padding: 5px; margin: 0 25px 0 var(--page-inset); box-shadow: var(--shadow-soft); font-size: var(--body-text-15); font-family: "Source Code Pro", Arial, sans-serif; font-weight: 300; } /* the old label: light monospace (.source-code-pro-light) */
+@media (min-width: 530px) { .gl--sets .gl-set-title { border-radius: var(--radius-md) var(--radius-xl) var(--radius-xl) var(--radius-md); } .gl--sets .gl-set-title h3 { font-size: var(--heading-20); } }
+.gl-side--index-only { display: none; } /* the index of sets is blue's navigation; the old page had none */
+.gl--sets:not(.gallery-compact) .gl-cat > p:not(.kicker) { line-height: 1.7; margin-top: 27px; margin-bottom: 65px; } /* the old info box: 1.7 line height, 25px of padding around the text (plus 5px of gap under the bar) and a 40px margin before the icons; measured on the live page */

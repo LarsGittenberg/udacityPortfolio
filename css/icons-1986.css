@@ -1,0 +1,19 @@
+/* =====================================================================
+   ICONS, 1986 (blue): this page's own CSS, formerly an inline <style> in icons-test.html. It only exists in the 1986 skin (data-1986 in the skin-switch script),
+   so it cannot leak into 2017. It loads after reskin-blue.css, card-pages.css, transitions.css and gallery.css, as the inline block always did.
+   ===================================================================== */
+  /* this page's band colour (mint): background, text, and the three shape colours */
+  .band { --band-bg: var(--mint); --band-ink: var(--ink); --s1: var(--magenta); --s2: var(--blue); --s3: var(--purple); }
+
+  /* CARD 3 (DRØM): the dome frame is 4:3 and the picture is 5:3, so "cover" cropped the sides and the curve clipped the D and M. "contain" shows the whole picture at 80%;
+     the picture's own amber fills the strips above and below (eyeballed; tune the hex if a seam shows). To undo, delete this rule */
+  #drom { object-fit: contain; background: #fbba40; }
+
+  /* ICON SIZE: the four sets were exported with different amounts of transparent margin, so the same box shows circles of different size.
+     Measured on the PNGs (visible circle as a share of its box): Holiday 78%, I Love Math 84%, Fall 90%, Grants 100%. Each set is scaled so its circle lands on 90% of the box (Fall's natural size):
+     90 / 77.7 = 1.16, 90 / 83.6 = 1.08, 90 / 90.4 = 1.00, 90 / 100 = 0.90. If any set is re-exported with a different margin, re-measure and change its number. */
+  #holiday { --icon-scale: 1.16; }
+  #math { --icon-scale: 1.08; }
+  #fall { --icon-scale: 1; }
+  #grants { --icon-scale: 0.9; }
+  
