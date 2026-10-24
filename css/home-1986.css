@@ -10,7 +10,7 @@
      expressed in --u so the whole composition scales with the screen (1 --u = 1% of the width, capped at the 1440px body).
      ===================================================================== */
   :root {
-    --u: min(1vw, 14.4px);
+    /* --u (1% of the width, capped at 14.4px) and --h2-scale are defined once, in css/reskin-blue.css */
     /* the zip-up dials: one set of numbers tunes the whole entrance */
     --zip-start: 1200ms;  /* wait before the first piece moves (was 200ms, then 700ms; each +0.5s so the face doesn't start the instant the page loads) */
     --zip-stagger: 250ms; /* gap between one piece and the next */
@@ -34,15 +34,10 @@
     --slab-lift: calc(4.2 * var(--u));
   }
 
-  /* the name hangs from the right edge; the blurb stays beside it */
-  header { padding-right: calc(2.4 * var(--u)); }
-  .header-container {
-    justify-content: flex-end;
-    align-items: flex-end; /* the blue page's pillar: the blurb is the tallest item, so it sets the row's height and the name rests at its foot */
-    gap: calc(4.4 * var(--u));
-  }
-  .header-container h1 { text-align: right; margin-bottom: 10px; font-size: clamp(3.8rem, 16vw, 16.5rem); } /* nudges the name up 10px off the pillar's foot; delete the margin to undo */
-  .header-container p { white-space: nowrap; } /* the row now has a fixed height, so without this the blurb would wrap into two columns */
+  /* the name hangs from the right edge and the blurb stays beside it: that shared header (the right padding, flex-end, the gap, the right-aligned name nudged 10px up, the no-wrap blurb) lives at the end of css/reskin-blue.css.
+     Only what is special to the home page stays here */
+  .header-container { align-items: flex-end; } /* the blue page's pillar: the blurb is the tallest item, so it sets the row's height and the name rests at its foot */
+  .header-container h1 { font-size: clamp(3.8rem, 16vw, 16.5rem); } /* the home page's own, bigger name */
 
   /* the blue slab: sized from the mockup, with a flat band hiding its lower edge */
   /* the stage holds everything and is NOT clipped, so shapes can poke out over the dark; the clipped blue slab is just its background */
@@ -173,7 +168,6 @@
   .band-track i:nth-of-type(3n+1) { color: var(--magenta); }
   .band-track i:nth-of-type(3n+2) { color: var(--teal); }
   .band-track i:nth-of-type(3n) { color: var(--blue); }
-  @keyframes slide { to { transform: translateX(-50%); } }
   @media (prefers-reduced-motion: reduce) { .band-track { animation: none; } }
 
   /* ===== STACKED LAYOUT: 899px and below (was 699px; moved to match the cards' breakpoint. To undo, change 899 back to 699) =====
@@ -196,22 +190,12 @@
 
   /* PAGE TITLE, as chosen on the graphic design test page: a large pillar ("Home", no colon: turned sideways, a Doto colon's dots land side by side and read as "++") with a small descriptor beside it ("Featured Projects"), both hung from the top of the column.
      On desktop the pair is sticky: it rides along as you scroll and lets go 40px above the footer. Below 900px it is an ordinary heading with the descriptor flat underneath. */
-  :root { --h2-scale: 0.88; } /* the pillar is 88% of the blue skin's size (1 = the original) */
-  .project-header-bar h2 { font-size: var(--fs-title); }
-  .h2-wrap { display: grid; grid-auto-flow: column; grid-auto-columns: max-content; justify-content: start; align-items: start; column-gap: clamp(8px, 1vw, 14px); }
-  .h2-descriptor { writing-mode: vertical-rl; transform: rotate(180deg); white-space: nowrap; margin-bottom: 0.4rem; /* reads bottom to top, like the tagline in the header */
-    font-family: var(--font-mono); font-size: var(--fs-m); letter-spacing: 0.22em; text-transform: uppercase; color: var(--paper); }
+  /* The pillar itself (its size, the sticky pair, the descriptor beside it and its flat form below 900px) is shared with the card pages and lives at the end of css/reskin-blue.css. Only the distance below the band is the home page's own: */
   @media (min-width: 900px) {
     .project-header-bar { padding-top: calc(var(--band-rise) - 2.34 * var(--u)); } /* band to title = 75px, same as the graphic design page. The hero stage already leaves (2.34u + 75px - band-rise) below the band, so this tops it up to exactly 75px. If the band's spacing changes, this formula must follow */
-    .project-header-bar { padding-bottom: 50px; } /* the sticky title may not travel into this padding, so it lets go 50px above the footer */
-    .h2-wrap { position: sticky; top: 100px; } /* 100px parks it below the fixed menu icon */
-    .project-header-bar h2 { font-size: min(var(--fs-title), 9vh); } /* capped by window height so the pillar always fits on screen */
   }
   @media (max-width: 899px) {
     /* band to title = the skin's own 36px of top padding, same as the other card pages. The hero stage leaves (2.34u + 75px - band-rise) below the band, so a negative top margin of exactly that much pulls the title up to the band's edge. If the band's spacing changes, this formula must follow (it is the same number as the desktop formula above) */
     .project-header-bar { margin-top: calc(-1 * (2.34 * var(--u) + 75px - var(--band-rise))); }
-    .project-header-bar h2 { font-size: var(--fs-title-sm); }
-    .h2-wrap { display: flex; flex-direction: column; align-items: flex-start; gap: 10px; }
-    .h2-descriptor { writing-mode: horizontal-tb; transform: none; margin-bottom: 0; }
   }
   

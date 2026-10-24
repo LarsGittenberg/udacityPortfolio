@@ -13,6 +13,8 @@
    ===================================================================== */
 
 :root {
+	--u: min(1vw, 14.4px); /* 1u = 1% of the window width, capped at the 1440px body */
+	--h2-scale: 0.88;      /* the title pillar is 88% of the blue skin's size (1 = the original) */
 	/* the brand palette, reused */
 	--paper: #f1e6cc;
 	--ink: #1d1a16;
@@ -34,7 +36,7 @@
 	--fs-m: 0.875rem;     /* 14px: the header line, the title descriptor, the copyright */
 	--fs-l: 1rem;         /* 16px: paragraphs, kickers */
 	--fs-base: 1.0625rem; /* 17px: the page's base text */
-	/* the page-title sizes (the About / Web Design pillar), after --h2-scale. Needs --h2-scale on :root, which every page has (card-pages.css, or the home page's own style block) */
+	/* the page-title sizes (the About / Web Design pillar), after --h2-scale (defined just below, with --u) */
 	--fs-title: calc(clamp(3rem, 8.4vw, 9.4rem) * var(--h2-scale));    /* at 900px and wider */
 	--fs-title-sm: calc(clamp(2.4rem, 11vw, 4.4rem) * var(--h2-scale)); /* below 900px */
 	/* the fluid heading sizes (they follow the window width). One per voice, because each is a different typeface: */
@@ -782,3 +784,35 @@ footer::after {
 .lay-btns:has(button[data-layout="rail"][aria-pressed="true"])::before { transform: translateX(calc(100% + 6px)); } /* Rail chosen: the block slides across (needs :has(); in an old browser it just doesn't glide) */
 @media (prefers-reduced-motion: reduce) { .lay-btns::before { transition: none; } }
 @media (min-width: 900px) { .lay-switch { display: flex; } }
+
+/* =====================================================================
+   THE PAGE HEADER AND THE PAGE TITLE: shared by every blue page, the home page included (formerly the first layer of css/card-pages.css, with an identical copy in css/home-1986.css).
+   It sits at the END of this file on purpose: it used to load as the next file after this one, so it must still win over everything above it. The home page keeps only its own extras on top.
+   ===================================================================== */
+
+/* ---------- 1a. the page header: the name hangs from the right edge with the tagline beside it, at every width ---------- */
+header { padding-right: calc(2.4 * var(--u)); }
+.header-container { justify-content: flex-end; gap: calc(4.4 * var(--u)); }
+.header-container h1 { text-align: right; margin-bottom: 10px; }
+.header-container p { white-space: nowrap; }
+
+/* ---------- 1b. the page title: a large pillar with a small descriptor beside it, both hung from the top of the column ----------
+   On desktop the pair is sticky: it rides along as you scroll and lets go 50px above the footer.
+   Below 900px it is an ordinary heading, with the descriptor flat underneath. */
+.project-header-bar h2 { font-size: var(--fs-title); }
+.h2-wrap { display: grid; grid-auto-flow: column; grid-auto-columns: max-content; justify-content: start; align-items: start; column-gap: clamp(8px, 1vw, 14px); }
+.h2-descriptor { writing-mode: vertical-rl; transform: rotate(180deg); white-space: nowrap; margin-bottom: 0.4rem; /* reads bottom to top, like the tagline in the header */
+	font-family: var(--font-mono); font-size: var(--fs-m); letter-spacing: 0.22em; text-transform: uppercase; color: var(--paper); }
+@media (min-width: 900px) {
+	.project-header-bar { padding-bottom: 50px; } /* the sticky title may not travel into this padding, so it lets go 50px above the footer */
+	.h2-wrap { position: sticky; top: 100px; } /* 100px parks it below the fixed menu icon */
+	.project-header-bar h2 { font-size: min(var(--fs-title), 9vh); } /* capped by window height so the pillar always fits on screen */
+}
+@media (max-width: 899px) {
+	.project-header-bar h2 { font-size: var(--fs-title-sm); }
+	.h2-wrap { display: flex; flex-direction: column; align-items: flex-start; gap: 10px; }
+	.h2-descriptor { writing-mode: horizontal-tb; transform: none; margin-bottom: 0; }
+}
+
+/* the sliding band's ticker, used by the card pages' band and by the home page's band (each file switches it off for reduced motion) */
+@keyframes slide { to { transform: translateX(-50%); } }

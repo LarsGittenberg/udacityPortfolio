@@ -1,41 +1,9 @@
 /* =====================================================================
-   CARD PAGES: the pieces the category pages (web design, graphic design, photography) share with each other
-   and, where noted, with the home page. Loaded AFTER css/reskin-blue.css.
-   Each page keeps only what is its own: its band colour (a few lines in its own <style>).
-
-   Two layers:
-     1. PAGE HEADER + PAGE TITLE: shared with the home page.
-     2. ".card-page" rules: only for the category pages, switched on by <body class="card-page">.
-        The home page does not get these; its hero stage supplies the band, the gap below it, and the card spacing.
+   CARD PAGES: the pieces only the card pages (web design, graphic design, photography, About, the galleries and the case studies) need, switched on by <body class="card-page">.
+   Loaded AFTER css/reskin-blue.css. The home page does not get these; its hero stage supplies the band, the gap below it, and the card spacing.
+   (The page header and the page title, the layer card pages and the home page share, now live at the end of css/reskin-blue.css.)
+   Each page keeps only what is its own: its band colour (a few lines in its own <style> or its own css file).
    ===================================================================== */
-
-/* ---------- 1a. the page header: the name hangs from the right edge with the tagline beside it, at every width ---------- */
-:root {
-	--u: min(1vw, 14.4px); /* 1u = 1% of the window width, capped at the 1440px body */
-	--h2-scale: 0.88;      /* the title pillar is 88% of the blue skin's size (1 = the original) */
-}
-header { padding-right: calc(2.4 * var(--u)); }
-.header-container { justify-content: flex-end; gap: calc(4.4 * var(--u)); }
-.header-container h1 { text-align: right; margin-bottom: 10px; }
-.header-container p { white-space: nowrap; }
-
-/* ---------- 1b. the page title: a large pillar with a small descriptor beside it, both hung from the top of the column ----------
-   On desktop the pair is sticky: it rides along as you scroll and lets go 50px above the footer.
-   Below 900px it is an ordinary heading, with the descriptor flat underneath. */
-.project-header-bar h2 { font-size: var(--fs-title); }
-.h2-wrap { display: grid; grid-auto-flow: column; grid-auto-columns: max-content; justify-content: start; align-items: start; column-gap: clamp(8px, 1vw, 14px); }
-.h2-descriptor { writing-mode: vertical-rl; transform: rotate(180deg); white-space: nowrap; margin-bottom: 0.4rem; /* reads bottom to top, like the tagline in the header */
-	font-family: var(--font-mono); font-size: var(--fs-m); letter-spacing: 0.22em; text-transform: uppercase; color: var(--paper); }
-@media (min-width: 900px) {
-	.project-header-bar { padding-bottom: 50px; } /* the sticky title may not travel into this padding, so it lets go 50px above the footer */
-	.h2-wrap { position: sticky; top: 100px; } /* 100px parks it below the fixed menu icon */
-	.project-header-bar h2 { font-size: min(var(--fs-title), 9vh); } /* capped by window height so the pillar always fits on screen */
-}
-@media (max-width: 899px) {
-	.project-header-bar h2 { font-size: var(--fs-title-sm); }
-	.h2-wrap { display: flex; flex-direction: column; align-items: flex-start; gap: 10px; }
-	.h2-descriptor { writing-mode: horizontal-tb; transform: none; margin-bottom: 0; }
-}
 
 /* =====================================================================
    2. CATEGORY PAGES ONLY (<body class="card-page">)
@@ -54,7 +22,6 @@ header { padding-right: calc(2.4 * var(--u)); }
 .card-page .band-track i:nth-of-type(3n+1) { color: var(--s1); }
 .card-page .band-track i:nth-of-type(3n+2) { color: var(--s2); }
 .card-page .band-track i:nth-of-type(3n) { color: var(--s3); }
-@keyframes slide { to { transform: translateX(-50%); } }
 @media (prefers-reduced-motion: reduce) { .card-page .band-track { animation: none; } }
 
 @media (min-width: 900px) {
