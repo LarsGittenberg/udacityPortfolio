@@ -24,12 +24,11 @@
 	<link rel="apple-touch-icon" href="/apple-touch-icon.png">
 
   <!-- CSS -->
-  <link rel="stylesheet" href="css/reskin-blue.css"> <!-- replaces ui.css and main.css on this test page -->
-
-  <link rel="stylesheet" href="css/card-pages.css"> <!-- the header, band, title and card spacing that the category pages share -->
-  <link rel="stylesheet" href="css/transitions.css"> <!-- the card-to-title morph between category pages and project pages -->
-  <link rel="stylesheet" href="css/case-study.css"> <!-- the case-study story: Column and Rail layouts -->
-  <script src="js/layout-switch.js"></script> <!-- picks the layout before paint, builds the rail and the Column | Rail pill -->
+  <!-- the skin switch picks the skin before paint and writes that skin's stylesheets (js/skin-switch.js): 2017 = the old stylesheets plus the 2017 overlays, 1986 = blue -->
+  <script src="js/skin-switch.js" data-2017="css/ui.css,css/main.css,css/transitions.css,css/common-2017.css,css/case-study-2017.css" data-1986="css/reskin-blue.css,css/card-pages.css,css/transitions.css,css/case-study.css"></script>
+  <link rel="stylesheet" href="css/skin-switch.css"> <!-- the switch itself looks the same in both skins, so it has its own file, loaded after the skin -->
+  <noscript><link rel="stylesheet" href="css/ui.css"><link rel="stylesheet" href="css/main.css"><link rel="stylesheet" href="css/transitions.css"><link rel="stylesheet" href="css/common-2017.css"><link rel="stylesheet" href="css/case-study-2017.css"></noscript> <!-- without JavaScript: the default skin (2017) -->
+  <script src="js/layout-switch.js"></script> <!-- picks the layout before paint and adds the Column | Rail pill (the 2017 skin hides the pill and the rail: css/case-study-2017.css) -->
 
   <style>
   /* this page's band colour (magenta): background, text, and the three shape colours */
@@ -73,7 +72,7 @@
 <header class="pattern-dots-sparse">
 	<div class="header-container">
 		<h1 class="doto-lg">Lawrence Getubig</h1>
-		<p>Creative Technologist<br>in Product Design</p>
+		<p>Creative Technologist <br>in Product Design</p>
 	</div><!--end header container-->
 </header>
 
@@ -93,24 +92,31 @@
 	</div>
 </div>
 
-<article class="cs">
-	<nav class="cs-crumb" aria-label="Breadcrumb"><a href="index-test.html" onclick="gtag('event', 'breadcrumb_click', { breadcrumb_item: 'home', from_page: window.location.pathname });">Home</a><a href="webdesign-test.html" onclick="gtag('event', 'breadcrumb_click', { breadcrumb_item: 'web_design', from_page: window.location.pathname });">Web Design</a><span aria-current="page">Pride365 App Marketing</span></nav>
+<article class="cs csl pattern-grid-small">
+	<nav class="cs-crumb info-box" aria-label="Breadcrumb"><a href="index-test.html" onclick="gtag('event', 'breadcrumb_click', { breadcrumb_item: 'home', from_page: window.location.pathname });">Home</a><a href="webdesign-test.html" onclick="gtag('event', 'breadcrumb_click', { breadcrumb_item: 'web_design', from_page: window.location.pathname });">Web Design</a><span aria-current="page">Pride365 App Marketing</span></nav>
 
 
-	<section class="cs-sec cs-role" id="role">
+	<div class="intro-row indent-left indent-right">
+	<section class="cs-sec cs-role info-box" id="role">
+		<div class="info-box-left role">
 		<p class="kicker source-code-pro"><span class="num">01</span><span class="lbl">Role</span></p>
 		<ul><li>UX Researcher</li><li>UX/UI Designer</li><li>Web Designer</li></ul>
+		</div>
 	</section>
 
-	<section class="cs-sec" id="intro">
+	<section class="cs-sec info-box" id="intro">
+		<div class="info-box-left">
 		<p class="kicker source-code-pro"><span class="num">02</span><span class="lbl">Intro</span></p>
 		<h3>Two weeks to WorldPride</h3>
 		<p>This project unfolded in the weeks leading up to WorldPrideDC 2025. Our team at Accenture Song was asked to develop a strategy to increase awareness and adoption of the Pride365 app—the official event‑planning tool. I supported the effort by contributing to the UX/UI and visual design recommendations.</p>
+		</div>
 	</section>
+	</div><!--end intro row-->
 
-	<figure class="cs-fig"><img src="images/pride/prideMiniHero.webp" width="1896" height="716" alt="Pride celebrants in Washington DC"><figcaption>Above: Images courtesy of Capital Pride Alliance.</figcaption></figure>
+	<figure class="cs-fig"><img src="images/pride/prideMiniHero.webp" width="1896" height="716" alt="Pride celebrants in Washington DC"><figcaption class="caption float-right full-width">Above: Images courtesy of Capital Pride Alliance.</figcaption></figure>
 
-	<section class="cs-sec" id="problem">
+	<section class="cs-sec info-box indent-left" id="problem">
+		<div class="info-box-left">
 		<p class="kicker source-code-pro"><span class="num">03</span><span class="lbl">Problem</span></p>
 		<h3>An app nobody could find</h3>
 		<p>WorldPrideDC is a biennial event that took place over two weeks in June 2025. Organized by the DC‑based nonprofit Capital Pride Alliance, the team needed a cohesive digital strategy to promote the Pride365 mobile app. Two websites supported WorldPride 2025 news and promotion: <strong>capitalpride.org</strong> and the flagship site, <strong>worldpridedc.org</strong>. The app was designed to help attendees explore, track, and manage the festival’s diverse events, but:</p>
@@ -118,11 +124,13 @@
 			<li>The Pride365 app had limited online visibility, with promotion confined to the capitalpride.org website. Moreover, the “Download the App” call‑to‑action and related information suffered from poor wayfinding and weak discoverability, making the app difficult for users to locate.</li>
 			<li>Navigation inconsistencies across capitalpride.org and worldpridedc.org disrupted continuity and user wayfinding.</li>
 		</ul>
+		</div>
 	</section>
 
-	<figure class="cs-fig"><img loading="lazy" src="images/pride/twowebsites.webp" width="1871" height="633" alt="laptop rendering of two websites, capitalpride.org and worldpridecd.org"><figcaption>Above, left to right: CapitalPride.org, Pride365 App download page on CapitalPride.org, WorldPrideDC.org.</figcaption></figure>
+	<figure class="cs-fig"><img loading="lazy" src="images/pride/twowebsites.webp" width="1871" height="633" alt="laptop rendering of two websites, capitalpride.org and worldpridecd.org"><figcaption class="caption float-right full-width">Above, left to right: CapitalPride.org, Pride365 App download page on CapitalPride.org, WorldPrideDC.org.</figcaption></figure>
 
-	<section class="cs-sec" id="insights">
+	<section class="cs-sec info-box indent-right" id="insights">
+		<div class="info-box-right">
 		<p class="kicker source-code-pro"><span class="num">04</span><span class="lbl">Insights</span></p>
 		<h3>Visitors were on other pages</h3>
 		<p>Through site audits and stakeholder context, we identified:</p>
@@ -133,11 +141,13 @@
 			<li>Program pillars: The six umbrella landing pages introduced by content creators naturally aligned with user intent patterns, making them ideal CTA anchors.</li>
 			<li>Evidence‑based design: Analytics, usability testing, and A/B testing could refine placement and validate discoverability.</li>
 		</ul>
+		</div>
 	</section>
 
-	<figure class="cs-fig"><img loading="lazy" src="images/pride/cardsorting.webp" width="3671" height="1349" alt="card sorting events with post it notes from figjam app"><figcaption>Above: initial card sorting of events to understand and breakdown the mindsets and personas attending WorldPride 2025.</figcaption></figure>
+	<figure class="cs-fig"><img loading="lazy" src="images/pride/cardsorting.webp" width="3671" height="1349" alt="card sorting events with post it notes from figjam app"><figcaption class="caption float-right full-width">Above: initial card sorting of events to understand and breakdown the mindsets and personas attending WorldPride 2025.</figcaption></figure>
 
-	<section class="cs-sec" id="solution">
+	<section class="cs-sec info-box indent-left" id="solution">
+		<div class="info-box-left">
 		<p class="kicker source-code-pro"><span class="num">05</span><span class="lbl">Solution</span></p>
 		<h3>Putting the app in front of visitors</h3>
 		<ul class="cs-list">
@@ -157,15 +167,17 @@
 			<li>Usability testing script: <a class="text-link" href="worldpride_usability_testing.pdf" target="_blank" aria-label="Delivered a proof‑of‑concept script for site owners to evaluate app discoverability (PDF, opens in a new tab)" onclick="gtag('event', 'pdf_download', { file: 'worldpride_usability_script', link_position: 'solution', from_page: window.location.pathname });">Delivered a proof‑of‑concept script for site owners to evaluate app discoverability</a>.</li>
 			<li>Scalable experimentation: Suggested analytics, A/B testing, heat‑mapping, and conversion path analysis to refine CTA placement.</li>
 		</ul>
+		</div>
 	</section>
 
-	<figure class="cs-fig"><img loading="lazy" src="images/pride/humanrights.webp" width="1969" height="1204" alt="screenshots of the website pages Human Rights, before and after addition of the Pride365 App marketing blurb"><figcaption>Above: Before and after addition of the Pride365 app CTA on the pillar page "Human Rights".</figcaption></figure>
+	<figure class="cs-fig"><img loading="lazy" src="images/pride/humanrights.webp" width="1969" height="1204" alt="screenshots of the website pages Human Rights, before and after addition of the Pride365 App marketing blurb"><figcaption class="caption float-left">Above: Before and after addition of the Pride365 app CTA on the pillar page "Human Rights".</figcaption></figure>
 
-	<figure class="cs-fig"><img loading="lazy" src="images/pride/celebration.webp" width="1969" height="1300" alt="screenshots of the website pages Celebration, before and after addition of the Pride365 App marketing blurb"><figcaption>Above: Before and after addition of the Pride365 app CTA on the pillar page "Celebration".</figcaption></figure>
+	<figure class="cs-fig"><img loading="lazy" src="images/pride/celebration.webp" width="1969" height="1300" alt="screenshots of the website pages Celebration, before and after addition of the Pride365 App marketing blurb"><figcaption class="caption float-left">Above: Before and after addition of the Pride365 app CTA on the pillar page "Celebration".</figcaption></figure>
 
-	<figure class="cs-fig"><img loading="lazy" src="images/pride/searchresults.webp" width="2169" height="885" alt="screenshots of the website pages search results, before and after addition of the Pride365 App marketing blurb"><figcaption>Above: Before and after addition of the Pride365 app CTA on the search results page.</figcaption></figure>
+	<figure class="cs-fig"><img loading="lazy" src="images/pride/searchresults.webp" width="2169" height="885" alt="screenshots of the website pages search results, before and after addition of the Pride365 App marketing blurb"><figcaption class="caption float-left">Above: Before and after addition of the Pride365 app CTA on the search results page.</figcaption></figure>
 
-	<section class="cs-sec" id="impact">
+	<section class="cs-sec info-box indent-right" id="impact">
+		<div class="info-box-right">
 		<p class="kicker source-code-pro"><span class="num">06</span><span class="lbl">Impact</span></p>
 		<h3>An app that's easy to find</h3>
 		<ul class="cs-list">
@@ -174,17 +186,20 @@
 			<li>Positioned Pride365 as a year‑round engagement tool, not just a festival add‑on.</li>
 			<li>Provided evidence‑based frameworks (analytics, usability testing, personas) for ongoing optimization.</li>
 		</ul>
+		</div>
 	</section>
 
-	<figure class="cs-fig"><img loading="lazy" src="images/pride/closeupcta.svg" width="2712" height="730" alt="close up of the Pride365 marketing blurb"><figcaption>Above: Close up of the CTA on WorldPrideDC.org.</figcaption></figure>
+	<figure class="cs-fig"><img loading="lazy" src="images/pride/closeupcta.svg" width="2712" height="730" alt="close up of the Pride365 marketing blurb"><figcaption class="caption float-left">Above: Close up of the CTA on WorldPrideDC.org.</figcaption></figure>
 
-	<section class="cs-sec" id="results">
+	<section class="cs-sec cs-sec--gold info-box indent-left" id="results">
+		<div class="info-box-left">
 		<p class="kicker source-code-pro"><span class="num">07</span><span class="lbl">Results</span></p>
 		<h3>From 100 to 3,000 downloads in a week</h3>
 		<p>After implementing the Pride365 call-to-action placements (seen above close to actual size) on the six program pillar pages and event search results, app downloads surged to <strong>~3,000 in one week compared to ~100 the previous week before optimization</strong><span class="gold-color-font"> — a 30x increase in adoption.</span></p>
+		</div>
 	</section>
 
-	<p class="cs-back"><a class="text-link" href="index-test.html" onclick="gtag('event', 'footer_click', { footer_item: 'home', from_page: window.location.pathname });">Back to Home</a></p>
+	<p class="cs-back back-link"><a class="text-link" href="index-test.html" onclick="gtag('event', 'footer_click', { footer_item: 'home', from_page: window.location.pathname });">Back to Home</a></p>
 </article>
 
 </main>
