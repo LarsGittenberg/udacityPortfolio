@@ -1,0 +1,34 @@
+/* =====================================================================
+   ABOUT, 2017: the About page's new copy and structure, dressed in the old look. Loaded after ui.css, main.css and common-2017.css.
+   Faithful by construction: the markup carries the old class names (info-box, indent-left, about-photo, back-link...) so main.css draws them;
+   this file only holds what the old stylesheets cannot know about blue's wrappers. The two new sections (the 5,000% number and the "blend of" shapes) did not exist in 2017: hidden.
+   ===================================================================== */
+.ab-number, .ab-method, .ab-crumb, .ab-intro .kicker { display: none; }
+
+/* blue's section wrappers step aside, so their children become rows of the old flex-container-main */
+.ab-hello, .ab-said, .ab-notes { display: contents; }
+
+/* HELLO: the old info box (text held to the old column) */
+.ab-intro > :is(h3, p) { max-width: var(--column-text); }
+.ab-intro h3 { font-family: var(--font-mono); }
+
+/* PORTRAIT: the old about-photo-wrapper (a 350px column, the picture at 70% of it); the figure is the wrapper, the .ab-photo div is the old figure.
+   The two captions share one figcaption here and sit in the same place, stacked: the hover swaps them */
+.ab-portrait { flex: 0 0 100%; margin: 0 0 60px; text-align: center; position: relative; } /* its own full-width row; the picture inside is the old 245px column (70% of the old 350px wrapper), centred */
+.ab-portrait .ab-photo { display: block; width: 245px; margin: 0 auto; }
+.ab-portrait figcaption { position: absolute; left: 0; right: 0; top: 0; width: 100%; font-size: var(--body-text-12); font-family: var(--font-body) !important; font-weight: 400; } /* width 100%: the old figcaption rule is 66% wide; the !important beats the figcaption's mono class */
+.ab-portrait figcaption span { position: absolute; left: 0; right: 0; top: 0; }
+.ab-portrait:hover .photo-hover { opacity: 1; }
+.ab-portrait:hover .photo-default { opacity: 0; }
+.ab-portrait:hover .caption-default { opacity: 0; }
+.ab-portrait:hover .caption-hover { opacity: 1; }
+.ab-photo .photo-default, .ab-photo .photo-hover { height: auto; }
+
+/* SAID ABOUT ME: the heading and the first note are the old right-hand info box; the second note is the left-hand one */
+.ab-said > h3 { width: 100%; padding: 25px 0 0; border-right: 25px solid transparent; margin-right: var(--indent); font-family: var(--font-mono); font-size: var(--heading-20); font-weight: 400; text-align: left; }
+.ab-said > h3, .ab-note-1 > blockquote, .ab-note-1 > figcaption { max-width: var(--column-text); margin-left: auto; }
+.ab-said > h3 { max-width: min(calc(var(--column-text) + 25px), calc(100% - 25px)); } /* the transparent 25px border is the info box's right padding, so the heading lines up with the note below it; on phones both sides keep their 25px */
+.ab-note-1 { padding-top: 0; }
+.ab-note-2 > blockquote, .ab-note-2 > figcaption { max-width: var(--column-text); }
+.ab-by { font-family: var(--font-body) !important; font-size: inherit; color: var(--gold); text-align: left; padding: 5px 22px 5px 20px; margin: 0; } /* the old attribution: a gold paragraph in the body font (the figcaption's mono class is !important, so this must be too) */
+@media (min-width: 530px) { .ab-said > h3 { font-size: var(--heading-26); font-weight: lighter; line-height: 1.5em; margin-bottom: 20px; } }

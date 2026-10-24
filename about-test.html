@@ -24,143 +24,11 @@
 	<link rel="apple-touch-icon" href="/apple-touch-icon.png">
 
   <!-- CSS -->
-  <link rel="stylesheet" href="css/reskin-blue.css"> <!-- replaces ui.css and main.css on this test page -->
-
-  <link rel="stylesheet" href="css/card-pages.css"> <!-- the header, band, title and card spacing that the category pages share -->
-
-  <style>
-  /* this page's band colour (orange): background, text, and the three shape colours. Ink text, because cream on orange is only about 2:1 contrast (ink on orange is about 8:1) */
-  .band { --band-bg: var(--orange); --band-ink: var(--ink); --s1: var(--mint); --s2: var(--magenta); --s3: var(--paper); } /* --s2 was purple, now magenta; --s3 (every third shape) was yellow, now cream (--paper), which stands out from the orange far better than the yellow did (cream on orange is about 2:1 contrast; yellow was about 1.4:1) */
-
-  /* =====================================================================
-     ABOUT PAGE: an exhibit-panel spread. Mid-century moves: extreme scale contrast (giant display type beside tiny mono captions),
-     a vocabulary of pure shapes (circle, triangle, half-circle, diamond), flat colour blocks, and one element that breaks its frame.
-     Everything here is prefixed ab- so it cannot collide with the card styles in reskin-blue.css.
-     ===================================================================== */
-  .about-grid { --row-gap: clamp(64px, 9vw, 130px); grid-template-columns: minmax(0, 1fr); row-gap: var(--row-gap); }
-  /* the pull quote is the last thing in its section, so the grid's row gap is added to its bottom margin. It keeps only the remainder, so the space below the attribution (margin + gap) equals the space above the quote (--quote-space) at every window size */
-  .ab-method .pull-quote { margin-bottom: max(0px, calc(var(--quote-space, 200px) - var(--row-gap))); }
-  .about-grid > * { grid-column: 1 / -1; }
-  @media (min-width: 900px) { .about-grid { grid-template-columns: repeat(6, minmax(0, 1fr)); } } /* the skin's own 6 columns, back for side by side; every section still spans all six unless it says otherwise */
-
-  /* a small square marker in front of every kicker, like the "Tools" marker on the cards */
-
-  /* ---------- 01 HELLO: a cream panel beside the portrait ---------- */
-  .ab-hello { display: grid; gap: clamp(40px, 5vw, 72px); align-items: center; }
-  @media (min-width: 900px) { .ab-hello { grid-template-columns: minmax(0, 7fr) minmax(0, 5fr); } }
-  .ab-intro { padding: clamp(28px, 4vw, 56px); --panel-bg: var(--paper); --panel-ink: var(--ink); --panel-shadow: var(--amber); --panel-offset: var(--shadow-xl); --tilt: -0.6deg; }
-  .ab-intro .kicker { font-size: var(--fs-l); } /* the .ab-intro p rule below would otherwise outrank the base size (that is how Hello once got 15.68px by accident) */
-  .ab-intro h3 { margin: 0 0 22px; font-family: var(--font-body); font-weight: 600; font-size: clamp(2rem, 4.2vw, 3.9rem); line-height: 1.02; letter-spacing: -0.03em; }
-  .ab-intro p { max-width: 58ch; margin: 0 0 1em; font-size: var(--fs-l); line-height: 1.65; }
-  .ab-intro .ab-lede { font-size: clamp(1.15rem, 1.7vw, 1.5rem); line-height: 1.45; font-weight: 500; }
-  .ab-intro p:last-child { margin-bottom: 0; }
-
-  /* the portrait stands on an amber sun-disc; its shoulders are wider than the disc, so it breaks the frame */
-  .ab-portrait { position: relative; width: min(60%, 276px); justify-self: center; } /* 60% of the earlier min(100%, 460px): 276px at most. The disc and shapes are percentages of this box, so they scale with it */
-  .ab-disc { position: absolute; left: 7%; top: 2%; width: 86%; aspect-ratio: 1; border-radius: 50%; background: var(--amber); }
-  .ab-photo { position: relative; z-index: 2; aspect-ratio: 657 / 670; }
-  .ab-photo img { position: absolute; inset: 0; width: 100%; height: 100%; } /* no transition: the surprise is instant */
-  .ab-photo .photo-hover { opacity: 0; }
-  .ab-portrait:hover .photo-hover { opacity: 1; }
-  .ab-portrait:hover .photo-default { opacity: 0; }
-  .ab-portrait figcaption { position: relative; z-index: 2; display: grid; margin-top: 16px; text-align: center; font-size: var(--fs-xs); letter-spacing: 0.14em; text-transform: uppercase; color: var(--paper); }
-  .ab-portrait figcaption span { grid-area: 1 / 1; }
-  .ab-portrait .caption-hover { opacity: 0; }
-  .ab-portrait:hover .caption-hover { opacity: 1; }
-  .ab-portrait:hover .caption-default { opacity: 0; }
-
-  /* the orbiting shapes: the hero's vocabulary, drifting very slowly */
-  .ab-orbit { position: absolute; z-index: 3; animation: ab-float 7s ease-in-out infinite; }
-  .ab-o-circle { top: -2%; right: 2%; width: 19%; aspect-ratio: 1; border-radius: 50%; background: var(--magenta); }
-  .ab-o-tri { left: -3%; top: 40%; width: 22%; aspect-ratio: 1; background: var(--paper); clip-path: polygon(0 100%, 100% 100%, 0 0); animation-delay: -2.3s; }
-  .ab-o-half { right: -3%; bottom: 22%; width: 26%; aspect-ratio: 2 / 1; background: var(--mint); border-radius: 999px 999px 0 0; rotate: -14deg; animation-delay: -4.6s; }
-  @keyframes ab-float { 0%, 100% { translate: 0 0; } 50% { translate: 0 -10px; } }
-
-  /* ---------- 02 THE NUMBER: one fact at poster scale ---------- */
-  .ab-number { display: grid; gap: clamp(20px, 3vw, 40px); padding: clamp(28px, 5vw, 72px); --panel-bg: var(--blue); --panel-ink: var(--cream-text); --panel-shadow: var(--paper); --tilt: 3deg; --kicker-mark: var(--amber); /* magenta would fade on blue; amber is the same accent the % sign uses */ }
-  .ab-figure { margin: 0; font-family: var(--font-display); font-weight: 900; font-size: clamp(3.6rem, 13vw, 13rem); line-height: 0.8; letter-spacing: -0.03em; white-space: nowrap; color: var(--cream-text); }
-  /* the number card is 4 of the 6 columns (columns 3 to 6), flush right. (The number itself keeps the big size from .ab-figure above: clamp(3.6rem, 13vw, 13rem).) */
-  @media (min-width: 900px) {
-    .about-grid > .ab-number { grid-column: 3 / -1; }
-  }
-
-  /* THE % SIGN: small, in Montserrat, hanging at the number's top corner. It won a variant-switcher contest against five other looks (2026-10-20) */
-  .ab-pct { font-family: var(--font-body); font-weight: 600; font-size: clamp(1.6rem, 3.4vw, 3rem); letter-spacing: 0; line-height: 1; vertical-align: top; margin-left: 0.2em; color: var(--amber); }
-  .ab-number .kicker { margin: 0; } /* the card's own grid gap does the spacing */
-  .ab-figure-note { max-width: 56ch; }
-  .ab-figure-note p { margin: 0; font-size: var(--fs-s); letter-spacing: 0.18em; text-transform: uppercase; }
-  .ab-figure-note blockquote { margin: 14px 0; font-family: var(--font-body); font-weight: 600; font-size: clamp(1.3rem, 2.2vw, 2rem); line-height: 1.2; letter-spacing: -0.02em; }
-
-  /* ---------- 03 A BLEND OF: the intro's own sentence, made literal ---------- */
-  .ab-method { color: var(--paper); }
-  .ab-shapes { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 28px var(--gap); margin: 0; padding: 0; list-style: none; }
-  @media (min-width: 700px) { .ab-shapes { grid-template-columns: repeat(4, minmax(0, 1fr)); } }
-  .ab-shapes li { display: flex; flex-direction: column; gap: 14px; }
-  .ab-shape { --shape-scale: 0.75; /* every shape is drawn at 75% of its box, centred in its column */ position: relative; height: clamp(90px, 12vw, 170px); border-bottom: 1px solid var(--paper); } /* the border is the floor the shape stands on */
-  .ab-shape::before { content: ""; position: absolute; left: 50%; translate: -50% 0; bottom: 0; height: calc(100% * var(--shape-scale)); aspect-ratio: 1; background: var(--c); transition: transform var(--t-base) ease; }
-  .s-circle { --c: var(--amber); }   .s-circle::before { border-radius: 50%; }
-  .s-tri { --c: var(--magenta); }    .s-tri::before { clip-path: polygon(0 100%, 100% 100%, 0 0); }
-  .s-half { --c: var(--orange); }    .s-half::before { height: calc(50% * var(--shape-scale)); aspect-ratio: 2 / 1; border-radius: 999px 999px 0 0; }
-  .s-diamond { --c: var(--mint); }   .s-diamond::before { clip-path: polygon(50% 0, 100% 50%, 50% 100%, 0 50%); }
-  .ab-shapes li:hover .ab-shape::before { transform: translateY(-10px); }
-  /* the four shapes hover 20px above their floor line and drift like the portrait's orbiting shapes (same 7s ease-in-out, same 10px of travel), each on its own beat. It animates the same `translate` property that centres the shape, so the -50% is repeated in every step; the hover lift above uses `transform`, a different property, so the two add together. */
-  .ab-shape::before { translate: -50% -20px; animation: ab-shape-float 7s ease-in-out infinite; }
-  .ab-shapes li:nth-child(2) .ab-shape::before { animation-delay: -2.3s; }
-  .ab-shapes li:nth-child(3) .ab-shape::before { animation-delay: -4.6s; }
-  .ab-shapes li:nth-child(4) .ab-shape::before { animation-delay: -1.2s; }
-  @keyframes ab-shape-float { 0%, 100% { translate: -50% -20px; } 50% { translate: -50% -30px; } }
-  /* the eye: on hover the amber circle (Evidence) turns into a blinking eye. The eye is an inline SVG that sits exactly over the circle (same size, same float, same hover lift) and is invisible until hover. Its disc is the same amber as the circle, so what appears is the white, iris and pupil. The circle underneath is never removed, which is why there is no flicker when the two swap. */
-  .ab-eye { position: absolute; left: 50%; bottom: 0; height: calc(100% * var(--shape-scale)); aspect-ratio: 1; translate: -50% -20px; opacity: 0; animation: ab-shape-float 7s ease-in-out infinite; transition: transform var(--t-base) ease; }
-  .ab-shapes li:hover .ab-eye { opacity: 1; transform: translateY(-10px); }
-  .eye-disc { fill: var(--amber); }
-  .eye-white, .eye-glint { fill: #fff; }
-  .eye-iris { fill: #c8c8c8; }
-  .eye-pupil { fill: #000; }
-  /* the mask is the "window" the eye is seen through; squashing its height toward the centre line closes both lids together. The blink only runs while hovered, so every hover starts with an open eye and the first blink comes about 0.3s in (startled!). */
-  .eye-window { transform-box: fill-box; transform-origin: 50% 50%; }
-  .ab-shapes li:hover .eye-window { animation: eye-blink 7s infinite; }
-  /* 7s loop (1% = 70ms). Rhythm: blink --- blink-blink ---
-     Single blink: closes in 100ms, shut 30ms, reopens in 130ms. Double blink: faster (70 / 20 / 90ms), ~80ms apart. Rests are ~3s. */
-  @keyframes eye-blink {
-    0%, 4.3%     { transform: scaleY(1); animation-timing-function: ease-in; }
-    5.7%         { transform: scaleY(0); }
-    6.2%         { transform: scaleY(0); animation-timing-function: ease-out; }
-    8%, 50.9%    { transform: scaleY(1); animation-timing-function: ease-in; }
-    51.9%        { transform: scaleY(0); }
-    52.2%        { transform: scaleY(0); animation-timing-function: ease-out; }
-    53.5%, 54.6% { transform: scaleY(1); animation-timing-function: ease-in; }
-    55.6%        { transform: scaleY(0); }
-    55.9%        { transform: scaleY(0); animation-timing-function: ease-out; }
-    57.2%, 100%  { transform: scaleY(1); }
-  }
-  .ab-shape-label { font-family: var(--font-display); font-weight: 900; font-size: var(--fs-label-display); line-height: 0.9; text-transform: uppercase; text-align: center; }
-
-  /* ---------- 04 SAID ABOUT ME: two tilted note cards ---------- */
-  .ab-said { --qm-size: clamp(7rem, 12vw, 12rem); --qm-over: calc(var(--qm-size) * 0.38); } /* the quote mark's size, and how far it hangs above its card (the -0.38em below) */
-  .ab-said h3 { margin: 0 0 clamp(28px, 4vw, 56px); font-size: clamp(2.6rem, 8vw, 8rem); line-height: 0.85; letter-spacing: -0.03em; text-transform: uppercase; color: var(--paper); }
-  .ab-notes { display: grid; gap: clamp(36px, 4vw, 64px); align-items: start; }
-  @media (min-width: 900px) { .ab-notes { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
-  @media (max-width: 899px) { /* stacked: each card's quote mark hangs above it, so the gaps are the overhang PLUS clear space (was 36px, less than the overhang, so marks landed on the card or title above) */
-    .ab-said h3 { margin-bottom: calc(var(--qm-over) + 40px); font-size: var(--fs-title-sm); letter-spacing: -0.02em; } /* below 900px the title follows the About h2's exact size formula (card-pages.css) and its letter spacing, so the two headings are twins */
-    .ab-notes { gap: calc(var(--qm-over) + 56px); }
-  }
-  /* the card itself (padding, the quote mark, text, hover) is .quote--card in reskin-blue.css; this page adds its two colours and where they sit */
-  /* THE ATTRIBUTION ("— Name, role"): one style for every quote on the page, now the shared ".quote figcaption" in reskin-blue.css. The colour is inherited (ink on the paper and mint cards, cream on the blue panel), so only the background decides it.
-     The rule below is only for the blue stat panel, whose attribution is still a paragraph: it has to beat the panel's own caption rule (.ab-figure-note p), which is why it is written with the extra class. */
-  .ab-figure-note p.ab-by { margin: 18px 0 0; font-size: var(--fs-xs); letter-spacing: 0.1em; line-height: 1.6; text-transform: uppercase; }
-  .ab-by strong { font-weight: 600; }
-  .ab-note-1 { --panel-bg: var(--paper); --panel-shadow: var(--magenta); --tilt: -1.2deg; }
-  .ab-note-2 { --panel-bg: var(--mint); --panel-shadow: var(--orange); --tilt: 1.1deg; }
-  @media (min-width: 900px) { /* side by side only; stacked on phones neither card has an offset */
-    .ab-note-1 { margin-top: 100px; } /* the left card sits 100px lower */
-    .ab-note-2 { margin-top: clamp(0px, 4vw, 60px); } /* the right card keeps its original nudge */
-  }
-
-  /* ---------- the way out ---------- */
-  .ab-back-link { margin: 60px 0 0; } /* the same spacing as .cs-back on the case studies */
-
-  @media (prefers-reduced-motion: reduce) { .ab-orbit, .ab-shape::before, .ab-eye, .ab-shapes li:hover .eye-window { animation: none; } .ab-shape::before, .ab-eye, .ab-photo img { transition: none; } }
-  </style>
+  <!-- the skin switch picks the skin before paint and writes that skin's stylesheets (js/skin-switch.js).
+       2017 = ui.css + main.css + common-2017.css (what every page needs for blue's shared markup) + about-2017.css (this page's old look). 1986 = blue: reskin-blue.css + card-pages.css + about-1986.css (this page's own CSS, formerly inline) -->
+  <script src="js/skin-switch.js" data-2017="css/ui.css,css/main.css,css/common-2017.css,css/about-2017.css" data-1986="css/reskin-blue.css,css/card-pages.css,css/about-1986.css"></script>
+  <link rel="stylesheet" href="css/skin-switch.css"> <!-- the switch itself looks the same in both skins, so it has its own file, loaded after the skin -->
+  <noscript><link rel="stylesheet" href="css/ui.css"><link rel="stylesheet" href="css/main.css"><link rel="stylesheet" href="css/common-2017.css"><link rel="stylesheet" href="css/about-2017.css"></noscript> <!-- without JavaScript: the default skin (2017) -->
 
 	<!--fonts-->
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -199,7 +67,7 @@
 <header class="pattern-dots-sparse">
 	<div class="header-container">
 		<h1 class="doto-lg">Lawrence Getubig</h1>
-		<p>Creative Technologist<br>in Product Design</p>
+		<p>Creative Technologist <br>in Product Design</p>
 	</div><!--end header container-->
 </header>
 
@@ -219,14 +87,14 @@
 	</div>
 </div>
 
-<div class="flex-container-main about-grid">
+<div class="flex-container-main about-grid pattern-grid-small">
 
 	<!-- the live page has a breadcrumb ("Home > About"); this design has no room for one above the panels, so it is kept in the markup but hidden. Remove the hidden attribute (and give it the .gl-crumb look) to bring it back; while it is hidden its breadcrumb_click cannot fire -->
 	<nav class="ab-crumb" aria-label="Breadcrumb" hidden><a href="index-test.html" onclick="gtag('event', 'breadcrumb_click', { breadcrumb_item: 'home', from_page: window.location.pathname });">Home</a> <span aria-current="page">About</span></nav>
 
 <!-- 01 · HELLO: a cream panel of text beside the portrait on its sun-disc -->
 	<section class="ab-hello">
-		<div class="ab-intro panel panel--cut-tr">
+		<div class="ab-intro info-box indent-left panel panel--cut-tr">
 			<p class="kicker source-code-pro">Hello</p>
 			<h3>Hello There! Thanks for Dropping By</h3>
 			<p class="ab-lede">I specialize in interface and visual design, where data and intuition work side by side. I use analytics, A/B testing, heat‑mapping, and usability research to shape digital experiences that perform — giving people a clear, easy path to what they need.</p>
@@ -239,7 +107,7 @@
 			<span class="ab-orbit ab-o-circle" aria-hidden="true"></span>
 			<span class="ab-orbit ab-o-tri" aria-hidden="true"></span>
 			<span class="ab-orbit ab-o-half" aria-hidden="true"></span>
-			<div class="ab-photo">
+			<div class="ab-photo about-photo">
 				<img src="images/about/original.png" alt="Self portrait" class="photo-default" width="657" height="670">
 				<img src="images/about/surprised3.png" alt="Surprised version of the self portrait" class="photo-hover" width="657" height="670">
 			</div>
@@ -295,14 +163,14 @@
 	<section class="ab-said">
 		<h3 class="doto-lg">Said About Me</h3>
 		<div class="ab-notes">
-			<figure class="quote quote--card ab-note-1 panel panel--cut-tl">
+			<figure class="quote quote--card ab-note-1 info-box indent-right panel panel--cut-tl">
 				<blockquote>
 					<p>“First, Lawrence, you’re my favorite person I’ve ever met virtually. Second, I’m blown away. It’s like you all are experts in this – and you are!”</p>
 					<p>“This first pass is so beautiful. It’s pretty awesome. It’s so clean, refreshing, navigable. I want to be on this website.”</p>
 				</blockquote>
 				<figcaption class="ab-by source-code-pro">— <strong>L.B.</strong>, public sector client, responding to a first-pass website refresh my Accenture Song team and I designed</figcaption>
 			</figure>
-			<figure class="quote quote--card ab-note-2 panel panel--cut-tr">
+			<figure class="quote quote--card ab-note-2 info-box indent-left panel panel--cut-tr">
 				<blockquote>
 					<p>“I've been doing this nearly ten years and haven't met someone like Lawrence...a one-stop shop who can implement [Adobe Target] A/B tests from his own [Figma] mockups, then analyze the results himself [using Adobe Workspace].”</p>
 					<p>“One of the A/B tests he was absolutely critical in helped increase email subscriptions for [the client's website], which is their number two goal...for this test, he mocked it up himself, led meetings with the client, then did the entire front-end-coding and implemented the test in Adobe Target.”</p>
@@ -314,7 +182,7 @@
 	</section>
 
 <!-- the way out -->
-	<p class="ab-back-link"><a class="text-link" href="index-test.html" onclick="gtag('event', 'footer_click', { footer_item: 'home', from_page: window.location.pathname });">Back to Home</a></p>
+	<p class="ab-back-link back-link"><a class="text-link" href="index-test.html" onclick="gtag('event', 'footer_click', { footer_item: 'home', from_page: window.location.pathname });">Back to Home</a></p>
 
 </div><!--end main flex container-->
 
