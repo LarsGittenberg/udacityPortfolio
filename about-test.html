@@ -221,6 +221,9 @@
 
 <div class="flex-container-main about-grid">
 
+	<!-- the live page has a breadcrumb ("Home > About"); this design has no room for one above the panels, so it is kept in the markup but hidden. Remove the hidden attribute (and give it the .gl-crumb look) to bring it back; while it is hidden its breadcrumb_click cannot fire -->
+	<nav class="ab-crumb" aria-label="Breadcrumb" hidden><a href="index-test.html" onclick="gtag('event', 'breadcrumb_click', { breadcrumb_item: 'home', from_page: window.location.pathname });">Home</a> <span aria-current="page">About</span></nav>
+
 <!-- 01 · HELLO: a cream panel of text beside the portrait on its sun-disc -->
 	<section class="ab-hello">
 		<div class="ab-intro panel panel--cut-tr">
