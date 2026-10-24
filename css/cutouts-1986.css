@@ -1,0 +1,10 @@
+/* =====================================================================
+   CUTOUTS, 1986 (blue): this page's own CSS, formerly an inline <style> in cutouts-test.html. It only exists in the 1986 skin (data-1986 in the skin-switch script),
+   so it cannot leak into 2017. It loads after reskin-blue.css, card-pages.css, transitions.css and gallery.css, as the inline block always did.
+   ===================================================================== */
+  /* this page's band colour (blue): background, text, and the three shape colours */
+  .band { --band-bg: var(--blue); --band-ink: var(--cream-text); --s1: var(--amber); --s2: var(--mint); --s3: var(--orange); }
+
+  /* CARD 2 (retouch): the dome frame is 4:3 and the picture is 5:3, so the default centred crop cut the left half of the "A" block in "AIDEN". Sliding the crop to the left keeps the whole row of blocks. To undo, delete this rule */
+  #retouch { object-position: left center; }
+  
