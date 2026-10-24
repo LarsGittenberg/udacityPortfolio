@@ -17,7 +17,7 @@
    margin-top: 50px below the "C" of "Creative", the foot of the rotated tagline; the tagline's own 0.4rem bottom margin is already part of that, so it is subtracted */
 .card-page .band { margin-top: calc(50px - 0.4rem); height: calc(4.04 * var(--u)); min-height: 40px; display: flex; align-items: center; overflow: hidden; white-space: nowrap; background: var(--band-bg); color: var(--band-ink); }
 .card-page .band-track { display: inline-flex; animation: slide 38s linear infinite; }
-.card-page .band-track span { font-family: var(--font-mono); font-size: var(--fs-s); letter-spacing: 0.14em; text-transform: uppercase; padding-right: 2.2em; }
+.card-page .band-track span { font-family: var(--font-mono); font-size: var(--fs-s); letter-spacing: var(--ls-caps); text-transform: uppercase; padding-right: 2.2em; }
 .card-page .band-track i { font-style: normal; }
 .card-page .band-track i:nth-of-type(3n+1) { color: var(--s1); }
 .card-page .band-track i:nth-of-type(3n+2) { color: var(--s2); }

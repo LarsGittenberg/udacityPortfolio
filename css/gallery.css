@@ -10,20 +10,20 @@
 /* ---------- COLUMN: the base ---------- */
 .gl { position: relative; padding: clamp(24px, 4vw, 56px) var(--pad) clamp(60px, 8vw, 120px) clamp(8px, 2vw, 28px); max-width: 1040px; }
 @media (min-width: 900px) { main > .gl { grid-column: 2; } }
-.gl-crumb { display: flex; flex-wrap: wrap; gap: 6px 0; margin: 0 0 clamp(30px, 4vw, 56px); font-family: var(--font-mono); font-size: var(--fs-s); letter-spacing: .14em; text-transform: uppercase; }
+.gl-crumb { display: flex; flex-wrap: wrap; gap: 6px 0; margin: 0 0 clamp(30px, 4vw, 56px); font-family: var(--font-mono); font-size: var(--fs-s); letter-spacing: var(--ls-caps); text-transform: uppercase; }
 .gl-crumb a { color: var(--paper); text-decoration: none; }
 .gl-crumb a::after { content: "\2192"; margin: 0 .8em; color: var(--magenta); }
 .gl-crumb a:hover { color: var(--gold); }
 
 /* the statement */
 .gl-side { max-width: 68ch; margin-bottom: clamp(40px, 6vw, 80px); }
-.gl-side p { margin: 0 0 1em; font-size: var(--fs-l); line-height: 1.65; max-width: 62ch; }
+.gl-side p { margin: 0 0 1em; font-size: var(--fs-l); line-height: var(--lh-long); max-width: 62ch; }
 /* a Role list in the main body (DRØM), above the statement, as on the case studies */
 .gl-rolebox { max-width: 68ch; margin-bottom: clamp(32px, 4vw, 56px); }
-.gl-rolebox .kicker { margin: 0 0 1em; line-height: 1.65; } /* the same kicker spacing as on the case studies (.cs p) */
+.gl-rolebox .kicker { margin: 0 0 1em; line-height: var(--lh-long); } /* the same kicker spacing as on the case studies (.cs p) */
 .gl-role { margin: 0; padding: 0; list-style: none; font-family: var(--font-mono); font-size: var(--fs-l); } /* the same role list as the case studies (.cs-role): 16px, 8px of padding, a hairline under each */
 .gl-role li { padding: 8px 0; border-bottom: 1px solid color-mix(in srgb, var(--cream-text) 30%, transparent); }
-.gl-count { margin-top: 22px !important; font-size: var(--fs-s) !important; letter-spacing: .14em; text-transform: uppercase; color: var(--gold); }
+.gl-count { margin-top: 22px !important; font-size: var(--fs-s) !important; letter-spacing: var(--ls-caps); text-transform: uppercase; color: var(--gold); }
 /* the "Back to ..." link has two homes: pinned in the rail (Rail mode, 900px and up), or at the foot of the page (Column mode, and phones). Two copies are in the HTML; CSS shows one. */
 .gl-side .gl-back { display: none; margin-top: 22px; }
 .gl > .gl-back--end { margin: 60px 0 0; }
@@ -33,7 +33,7 @@
 @media (max-width: 560px) { .gl-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
 .gl-grid figure { margin: 0; }
 .gl-grid img { display: block; width: 100%; height: auto; max-width: 400px; border-radius: var(--radius-img); } /* these photographs are about 400px wide, so they are never shown larger than that */
-.gl-grid figcaption { margin-top: 8px; font-family: var(--font-mono); font-size: var(--fs-xs); letter-spacing: .14em; text-transform: uppercase; opacity: .85; transition: color var(--t-quick) ease, opacity var(--t-quick) ease; }
+.gl-grid figcaption { margin-top: 8px; font-family: var(--font-mono); font-size: var(--fs-xs); letter-spacing: var(--ls-caps); text-transform: uppercase; opacity: .85; transition: color var(--t-quick) ease, opacity var(--t-quick) ease; }
 .gl-grid figure:hover figcaption { color: var(--gold); opacity: 1; }
 
 /* a gallery of larger pieces (DRØM's 600px print work): three across in Column mode (two in Rail, below), up to their real 600px */
@@ -46,11 +46,11 @@
             then <section class="gl-cat" id="id"> .kicker, h3, p, <div class="gl-grid gl-grid--icons"> of <figure>s.
    COLUMN: the index is a row of jump chips under the Role. RAIL (below): a sticky list with the paper oval on the set you are in, like the case-study rail. js/layout-switch.js marks the current set. ---------- */
 .gl-cat { max-width: 100%; margin: 0 0 clamp(56px, 8vw, 110px); scroll-margin-top: 110px; }
-.gl-cat h3 { margin: 0 0 14px; font-family: var(--font-body); font-weight: 600; font-size: var(--fs-heading); line-height: 1.02; letter-spacing: -0.03em; }
-.gl-cat > p:not(.kicker) { max-width: 62ch; margin: 0 0 1.4em; font-size: var(--fs-l); line-height: 1.65; }
-.gl-cat .kicker { margin: 0 0 1em; line-height: 1.65; } /* the same kicker spacing as on the case studies (.cs p) */
+.gl-cat h3 { margin: 0 0 14px; font-family: var(--font-body); font-weight: 600; font-size: var(--fs-heading); line-height: 1.02; letter-spacing: var(--ls-display); }
+.gl-cat > p:not(.kicker) { max-width: 62ch; margin: 0 0 1.4em; font-size: var(--fs-l); line-height: var(--lh-long); }
+.gl-cat .kicker { margin: 0 0 1em; line-height: var(--lh-long); } /* the same kicker spacing as on the case studies (.cs p) */
 .gl-side .gl-index-label { margin-top: 28px; } /* the kicker above the index, when the aside has a statement above it */
-.gl-index { display: flex; flex-wrap: wrap; gap: 8px 12px; font-family: var(--font-mono); font-size: var(--fs-xs); letter-spacing: .12em; text-transform: uppercase; }
+.gl-index { display: flex; flex-wrap: wrap; gap: 8px 12px; font-family: var(--font-mono); font-size: var(--fs-xs); letter-spacing: var(--ls-label); text-transform: uppercase; }
 .gl-index a { display: flex; justify-content: space-between; gap: 8px; padding: 7px 12px; border: 2px solid var(--paper); color: var(--paper); text-decoration: none; transition: color var(--t-quick) ease, background-color var(--t-quick) ease, border-color var(--t-quick) ease; }
 .gl-index a em { font-style: normal; color: var(--gold); }
 .gl-index a:hover { background: var(--paper); color: var(--ink); }
@@ -58,7 +58,7 @@
 /* the icons: transparent PNGs up to 500px, three across; the captions are real copy, so they read as sentences, not as tracked caps. No corner radius: the icons are drawings on a transparent ground. */
 .gl-grid--icons { margin-top: clamp(20px, 3vw, 36px); align-items: start; }
 .gl-grid--icons img { max-width: 500px; border-radius: 0; transform: scale(var(--icon-scale, 1)); } /* --icon-scale evens out sets exported with different transparent margins; a transform leaves the layout box alone, so nothing around the icon moves */
-.gl-grid--icons figcaption { margin-top: 10px; font-family: var(--font-body); font-size: var(--fs-s); letter-spacing: 0; text-transform: none; line-height: 1.5; opacity: .9; }
+.gl-grid--icons figcaption { margin-top: 10px; font-family: var(--font-body); font-size: var(--fs-s); letter-spacing: 0; text-transform: none; line-height: var(--lh-text); opacity: .9; }
 .gl-grid--icons figure:hover figcaption { color: inherit; }
 
 /* ---------- AD FORMATS (the Ads page): each format in its own grid, and no ad is ever shown larger than its real pixel size ----------
@@ -69,7 +69,7 @@
 .gl-grid--banners img { max-width: 300px; }
 .gl-grid--squares img { max-width: 100%; }
 .gl-grid--cards img { max-width: 450px; } /* 450px is the width of the smallest card file (March): the three cards match and none is enlarged, in the grid and on a phone */
-.gl-grid--banners figcaption, .gl-grid--squares figcaption, .gl-grid--cards figcaption { line-height: 1.4; }
+.gl-grid--banners figcaption, .gl-grid--squares figcaption, .gl-grid--cards figcaption { line-height: var(--lh-compact); }
 @media (max-width: 700px) { .gl-grid--banners, .gl-grid--squares, .gl-grid--cards { grid-template-columns: 1fr; } }
 
 /* ---------- BEFORE / AFTER (the Retouching page): each file is an 800 x 400 sprite, the finished piece (AFTER) on the left half and the original (BEFORE) on the right half, shown through a square window.
@@ -79,7 +79,7 @@
    to compare a retouch, the two halves must land in exactly the same place. ---------- */
 .gl-ba { position: relative; width: 100%; max-width: 400px; aspect-ratio: 1; overflow: hidden; border-radius: var(--radius-img); cursor: pointer; }
 .gl-grid .gl-ba img { width: 200%; max-width: none; height: 100%; object-fit: cover; border-radius: 0; }
-.gl-ba::after { content: "After"; position: absolute; left: 8px; bottom: 8px; padding: 3px 8px; font-family: var(--font-mono); font-size: var(--fs-xs); letter-spacing: .14em; text-transform: uppercase; color: var(--paper); background: var(--ink); pointer-events: none; }
+.gl-ba::after { content: "After"; position: absolute; left: 8px; bottom: 8px; padding: 3px 8px; font-family: var(--font-mono); font-size: var(--fs-xs); letter-spacing: var(--ls-caps); text-transform: uppercase; color: var(--paper); background: var(--ink); pointer-events: none; }
 .gl-ba:focus-visible img, .gl-ba.is-before img { transform: translateX(-50%); }
 .gl-ba:focus-visible::after, .gl-ba.is-before::after { content: "Before"; }
 @media (hover: hover) {

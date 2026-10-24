@@ -23,9 +23,9 @@
   @media (min-width: 900px) { .ab-hello { grid-template-columns: minmax(0, 7fr) minmax(0, 5fr); } }
   .ab-intro { padding: clamp(28px, 4vw, 56px); --panel-bg: var(--paper); --panel-ink: var(--ink); --panel-shadow: var(--amber); --panel-offset: var(--shadow-xl); --tilt: -0.6deg; }
   .ab-intro .kicker { font-size: var(--fs-l); } /* the .ab-intro p rule below would otherwise outrank the base size (that is how Hello once got 15.68px by accident) */
-  .ab-intro h3 { margin: 0 0 22px; font-family: var(--font-body); font-weight: 600; font-size: clamp(2rem, 4.2vw, 3.9rem); line-height: 1.02; letter-spacing: -0.03em; }
-  .ab-intro p { max-width: 58ch; margin: 0 0 1em; font-size: var(--fs-l); line-height: 1.65; }
-  .ab-intro .ab-lede { font-size: clamp(1.15rem, 1.7vw, 1.5rem); line-height: 1.45; font-weight: 500; }
+  .ab-intro h3 { margin: 0 0 22px; font-family: var(--font-body); font-weight: 600; font-size: clamp(2rem, 4.2vw, 3.9rem); line-height: 1.02; letter-spacing: var(--ls-display); }
+  .ab-intro p { max-width: 58ch; margin: 0 0 1em; font-size: var(--fs-l); line-height: var(--lh-long); }
+  .ab-intro .ab-lede { font-size: clamp(1.15rem, 1.7vw, 1.5rem); line-height: var(--lh-compact); font-weight: 500; }
   .ab-intro p:last-child { margin-bottom: 0; }
 
   /* the portrait stands on an amber sun-disc; its shoulders are wider than the disc, so it breaks the frame */
@@ -36,7 +36,7 @@
   .ab-photo .photo-hover { opacity: 0; }
   .ab-portrait:hover .photo-hover { opacity: 1; }
   .ab-portrait:hover .photo-default { opacity: 0; }
-  .ab-portrait figcaption { position: relative; z-index: 2; display: grid; margin-top: 16px; text-align: center; font-size: var(--fs-xs); letter-spacing: 0.14em; text-transform: uppercase; color: var(--paper); }
+  .ab-portrait figcaption { position: relative; z-index: 2; display: grid; margin-top: 16px; text-align: center; font-size: var(--fs-xs); letter-spacing: var(--ls-caps); text-transform: uppercase; color: var(--paper); }
   .ab-portrait figcaption span { grid-area: 1 / 1; }
   .ab-portrait .caption-hover { opacity: 0; }
   .ab-portrait:hover .caption-hover { opacity: 1; }
@@ -51,7 +51,7 @@
 
   /* ---------- 02 THE NUMBER: one fact at poster scale ---------- */
   .ab-number { display: grid; gap: clamp(20px, 3vw, 40px); padding: clamp(28px, 5vw, 72px); --panel-bg: var(--blue); --panel-ink: var(--cream-text); --panel-shadow: var(--paper); --tilt: 3deg; --kicker-mark: var(--amber); /* magenta would fade on blue; amber is the same accent the % sign uses */ }
-  .ab-figure { margin: 0; font-family: var(--font-display); font-weight: 900; font-size: clamp(3.6rem, 13vw, 13rem); line-height: 0.8; letter-spacing: -0.03em; white-space: nowrap; color: var(--cream-text); }
+  .ab-figure { margin: 0; font-family: var(--font-display); font-weight: 900; font-size: clamp(3.6rem, 13vw, 13rem); line-height: 0.8; letter-spacing: var(--ls-display); white-space: nowrap; color: var(--cream-text); }
   /* the number card is 4 of the 6 columns (columns 3 to 6), flush right. (The number itself keeps the big size from .ab-figure above: clamp(3.6rem, 13vw, 13rem).) */
   @media (min-width: 900px) {
     .about-grid > .ab-number { grid-column: 3 / -1; }
@@ -61,8 +61,8 @@
   .ab-pct { font-family: var(--font-body); font-weight: 600; font-size: clamp(1.6rem, 3.4vw, 3rem); letter-spacing: 0; line-height: 1; vertical-align: top; margin-left: 0.2em; color: var(--amber); }
   .ab-number .kicker { margin: 0; } /* the card's own grid gap does the spacing */
   .ab-figure-note { max-width: 56ch; }
-  .ab-figure-note p { margin: 0; font-size: var(--fs-s); letter-spacing: 0.18em; text-transform: uppercase; }
-  .ab-figure-note blockquote { margin: 14px 0; font-family: var(--font-body); font-weight: 600; font-size: clamp(1.3rem, 2.2vw, 2rem); line-height: 1.2; letter-spacing: -0.02em; }
+  .ab-figure-note p { margin: 0; font-size: var(--fs-s); letter-spacing: var(--ls-wide); text-transform: uppercase; }
+  .ab-figure-note blockquote { margin: 14px 0; font-family: var(--font-body); font-weight: 600; font-size: clamp(1.3rem, 2.2vw, 2rem); line-height: var(--lh-quote); letter-spacing: var(--ls-heading); }
 
   /* ---------- 03 A BLEND OF: the intro's own sentence, made literal ---------- */
   .ab-method { color: var(--paper); }
@@ -110,17 +110,17 @@
 
   /* ---------- 04 SAID ABOUT ME: two tilted note cards ---------- */
   .ab-said { --qm-size: clamp(7rem, 12vw, 12rem); --qm-over: calc(var(--qm-size) * 0.38); } /* the quote mark's size, and how far it hangs above its card (the -0.38em below) */
-  .ab-said h3 { margin: 0 0 clamp(28px, 4vw, 56px); font-size: clamp(2.6rem, 8vw, 8rem); line-height: 0.85; letter-spacing: -0.03em; text-transform: uppercase; color: var(--paper); }
+  .ab-said h3 { margin: 0 0 clamp(28px, 4vw, 56px); font-size: clamp(2.6rem, 8vw, 8rem); line-height: 0.85; letter-spacing: var(--ls-display); text-transform: uppercase; color: var(--paper); }
   .ab-notes { display: grid; gap: clamp(36px, 4vw, 64px); align-items: start; }
   @media (min-width: 900px) { .ab-notes { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
   @media (max-width: 899px) { /* stacked: each card's quote mark hangs above it, so the gaps are the overhang PLUS clear space (was 36px, less than the overhang, so marks landed on the card or title above) */
-    .ab-said h3 { margin-bottom: calc(var(--qm-over) + 40px); font-size: var(--fs-title-sm); letter-spacing: -0.02em; } /* below 900px the title follows the About h2's exact size formula (card-pages.css) and its letter spacing, so the two headings are twins */
+    .ab-said h3 { margin-bottom: calc(var(--qm-over) + 40px); font-size: var(--fs-title-sm); letter-spacing: var(--ls-heading); } /* below 900px the title follows the About h2's exact size formula (card-pages.css) and its letter spacing, so the two headings are twins */
     .ab-notes { gap: calc(var(--qm-over) + 56px); }
   }
   /* the card itself (padding, the quote mark, text, hover) is .quote--card in reskin-blue.css; this page adds its two colours and where they sit */
   /* THE ATTRIBUTION ("— Name, role"): one style for every quote on the page, now the shared ".quote figcaption" in reskin-blue.css. The colour is inherited (ink on the paper and mint cards, cream on the blue panel), so only the background decides it.
      The rule below is only for the blue stat panel, whose attribution is still a paragraph: it has to beat the panel's own caption rule (.ab-figure-note p), which is why it is written with the extra class. */
-  .ab-figure-note p.ab-by { margin: 18px 0 0; font-size: var(--fs-xs); letter-spacing: 0.1em; line-height: 1.6; text-transform: uppercase; }
+  .ab-figure-note p.ab-by { margin: 18px 0 0; font-size: var(--fs-xs); letter-spacing: var(--ls-label); line-height: var(--lh-text); text-transform: uppercase; }
   .ab-by strong { font-weight: 600; }
   .ab-note-1 { --panel-bg: var(--paper); --panel-shadow: var(--magenta); --tilt: -1.2deg; }
   .ab-note-2 { --panel-bg: var(--mint); --panel-shadow: var(--orange); --tilt: 1.1deg; }

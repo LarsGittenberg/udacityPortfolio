@@ -91,7 +91,7 @@
     font-size: var(--tag-font); /* 56px ceiling, set in :root */
     font-weight: 700; /* was 900 from .doto-lg; lighter dots read less heavy */
     line-height: 0.9;
-    letter-spacing: -0.03em;
+    letter-spacing: var(--ls-display);
     text-align: right;
   }
   .hero-tagline .tl { display: block; white-space: nowrap; }
@@ -163,7 +163,7 @@
     color: var(--ink);
   }
   .band-track { display: inline-flex; animation: slide 38s linear infinite; }
-  .band-track span { font-family: var(--font-mono); font-size: var(--fs-s); letter-spacing: 0.14em; text-transform: uppercase; padding-right: 2.2em; }
+  .band-track span { font-family: var(--font-mono); font-size: var(--fs-s); letter-spacing: var(--ls-caps); text-transform: uppercase; padding-right: 2.2em; }
   .band-track i { font-style: normal; }
   .band-track i:nth-of-type(3n+1) { color: var(--magenta); }
   .band-track i:nth-of-type(3n+2) { color: var(--teal); }

@@ -9,19 +9,19 @@
 /* ---------- COLUMN: the base ---------- */
 .cs { position: relative; padding: clamp(24px, 4vw, 56px) var(--pad) clamp(60px, 8vw, 120px) clamp(8px, 2vw, 28px); max-width: 1040px; }
 @media (min-width: 900px) { main > .cs { grid-column: 2; } }
-.cs h3 { margin: 0 0 14px; font-family: var(--font-body); font-weight: 600; font-size: var(--fs-heading); line-height: 1.02; letter-spacing: -0.03em; }
-.cs h4 { margin: 30px 0 8px; font-weight: 400; font-size: var(--fs-s); letter-spacing: .12em; text-transform: uppercase; color: var(--orange); }
-.cs p { margin: 0 0 1em; font-size: var(--fs-l); line-height: 1.65; }
+.cs h3 { margin: 0 0 14px; font-family: var(--font-body); font-weight: 600; font-size: var(--fs-heading); line-height: 1.02; letter-spacing: var(--ls-display); }
+.cs h4 { margin: 30px 0 8px; font-weight: 400; font-size: var(--fs-s); letter-spacing: var(--ls-label); text-transform: uppercase; color: var(--orange); }
+.cs p { margin: 0 0 1em; font-size: var(--fs-l); line-height: var(--lh-long); }
 .cs ul { margin: 0; padding: 0; list-style: none; }
 .cs-role li { padding: 8px 0; border-bottom: 1px solid color-mix(in srgb, var(--cream-text) 30%, transparent); font-family: var(--font-mono); font-size: var(--fs-l); }
-.cs-crumb { display: flex; flex-wrap: wrap; gap: 6px 0; margin: 0 0 clamp(30px, 4vw, 56px); font-family: var(--font-mono); font-size: var(--fs-s); letter-spacing: .14em; text-transform: uppercase; }
+.cs-crumb { display: flex; flex-wrap: wrap; gap: 6px 0; margin: 0 0 clamp(30px, 4vw, 56px); font-family: var(--font-mono); font-size: var(--fs-s); letter-spacing: var(--ls-caps); text-transform: uppercase; }
 .cs-crumb a { color: var(--paper); text-decoration: none; }
 .cs-crumb a::after { content: "\2192"; margin: 0 .8em; color: var(--magenta); }
 .cs-crumb a:hover { color: var(--gold); }
 .cs-sec { max-width: 68ch; margin: 0 0 clamp(36px, 5vw, 72px); }
 .cs-fig { margin: clamp(32px, 5vw, 72px) 0; }
 .cs-fig img { display: block; width: 100%; height: auto; }
-.cs-fig figcaption { max-width: 70ch; margin-top: 12px; font-family: var(--font-mono); font-size: var(--fs-s); letter-spacing: .04em; line-height: 1.55; opacity: .85; }
+.cs-fig figcaption { max-width: 70ch; margin-top: 12px; font-family: var(--font-mono); font-size: var(--fs-s); letter-spacing: .04em; line-height: var(--lh-text); opacity: .85; }
 .cs-fig--pair img + img { margin-top: 14px; }
 .cs-fig--tall img { max-width: min(100%, 640px); }
 .cs-back { margin: 60px 0 0; }
@@ -32,12 +32,12 @@
 
 /* lists with small square markers */
 .cs-list { margin: 0 0 1em; }
-.cs-list li { position: relative; padding: 7px 0 7px 24px; font-size: var(--fs-l); line-height: 1.55; }
+.cs-list li { position: relative; padding: 7px 0 7px 24px; font-size: var(--fs-l); line-height: var(--lh-text); }
 .cs-list li::before { content: ""; position: absolute; left: 0; top: 1.05em; width: 10px; height: 10px; background: var(--kicker-mark, var(--magenta)); }
 
 /* the call-out: a highlighted question or consideration, with a gold bar */
 .cs-callout { margin: 22px 0; padding: 14px 0 14px 20px; border-left: 6px solid var(--gold); }
-.cs-callout b { display: block; margin-bottom: 6px; font-family: var(--font-mono); font-weight: 400; font-size: var(--fs-s); letter-spacing: .14em; text-transform: uppercase; color: var(--gold); }
+.cs-callout b { display: block; margin-bottom: 6px; font-family: var(--font-mono); font-weight: 400; font-size: var(--fs-s); letter-spacing: var(--ls-caps); text-transform: uppercase; color: var(--gold); }
 
 /* product screens, stacked one above the other at the full width of the column (they were a 2 x 2 grid until 2026-10-23: the interface text needs the room). The gap does the spacing, so each figure's own margin is zeroed */
 .cs-shots { display: grid; grid-template-columns: minmax(0, 1fr); gap: clamp(44px, 6vw, 96px); margin: 0 0 clamp(36px, 5vw, 72px); } /* no top margin: the section above already leaves clamp(36px, 5vw, 72px), and in Rail mode (a grid) margins do not merge, so a top margin would double the space above */
@@ -65,7 +65,7 @@
   html.look-rail .cs > .cs-crumb { grid-column: 1 / -1; }
   html.look-rail .cs > :not(.cs-crumb):not(.cs-rail) { grid-column: 2; }
   html.look-rail .cs-rail { display: block; grid-column: 1; grid-row: 2 / span 30; position: sticky; top: 110px; } /* the pinned part: the index, and under it the back link */
-  html.look-rail .cs-index { display: flex; flex-direction: column; font-family: var(--font-mono); font-size: var(--fs-xs); letter-spacing: .14em; text-transform: uppercase; }
+  html.look-rail .cs-index { display: flex; flex-direction: column; font-family: var(--font-mono); font-size: var(--fs-xs); letter-spacing: var(--ls-caps); text-transform: uppercase; }
   html.look-rail .cs-rail .cs-back { margin: 22px 0 0; } /* the rail copy of the back link (the same gap as the galleries' .gl-back) */
   html.look-rail .cs > .cs-back { display: none; } /* the page-end copy is for Column mode and phones */
   html.look-rail .cs-index a { padding: 9px 10px 9px 12px; border-left: 4px solid transparent; border-radius: 0 60px 60px 0; color: var(--paper); text-decoration: none; transition: color var(--t-quick) ease, background-color var(--t-quick) ease, border-color var(--t-quick) ease; } /* the transparent bar is always there, so the labels never shift when it turns on; 60px is more than half the height, so the right end is a full half-circle */
