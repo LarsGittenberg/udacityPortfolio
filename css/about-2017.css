@@ -3,7 +3,10 @@
    Faithful by construction: the markup carries the old class names (info-box, indent-left, about-photo, back-link...) so main.css draws them;
    this file only holds what the old stylesheets cannot know about blue's wrappers. The two new sections (the 5,000% number and the "blend of" shapes) did not exist in 2017: hidden.
    ===================================================================== */
-.ab-number, .ab-method, .ab-crumb, .ab-intro .kicker { display: none; }
+.ab-number, .ab-method, .ab-intro .kicker { display: none; }
+
+/* the title: blue pairs "About" with a descriptor ("Hello There!"); the old page's label said just "About". common-2017.css merges the two into one label, so the descriptor is hidden here */
+div.project-header-bar .h2-descriptor { display: none; } /* written with div. so it ties common-2017.css's own rule in weight, and wins by loading after it */
 
 /* blue's section wrappers step aside, so their children become rows of the old flex-container-main */
 .ab-hello, .ab-said, .ab-notes { display: contents; }
@@ -11,6 +14,10 @@
 /* HELLO: the old info box (text held to the old column) */
 .ab-intro > :is(h3, p) { max-width: var(--column-text); }
 .ab-intro h3 { font-family: var(--font-mono); }
+/* the case studies open with a breadcrumb box above their text; About, a top-level page like Web Design and Photography, has none. To keep its heading as far below the title bar as theirs, the intro box takes
+   the same air: the crumb's 30px above and below its one line (common-2017.css), plus the 40px margin an old .info-box leaves under it (the crumb's line is 1.7 x 17px on desktop, 1.4 x 14px below 890px) */
+.ab-intro { margin-top: calc(100px + 1.7 * 1.0625rem); }
+@media (max-width: 889px) { .ab-intro { margin-top: calc(100px + 1.4 * var(--body-text-14)); } }
 
 /* PORTRAIT: the old about-photo-wrapper (a 350px column, the picture at 70% of it); the figure is the wrapper, the .ab-photo div is the old figure.
    The two captions share one figcaption here and sit in the same place, stacked: the hover swaps them */
