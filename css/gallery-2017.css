@@ -8,9 +8,7 @@
 /* the Column | Rail pill has no meaning in 2017 (there was no rail), and the rail never exists here (its CSS is blue's) */
 .lay-switch { display: none; }
 
-/* the old .flex-container-main recipe on the article (that class itself cannot be used: blue has its own rules for it) */
-.gl { display: flex; flex-wrap: wrap; max-width: 1280px; margin-top: 5px; line-height: 22px; border-radius: 0 0 var(--radius-xl) 0; }
-:where(.gl) :is(p, h1, h2, h3, h4) { width: 100%; padding: 5px 22px 5px 20px; } /* :where() gives it no weight, so the old, more specific rules (p.back-link and the like) still win, as they did under the old .flex-container-main */
+/* the article's own recipe (the old .flex-container-main) is shared with the case studies: see common-2017.css */
 .gl-grid { display: contents; } /* the grid wrapper steps aside, so the rows are the article's own flex items, as they were */
 .gl figure { margin: 0; }
 

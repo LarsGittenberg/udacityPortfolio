@@ -8,9 +8,7 @@
 /* the Column | Rail pill and the rail itself have no meaning in 2017 (there was no rail). js/layout-switch.js still builds them, so they are hidden here */
 .lay-switch, .cs-rail { display: none; }
 
-/* the old .flex-container-main recipe on the article (that class itself cannot be used: blue has its own rules for it) */
-.csl { display: flex; flex-wrap: wrap; max-width: 1280px; margin-top: 5px; line-height: 22px; border-radius: 0 0 var(--radius-xl) 0; }
-:where(.csl) :is(p, h1, h2, h3, h4) { width: 100%; padding: 5px 22px 5px 20px; } /* :where() gives it no weight, so the old, more specific rules (p.back-link, .caption and the like) still win, as they did under the old .flex-container-main */
+/* the article's own recipe (the old .flex-container-main) is shared with the galleries: see common-2017.css */
 
 /* the old h3 wore the .source-code-pro class; the new h3 does not (blue sets the class with !important, so it cannot go in the shared markup), so the typeface is set here */
 .csl h3 { font-family: var(--font-mono); }

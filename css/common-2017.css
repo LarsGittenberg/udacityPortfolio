@@ -37,3 +37,7 @@ nav.gl-crumb, nav.cs-crumb { display: flex; align-items: center; font-size: var(
 @media (max-width: 889px) { nav.gl-crumb, nav.cs-crumb { line-height: 1.4; } } /* phones and tablets: the old breadcrumb's tighter line spacing */
 nav.gl-crumb a, nav.cs-crumb a { position: relative; margin-right: 2em; white-space: nowrap; } /* links never wrap, so each arrow stays right beside its text; only the current page wraps */
 nav.gl-crumb a::after, nav.cs-crumb a::after { content: "\2192"; position: absolute; left: 100%; top: 50%; transform: translateY(-50%); margin-left: 0.5em; } /* the arrow is drawn out of the text flow, so the link underline stays off it */
+
+/* the old .flex-container-main recipe on the article, drawn on the new markup (that class itself cannot be used: blue has its own rules for it). Written once for both article types: .gl is the galleries' article, .csl the case studies' */
+.gl, .csl { display: flex; flex-wrap: wrap; max-width: 1280px; margin-top: 5px; line-height: 22px; border-radius: 0 0 var(--radius-xl) 0; }
+:where(.gl, .csl) :is(p, h1, h2, h3, h4) { width: 100%; padding: 5px 22px 5px 20px; } /* :where() gives it no weight, so the old, more specific rules (p.back-link, .caption and the like) still win, as they did under the old .flex-container-main */
