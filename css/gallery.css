@@ -17,7 +17,6 @@
 
 /* the statement */
 .gl-side { max-width: 68ch; margin-bottom: clamp(40px, 6vw, 80px); }
-.gl-side h3 { margin: 0 0 14px; font-family: var(--font-body); font-weight: 600; font-size: var(--fs-heading); line-height: 1.02; letter-spacing: -0.03em; }
 .gl-side p { margin: 0 0 1em; font-size: var(--fs-l); line-height: 1.65; max-width: 62ch; }
 /* a Role list in the main body (DRØM), above the statement, as on the case studies */
 .gl-rolebox { max-width: 68ch; margin-bottom: clamp(32px, 4vw, 56px); }
