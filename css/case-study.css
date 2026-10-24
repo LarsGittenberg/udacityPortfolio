@@ -43,10 +43,12 @@
 .cs-shots { display: grid; grid-template-columns: minmax(0, 1fr); gap: clamp(44px, 6vw, 96px); margin: 0 0 clamp(36px, 5vw, 72px); } /* no top margin: the section above already leaves clamp(36px, 5vw, 72px), and in Rail mode (a grid) margins do not merge, so a top margin would double the space above */
 .cs-shots .cs-fig { margin: 0; }
 
-/* two small pictures side by side (one column on small screens) */
-.cs-pair { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 24px; align-items: end; margin: clamp(32px, 5vw, 72px) 0; }
-@media (max-width: 700px) { .cs-pair { grid-template-columns: 1fr; } }
-.cs-pair .cs-fig { margin: 0; }
+/* two pictures stacked, alternating left and right, each 2/3 of the column (they were side by side until 2026-10-23, when .cs-pair became .cs-stagger); one full-width column on small screens.
+   No top margin: the figure above already leaves clamp(32px, 5vw, 72px), and in Rail mode (a grid) margins do not merge, so a top margin would double the space above */
+.cs-stagger { display: grid; grid-template-columns: minmax(0, 1fr); gap: clamp(44px, 6vw, 96px); margin: 0 0 clamp(32px, 5vw, 72px); }
+.cs-stagger .cs-fig { width: 66.667%; margin: 0; }
+.cs-stagger .cs-fig:nth-child(even) { margin-left: auto; }
+@media (max-width: 700px) { .cs-stagger .cs-fig { width: 100%; } }
 
 /* a half-width, near-square picture */
 .cs-fig--half img { max-width: min(100%, 480px); }
