@@ -38,11 +38,11 @@ One more thing, for the observant: the face at the top of this page has two diff
 	<link rel="apple-touch-icon" href="/apple-touch-icon.png">
 
   <!-- CSS -->
-  <!-- the skin switch picks the skin before paint and writes that skin's stylesheets (js/skin-switch.js): 2017 = ui.css + main.css + home-2017.css (what the old CSS cannot know about this page), 1986 = reskin-blue.css (blue) + home-1986.css (the home page's own blue CSS, formerly inline).
+  <!-- the skin switch picks the skin before paint and writes that skin's stylesheets (js/skin-switch.js): 2017 = ui.css + main.css + common-2017.css (shared by every page) + home-2017.css (what the old CSS cannot know about this page), 1986 = reskin-blue.css (blue) + home-1986.css (the home page's own blue CSS, formerly inline).
        transitions.css (the card-to-title morph: BOTH pages of a transition must link it, so the home page needs it too) belongs to both -->
-  <script src="js/skin-switch.js" data-2017="css/ui.css,css/main.css,css/transitions.css,css/home-2017.css" data-1986="css/reskin-blue.css,css/transitions.css,css/home-1986.css"></script>
+  <script src="js/skin-switch.js" data-2017="css/ui.css,css/main.css,css/transitions.css,css/common-2017.css,css/home-2017.css" data-1986="css/reskin-blue.css,css/transitions.css,css/home-1986.css"></script>
   <link rel="stylesheet" href="css/skin-switch.css"> <!-- the switch itself looks the same in both skins, so it has its own file, loaded after the skin -->
-  <noscript><link rel="stylesheet" href="css/ui.css"><link rel="stylesheet" href="css/main.css"><link rel="stylesheet" href="css/transitions.css"><link rel="stylesheet" href="css/home-2017.css"></noscript> <!-- without JavaScript: the default skin (2017) -->
+  <noscript><link rel="stylesheet" href="css/ui.css"><link rel="stylesheet" href="css/main.css"><link rel="stylesheet" href="css/transitions.css"><link rel="stylesheet" href="css/common-2017.css"><link rel="stylesheet" href="css/home-2017.css"></noscript> <!-- without JavaScript: the default skin (2017) -->
 
 	<!--fonts-->
   <link rel="preconnect" href="https://fonts.googleapis.com">

@@ -24,15 +24,12 @@
 	<link rel="apple-touch-icon" href="/apple-touch-icon.png">
 
   <!-- CSS -->
-  <link rel="stylesheet" href="css/reskin-blue.css"> <!-- replaces ui.css and main.css on this test page -->
-
-  <link rel="stylesheet" href="css/card-pages.css"> <!-- the header, band, title and card spacing that the category pages share -->
-  <link rel="stylesheet" href="css/transitions.css"> <!-- the card-to-title morph between category pages and project pages -->
-
-  <style>
-  /* this page's band colour (magenta): background, text, and the three shape colours */
-  .band { --band-bg: var(--magenta); --band-ink: var(--cream-text); --s1: var(--amber); --s2: var(--mint); --s3: var(--cream-text); }
-  </style>
+  <!-- the skin switch picks the skin before paint and writes that skin's stylesheets (js/skin-switch.js).
+       2017 = ui.css + main.css + common-2017.css (what every page needs for blue's shared markup) + category-2017.css (the cards' bulleted lists). 1986 = blue: reskin-blue.css + card-pages.css + webdesign-1986.css (this page's own CSS, formerly inline).
+       transitions.css (the card-to-title morph between category pages and project pages) belongs to both -->
+  <script src="js/skin-switch.js" data-2017="css/ui.css,css/main.css,css/transitions.css,css/common-2017.css,css/category-2017.css" data-1986="css/reskin-blue.css,css/card-pages.css,css/transitions.css,css/webdesign-1986.css"></script>
+  <link rel="stylesheet" href="css/skin-switch.css"> <!-- the switch itself looks the same in both skins, so it has its own file, loaded after the skin -->
+  <noscript><link rel="stylesheet" href="css/ui.css"><link rel="stylesheet" href="css/main.css"><link rel="stylesheet" href="css/transitions.css"><link rel="stylesheet" href="css/common-2017.css"><link rel="stylesheet" href="css/category-2017.css"></noscript> <!-- without JavaScript: the default skin (2017) -->
 
 	<!--fonts-->
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -71,7 +68,7 @@
 <header class="pattern-dots-sparse">
 	<div class="header-container">
 		<h1 class="doto-lg">Lawrence Getubig</h1>
-		<p>Creative Technologist<br>in Product Design</p>
+		<p>Creative Technologist <br>in Product Design</p>
 	</div><!--end header container-->
 </header>
 
@@ -96,7 +93,7 @@
 <!-- memoryGame -->
 	<div class="flex-container-child-projects pattern-dots-dense">
 		<img class="corner-tear" src="images/pattern/cornerTear6.png" style="left: 0; top: 0" alt="">
-		<section class="featured-project-card">
+		<section class="featured-project-card desc-list">
 			<div class="img-container">
 				<img id="memory" class="project-image" src="images/animate/memory_static.jpg" alt="Memory Game">
 			</div>
@@ -121,7 +118,7 @@
 
 	<!-- pixel -->
 	<div class="flex-container-child-projects pattern-dots-sparse">
-		<section class="featured-project-card">
+		<section class="featured-project-card desc-list">
 			<div class="img-container">
 				<img id="pixel" class="project-image" src="images/animate/pixel_static.jpg" alt="Pixel Art Maker">
 			</div>
@@ -147,7 +144,7 @@
 
 	<!-- arcadeGame -->
 	<div class="flex-container-child-projects pattern-lines-down">
-		<section class="featured-project-card">
+		<section class="featured-project-card desc-list">
 			<div class="img-container">
 				<img id="arcade" class="project-image" src="images/animate/arcade_static.jpg" alt="Memory Game">
 			</div>
@@ -173,7 +170,7 @@
 
 <!-- pride -->
 	<div class="flex-container-child-projects pattern-lines-down">
-		<section class="featured-project-card">
+		<section class="featured-project-card desc-list">
 			<div class="img-container">
 				<img id="pride" class="project-image" src="images/animate/pride_static.jpg" alt="Pride365 app worldpride">
 			</div>
@@ -199,7 +196,7 @@
 	<!-- 45th -->
 	<div class="flex-container-child-projects pattern-dots-stagger">
 		<img class="corner-tear" src="images/pattern/cornerTear2.png" alt="">
-		<section class="featured-project-card">
+		<section class="featured-project-card desc-list">
 			<div class="img-container">
 				<img id="45th" class="project-image" src="images/animate/45th_static.jpg" alt="45th Parallel Wines">
 			</div>
@@ -224,7 +221,7 @@
 <!-- newsletter -->
 	<div class="flex-container-child-projects pattern-dots-sparse">
 		<img class="corner-tear" src="images/pattern/cornerTear.png" alt="">
-		<section class="featured-project-card">
+		<section class="featured-project-card desc-list">
 			<div class="img-container">
 				<img id="newsletter" class="project-image" src="images/animate/newsletter_static.jpg" alt="Ashoka Newsletter">
 			</div>
@@ -273,7 +270,7 @@
 
 	<!-- bird -->
 	<div class="flex-container-child-projects pattern-lines-up">
-		<section class="featured-project-card">
+		<section class="featured-project-card desc-list">
 			<div class="img-container">
 				<img id="bird" class="project-image" src="images/animate/bird_static.jpg" alt="I love math">
 			</div>
@@ -291,7 +288,7 @@
 
 <!-- liquid -->
 	<div class="flex-container-child-projects pattern-dots-dense">
-		<section class="featured-project-card">
+		<section class="featured-project-card desc-list">
 			<div class="img-container">
 				<img id="liquid" class="project-image" src="images/animate/liquid_static.jpg" alt="Liquid Lab">
 			</div>

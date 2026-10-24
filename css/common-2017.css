@@ -1,0 +1,33 @@
+/* =====================================================================
+   COMMON, 2017: what every page's 2017 look needs for the markup it shares with blue (1986). Loaded in each page's 2017 list, after ui.css and main.css.
+   The old stylesheets know nothing about blue's title pair or its sliding band, so they are handled here once, for all pages.
+   A page's own 2017 file (home-2017.css, ...) only holds what is special to that page.
+   ===================================================================== */
+
+/* blue's sliding band is 1986-only decoration (visible text, so it must be hidden, not just left unstyled) */
+.band, .band-wrap { display: none; }
+
+/* the page title: blue splits it into the pillar (an h2) and a descriptor beside it; in 2017 it was ONE label.
+   So the wrapper becomes the label (the old h2 recipe: charcoal box, 4px 12px, soft shadow, mono light, 19px and 26px from 890px up),
+   and the two words sit side by side inside it, a space apart (blue's pairs read as one continuous name, e.g. "Swiss Post" + "AI Tool").
+   A page whose title needs a colon says so in its own file (home-2017.css: "Home: Featured Projects") */
+div.project-header-bar .h2-wrap {
+	display: flex; /* a row of two items: no stray space between them (inline elements would get one), so the gap below is the only space */
+	align-items: baseline;
+	column-gap: 0.6em; /* one space in the label's mono type */
+	line-height: 1.4;
+	background: var(--charcoal);
+	padding: 4px 12px;
+	margin-left: var(--page-inset);
+	margin-right: 25px;
+	box-shadow: var(--shadow-soft);
+	font-family: var(--font-mono);
+	font-weight: var(--weight-light);
+	font-size: var(--heading-19);
+}
+@media (min-width: 890px) { div.project-header-bar .h2-wrap { font-size: var(--heading-26); } }
+div.project-header-bar .h2-wrap h2 { display: inline; margin: 0; padding: 0; background: none; box-shadow: none; font: inherit; }
+div.project-header-bar .h2-descriptor { display: inline; margin: 0; padding: 0; font: inherit; }
+
+/* the header blurb: blue's card pages break it in two ("Creative Technologist<br>in Product Design"); in 2017 it was one line */
+header br { display: none; }

@@ -1,0 +1,10 @@
+/* =====================================================================
+   CATEGORY PAGES, 2017 (Web Design, Graphic Design, Photography): what the old CSS cannot know about the cards' markup. Loaded in their 2017 list, after common-2017.css.
+   On the 2017 pages most cards described the work as a BULLETED LIST (the Tools line was its last bullet); blue writes the same lines as paragraphs, with Tools as a short list of its own.
+   A card that was a list then carries the class desc-list (added in the HTML to exactly those cards), and here each of its paragraphs is drawn as a bullet, continuing into Tools.
+   Cards that were paragraphs on the 2017 pages (no desc-list) stay paragraphs.
+   ===================================================================== */
+/* (width: auto, because the old card paragraphs are width: 100%, and 100% plus a 20px margin would push the bullet past the card's edge) */
+section.featured-project-card.desc-list > p { display: list-item; list-style: disc outside; width: auto; margin: 0 20px; padding: 0; }
+section.featured-project-card.desc-list > h3 + p { margin-top: 12px; } /* the old list's 12px below the heading */
+section.featured-project-card.desc-list > p + ul { margin-top: 0; }   /* Tools continues the same list */
