@@ -49,9 +49,11 @@
 /* the laptop and the phone: the old page had two figures, the laptop (two-thirds, right) with the caption "Above & Below" under it, then the phone on its own line.
    The new page has one figure with one caption after both pictures, so here the figure becomes a column and the caption is moved up between the pictures (order), with the laptop kept right-hand and indented */
 .csl .cs-fig--duo { display: flex; flex-direction: column; }
-.csl .cs-fig--duo img:first-of-type { order: 0; align-self: flex-end; float: none; width: calc((100% - var(--indent)) * 0.66); margin-right: var(--indent); } /* two-thirds of the column AFTER the indent, as the old figure's indent-right made it */
+.csl .cs-fig--duo img:first-of-type { order: 0; float: none; } /* below 890px the old picture was a plain block: full width on phones, two-thirds from 800px (main.css), sitting left */
 .csl .cs-fig--duo figcaption { order: 1; width: auto; margin-right: var(--indent); } /* ends where the figure does after its right indent; the text is on the right (.text-right) and .caption pads it 25px */
-@media (min-width: 890px) { .csl .cs-fig--duo img:first-of-type { margin-right: calc(var(--indent) + var(--gutter)); } } /* the old floated picture also kept a gutter on its right (main.css: img.tablet-float-right) */
+/* from 890px up the old picture floated right: two-thirds of the column AFTER the indent (the old figure's indent-right), with a gutter on its right (main.css: img.tablet-float-right).
+   The arithmetic lives here and nowhere else: below 890px the old css sets --indent to a bare 0, which is invalid inside calc() next to a percentage, and the whole declaration would be dropped (the picture then swells to its natural size) */
+@media (min-width: 890px) { .csl .cs-fig--duo img:first-of-type { align-self: flex-end; width: calc((100% - var(--indent)) * 0.66); margin-right: calc(var(--indent) + var(--gutter)); } }
 .csl .cs-fig--duo img:last-of-type { order: 2; }
 
 /* ASHOKA STYLE GUIDE. On the old page the title bar wore the lines pattern and the header the small dots; blue swapped them (the header wears the lines, the title bar the dense dots),
