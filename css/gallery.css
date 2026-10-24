@@ -4,7 +4,7 @@
    RAIL (html.look-rail, switched on by js/layout-switch.js): the statement stays pinned on the left while you scroll the work, two across (from 900px up).
    The reader chooses with the Column | Rail pill at the bottom right (its styles live in css/reskin-blue.css, with the other site components). Phones always read the column.
    Markup:  <article class="gl"> .gl-crumb, <aside class="gl-side">, <div class="gl-grid"> of <figure>s.
-   Used by the Cutout Figures, Posed Encounters and DRØM print pages, and (with SETS, below) the Web Icon page. Photographs get NO decoration (no frame, no shadow): they speak for themselves.
+   Used by the Cutout Figures, Posed Encounters and DRØM print pages, and (with SETS, below) the Web Icon and Ads pages. Photographs get NO decoration (no frame, no shadow): they speak for themselves.
    ===================================================================== */
 
 /* ---------- COLUMN: the base ---------- */
@@ -49,6 +49,7 @@
 .gl-cat h3 { margin: 0 0 14px; font-family: var(--font-body); font-weight: 600; font-size: var(--fs-heading); line-height: 1.02; letter-spacing: -0.03em; }
 .gl-cat > p:not(.kicker) { max-width: 62ch; margin: 0 0 1.4em; font-size: var(--fs-l); line-height: 1.65; }
 .gl-cat .kicker { margin: 0 0 1em; line-height: 1.65; } /* the same kicker spacing as on the case studies (.cs p) */
+.gl-side .gl-index-label { margin-top: 28px; } /* the kicker above the index, when the aside has a statement above it */
 .gl-index { display: flex; flex-wrap: wrap; gap: 8px 12px; font-family: var(--font-mono); font-size: var(--fs-xs); letter-spacing: .12em; text-transform: uppercase; }
 .gl-index a { display: flex; justify-content: space-between; gap: 8px; padding: 7px 12px; border: 2px solid var(--paper); color: var(--paper); text-decoration: none; transition: color var(--t-quick) ease, background-color var(--t-quick) ease, border-color var(--t-quick) ease; }
 .gl-index a em { font-style: normal; color: var(--gold); }
@@ -59,6 +60,17 @@
 .gl-grid--icons img { max-width: 500px; border-radius: 0; transform: scale(var(--icon-scale, 1)); } /* --icon-scale evens out sets exported with different transparent margins; a transform leaves the layout box alone, so nothing around the icon moves */
 .gl-grid--icons figcaption { margin-top: 10px; font-family: var(--font-body); font-size: var(--fs-s); letter-spacing: 0; text-transform: none; line-height: 1.5; opacity: .9; }
 .gl-grid--icons figure:hover figcaption { color: inherit; }
+
+/* ---------- AD FORMATS (the Ads page): each format in its own grid, and no ad is ever shown larger than its real pixel size ----------
+   banners: the standard 300 x 250 (the first file is a 600 x 500 version of the same banner, shown at 300 x 250). squares: Instagram, 1:1. cards: Twitter, about 2:1, never past 450px (the smallest card file) so the three match and none is enlarged. */
+.gl-grid--banners { grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); }
+.gl-grid--squares { grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); }
+.gl-grid--cards { grid-template-columns: repeat(auto-fill, minmax(380px, 450px)); justify-content: start; }
+.gl-grid--banners img { max-width: 300px; }
+.gl-grid--squares img { max-width: 100%; }
+.gl-grid--cards img { max-width: 450px; } /* 450px is the width of the smallest card file (March): the three cards match and none is enlarged, in the grid and on a phone */
+.gl-grid--banners figcaption, .gl-grid--squares figcaption, .gl-grid--cards figcaption { line-height: 1.4; }
+@media (max-width: 700px) { .gl-grid--banners, .gl-grid--squares, .gl-grid--cards { grid-template-columns: 1fr; } }
 
 /* ---------- RAIL: the statement stays pinned while you scroll the work (from 900px up) ---------- */
 @media (min-width: 900px) {
@@ -74,6 +86,9 @@
   html.look-rail .gl--sets .gl-side { grid-row: 2 / span 40; }
   html.look-rail .gl > .gl-cat { grid-column: 2; }
   html.look-rail .gl-grid--icons { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  html.look-rail .gl-grid--banners { grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); }
+  html.look-rail .gl-grid--squares { grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); }
+  html.look-rail .gl-grid--cards { grid-template-columns: repeat(auto-fill, minmax(380px, 450px)); }
   html.look-rail .gl-index { flex-direction: column; flex-wrap: nowrap; gap: 0; }
   html.look-rail .gl-index a { padding: 9px 10px 9px 12px; border: 0; border-left: 4px solid transparent; border-radius: 0 60px 60px 0; } /* the same oval as the case-study rail; the transparent bar is always there, so labels never shift */
   html.look-rail .gl-index a:hover { background: none; color: var(--gold); }
