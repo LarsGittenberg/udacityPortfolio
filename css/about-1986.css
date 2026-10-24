@@ -21,6 +21,7 @@
   /* ---------- 01 HELLO: a cream panel beside the portrait ---------- */
   .ab-hello { display: grid; gap: clamp(40px, 5vw, 72px); align-items: center; }
   @media (min-width: 900px) { .ab-hello { grid-template-columns: minmax(0, 7fr) minmax(0, 5fr); } }
+  @media (max-width: 899px) { .ab-hello { row-gap: 80px; } } /* stacked (phones, tablets): 80px from the text panel down to the portrait; the shorthand gap above is also the column gap side by side, so only the row gap changes. The panel's 14px hard shadow sits inside this */
   .ab-intro { padding: clamp(28px, 4vw, 56px); --panel-bg: var(--paper); --panel-ink: var(--ink); --panel-shadow: var(--amber); --panel-offset: var(--shadow-xl); --tilt: -0.6deg; }
   .ab-intro .kicker { font-size: var(--fs-l); } /* the .ab-intro p rule below would otherwise outrank the base size (that is how Hello once got 15.68px by accident) */
   .ab-intro h3 { margin: 0 0 22px; font-family: var(--font-body); font-weight: 600; font-size: clamp(2rem, 4.2vw, 3.9rem); line-height: 1.02; letter-spacing: var(--ls-display); }
