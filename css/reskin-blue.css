@@ -97,6 +97,14 @@ a { color: inherit; }
 .kicker { display: flex; align-items: center; gap: 10px; margin-bottom: 14px; font-size: var(--fs-l); letter-spacing: 0.22em; text-transform: uppercase; }
 .kicker::before { content: ""; width: 12px; height: 12px; background: var(--kicker-mark, var(--magenta)); }
 
+/* the chapter kicker: a big Doto numeral (the cards' numeral recipe: weight 900, cream fill, ink outline), with the label under it, led by the kicker square.
+   Used inside a case-study chapter (.cs-sec) and inside a gallery set (.gl-cat). Markup:  <p class="kicker source-code-pro"><span class="num">01</span><span class="lbl">Role</span></p> */
+:is(.cs-sec, .gl-cat) .kicker { display: block; }
+:is(.cs-sec, .gl-cat) .kicker::before { display: none; } /* the square moves to the label (below) */
+:is(.cs-sec, .gl-cat) .kicker .num { display: block; margin-bottom: .12em; font-family: var(--font-display); font-weight: 900; font-size: clamp(3.6rem, 6.4vw, 6rem); line-height: .95; letter-spacing: 0; color: var(--paper); -webkit-text-stroke: 3px var(--ink); paint-order: stroke fill; }
+:is(.cs-sec, .gl-cat) .kicker .lbl { display: flex; align-items: center; gap: 10px; }
+:is(.cs-sec, .gl-cat) .kicker .lbl::before { content: ""; width: 12px; height: 12px; background: var(--kicker-mark, var(--magenta)); }
+
 /* ---------- QUOTE (shared base): every quote is a <figure class="quote"> holding a real <blockquote> and a <figcaption> for the attribution.
    Three voices sit on top of this base: small (.quote--small), big (.pull-quote), card (.quote--card). Use <figcaption>, never a bare <footer> or <main>: this sheet styles those for the site.
    The figure and blockquote margins are reset (:where keeps the reset weak, so a voice can set its own). The attribution is one recipe for all three:

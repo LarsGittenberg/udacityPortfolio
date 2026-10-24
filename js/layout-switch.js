@@ -13,6 +13,7 @@
      5. Marks the current section in the rail ("you are here"), and sends a GA4 event when the reader switches.
    Styles: css/case-study.css or css/gallery.css for the layouts; the pill itself is in css/reskin-blue.css.
    On a gallery the statement IS the rail (the CSS pins it), so there is nothing to build here.
+   A gallery with several sets (Icons) has a hand-written <nav class="gl-index"> in its aside: the script only marks the current set in it (the .gl-cat sections), in step 5.
    ===================================================================== */
 (function () {
   var root = document.documentElement;
@@ -29,10 +30,13 @@
     var cs = document.querySelector('article.cs, article.gl');
     if (!cs) { return; }
     var secs = [].slice.call(cs.querySelectorAll('.cs-sec[id]'));
+    var hand = cs.querySelector('.gl-index'); /* a gallery with several sets (the icons) brings its own index in the HTML: its sets are the .gl-cat sections, and nothing is built */
+    if (hand) { secs = [].slice.call(cs.querySelectorAll('.gl-cat[id]')); }
 
     /* ---- 2. build the rail (case studies only) and the "you are here" marker ---- */
     var links = [], current = 0;
-    if (secs.length) {
+    if (hand) { links = [].slice.call(hand.querySelectorAll('a')); }
+    if (secs.length && !hand) {
       var rail = document.createElement('nav');
       rail.className = 'cs-index';
       rail.setAttribute('aria-label', 'In this case study');

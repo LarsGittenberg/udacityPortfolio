@@ -4,7 +4,7 @@
    RAIL (html.look-rail, switched on by js/layout-switch.js): the statement stays pinned on the left while you scroll the work, two across (from 900px up).
    The reader chooses with the Column | Rail pill at the bottom right (its styles live in css/reskin-blue.css, with the other site components). Phones always read the column.
    Markup:  <article class="gl"> .gl-crumb, <aside class="gl-side">, <div class="gl-grid"> of <figure>s.
-   Used by the Cutout Figures, Posed Encounters and DRØM print pages. Photographs get NO decoration (no frame, no shadow): they speak for themselves.
+   Used by the Cutout Figures, Posed Encounters and DRØM print pages, and (with SETS, below) the Web Icon page. Photographs get NO decoration (no frame, no shadow): they speak for themselves.
    ===================================================================== */
 
 /* ---------- COLUMN: the base ---------- */
@@ -42,6 +42,25 @@
 .gl-grid--wide img { max-width: 600px; }
 @media (max-width: 560px) { .gl-grid--wide { grid-template-columns: 1fr; } }
 
+/* ---------- SETS: one page, several bodies of work (the icon sets). Each set is a .gl-cat with its own kicker, heading, intro and grid; the aside holds an index of them.
+   Markup:  <article class="gl gl--sets"> .gl-crumb, .gl-rolebox, <aside class="gl-side"> (a kicker, <nav class="gl-index"> of <a href="#id"><span>Name</span><em>count</em></a>, the rail copy of the back link),
+            then <section class="gl-cat" id="id"> .kicker, h3, p, <div class="gl-grid gl-grid--icons"> of <figure>s.
+   COLUMN: the index is a row of jump chips under the Role. RAIL (below): a sticky list with the paper oval on the set you are in, like the case-study rail. js/layout-switch.js marks the current set. ---------- */
+.gl-cat { max-width: 100%; margin: 0 0 clamp(56px, 8vw, 110px); scroll-margin-top: 110px; }
+.gl-cat h3 { margin: 0 0 14px; font-family: var(--font-body); font-weight: 600; font-size: var(--fs-heading); line-height: 1.02; letter-spacing: -0.03em; }
+.gl-cat > p:not(.kicker) { max-width: 62ch; margin: 0 0 1.4em; font-size: var(--fs-l); line-height: 1.65; }
+.gl-cat .kicker { margin: 0 0 1em; line-height: 1.65; } /* the same kicker spacing as on the case studies (.cs p) */
+.gl-index { display: flex; flex-wrap: wrap; gap: 8px 12px; font-family: var(--font-mono); font-size: var(--fs-xs); letter-spacing: .12em; text-transform: uppercase; }
+.gl-index a { display: flex; justify-content: space-between; gap: 8px; padding: 7px 12px; border: 2px solid var(--paper); color: var(--paper); text-decoration: none; transition: color var(--t-quick) ease, background-color var(--t-quick) ease, border-color var(--t-quick) ease; }
+.gl-index a em { font-style: normal; color: var(--gold); }
+.gl-index a:hover { background: var(--paper); color: var(--ink); }
+.gl-index a:hover em { color: inherit; } /* the gold count would be hard to read on paper */
+/* the icons: transparent PNGs up to 500px, three across; the captions are real copy, so they read as sentences, not as tracked caps. No corner radius: the icons are drawings on a transparent ground. */
+.gl-grid--icons { margin-top: clamp(20px, 3vw, 36px); align-items: start; }
+.gl-grid--icons img { max-width: 500px; border-radius: 0; }
+.gl-grid--icons figcaption { margin-top: 10px; font-family: var(--font-body); font-size: var(--fs-s); letter-spacing: 0; text-transform: none; line-height: 1.5; opacity: .9; }
+.gl-grid--icons figure:hover figcaption { color: inherit; }
+
 /* ---------- RAIL: the statement stays pinned while you scroll the work (from 900px up) ---------- */
 @media (min-width: 900px) {
   html.look-rail .gl { display: grid; grid-template-columns: minmax(230px, 270px) minmax(0, 1fr); column-gap: clamp(28px, 4vw, 56px); max-width: 1160px; align-items: start; }
@@ -52,4 +71,13 @@
   html.look-rail .gl-side { grid-column: 1; grid-row: 2 / span 2; max-width: none; margin: 0; position: sticky; top: 110px; max-height: calc(100vh - 130px); overflow-y: auto; padding-right: 6px; } /* pinned; if the statement is taller than the window it scrolls inside itself, so its last lines are never stuck below the fold */
   html.look-rail .gl-grid { grid-column: 2; grid-row: 3; grid-template-columns: repeat(2, minmax(0, 400px)); gap: 26px 14px; justify-content: start; }
   html.look-rail .gl-grid--wide { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  /* sets: the aside spans every row, so it stays pinned all the way down the sets; the sets sit in the right-hand column, two icons across */
+  html.look-rail .gl--sets .gl-side { grid-row: 2 / span 40; }
+  html.look-rail .gl > .gl-cat { grid-column: 2; }
+  html.look-rail .gl-grid--icons { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  html.look-rail .gl-index { flex-direction: column; flex-wrap: nowrap; gap: 0; }
+  html.look-rail .gl-index a { padding: 9px 10px 9px 12px; border: 0; border-left: 4px solid transparent; border-radius: 0 60px 60px 0; } /* the same oval as the case-study rail; the transparent bar is always there, so labels never shift */
+  html.look-rail .gl-index a:hover { background: none; color: var(--gold); }
+  html.look-rail .gl-index a.is-here { background: var(--paper); color: var(--ink); border-left-color: var(--magenta); } /* "you are here" */
+  html.look-rail .gl-index a.is-here em { color: inherit; }
 }
