@@ -1,0 +1,60 @@
+/* =====================================================================
+   CASE STUDIES, 2017 (Newsletter first; the other five case studies follow): the old case study's look, drawn on the new case-study markup. Loaded in each page's 2017 list, after common-2017.css.
+   The new pages carry the old classes next to the new ones (info-box on the breadcrumb and on each section, info-box-left / info-box-right inside it, intro-row around Role + challenge,
+   indent-left / indent-right, two-thirds, caption, back-link), so the old stylesheets (main.css) draw the boxes, the columns, the 25px padding and the floated pictures.
+   What main.css cannot know, because the markup is new, is here.
+   ===================================================================== */
+
+/* the Column | Rail pill and the rail itself have no meaning in 2017 (there was no rail). js/layout-switch.js still builds them, so they are hidden here */
+.lay-switch, .cs-rail { display: none; }
+
+/* the old .flex-container-main recipe on the article (that class itself cannot be used: blue has its own rules for it) */
+.csl { display: flex; flex-wrap: wrap; max-width: 1280px; margin-top: 5px; line-height: 22px; border-radius: 0 0 var(--radius-xl) 0; }
+:where(.csl) :is(p, h1, h2, h3, h4) { width: 100%; padding: 5px 22px 5px 20px; } /* :where() gives it no weight, so the old, more specific rules (p.back-link, .caption and the like) still win, as they did under the old .flex-container-main */
+
+/* the old h3 wore the .source-code-pro class; the new h3 does not (blue sets the class with !important, so it cannot go in the shared markup), so the typeface is set here */
+.csl h3 { font-family: var(--font-mono); }
+
+/* the kickers ("02 The challenge") are blue's: the old page had no numbers. The one exception is Role, whose kicker is the only heading it has: it takes the old .info-box h3 look,
+   20px on phones; from 890px up 26px, lighter, with a 1.5em line and 20px below (main.css). The numeral does not exist in 2017 */
+.csl .kicker { display: none; }
+.csl .cs-role .kicker { display: block; font-family: var(--font-mono); font-size: var(--heading-20); font-weight: bold; }
+.csl .cs-role .kicker .num { display: none; }
+@media (min-width: 890px) { .csl .cs-role .kicker { font-size: var(--heading-26); font-weight: lighter; line-height: 1.5em; margin-bottom: 20px; } }
+
+/* a section whose heading was gold (Pride's "Quantitative Results"): the old h3 wore .gold-color-font, which blue also defines, so the class cannot go on the shared markup; the section carries cs-sec--gold instead */
+.csl .cs-sec--gold h3 { color: var(--gold); }
+
+/* the little icon after a link that leaves the page: the old pages wrote it as an <i class="fa-solid fa-square-arrow-up-right icon-after-text"> after each link (a file icon after a PDF). Blue draws its own from the .text-link class, so the new markup has no <i>;
+   2017 draws the same glyphs with ::after (Font Awesome 6 is loaded on every page). "\f14c" = square-arrow-up-right, "\f1c1" = file-pdf */
+.csl a[target="_blank"]::after { content: "\f14c"; display: inline-block; /* inline-block keeps the link's underline off the icon */ margin-left: 0.5em; font-family: "Font Awesome 6 Free"; font-weight: 900; font-style: normal; }
+.csl a[href$=".pdf"]::after { content: "\f1c1"; }
+
+/* TNECD's pain points: the old page set each as an orange h4, a paragraph, the quote as a plain paragraph and its source in gold. The new markup wraps the quote in a <figure class="quote">,
+   which main.css would pad like a picture (24px under it) and size like a caption (66% wide), so it is trimmed to read like the old paragraphs */
+.csl .cs-pain h4 { color: var(--orange); }
+.csl .quote { padding-bottom: 0; }
+.csl .quote figcaption { width: 100%; padding: 5px 22px 5px 20px; color: var(--gold); }
+/* the big client quote ("This first pass is so beautiful...") is new: the old page ended on the before/after pictures */
+.csl .pull-quote { display: none; }
+
+/* SWISS POST. The callouts ("Framing Question", "Guiding Question"): blue boxes them with a gold bar and a mono label; the old page ran the label into the paragraph, bold italic gold, with a colon. */
+.csl .cs-callout b { font-style: italic; color: var(--gold); }
+.csl .cs-callout b::after { content: ": "; }
+/* the shot grid (four screens in a column in blue) steps aside, so the figures are the article's own flex items, as they were */
+.csl .cs-shots { display: contents; }
+
+/* 45TH PARALLEL. The staggered pair steps aside like the shot grid, so its two figures float left and right as the old page's did */
+.csl .cs-stagger { display: contents; }
+/* the laptop and the phone: the old page had two figures, the laptop (two-thirds, right) with the caption "Above & Below" under it, then the phone on its own line.
+   The new page has one figure with one caption after both pictures, so here the figure becomes a column and the caption is moved up between the pictures (order), with the laptop kept right-hand and indented */
+.csl .cs-fig--duo { display: flex; flex-direction: column; }
+.csl .cs-fig--duo img:first-of-type { order: 0; align-self: flex-end; float: none; width: calc((100% - var(--indent)) * 0.66); margin-right: var(--indent); } /* two-thirds of the column AFTER the indent, as the old figure's indent-right made it */
+.csl .cs-fig--duo figcaption { order: 1; width: auto; margin-right: var(--indent); } /* ends where the figure does after its right indent; the text is on the right (.text-right) and .caption pads it 25px */
+@media (min-width: 890px) { .csl .cs-fig--duo img:first-of-type { margin-right: calc(var(--indent) + var(--gutter)); } } /* the old floated picture also kept a gutter on its right (main.css: img.tablet-float-right) */
+.csl .cs-fig--duo img:last-of-type { order: 2; }
+
+/* ASHOKA STYLE GUIDE. On the old page the title bar wore the lines pattern and the header the small dots; blue swapped them (the header wears the lines, the title bar the dense dots),
+   and a class cannot be swapped by skin, so 2017 puts them back, for this page only */
+main[data-project="styleguide"] .project-header-bar { background-image: var(--pattern-lines-up-var); background-size: 8px; }
+body:has(main[data-project="styleguide"]) > header { background-image: var(--pattern-dots-sparse); background-size: 4.5px; }
