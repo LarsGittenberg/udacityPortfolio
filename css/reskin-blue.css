@@ -339,6 +339,7 @@ div.hero-container.hero-collapsing { transition: none; }
 	padding: clamp(40px, 6vw, 90px) var(--pad) clamp(50px, 7vw, 110px) clamp(8px, 2vw, 28px);
 }
 .flex-container-child-projects { counter-increment: card; position: relative; border: 0; background: none; grid-column: span 6; }
+.card-placeholder { display: none; } /* the empty pattern boxes balance the 2017 three-column grid (Web Design, Graphic Design); blue's staggered cards need no balancing, and an empty box would still take a grid cell and its top margin, a blank stretch above the footer */
 @media (min-width: 900px) {
 	/* THE NUDGE: one dial for the card proportions. The large cards (1, 4) shrink by this much and the narrow cards (2, 3) grow by the same amount,
 	   each moving its INNER edge, so the gutter between them never changes. 30px at 1440px, scaling down on narrower windows. Set to 0px to undo */
