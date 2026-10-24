@@ -324,6 +324,16 @@ div.hero-container.hero-collapsing { transition: none; }
 @media (max-width: 899px) {
 	.project-header-bar { padding: 36px var(--pad) 0; }
 	.project-header-bar h2 { writing-mode: horizontal-tb; transform: none; white-space: normal; font-size: clamp(2.4rem, 11vw, 4.4rem); }
+
+	/* BREADCRUMB BEFORE THE TITLE, on phones (case studies and galleries; chosen by eye on 2026-10-24 after an A/B trial): the trail says where you are, then the title says what this is.
+	   The crumb lives inside the <article> and the title bar beside it, and CSS order only reorders siblings, so the article steps aside (display: contents) and its children become <main>'s grid items.
+	   The article's own padding goes with it, so each child carries the same side spacing, and the last one the bottom. The extra air under the title keeps it from crowding the first numeral.
+	   Above 900px the title is a side pillar and nothing changes. The selectors are written one step heavier than the case-study and gallery sheets' own rules, which load after this file */
+	main > :is(.cs, .gl) { display: contents; }
+	main > :is(.cs, .gl) > * { margin-left: clamp(8px, 2vw, 28px); margin-right: var(--pad); }
+	main > :is(.cs, .gl) > :last-child { padding-bottom: clamp(60px, 8vw, 120px); } /* padding, not margin, so it adds to the last paragraph's own bottom margin, as the article's padding did */
+	main > :is(.cs, .gl) > :is(.cs-crumb, .gl-crumb) { order: -1; margin-top: 28px; margin-bottom: 0; }
+	main:has(> :is(.cs, .gl)) > .project-header-bar { padding-bottom: 52px; }
 }
 
 /* =====================================================================
