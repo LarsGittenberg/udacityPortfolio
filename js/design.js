@@ -51,13 +51,20 @@ if (hero && heroTagline && !prefersReducedMotion) {
 		}
 		hero.style.height = '0px';
 		if (animate) { setTimeout(finishHeroCollapse, HERO_COLLAPSE_MS + 100); } // backup in case transitionend doesn't fire
-		hero.setAttribute('aria-hidden', 'true'); // nothing left to see, so hide it from screen readers too
+		if (!animate) { hideHeroIfGone(); } // (when animating, finishHeroCollapse does it once the hero has really shrunk)
 		try { sessionStorage.setItem('heroCollapsed', '1'); } catch (e) {}
+	};
+
+	// the hero now holds the tagline and the face, so it may only be hidden from screen readers if it really is gone: a skin can keep it open
+	// (the 1986 skin forces its height), and then its content is still on screen and must stay readable
+	var hideHeroIfGone = function() {
+		if (hero.offsetHeight === 0) { hero.setAttribute('aria-hidden', 'true'); } // nothing left to see, so hide it from screen readers too
 	};
 
 	// remove the transition class when done, so window resizes don't animate
 	var finishHeroCollapse = function() {
 		if (!hero.classList.contains('hero-collapsing')) { return; }
+		hideHeroIfGone();
 		hero.classList.remove('hero-collapsing');
 		if (window.Waypoint) { Waypoint.refreshAll(); } // hero is shorter now; recalculate waypoint positions
 	};

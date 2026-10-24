@@ -1,0 +1,32 @@
+/* =====================================================================
+   HOME PAGE, 2017 (the old look): what the old stylesheets (ui.css + main.css) cannot know about the new home page's markup.
+   It loads ONLY in the 2017 skin (index-test.html: data-2017 in the skin-switch script), after ui.css and main.css.
+   The new home page carries the old hero's hooks (.hero-text, .central-shape, .hero-face, .start-*, .img-layer-absolute), so the old CSS does almost all of the work;
+   this file is for the leftovers: blue-only pieces that must be hidden here, and 2017 wording that blue changed.
+   ===================================================================== */
+
+/* blue's sliding band is 1986-only decoration (visible text, so it must be hidden, not just left unstyled) */
+.band-wrap { display: none; }
+
+/* the tagline: blue sets it as four lines with a half-line gap instead of a comma; the 2017 text was one line, "Synthesis with Perspective, Playful by Design" */
+.hero-tagline .tl:nth-child(2)::after { content: ","; }
+
+/* the page title: blue splits it into the pillar "Home" and the descriptor "Featured Projects"; in 2017 it was ONE label, "Home: Featured Projects".
+   So the wrapper becomes the label (the old h2 recipe: charcoal box, 4px 12px, soft shadow, mono light, 19px and 26px from 890px up), and the two words sit inline inside it, with the colon drawn here */
+div.project-header-bar .h2-wrap {
+	display: flex; /* a row of two items: no stray space between "Home" and the colon (inline elements would get one) */
+	align-items: baseline;
+	line-height: 1.4;
+	background: var(--charcoal);
+	padding: 4px 12px;
+	margin-left: var(--page-inset);
+	margin-right: 25px;
+	box-shadow: var(--shadow-soft);
+	font-family: var(--font-mono);
+	font-weight: var(--weight-light);
+	font-size: var(--heading-19);
+}
+@media (min-width: 890px) { div.project-header-bar .h2-wrap { font-size: var(--heading-26); } }
+div.project-header-bar .h2-wrap h2 { display: inline; margin: 0; padding: 0; background: none; box-shadow: none; font: inherit; }
+div.project-header-bar .h2-descriptor { display: inline; margin: 0; padding: 0; font: inherit; }
+div.project-header-bar .h2-descriptor::before { content: ": "; }

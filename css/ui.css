@@ -89,8 +89,7 @@
     z-index: 1; /* Sit on top */
     left: 0;
     top: 0;
-    background-color: rgb(0,0,0); /* Black fallback color */
-    background-color: rgba(0,0,0, 0.9); /* Black w/opacity */
+    background-color: rgb(0,0,0); /* solid black: it was rgba(0,0,0,.9) until 2026-10-24; a little see-through let the page behind it show when the skin switch changes the stylesheets */
     overflow-x: hidden; /* Disable horizontal scroll */
     transition: 500ms ease-in-out; /* 0.3 second transition effect to slide in
     the overlay (height or width, depending on reveal) */

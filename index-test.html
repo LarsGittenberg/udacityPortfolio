@@ -38,8 +38,11 @@ One more thing, for the observant: the face at the top of this page has two diff
 	<link rel="apple-touch-icon" href="/apple-touch-icon.png">
 
   <!-- CSS -->
-  <link rel="stylesheet" href="css/reskin-blue.css"> <!-- replaces ui.css and main.css on this test page: the AMBER version -->
-  <link rel="stylesheet" href="css/transitions.css"> <!-- the card-to-title morph: BOTH pages of a transition must link it, so the home page needs it too -->
+  <!-- the skin switch picks the skin before paint and writes that skin's stylesheets (js/skin-switch.js): 2017 = ui.css + main.css + home-2017.css (what the old CSS cannot know about this page), 1986 = reskin-blue.css (blue) + home-1986.css (the home page's own blue CSS, formerly inline).
+       transitions.css (the card-to-title morph: BOTH pages of a transition must link it, so the home page needs it too) belongs to both -->
+  <script src="js/skin-switch.js" data-2017="css/ui.css,css/main.css,css/transitions.css,css/home-2017.css" data-1986="css/reskin-blue.css,css/transitions.css,css/home-1986.css"></script>
+  <link rel="stylesheet" href="css/skin-switch.css"> <!-- the switch itself looks the same in both skins, so it has its own file, loaded after the skin -->
+  <noscript><link rel="stylesheet" href="css/ui.css"><link rel="stylesheet" href="css/main.css"><link rel="stylesheet" href="css/transitions.css"><link rel="stylesheet" href="css/home-2017.css"></noscript> <!-- without JavaScript: the default skin (2017) -->
 
 	<!--fonts-->
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -55,203 +58,6 @@ One more thing, for the observant: the face at the top of this page has two diff
   <script src="js/noframework.waypoints.min.js"></script>
 
 
-  <style>
-  /* =====================================================================
-     HERO + BODY MELD: the hero test's hero, set on top of the blue page's cards. Everything here overrides css/reskin-blue.css,
-     which is left untouched. Layout numbers come from the Figma PNG (1263px wide, 1:1),
-     expressed in --u so the whole composition scales with the screen (1 --u = 1% of the width, capped at the 1440px body).
-     ===================================================================== */
-  :root {
-    --u: min(1vw, 14.4px);
-    /* the zip-up dials: one set of numbers tunes the whole entrance */
-    --zip-start: 1200ms;  /* wait before the first piece moves (was 200ms, then 700ms; each +0.5s so the face doesn't start the instant the page loads) */
-    --zip-stagger: 250ms; /* gap between one piece and the next */
-    --zip-time: 900ms;    /* how long each piece takes to settle */
-    /* the tagline's two shared numbers: the tagline AND the face badge read these, so they always stay level */
-    --tag-font: clamp(2rem, 6.2vw, 3.5rem); /* 56px ceiling (was 64px; before that 88px = what the site rendered at 1417px) */
-    /* top edge = the LARGER of: (a) the original formula, or (b) 16px below the name. Above 1100px (a) wins, so nothing changes;
-       below 1100px (b) wins, so the tagline stops climbing toward the name. (6.3u = the stage's overlap with the header, 10px = the name's nudge, 16px = the gap, 0.22 x font = the tagline's upward lift, see .hero-tagline, handed back so the 16px gap survives) */
-    --tag-top: max(calc(21.4 * var(--u) - 2 * var(--tag-font) - 48px), calc(6.3 * var(--u) + 6px + 0.22 * var(--tag-font)));
-    /* the stage's height = the LARGER of: (a) the original proportional height, or (b) "tagline bottom + room for the band, so the tagline-to-band gap stays at its 1100px value (64px)".
-       Above 1100px (a) wins and nothing changes; below it (b) wins and the slab grows taller than the window's proportions.
-       (b)'s pieces: 3.6 x font = the tagline's height; 139px = 64px gap + the band's 75px lift; 7.34u = the band's own window-scaled parts, measured at 1100px) */
-    --stage-h: max(calc(45.05 * var(--u)), calc(var(--tag-top) + 3.6 * var(--tag-font) + 139px + 7.34 * var(--u)));
-    /* THE FLAT BAND (was a band tilted -2.675deg; that version is saved as the git tag meld-tilted-band).
-       The band's top edge sits where the old tilted band's highest point (its top-right corner) was: --band-rise = half the band's width x sin(2.675deg) = 0.02473 of the window */
-    --band-rise: calc(0.02473 * 100vw);
-    --band-base: calc(2.34 * var(--u) + 75px + var(--band-rise)); /* the band's distance from the stage's bottom edge (the 75px lifts it: 45px, then 30px more) */
-    --slab-bottom: calc(100% - var(--band-base) - max(2.02 * var(--u), 20px)); /* the slab ends at the band's vertical middle (half its height), hidden behind the band, so the slab's bottom edge never shows */
-    /* THE SLAB LIFT: the slab's top-LEFT corner stays where it always was; the top-RIGHT corner rises by this much, steepening the slant from about 2.7 to about 5.1 degrees (4.2u = 60px at 1440px).
-       0 gives the original slant back; 5.5u (80px, about 5.9 degrees) was the steeper try */
-    --slab-lift: calc(4.2 * var(--u));
-  }
-
-  /* the name hangs from the right edge; the blurb stays beside it */
-  header { padding-right: calc(2.4 * var(--u)); }
-  .header-container {
-    justify-content: flex-end;
-    align-items: flex-end; /* the blue page's pillar: the blurb is the tallest item, so it sets the row's height and the name rests at its foot */
-    gap: calc(4.4 * var(--u));
-  }
-  .header-container h1 { text-align: right; margin-bottom: 10px; font-size: clamp(3.8rem, 16vw, 16.5rem); } /* nudges the name up 10px off the pillar's foot; delete the margin to undo */
-  .header-container p { white-space: nowrap; } /* the row now has a fixed height, so without this the blurb would wrap into two columns */
-
-  /* the blue slab: sized from the mockup, with a flat band hiding its lower edge */
-  /* the stage holds everything and is NOT clipped, so shapes can poke out over the dark; the clipped blue slab is just its background */
-  .hero-stage {
-    grid-column: 1 / -1; /* MELD: spans both columns of the blue page's main grid (the old .hero-container did this) */
-    overflow-x: clip; /* a safety net: nothing may add a sideways scroll (up and down stays open for the shapes). It was essential when the tilted band overhung the screen */
-    position: relative;
-    height: var(--stage-h); /* was calc(45.05 * var(--u)); now it can grow taller below 1100px, see --stage-h in :root */
-    margin-top: calc(-6.3 * var(--u));
-    margin-bottom: calc(-2 * var(--band-rise)); /* the flat band sits higher than the old tilted band's low left end did; this pulls the cards up by that same amount so the gap below the band is unchanged */
-  }
-  div.hero-container {
-    position: absolute;
-    inset: 0;
-    top: calc(-1 * var(--slab-lift)); /* the slab's box grows upward by the lift, so there is room to draw the steeper slant */
-    display: block;
-    min-height: 0;
-    height: calc(100% + var(--slab-lift)) !important; /* the old rule said 100% !important, so this has to shout too */
-    margin-top: 0;
-    padding: 0;
-    /* the slant: the left corner sits (lift + 4.685u) down from the box's top, the right corner at the very top. 4.685u is tied to the window's width instead of the slab's height,
-       so a taller slab keeps the SAME slant. The bottom is flat and hidden behind the flat band (see --slab-bottom in :root) */
-    clip-path: polygon(0 calc(var(--slab-lift) + 4.685 * var(--u)), 100% 0, 100% var(--slab-bottom), 0 var(--slab-bottom));
-  }
-
-  /* the tagline: a fixed box sized in em, so it scales with the type and can never reflow.
-     8.76em x 3.6em = Figma's 587 x 240 at 67px; four lines at 90% line-height = 3.6em */
-  .hero-tagline {
-    position: absolute;
-    grid-column: auto;
-    right: calc(31.5 * var(--u));
-    top: calc(var(--tag-top) - 0.22em); /* its centre sits level with the face circle (the badge reads the same --tag-top; see :root). The 0.22em lifts the box by half the phrase gap below, so the centre stays put */
-    width: 8.76em;
-    height: 3.6em;
-    max-width: none;
-    font-size: var(--tag-font); /* 56px ceiling, set in :root */
-    font-weight: 700; /* was 900 from .doto-lg; lighter dots read less heavy */
-    line-height: 0.9;
-    letter-spacing: -0.03em;
-    text-align: right;
-  }
-  .hero-tagline .tl { display: block; white-space: nowrap; }
-  .hero-tagline .tl:nth-child(3) { margin-top: 0.45em; } /* a half-line of air between "Perspective" and "Playful by": it splits the tagline into its two phrases without any punctuation. Delete this and the 0.22em above to undo */
-
-  /* the face badge: a 200px amber circle with the five face layers rising into it */
-  .badge {
-    --size: clamp(140px, 14.1vw, 200px);
-    position: absolute;
-    z-index: 2;
-    width: var(--size);
-    height: var(--size);
-    left: calc(82 * var(--u) - var(--size) / 2);
-    top: calc(var(--tag-top) + 1.8 * var(--tag-font) - var(--size) / 2); /* the tagline's top plus half its height (1.8 x its font-size) = its centre; minus half the badge = the badge centred on the tagline */
-  }
-  .badge-circle { position: absolute; inset: 0; border-radius: 50%; background: var(--amber); }
-  .badge-face { position: absolute; left: 12%; top: 13%; width: 76%; aspect-ratio: 876 / 893; }
-  .badge-face img { position: absolute; inset: 0; width: 100%; }
-
-  /* the four decorative shapes, placed by their centres */
-  .deco { position: absolute; z-index: 1; pointer-events: none; display: none; /* hidden for now: delete this "display: none" to bring all four shapes back */ }
-  .deco-half {   /* orange half-disc, tipped 40 degrees */
-    width: calc(13.9 * var(--u)); aspect-ratio: 2 / 1; background: var(--orange);
-    border-radius: 999px 999px 0 0; rotate: 40deg; z-index: 2; /* over the magenta circle, as in the mockup */
-    left: calc(21 * var(--u) - 6.95 * var(--u)); top: calc(6.2 * var(--u) - 3.45 * var(--u));
-  }
-  .deco-dot {    /* magenta circle */
-    width: calc(6.5 * var(--u)); aspect-ratio: 1; background: var(--magenta); border-radius: 50%;
-    left: calc(17.3 * var(--u) - 3.25 * var(--u)); top: calc(7.8 * var(--u) - 3.25 * var(--u));
-  }
-  .deco-tri-amber {
-    width: calc(5.5 * var(--u)); aspect-ratio: 69 / 75; background: var(--amber);
-    clip-path: polygon(19% 0, 0 92%, 100% 100%);
-    left: calc(16.9 * var(--u) - 2.75 * var(--u)); top: calc(31.7 * var(--u) - 3 * var(--u));
-  }
-  .deco-tri-teal {
-    width: calc(5.4 * var(--u)); aspect-ratio: 68 / 80; background: var(--teal);
-    clip-path: polygon(0 50%, 100% 0, 100% 100%);
-    left: calc(40.9 * var(--u) - 2.7 * var(--u)); top: calc(31 * var(--u) - 3.2 * var(--u));
-  }
-
-  /* the zip-up: slide up 40px while fading in, one piece after another (--i is each piece's place in line).
-     It uses opacity and the separate "translate" property, so the browser can animate it on the graphics card
-     and the shapes keep their own "rotate" */
-  .zip {
-    opacity: 0;
-    animation: zip var(--zip-time) cubic-bezier(0.2, 0.8, 0.2, 1) forwards;
-    animation-delay: calc(var(--zip-start) + var(--i) * var(--zip-stagger));
-  }
-  @keyframes zip { from { opacity: 0; translate: 0 40px; } to { opacity: 1; translate: 0 0; } }
-  @media (prefers-reduced-motion: reduce) { .zip { animation: none; opacity: 1; } }
-
-  /* the band: the poster's sliding strip, now FLAT (see --band-rise in :root) */
-  /* a frame the width of the working area (the 1440px body): it cuts the band off at the left and right edges,
-     while the negative top/bottom values leave the band's height unclipped */
-  .band-wrap { position: absolute; inset: 0; z-index: 3; pointer-events: none; clip-path: inset(-20vw 0); }
-  .band {
-    position: absolute;
-    left: 0;
-    width: 100%; /* the tilted band was 106% wide (left: -3%) so its slant never showed a gap at the edges; a flat band needs no overhang */
-    bottom: var(--band-base);
-    height: calc(4.04 * var(--u));
-    min-height: 40px;
-    display: flex;
-    align-items: center;
-    overflow: hidden;
-    white-space: nowrap;
-    background: var(--amber);
-    color: var(--ink);
-  }
-  .band-track { display: inline-flex; animation: slide 38s linear infinite; }
-  .band-track span { font-family: var(--font-mono); font-size: var(--fs-s); letter-spacing: 0.14em; text-transform: uppercase; padding-right: 2.2em; }
-  .band-track i { font-style: normal; }
-  .band-track i:nth-of-type(3n+1) { color: var(--magenta); }
-  .band-track i:nth-of-type(3n+2) { color: var(--teal); }
-  .band-track i:nth-of-type(3n) { color: var(--blue); }
-  @keyframes slide { to { transform: translateX(-50%); } }
-  @media (prefers-reduced-motion: reduce) { .band-track { animation: none; } }
-
-  /* ===== STACKED LAYOUT: 899px and below (was 699px; moved to match the cards' breakpoint. To undo, change 899 back to 699) =====
-     The face badge leaves the tagline's side and moves to the top of the screen, centred, at its full 200px.
-     The tagline slides right into the space it left, lined up with the right edge of the name. */
-  @media (max-width: 899px) {
-    .badge {
-      --size: 200px; /* its widest size, instead of shrinking down to 140px */
-      left: calc(50% - var(--size) / 2); /* centred left-to-right on the screen */
-      top: calc(6.3 * var(--u) - 457px); /* 84px from the page top = level with the top of the vertical blurb. (457px = the header's 541px height minus that 84px; the stage starts 6.3u above the header's bottom edge.) If the header's height changes, this number follows */
-    }
-    .hero-tagline {
-      right: calc(6.8 * var(--u) + 22px); /* the name's right edge: the header's right padding (2.4u) + the gap (4.4u) + the vertical blurb's 22px width. Change the blurb and this follows */
-    }
-  }
-
-  /* the pulsing teal rings around the menu button: hidden on this version (delete this rule to bring them back) */
-  .menu-signal { display: none; }
-
-
-  /* PAGE TITLE, as chosen on the graphic design test page: a large pillar ("Home", no colon: turned sideways, a Doto colon's dots land side by side and read as "++") with a small descriptor beside it ("Featured Projects"), both hung from the top of the column.
-     On desktop the pair is sticky: it rides along as you scroll and lets go 40px above the footer. Below 900px it is an ordinary heading with the descriptor flat underneath. */
-  :root { --h2-scale: 0.88; } /* the pillar is 88% of the blue skin's size (1 = the original) */
-  .project-header-bar h2 { font-size: var(--fs-title); }
-  .h2-wrap { display: grid; grid-auto-flow: column; grid-auto-columns: max-content; justify-content: start; align-items: start; column-gap: clamp(8px, 1vw, 14px); }
-  .h2-descriptor { writing-mode: vertical-rl; transform: rotate(180deg); white-space: nowrap; margin-bottom: 0.4rem; /* reads bottom to top, like the tagline in the header */
-    font-family: var(--font-mono); font-size: var(--fs-m); letter-spacing: 0.22em; text-transform: uppercase; color: var(--paper); }
-  @media (min-width: 900px) {
-    .project-header-bar { padding-top: calc(var(--band-rise) - 2.34 * var(--u)); } /* band to title = 75px, same as the graphic design page. The hero stage already leaves (2.34u + 75px - band-rise) below the band, so this tops it up to exactly 75px. If the band's spacing changes, this formula must follow */
-    .project-header-bar { padding-bottom: 50px; } /* the sticky title may not travel into this padding, so it lets go 50px above the footer */
-    .h2-wrap { position: sticky; top: 100px; } /* 100px parks it below the fixed menu icon */
-    .project-header-bar h2 { font-size: min(var(--fs-title), 9vh); } /* capped by window height so the pillar always fits on screen */
-  }
-  @media (max-width: 899px) {
-    /* band to title = the skin's own 36px of top padding, same as the other card pages. The hero stage leaves (2.34u + 75px - band-rise) below the band, so a negative top margin of exactly that much pulls the title up to the band's edge. If the band's spacing changes, this formula must follow (it is the same number as the desktop formula above) */
-    .project-header-bar { margin-top: calc(-1 * (2.34 * var(--u) + 75px - var(--band-rise))); }
-    .project-header-bar h2 { font-size: var(--fs-title-sm); }
-    .h2-wrap { display: flex; flex-direction: column; align-items: flex-start; gap: 10px; }
-    .h2-descriptor { writing-mode: horizontal-tb; transform: none; margin-bottom: 0; }
-  }
-  </style>
 </head>
 
 <body>
@@ -286,10 +92,10 @@ One more thing, for the observant: the face at the top of this page has two diff
 
 <div class="hero-stage">
 
-	<div class="hero-container" id="waypointSignal" aria-hidden="true"></div><!--the blue slab, nothing else-->
+	<div class="hero-container pattern-grid-small" id="waypointSignal"><!-- the hero: in 1986 it paints the blue slab (a ::before, see css/home-1986.css) and holds the tagline, shapes and face badge; in 2017 it is the old hero block. design.js collapses it -->
 
 	<!-- tagline: four fixed lines in a fixed box. The words are in aria-label, so the scramble below can run without a screen reader reading the noise -->
-	<h2 id="tagline" class="doto-lg hero-tagline" aria-label="Synthesis with perspective, playful by design">
+	<h2 id="tagline" class="doto-lg hero-tagline hero-text absolute" aria-label="Synthesis with perspective, playful by design">
 		<span class="tl" aria-hidden="true">Synthesis with</span>
 		<span class="tl" aria-hidden="true">Perspective</span>
 		<span class="tl" aria-hidden="true">Playful by</span>
@@ -302,19 +108,22 @@ One more thing, for the observant: the face at the top of this page has two diff
 	<div class="deco deco-tri-amber zip" style="--i:7" aria-hidden="true"></div>
 	<div class="deco deco-tri-teal zip" style="--i:8" aria-hidden="true"></div>
 
+	<!-- the retro sun: the 2017 hero's big circle behind the face. Hidden in 1986 (css/home-1986.css), and fades in on its own in 2017 (main.css) -->
+	<div class="central-shape" aria-hidden="true"></div>
 	<!-- the face badge: five face layers, then the amber circle last (it sits behind them) -->
-	<div class="badge" role="img" aria-label="Illustrated portrait of Lawrence Getubig">
+	<div class="badge hero-face" role="img" aria-label="Illustrated portrait of Lawrence Getubig">
 		<div class="badge-circle zip" style="--i:9"></div><!-- --i:9 = 1 second sooner than the earlier --i:13; to revert, change 9 back to 13 -->
 
 		<div class="badge-face">
-			<img class="zip" style="--i:0" src="images/hero/face1.svg" alt="">
-			<img class="zip" style="--i:1" src="images/hero/face2.svg" alt="">
-			<img class="zip" style="--i:2" src="images/hero/face3.svg" alt="">
-			<img class="zip" style="--i:3" src="images/hero/face4.svg" alt="">
-			<img class="zip" style="--i:4" src="images/hero/face5.svg" alt="">
+			<img class="zip start-transparent img-layer-absolute" style="--i:0" src="images/hero/face1.svg" alt="">
+			<img class="zip start-bottom img-layer-absolute" style="--i:1" src="images/hero/face2.svg" alt="">
+			<img class="zip start-right-fast img-layer-absolute" style="--i:2" src="images/hero/face3.svg" alt="">
+			<img class="zip start-left img-layer-absolute" style="--i:3" src="images/hero/face4.svg" alt="">
+			<img class="zip start-top img-layer-absolute" style="--i:4" src="images/hero/face5.svg" alt="">
 		</div>
 	</div>
 
+	</div><!--end hero container-->
 	<!-- the sliding band (four copies, so the loop never shows a gap) -->
 	<div class="band-wrap">
 	<div class="band" aria-hidden="true">
