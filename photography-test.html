@@ -24,18 +24,12 @@
 	<link rel="apple-touch-icon" href="/apple-touch-icon.png">
 
   <!-- CSS -->
-  <link rel="stylesheet" href="css/reskin-blue.css"> <!-- replaces ui.css and main.css on this test page -->
-
-  <link rel="stylesheet" href="css/card-pages.css"> <!-- the header, band, title and card spacing that the category pages share -->
-  <link rel="stylesheet" href="css/transitions.css"> <!-- the card-to-title morph between category pages and project pages -->
-
-  <style>
-  /* this page's band colour (blue): background, text, and the three shape colours */
-  .band { --band-bg: var(--blue); --band-ink: var(--cream-text); --s1: var(--amber); --s2: var(--mint); --s3: var(--orange); }
-
-  /* CARD 2 (retouch): the dome frame is 4:3 and the picture is 5:3, so the default centred crop cut the left half of the "A" block in "AIDEN". Sliding the crop to the left keeps the whole row of blocks. To undo, delete this rule */
-  #retouch { object-position: left center; }
-  </style>
+  <!-- the skin switch picks the skin before paint and writes that skin's stylesheets (js/skin-switch.js).
+       2017 = ui.css + main.css + common-2017.css (what every page needs for blue's shared markup) + category-2017.css (the cards' bulleted lists). 1986 = blue: reskin-blue.css + card-pages.css + photography-1986.css (this page's own CSS, formerly inline).
+       transitions.css (the card-to-title morph between category pages and project pages) belongs to both -->
+  <script src="js/skin-switch.js" data-2017="css/ui.css,css/main.css,css/transitions.css,css/common-2017.css,css/category-2017.css" data-1986="css/reskin-blue.css,css/card-pages.css,css/transitions.css,css/photography-1986.css"></script>
+  <link rel="stylesheet" href="css/skin-switch.css"> <!-- the switch itself looks the same in both skins, so it has its own file, loaded after the skin -->
+  <noscript><link rel="stylesheet" href="css/ui.css"><link rel="stylesheet" href="css/main.css"><link rel="stylesheet" href="css/transitions.css"><link rel="stylesheet" href="css/common-2017.css"><link rel="stylesheet" href="css/category-2017.css"></noscript> <!-- without JavaScript: the default skin (2017) -->
 
 	<!--fonts-->
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -74,7 +68,7 @@
 <header class="pattern-dots-sparse">
 	<div class="header-container">
 		<h1 class="doto-lg">Lawrence Getubig</h1>
-		<p>Creative Technologist<br>in Product Design</p>
+		<p>Creative Technologist <br>in Product Design</p>
 	</div><!--end header container-->
 </header>
 
@@ -117,7 +111,7 @@
 
 <!--retouch-->
 	<div class="flex-container-child-projects pattern-dots-sparse">
-		<section class="featured-project-card">
+		<section class="featured-project-card desc-list">
 			<div class="img-container">
 				<img id="retouch" class="project-image" src="images/animate/retouch_static.jpg" alt="image of retouched photo of todler in a photo studio">
 			</div>
