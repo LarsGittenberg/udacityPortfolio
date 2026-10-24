@@ -56,7 +56,7 @@
 .gl-index a:hover em { color: inherit; } /* the gold count would be hard to read on paper */
 /* the icons: transparent PNGs up to 500px, three across; the captions are real copy, so they read as sentences, not as tracked caps. No corner radius: the icons are drawings on a transparent ground. */
 .gl-grid--icons { margin-top: clamp(20px, 3vw, 36px); align-items: start; }
-.gl-grid--icons img { max-width: 500px; border-radius: 0; }
+.gl-grid--icons img { max-width: 500px; border-radius: 0; transform: scale(var(--icon-scale, 1)); } /* --icon-scale evens out sets exported with different transparent margins; a transform leaves the layout box alone, so nothing around the icon moves */
 .gl-grid--icons figcaption { margin-top: 10px; font-family: var(--font-body); font-size: var(--fs-s); letter-spacing: 0; text-transform: none; line-height: 1.5; opacity: .9; }
 .gl-grid--icons figure:hover figcaption { color: inherit; }
 
