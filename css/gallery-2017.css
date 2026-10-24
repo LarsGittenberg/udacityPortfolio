@@ -50,3 +50,6 @@
 .gl--sets .gl-cat > h3 { font-size: var(--heading-20); }
 @media (min-width: 890px) { .gl--sets .gl-cat > h3 { font-size: var(--heading-26); font-weight: lighter; line-height: 1.5em; margin-bottom: 20px; } } /* the old .info-box h3 */
 .gl-side .info-box-left > .gl-index-label, .gl-side .info-box-left > .gl-index { display: none; }
+
+/* Ads in 2017: the sets' kicker, heading and intro are not shown (the old page was one flat run of ads); only the ads remain. Scoped to Ads (the container with the old gallery-compact class), so the other pages with sets keep their text */
+.gallery-compact .gl-cat > :is(.kicker, h3, p:not(.kicker)) { display: none; }
