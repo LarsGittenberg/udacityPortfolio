@@ -4,7 +4,7 @@
    RAIL (html.look-rail, switched on by js/layout-switch.js): the statement stays pinned on the left while you scroll the work, two across (from 900px up).
    The reader chooses with the Column | Rail pill at the bottom right (its styles live in css/reskin-blue.css, with the other site components). Phones always read the column.
    Markup:  <article class="gl"> .gl-crumb, <aside class="gl-side">, <div class="gl-grid"> of <figure>s.
-   Used by the Cutout Figures, Posed Encounters and DRØM print pages, and (with SETS, below) the Web Icon and Ads pages. Photographs get NO decoration (no frame, no shadow): they speak for themselves.
+   Used by the Cutout Figures, Posed Encounters and DRØM print pages, and (with SETS, below) the Web Icon and Ads pages; BEFORE / AFTER (below) is the Photoshop Retouching page. Photographs get NO decoration (no frame, no shadow): they speak for themselves.
    ===================================================================== */
 
 /* ---------- COLUMN: the base ---------- */
@@ -71,6 +71,21 @@
 .gl-grid--cards img { max-width: 450px; } /* 450px is the width of the smallest card file (March): the three cards match and none is enlarged, in the grid and on a phone */
 .gl-grid--banners figcaption, .gl-grid--squares figcaption, .gl-grid--cards figcaption { line-height: 1.4; }
 @media (max-width: 700px) { .gl-grid--banners, .gl-grid--squares, .gl-grid--cards { grid-template-columns: 1fr; } }
+
+/* ---------- BEFORE / AFTER (the Retouching page): each file is an 800 x 400 sprite, the finished piece (AFTER) on the left half and the original (BEFORE) on the right half, shown through a square window.
+   Markup:  <figure class="gl-ba" tabindex="0"><img loading="lazy" src="..." width="800" height="400" alt="..."></figure>
+   The page opens on the finished work; the picture is twice the window wide and slides half its width to show the original. BEFORE shows on hover (devices that can hover), on keyboard focus, and, on touch,
+   when js/before-after.js adds .is-before after a tap. A small tag in the corner (made with CSS, so it is not read out) says which half you are seeing. It swaps instantly, not with a slide:
+   to compare a retouch, the two halves must land in exactly the same place. ---------- */
+.gl-ba { position: relative; width: 100%; max-width: 400px; aspect-ratio: 1; overflow: hidden; border-radius: var(--radius-img); cursor: pointer; }
+.gl-grid .gl-ba img { width: 200%; max-width: none; height: 100%; object-fit: cover; border-radius: 0; }
+.gl-ba::after { content: "After"; position: absolute; left: 8px; bottom: 8px; padding: 3px 8px; font-family: var(--font-mono); font-size: var(--fs-xs); letter-spacing: .14em; text-transform: uppercase; color: var(--paper); background: var(--ink); pointer-events: none; }
+.gl-ba:focus-visible img, .gl-ba.is-before img { transform: translateX(-50%); }
+.gl-ba:focus-visible::after, .gl-ba.is-before::after { content: "Before"; }
+@media (hover: hover) {
+  .gl-ba:hover img { transform: translateX(-50%); }
+  .gl-ba:hover::after { content: "Before"; }
+}
 
 /* ---------- RAIL: the statement stays pinned while you scroll the work (from 900px up) ---------- */
 @media (min-width: 900px) {

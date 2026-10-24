@@ -28,6 +28,7 @@
 .featured-project-card:has(a[href^="icons"]) h3 { view-transition-name: icons-title; }
 .featured-project-card:has(a[href^="cutouts"]) h3 { view-transition-name: cutouts-title; }
 .featured-project-card:has(a[href^="posed"]) h3 { view-transition-name: posed-title; }
+.featured-project-card:has(a[href^="retouch"]) h3 { view-transition-name: retouch-title; }
 
 /* the project pages: the big vertical title */
 main[data-project="tnecd"] .project-header-bar h2 { view-transition-name: tnecd-title; }
@@ -41,6 +42,7 @@ main[data-project="ads"] .project-header-bar h2 { view-transition-name: ads-titl
 main[data-project="icons"] .project-header-bar h2 { view-transition-name: icons-title; }
 main[data-project="cutouts"] .project-header-bar h2 { view-transition-name: cutouts-title; }
 main[data-project="posed"] .project-header-bar h2 { view-transition-name: posed-title; }
+main[data-project="retouch"] .project-header-bar h2 { view-transition-name: retouch-title; }
 
 /* timing */
 ::view-transition-group(*) { animation-duration: var(--t-base); animation-timing-function: var(--ease-soft); }
