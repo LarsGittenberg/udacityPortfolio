@@ -726,8 +726,10 @@ footer::after {
    READER LAYOUT PILL (a site component): used by every page with a Column | Rail choice (case studies and statement galleries).
    js/layout-switch.js builds it; the layout styles live in css/case-study.css and css/gallery.css.
    ===================================================================== */
-/* Column | Rail, floating at the bottom right. Hidden below 900px, where there is no rail to choose */
-.lay-switch { display: none; position: fixed; right: 16px; bottom: 16px; z-index: 300; flex-direction: column; align-items: center; gap: 8px; padding: 8px; background: var(--paper); color: var(--ink); border: 2px solid var(--ink); font-family: var(--font-mono); } /* a tan pill: dark ink on light paper reads crisper at this size than cream on black */
+/* Column | Rail, floating at the bottom right. Hidden below 900px, where there is no rail to choose.
+   STACKING LADDER in this skin (keep new z-index values in this order): page content 2 to 5, THIS pill 10, the open menu overlay 20, the menu button 100.
+   The pill must stay UNDER the overlay so the open menu blankets it; it was 300 until 2026-10-25 and floated over the open menu. */
+.lay-switch { display: none; position: fixed; right: 16px; bottom: 16px; z-index: 10; flex-direction: column; align-items: center; gap: 8px; padding: 8px; background: var(--paper); color: var(--ink); border: 2px solid var(--ink); font-family: var(--font-mono); } /* a tan pill: dark ink on light paper reads crisper at this size than cream on black */
 .lay-switch button { font: inherit; font-size: var(--fs-xs); letter-spacing: var(--ls-label); text-transform: uppercase; padding: 6px 10px; border: 2px solid var(--ink); background: transparent; color: var(--ink); cursor: pointer; transition: background var(--t-quick) ease, color var(--t-quick) ease; }
 .lay-switch button { position: relative; } /* sits above the sliding block below */
 .lay-switch button:hover:not([aria-pressed="true"]) { background: var(--gold); } /* the link highlight's gold; the chosen button is left alone */
