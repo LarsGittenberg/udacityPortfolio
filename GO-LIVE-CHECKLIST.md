@@ -1,21 +1,21 @@
 # Go-live checklist: the swap
 
-*Prepared 2026-10-25 for the captain, by the first officer; updated the same day (one missing file found and added: `js/before-after.js`). Checked against the live site on that date. Nothing in this file has been done yet.*
+*Prepared 2026-10-25 for the captain, by the first officer. Updated the same day twice: `js/before-after.js` was found missing and added; then, after launch, two images that only the unused `photography.css` referenced (`images/ads/dogyear_instagram.png`, `images/ads/ilovemath.png`) were removed from the list, because no page needs them. Checked against the live site on that date.*
 
 **The idea, in photographer's terms.** The new prints go up last. First the darkroom is stocked (the supplies the new pages need), and only then do the 17 pages themselves change. Before any of it, we keep the negatives: a backup of what is live now, so the old site can be put back in minutes.
 
 **In a nutshell (the captain's own words, 2026-10-25):**
-1. **Put up the supplies first:** the `css/` folder, the `js/` folder and 5 images. Nothing visible changes yet.
+1. **Put up the supplies first:** the `css/` folder, the `js/` folder and 3 images. Nothing visible changes yet.
 2. **Then put up the 17 pages**, together.
 
-**The numbers to remember:** **45 files** change on the host: **22 new + 6 changed supplies, then the 17 pages**, about **762.7 KB** in all. The 17 pages keep the **same names as the live site**, so no redirects are needed.
+**The numbers to remember:** **43 files** change on the host: **20 new + 6 changed supplies, then the 17 pages**, about **694.8 KB** in all. The 17 pages keep the **same names as the live site**, so no redirects are needed.
 
 ---
 
 ## 1. Before the day
 
 - [ ] You are on `master`, `git status` shows nothing uncommitted (the parked workbenches may show as untracked), and everything is pushed.
-- [ ] Ask the first officer to **re-run the manifest check against the live site**. The answer must still be **22 new, 6 changed**. A different number means something moved since 25 October: stop and look.
+- [ ] Ask the first officer to **re-run the manifest check against the live site**. The answer must still be **20 new, 6 changed**. A different number means something moved since 25 October: stop and look.
 - [ ] Tag the exact commit you will upload from: `git tag -a pre-go-live -m "what went live"` then `git push --follow-tags`.
 - [ ] Pick the moment: a quiet hour, with time to verify and to roll back. Not minutes before you send the link to anyone.
 - [ ] Open the menu once in a real browser, in the 2017 skin on the home page (the headless test cannot show its slide). On a phone (or a phone-sized DevTools window with touch), tap a photograph on the Retouching page: it should flip to the "before".
@@ -29,7 +29,7 @@ Download these **23 files** from the live site into a dated folder outside the p
 - [ ] The **6 files that will be replaced:** `css/main.css`, `css/ui.css`, `images/45/45 st johns.png`, `images/hero/face2.svg`, `images/icons/xmas2018_mom.png`, `js/design.js`
 - [ ] Belt and braces, if your FTP program allows it: download the **whole site folder** too.
 
-Why these 23: the 22 new files are not referenced by the old pages, so they can safely stay on the host if we ever roll back. Only what gets *overwritten* needs saving.
+Why these 23: the 20 new files are not referenced by the old pages, so they can safely stay on the host if we ever roll back. Only what gets *overwritten* needs saving.
 
 ## 3. The upload: two steps
 
@@ -39,15 +39,13 @@ Keep the folder structure. Overwrite when asked. Skip any hidden **`.DS_Store`**
 
 - [ ] **Upload the whole `css/` folder** (20 files).
 - [ ] **Upload the whole `js/` folder** (7 files).
-- [ ] **Upload these 5 images** (not the whole `images/` folder: it holds hundreds of pictures, and only these changed):
+- [ ] **Upload these 3 images** (not the whole `images/` folder: it holds hundreds of pictures, and only these changed):
 
 | # | File | Size | |
 |---|---|---|---|
-| 1 | `images/ads/dogyear_instagram.png` | 50.8 KB | new |
-| 2 | `images/ads/ilovemath.png` | 17.1 KB | new |
-| 3 | `images/45/45 st johns.png` | 53.9 KB | changed (overwrites the live copy) |
-| 4 | `images/hero/face2.svg` | 4.5 KB | changed (overwrites the live copy) |
-| 5 | `images/icons/xmas2018_mom.png` | 173.7 KB | changed (overwrites the live copy) |
+| 1 | `images/45/45 st johns.png` | 53.9 KB | changed (overwrites the live copy) |
+| 2 | `images/hero/face2.svg` | 4.5 KB | changed (overwrites the live copy) |
+| 3 | `images/icons/xmas2018_mom.png` | 173.7 KB | changed (overwrites the live copy) |
 
 Why uploading whole folders is safe: of the 27 files in `css/` and `js/`, **23 are new or changed** (listed below) and the other **4** (`css/photography.css`, `js/cookie.js`, `js/cookie_2.js`, `js/noframework.waypoints.min.js`) were checked on 2026-10-25 and are **byte-for-byte identical on the host**, so uploading them again changes nothing.
 
@@ -123,7 +121,7 @@ Use a **private window** (or hard reload) because stylesheets are cached for up 
 ## 5. If something is wrong: rolling back
 
 - **Small and cosmetic:** fix it forward. Change the file, upload that one file.
-- **Broken:** re-upload from your backup folder the **17 pages first** (that restores the old site at once), then the 6 shared files. Leave the 22 new files; nothing old references them. Hard reload to check. Visitors with cached stylesheets may see the old look for up to 4 hours either way.
+- **Broken:** re-upload from your backup folder the **17 pages first** (that restores the old site at once), then the 6 shared files. Leave the 20 new files; nothing old references them. Hard reload to check. Visitors with cached stylesheets may see the old look for up to 4 hours either way.
 - Tell the first officer what you saw; we write it down.
 
 ## 6. The day after (not the same day)
