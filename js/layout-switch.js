@@ -107,7 +107,7 @@
         /* the page has reflowed; scroll by exactly the amount the anchor moved, so it stays where the reader's eye is */
         if (anchor) { window.scrollBy(0, anchor.getBoundingClientRect().top - before); }
         mark();
-        if (window.gtag) { gtag('event', 'layout_switch', { layout: layout }); }
+        if (window.gtag) { gtag('event', 'layout_switch', { layout: layout, from_page: window.location.pathname }); }
       });
     });
   });
