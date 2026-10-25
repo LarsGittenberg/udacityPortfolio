@@ -89,7 +89,7 @@
   .eye-iris { fill: #c8c8c8; }
   .eye-pupil { fill: #000; }
   /* the mask is the "window" the eye is seen through; squashing its height toward the centre line closes both lids together. The blink only runs while hovered, so every hover starts with an open eye and the first blink comes about 0.3s in (startled!). */
-  .eye-window { transform-box: fill-box; transform-origin: 50% 50%; }
+  .eye-window { transform-origin: 170.5px 150.5px; } /* the eye's centre line, in the SVG's own units. A pixel pivot, not "50%" of its own box (transform-box: fill-box): Firefox puts a percentage pivot in the wrong place for a shape inside a mask, so the lids slid up instead of closing in place. */
   .ab-shapes li:hover .eye-window { animation: eye-blink 7s infinite; }
   /* 7s loop (1% = 70ms). Rhythm: blink --- blink-blink ---
      Single blink: closes in 100ms, shut 30ms, reopens in 130ms. Double blink: faster (70 / 20 / 90ms), ~80ms apart. Rests are ~3s. */
@@ -164,7 +164,7 @@
   .sy-eye { transform-origin: 50% 50%; transform: scale(0); }
   .ab-shapes li:hover .sy-eye { transform: none; transition: transform 0.6s var(--pop) 0.4s; }
   /* the mouth: a notch cut out of the face through a mask. It is a triangle (its tip inside the face, its base on the face's slanting edge) that scales from the middle of its base, so it opens and closes without ever leaving the edge. Closed = scale 0 = no cut. */
-  .sy-notch { fill: #000; transform-box: fill-box; transform-origin: 74.75% 59.2%; scale: 0; }
+  .sy-notch { fill: #000; transform-origin: 456.806px 310.809px; scale: 0; } /* the middle of the notch's base, in the SVG's own units (a pixel pivot for the same Firefox reason as .eye-window above) */
   .ab-shapes li:hover .sy-notch { animation: sy-talk 3s linear 1.1s infinite; }
   /* SYN - the - SIS, then a breath. 3s loop: the mouth opens for each syllable (the middle one is smaller). */
   @keyframes sy-talk { 0% { scale: 0; animation-timing-function: ease-out; } 3.667% { scale: 1.0; animation-timing-function: linear; } 8.333% { scale: 1.0; animation-timing-function: ease-in; } 12.667% { scale: 0; } 17.333% { scale: 0; animation-timing-function: ease-out; } 21% { scale: 0.55; animation-timing-function: linear; } 23% { scale: 0.55; animation-timing-function: ease-in; } 27.333% { scale: 0; } 32% { scale: 0; animation-timing-function: ease-out; } 35.667% { scale: 1.0; animation-timing-function: linear; } 45% { scale: 1.0; animation-timing-function: ease-in; } 49.333% { scale: 0; } 100% { scale: 0; } }
