@@ -14,15 +14,9 @@
 
 /* THE BAND: a flat strip with the sliding ticker, an ordinary strip in the page flow (no hero stage to sit on).
    The page chooses its colours: --band-bg (background), --band-ink (text), --s1 --s2 --s3 (the three shape colours).
+   The moving text itself (.band-track: speed, type, colour rotation) is written once, in css/reskin-blue.css.
    margin-top: 50px below the "C" of "Creative", the foot of the rotated tagline; the tagline's own 0.4rem bottom margin is already part of that, so it is subtracted */
 .card-page .band { margin-top: calc(50px - 0.4rem); height: calc(4.04 * var(--u)); min-height: 40px; display: flex; align-items: center; overflow: hidden; white-space: nowrap; background: var(--band-bg); color: var(--band-ink); }
-.card-page .band-track { display: inline-flex; animation: slide 38s linear infinite; }
-.card-page .band-track span { font-family: var(--font-mono); font-size: var(--fs-s); letter-spacing: var(--ls-caps); text-transform: uppercase; padding-right: 2.2em; }
-.card-page .band-track i { font-style: normal; }
-.card-page .band-track i:nth-of-type(3n+1) { color: var(--s1); }
-.card-page .band-track i:nth-of-type(3n+2) { color: var(--s2); }
-.card-page .band-track i:nth-of-type(3n) { color: var(--s3); }
-@media (prefers-reduced-motion: reduce) { .card-page .band-track { animation: none; } }
 
 /* BAND PALETTES: a page picks its band colours by putting a class on its band element, <div class="band band--mint">. A palette is five tokens: the background, the text, and the three shape colours
    (every third shape takes the next one). Four palettes cover every card page: magenta (Web Design and the case studies), mint (Graphic Design, its galleries, and the Ashoka style guide),

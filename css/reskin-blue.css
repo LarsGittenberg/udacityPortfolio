@@ -807,5 +807,13 @@ header { padding-right: calc(2.4 * var(--u)); }
 	.h2-descriptor { writing-mode: horizontal-tb; transform: none; margin-bottom: 0; }
 }
 
-/* the sliding band's ticker, used by the card pages' band and by the home page's band (each file switches it off for reduced motion) */
+/* THE BAND'S MOVING TEXT, written once for the card pages' band and the home page's band (60s per loop: a slow tide; the band's own box lives in card-pages.css / home-1986.css).
+   The three shape colours come from the page: --s1 --s2 --s3 (card pages: a band palette class in card-pages.css; home: the .band rule in home-1986.css). */
 @keyframes slide { to { transform: translateX(-50%); } }
+.band-track { display: inline-flex; animation: slide 60s linear infinite; }
+.band-track span { font-family: var(--font-mono); font-size: var(--fs-s); letter-spacing: var(--ls-caps); text-transform: uppercase; padding-right: 2.2em; }
+.band-track i { font-style: normal; }
+.band-track i:nth-of-type(3n+1) { color: var(--s1); }
+.band-track i:nth-of-type(3n+2) { color: var(--s2); }
+.band-track i:nth-of-type(3n) { color: var(--s3); }
+@media (prefers-reduced-motion: reduce) { .band-track { animation: none; } }

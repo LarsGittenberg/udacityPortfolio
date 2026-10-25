@@ -161,14 +161,8 @@
     white-space: nowrap;
     background: var(--amber);
     color: var(--ink);
+    --s1: var(--magenta); --s2: var(--teal); --s3: var(--blue); /* the three shape colours; the moving text itself (.band-track) is written once, in css/reskin-blue.css */
   }
-  .band-track { display: inline-flex; animation: slide 38s linear infinite; }
-  .band-track span { font-family: var(--font-mono); font-size: var(--fs-s); letter-spacing: var(--ls-caps); text-transform: uppercase; padding-right: 2.2em; }
-  .band-track i { font-style: normal; }
-  .band-track i:nth-of-type(3n+1) { color: var(--magenta); }
-  .band-track i:nth-of-type(3n+2) { color: var(--teal); }
-  .band-track i:nth-of-type(3n) { color: var(--blue); }
-  @media (prefers-reduced-motion: reduce) { .band-track { animation: none; } }
 
   /* ===== STACKED LAYOUT: 899px and below (was 699px; moved to match the cards' breakpoint. To undo, change 899 back to 699) =====
      The face badge leaves the tagline's side and moves to the top of the screen, centred, at its full 200px.
