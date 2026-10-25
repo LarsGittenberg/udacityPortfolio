@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="robots" content="noindex">
+  <title>Eye blink test</title>
+  <style>
+    body {
+      margin: 0;
+      min-height: 100vh;
+      display: grid;
+      place-items: center;
+      background: #1e1e1e;
+    }
+
+    .eye {
+      display: block;
+      width: 123.25px;
+      height: 123.25px;
+    }
+
+    /* Same value as --amber in css/reskin-blue.css. When the eye moves into the site, delete this line and the real token takes over. */
+    :root { --amber: #f2a51d; }
+
+    .disc   { fill: var(--amber); }
+    .white  { fill: #fff; }
+    .iris   { fill: #c8c8c8; }
+    .pupil  { fill: #000; }
+    .glint  { fill: #fff; }
+
+    /* The mask is the "window" that the eye is seen through.
+       Squashing its height toward the centre line closes both lids symmetrically. */
+    .window {
+      transform-box: fill-box;
+      transform-origin: 50% 50%;
+      animation: blink 7s infinite;
+    }
+
+    /* 7s loop, 1% = 70ms. Rhythm: blink --- blink-blink ---
+       Single blink: closes in 100ms, stays shut 30ms, reopens in 130ms.
+       Double blink: each is faster (70 / 20 / 90ms) and the two are ~80ms apart.
+       Rests are ~3s. */
+    @keyframes blink {
+      /* rest, then blink 1 */
+      0%, 20%    { transform: scaleY(1); animation-timing-function: ease-in; }
+      21.4%      { transform: scaleY(0); }
+      21.9%      { transform: scaleY(0); animation-timing-function: ease-out; }
+
+      /* rest, then blink 2 (fast: 70ms close, 20ms shut, 90ms open) */
+      23.7%, 66.6% { transform: scaleY(1); animation-timing-function: ease-in; }
+      67.6%      { transform: scaleY(0); }
+      67.9%      { transform: scaleY(0); animation-timing-function: ease-out; }
+
+      /* ~80ms pause, then blink 3 (same fast timing) */
+      69.2%, 70.3% { transform: scaleY(1); animation-timing-function: ease-in; }
+      71.3%      { transform: scaleY(0); }
+      71.6%      { transform: scaleY(0); animation-timing-function: ease-out; }
+
+      /* long rest until the loop restarts */
+      72.9%, 100% { transform: scaleY(1); }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      .window { animation: none; }
+    }
+  </style>
+</head>
+<body>
+  <svg class="eye" viewBox="38 20 264 264" role="img" aria-label="A stylised eye on a yellow disc">
+    <defs>
+      <mask id="eye-window" maskUnits="userSpaceOnUse" x="0" y="0" width="334" height="308">
+        <path class="window" d="M85 150.5 Q170.5 57 256 150.5 Q170.5 244 85 150.5 Z" fill="#fff"/>
+      </mask>
+    </defs>
+
+    <circle class="disc" cx="170" cy="152" r="132"/>
+
+    <g mask="url(#eye-window)">
+      <path class="white" d="M85 150.5 Q170.5 57 256 150.5 Q170.5 244 85 150.5 Z"/>
+      <circle class="iris" cx="170" cy="151" r="28"/>
+      <circle class="pupil" cx="170" cy="151" r="17"/>
+      <circle class="glint" cx="163" cy="157" r="6"/>
+    </g>
+  </svg>
+</body>
+</html>
