@@ -232,14 +232,15 @@ section.featured-project-card { background: var(--panel-bg); color: var(--panel-
 	font-family: var(--font-display);
 	font-weight: 900;
 	font-size: clamp(2.4rem, 8vw, 5.5rem);
-	line-height: 1.05;
+	line-height: calc(1.05 * clamp(2.4rem, 8vw, 5.5rem)); /* the same size formula, written out, NOT a plain 1.05: a plain number means "1.05 x the font size at this moment", so while the size animates (switching from 2017) the rows would grow, and the centred menu, and the skin switch with it, would slide. This fixed length keeps every row the height the 2017 skin gives it (common-2017.css), so nothing moves. */
 	text-transform: uppercase;
 	text-decoration: none;
 	color: var(--paper);
-	transition: color var(--t-quick) ease, transform var(--t-quick) ease;
+	transition: color var(--t-quick) ease, transform var(--t-quick) ease, font-size var(--t-base) ease, font-weight var(--t-base) ease; /* size and weight glide too: switching from the 2017 skin, whose links animate everything (transition: 0.3s), the words turn Doto at once, then grow into place instead of jumping */
 }
 .overlay a:hover, .overlay a:focus { color: var(--gold); transform: translateX(10px); }
-@media screen and (max-height: 520px) { .overlay a { font-size: 1.6rem; } }
+@media screen and (max-height: 520px) { .overlay a { font-size: 1.6rem; line-height: calc(1.05 * 1.6rem); } } /* the row height follows the size here too (the same pair as in common-2017.css) */
+@media (prefers-reduced-motion: reduce) { .overlay a { transition: none; } } /* after the rule it must beat: a media query adds no strength, so the later of two equal rules wins */
 
 /* =====================================================================
    HEADER: the name becomes the poster title
