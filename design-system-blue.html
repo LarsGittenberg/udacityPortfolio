@@ -476,7 +476,7 @@
   [COLOURS, SCALE, TITLES, HEADINGS, SHADOWS, MOTION].forEach(function (L) { L.forEach(function (x) { documented[x[0]] = 1; }); });
   FONTS.concat(['--ease-soft', '--ease-swoop', '--cut', '--cut-tr', '--cut-tl']).forEach(function (n) { documented[n] = 1; });
   /* working variables the components set for themselves; they are plumbing, not design tokens */
-  var PLUMBING = /^--(u|h2-scale|pad|gap|nudge|tilt|img-scale|mark|lg-size|i|fade-[\w-]+|stagger|band-[\w-]+|size|tag-[\w-]+|slab-[\w-]+|shape-scale|qm-[\w-]+|s[123]|c|slab-lift|kicker-mark|btn-shadow|panel-[\w-]+)$/;
+  var PLUMBING = /^--(u|h2-scale|pad|gap|nudge|shave|card-pad|tilt|img-scale|mark|lg-size|i|fade-[\w-]+|stagger|band-[\w-]+|size|tag-[\w-]+|slab-[\w-]+|shape-scale|qm-[\w-]+|s[123]|c|slab-lift|kicker-mark|btn-shadow|panel-[\w-]+)$/;
   var status = $('dsStatus'), found = {}, readable = 0, blocked = 0;
   function scan(rules) {
     [].forEach.call(rules, function (r) {
