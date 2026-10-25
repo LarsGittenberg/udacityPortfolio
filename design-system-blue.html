@@ -141,14 +141,15 @@
 
   <!-- ===================================================== SHAPES -->
   <h2 id="shapes">05 &middot; Shapes</h2>
-  <p class="note">The vocabulary the whole site is cut from. The cut corner is a token: <code>--cut</code> is <b id="dsCut"></b>, with two named shapes, <code>--cut-tr</code> and <code>--cut-tl</code>.</p>
+  <p class="note">The vocabulary the whole site is cut from. The cut corner is a token: <code>--cut</code> is <b id="dsCut"></b>, with two named shapes, <code>--cut-tr</code> and <code>--cut-tl</code>. Photographs have a gentler corner: <code>--radius-img</code> is <b id="dsRadiusImg"></b> (the gallery pictures and the before-and-after slider).</p>
   <div class="ds-shapes">
     <div><div class="ds-shape" style="background:var(--amber);border-radius:50%"></div><div class="ds-shape-label">circle<br>border-radius: 50%</div></div>
-    <div><div class="ds-shape" style="background:var(--magenta);clip-path:polygon(0 100%,100% 100%,0 0)"></div><div class="ds-shape-label">triangle<br>clip-path</div></div>
+    <div><div class="ds-shape" style="background:var(--purple);clip-path:polygon(0 100%,100% 100%,0 0)"></div><div class="ds-shape-label">triangle<br>clip-path</div></div>
     <div><div class="ds-shape" style="background:var(--orange);height:55px;border-radius:999px 999px 0 0;width:110px"></div><div class="ds-shape-label">half-pill<br>999px 999px 0 0</div></div>
     <div><div class="ds-shape" style="background:var(--mint);clip-path:polygon(50% 0,100% 50%,50% 100%,0 50%)"></div><div class="ds-shape-label">diamond<br>clip-path</div></div>
     <div><div class="ds-shape" style="background:var(--paper);border-radius:var(--cut-tr)"></div><div class="ds-shape-label">cut corner (top right)<br>--cut-tr</div></div>
     <div><div class="ds-shape" style="background:var(--paper);border-radius:var(--cut-tl)"></div><div class="ds-shape-label">cut corner (top left)<br>--cut-tl</div></div>
+    <div><div class="ds-shape" style="background:var(--paper);border-radius:var(--radius-img)"></div><div class="ds-shape-label">photo corner<br>--radius-img</div></div>
   </div>
 
   <!-- ===================================================== COMPONENTS -->
@@ -279,6 +280,7 @@
     <tr><td>Pancake + circle menu</td><td>reskin-blue.css <code>.menu-icon-container</code>, <code>#myNav</code>; js/design.js</td><td>every test page</td></tr>
     <tr><td>Footer</td><td>reskin-blue.css <code>footer</code>, <code>footer p.footer</code></td><td>bottom of any test page</td></tr>
     <tr><td>Card-to-title morph</td><td>css/transitions.css; <code>data-project</code> on each project page's <code>&lt;main&gt;</code></td><td>click any card on <a href="webdesign-test.html">webdesign-test.html</a> (over http, not file)</td></tr>
+    <tr><td>About shape animations (Evidence, Surprise, Synthesis, Delight)</td><td>css/about-1986.css, and the inline SVGs inside the four shapes in about-test.html. Each figure is an SVG laid over its shape, hidden until hover; the springy easing is <code>--pop</code>, defined once on <code>.ab-shapes</code>. A shape that lives inside an SVG mask must give its pivot in px, not as a percentage (Firefox misplaces the percentage). Delight's diamond-to-circle rounding animates in Chrome only; in Safari and Firefox it stays a diamond with the face on it. The 2017 skin hides the whole section.</td><td>about-test.html (blue skin): hover each of the four shapes</td></tr>
     <tr><td>Hero</td><td>css/home-1986.css (the whole hero: the slab, the faces, the tagline)</td><td><a href="index-test.html">index-test.html</a></td></tr>
   </table></div>
 
@@ -340,7 +342,11 @@
     <tr><td>wave19-band-palettes</td><td>(see the tag)</td><td>The band's colours became four palette classes in card-pages.css (<code>.band--magenta</code>, <code>.band--mint</code>, <code>.band--blue</code>, <code>.band--orange</code>), chosen by a class on each page's band element. Six per-page css files (ads, cutouts, posed, print, retouch, webdesign) that held nothing else were deleted, and five inline style blocks removed. 32 before/after captures of band colours and page fingerprints identical. Bytes, plainly: each page ships 0.1 to 0.3 KB more gzipped (all four palettes); six pages make one request fewer.</td><td><code>git revert wave19-band-palettes</code></td></tr>
     <tr><td>(card names and copy, 2026-10-24)</td><td>e29e011, d3a295e, 1c390ce, 9ad42b3</td><td>Canonical names &ldquo;TNECD.com Website Redesign&rdquo; and &ldquo;DR&Oslash;M Marketing and Print&rdquo; on cards, tab titles, headings and breadcrumbs. Twelve cards on the Web Design, Graphic Design and Photography pages now describe the project in one sentence plus a single Tools line (they were 2 to 4 action-verb bullets); the old &ldquo;X30 fold&rdquo; typo is gone. The 2017 skin's <code>desc-list</code> class (which drew a card's paragraphs as bullets) was dropped from those cards; its rules in category-2017.css are now unused and wait for the go-live sweep.</td><td><code>git revert 9ad42b3 1c390ce d3a295e e29e011</code></td></tr>
     <tr><td>(card proportions, 2026-10-24)</td><td>b0c3d55</td><td><code>--shave</code>: a steady 20px taken off the large cards (1, 4) and given to the narrow cards (2, 3), as side padding so their height does not change; <code>--card-pad</code> names the card padding. Measured on four pages at 900 to 1920px: gutters unchanged, rows below move at most 6px (0px from 1200px up).</td><td><code>git revert b0c3d55</code></td></tr>
+    <tr><td>(2017 menu alignment, 2026-10-24)</td><td>67c411f</td><td>The skin switch sits exactly where blue puts it: the 2017 menu's link rows take blue's row height, the 30px top margin and a 3px line-height difference under the heading are gone, and the 2017 type grows from 36px (phones) to 52px (desktop), chosen with a variant switcher. Measured at nine window sizes on five page types: the switch moves 0px (0.1px on the two shortest windows) when the skin is flipped. Lives in common-2017.css.</td><td><code>git revert 67c411f</code></td></tr>
     <tr><td>(About quote cards, 2026-10-25)</td><td>6d44f8e, 9fee7b2</td><td>The right-hand card turned teal (cream text, orange shadow) and the left-hand card purple (cream text, mint shadow), each chosen with a variant switcher. Both faces are now dark.</td><td><code>git revert 9fee7b2 6d44f8e</code></td></tr>
+    <tr><td>(About shape animations, 2026-10-24 and 25)</td><td>ad6aa1b, 5c227d8, 8c7fbd9, 594fd2b</td><td>Surprise (the orange half-circle springs a little figure out), Synthesis (the triangle turns purple and talks, with sound lines), Delight (the diamond rounds into a smiling face with sparkling eyes), then the Firefox fix (pixel pivots for the two shapes that live inside an SVG mask). The Evidence eye is 57845b6. Each was built in a workbench and proved against the artwork (0 differing pixels in every pose), and the workbenches are archived on the <code>experiments-archive</code> branch (15cac44). The springy easing was moved to <code>.ab-shapes</code> so the figures share one.</td><td><code>git revert 594fd2b 8c7fbd9 5c227d8 ad6aa1b</code> (newest first: the shared easing moved between these commits)</td></tr>
+    <tr><td>(menu words and the switch, 2026-10-25)</td><td>62e1099, 2501f34</td><td>Switching from the 2017 skin, blue's nav words now grow into place (size and weight, 300ms) instead of jumping: the browser reads the transition from the style it arrives at, and blue's list lacked font-size. Blue's row height became a fixed length (<code>calc(1.05 * the size formula)</code>) because a plain 1.05 follows the animating font size, which made the centred skin switch slide (94px at 1440 wide). Reduced motion turns the animation off in both skins.</td><td><code>git revert 2501f34 62e1099</code></td></tr>
+    <tr><td>(breadcrumb arrows, 2026-10-25)</td><td>662135c</td><td>The &rarr; arrows in the blue breadcrumbs (<code>.cs-crumb</code> on the case studies, <code>.gl-crumb</code> on the galleries) sit 1px higher: <code>position: relative; top: -1px</code> (a transform does nothing on inline text). Tried 2px, eased back by eye. The 2017 skin has its own arrow rule.</td><td><code>git revert 662135c</code></td></tr>
     <tr><td>pre-cleanup</td><td>(older)</td><td>Last commit with the old draft pages</td><td>checkout the tag to look</td></tr>
   </table></div>
 
@@ -431,6 +437,7 @@
   $('dsWidth').textContent = 'a window ' + window.innerWidth + 'px wide';
 
   $('dsCut').textContent = tok('--cut');
+  $('dsRadiusImg').textContent = tok('--radius-img');
 
   /* ---- shadows ---- */
   $('dsShadows').innerHTML = SHADOWS.map(function (s) {
@@ -490,7 +497,7 @@
   /* ---- drift detector: compare every custom property the stylesheets declare with the lists above ---- */
   var documented = {};
   [COLOURS, SCALE, TITLES, HEADINGS, SHADOWS, MOTION, LHS, LSS].forEach(function (L) { L.forEach(function (x) { documented[x[0]] = 1; }); });
-  FONTS.concat(['--ease-soft', '--ease-swoop', '--cut', '--cut-tr', '--cut-tl']).forEach(function (n) { documented[n] = 1; });
+  FONTS.concat(['--ease-soft', '--ease-swoop', '--cut', '--cut-tr', '--cut-tl', '--radius-img']).forEach(function (n) { documented[n] = 1; });
   /* working variables the components set for themselves; they are plumbing, not design tokens */
   var PLUMBING = /^--(u|h2-scale|pad|gap|nudge|shave|card-pad|tilt|img-scale|mark|lg-size|i|fade-[\w-]+|stagger|band-[\w-]+|size|tag-[\w-]+|slab-[\w-]+|shape-scale|qm-[\w-]+|s[123]|c|slab-lift|kicker-mark|btn-shadow|panel-[\w-]+)$/;
   var status = $('dsStatus'), found = {}, readable = 0, blocked = 0;
