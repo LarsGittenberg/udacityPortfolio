@@ -178,9 +178,6 @@
     }
   }
 
-  /* the pulsing teal rings around the menu button: hidden on this version (delete this rule to bring them back) */
-  .menu-signal { display: none; }
-
 
   /* PAGE TITLE, as chosen on the graphic design test page: a large pillar ("Home", no colon: turned sideways, a Doto colon's dots land side by side and read as "++") with a small descriptor beside it ("Featured Projects"), both hung from the top of the column.
      On desktop the pair is sticky: it rides along as you scroll and lets go 40px above the footer. Below 900px it is an ordinary heading with the descriptor flat underneath. */

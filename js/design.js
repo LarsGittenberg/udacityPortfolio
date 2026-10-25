@@ -159,24 +159,6 @@ function changeToX_openNav() {
 }// end changeToX
 
 
-function menuSignal() {
-	console.log('signal class added')
-	$('.menu-signal').addClass('signal');
-}
-/*
-
-var waypointTrigger = $('#myNav');
-
-//make a waypoint object
-var waypoint = new Waypoint({
-	element: waypointTrigger,
-	handler: function() {
-		//do something
-		$('.menu-signal').addClass('signal');
-	}
-})
-
-*/
 
 
 

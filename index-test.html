@@ -64,7 +64,6 @@ PS: the toggle is in the navigation -->
 		<div class="bar3"></div>
 	</div>
 
-	<div class="menu-signal"></div>
 
 	<div id="myNav" class="overlay pattern-grid-large">
 		<!-- Overlay content. TEST LINKS: the five menu links point at the -test pages so the new look can be browsed end to end. At go-live, point them back at index / webdesign / graphicdesign / photography / about .html -->
@@ -88,7 +87,7 @@ PS: the toggle is in the navigation -->
 
 <div class="hero-stage">
 
-	<div class="hero-container pattern-grid-small" id="waypointSignal"><!-- the hero: in 1986 it paints the blue slab (a ::before, see css/home-1986.css) and holds the tagline, shapes and face badge; in 2017 it is the old hero block. design.js collapses it -->
+	<div class="hero-container pattern-grid-small"><!-- the hero: in 1986 it paints the blue slab (a ::before, see css/home-1986.css) and holds the tagline, shapes and face badge; in 2017 it is the old hero block. design.js collapses it -->
 
 	<!-- tagline: four fixed lines in a fixed box. The words are in aria-label, so the scramble below can run without a screen reader reading the noise -->
 	<h2 id="tagline" class="doto-lg hero-tagline hero-text absolute" aria-label="Synthesis with perspective, playful by design">
@@ -295,18 +294,6 @@ PS: the toggle is in the navigation -->
 	<p class="copyright"><small>Copyright Lawrence Getubig 2026</small></p>
 	<!--  want to change the copyright date for all html files? use: perl -pi -w -e 's/Getubig\ 2026/Getubig\ 2027/g;' *.html -->
 </footer>
-
-<script>
-//waypoint
-var waypoint = new Waypoint({
-  element: document.getElementById('waypointSignal'),//cannot use jquery $('#waypointSignal')
-  handler: function() {
-  	//do something
-    console.log('waypoint active')
-    $('.menu-signal').addClass('signal');
-  }
-})
-</script>
 
 <!-- script for site's UI functionality -->
 <!-- Tagline scramble: letters only. Spaces and line breaks never change, so nothing can re-wrap or jump -->
