@@ -211,12 +211,12 @@
     .ab-notes { gap: calc(var(--qm-over) + 56px); }
   }
   /* the card itself (padding, the quote mark, text, hover) is .quote--card in reskin-blue.css; this page adds its two colours and where they sit */
-  /* THE ATTRIBUTION ("— Name, role"): one style for every quote on the page, now the shared ".quote figcaption" in reskin-blue.css. The colour is inherited (ink on the paper and mint cards, cream on the blue panel), so only the background decides it.
+  /* THE ATTRIBUTION ("— Name, role"): one style for every quote on the page, now the shared ".quote figcaption" in reskin-blue.css. The colour is inherited (ink on the paper card, cream on the teal card and the blue panel), so only the background decides it.
      The rule below is only for the blue stat panel, whose attribution is still a paragraph: it has to beat the panel's own caption rule (.ab-figure-note p), which is why it is written with the extra class. */
   .ab-figure-note p.ab-by { margin: 18px 0 0; font-size: var(--fs-xs); letter-spacing: var(--ls-label); line-height: var(--lh-text); text-transform: uppercase; }
   .ab-by strong { font-weight: 600; }
   .ab-note-1 { --panel-bg: var(--paper); --panel-shadow: var(--magenta); --tilt: -1.2deg; }
-  .ab-note-2 { --panel-bg: var(--mint); --panel-shadow: var(--orange); --tilt: 1.1deg; }
+  .ab-note-2 { --panel-bg: var(--teal); --panel-ink: var(--cream-text); --panel-shadow: var(--orange); --tilt: 1.1deg; } /* teal with cream text (7.3:1) and the orange shadow, picked by eye from four looks on 2026-10-25 (mint, teal, paper, blue) */
   @media (min-width: 900px) { /* side by side only; stacked on phones neither card has an offset */
     .ab-note-1 { margin-top: 100px; } /* the left card sits 100px lower */
     .ab-note-2 { margin-top: clamp(0px, 4vw, 60px); } /* the right card keeps its original nudge */
