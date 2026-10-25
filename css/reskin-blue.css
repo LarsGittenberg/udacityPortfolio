@@ -564,6 +564,7 @@ footer p.footer { margin: 12px 0 0; font-family: var(--font-body); font-weight: 
 	vertical-align: 0.05em;
 }
 .text-link[href^="http"]::after { content: "\f14c"; } /* external site: square with an arrow leaving it */
+.text-link[href$=".pdf"]::after { content: "\f1c1"; } /* a PDF: file icon. After the http rule on purpose: Swiss Post's PDF is an https address, and the later rule wins */
 .text-link[href^="mailto:"]::after { content: "\f0e0"; } /* email: envelope */
 .text-link[href="index.html"]::after { content: "\f015"; } /* home: house */
 .text-link[href*="github.com"]::after { content: "\f09b"; font-family: "Font Awesome 6 Brands"; font-weight: 400; }
