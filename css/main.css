@@ -294,40 +294,6 @@ figure {
     "ROND" 0;
 }
 
-/*background color helper classes*/
-
-.color-yellow {
-	background-color: var(--yellow);
-}
-
-.color-light-yellow {
-	background-color: var(--light-yellow);
-}
-
-.color-mustard-brown {
-	background-color: var(--mustard);
-}
-
-.color-bright-brown {
-	background-color: var(--bright-brown);
-}
-
-.color-dull-brown {
-	background-color: var(--dull-brown);
-}
-
-.color-dark-brown {
-	background-color: var(--dark-brown);
-}
-
-.color-offwhite {
-	background-color: var(--offwhite);
-}
-
-.color-charcoal {
-	background-color: var(--charcoal);
-}
-
 /* hero animation styles
    Each face piece does two things on separate clocks:
    1. it MOVES from its start spot to the assembled spot (top / left / transform), each at its own speed
