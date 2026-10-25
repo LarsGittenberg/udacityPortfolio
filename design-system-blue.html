@@ -65,6 +65,17 @@
   .ds-cap { display: block; margin-top: 8px; font-family: var(--font-mono); font-size: var(--fs-xs); letter-spacing: .06em; }
   .ds-cards .flex-container-main { padding-top: 40px; }
   .ds-ref a { color: var(--gold); }
+
+  /* RETIRED EFFECTS: the menu pulse demo (the keyframes carry this page's own name, so they never collide with the site's) */
+  .ds-pre { margin: 12px 0 0; padding: 14px 16px; overflow: auto; background: #ffffff14; font-family: var(--font-mono); font-size: var(--fs-xs); line-height: 1.6; white-space: pre; }
+  .ds-pre code { padding: 0; background: none; font-size: inherit; }
+  .ds-pulse-stage { position: relative; height: 190px; max-width: 420px; margin: 16px 0 0; overflow: hidden; background: #000; border: 1px solid #ffffff40; }
+  .ds-pulse-ring { position: absolute; left: 50.5px; top: 50.5px; /* the circle's centre ends 37.5px in from its corner (half of 150, less the 25% shift), so this puts it on the button's centre (88px) */ width: 150px; height: 150px; border-radius: 50%; background-color: var(--mint); opacity: 1; transform: scale(0, 0) translateX(-25%) translateY(-25%); transform-origin: 30% 30%; }
+  .ds-pulse-ring.is-on { animation: ds-callout 1500ms 3; }
+  .ds-pulse-btn { position: absolute; left: 60px; top: 60px; width: 56px; height: 56px; display: flex; flex-direction: column; justify-content: center; gap: 6px; padding: 0 14px; border: 0; border-radius: 50%; background: var(--amber); box-shadow: 4px 4px 0 var(--magenta); }
+  .ds-pulse-btn i { display: block; height: 3px; background: var(--ink); }
+  @keyframes ds-callout { 0% { opacity: 0; transform: scale(0, 0) translateX(-25%) translateY(-25%); } 60% { opacity: 0.7; transform: scale(1, 1) translateX(-25%) translateY(-25%); } 100% { opacity: 0; transform: scale(1, 1) translateX(-25%) translateY(-25%); } }
+  @media (prefers-reduced-motion: reduce) { .ds-pulse-ring.is-on { animation: none; } }
   </style>
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -91,6 +102,7 @@
     <li><a href="#promote">Not yet in the system</a></li>
     <li><a href="#rules">House rules</a></li>
     <li><a href="#history">History</a></li>
+    <li><a href="#retired">Retired effects</a></li>
   </ul>
   <div class="ds-status" id="dsStatus">Reading the stylesheet&hellip;</div>
 
@@ -374,6 +386,50 @@
     <tr><td>pre-cleanup</td><td>(older)</td><td>Last commit with the old draft pages</td><td>checkout the tag to look</td></tr>
   </table></div>
 
+
+  <!-- ===================================================== RETIRED EFFECTS -->
+  <h2 id="retired">11 &middot; Retired effects</h2>
+  <p class="note">Effects that came off the site but are kept here, working, so we never have to reinvent them. Each one has a git tag on the last commit that shipped it.</p>
+
+  <h3>Menu pulse: the radiating light behind the hamburger</h3>
+  <p class="note">Retired 2026-10-25 (git tag <code>retired-menu-pulse</code>). A mint circle, 150px across, grows from nothing, brightens to 70% and fades as it expands: a signal that &ldquo;this button is clickable&rdquo;. It ran 3 times, 1.5 seconds each, on the 2017 home page, started by a waypoint when the hero scrolled into view. The blue skin had already hidden it. Press the button to watch it again.</p>
+  <div class="ds-pulse-stage" id="dsPulseStage">
+    <div class="ds-pulse-ring" id="dsPulseRing"></div>
+    <button type="button" class="ds-pulse-btn" id="dsPulseBtn" aria-label="Replay the menu pulse"><i></i><i></i><i></i></button>
+  </div>
+  <p class="note"><b>To bring it back</b> (the four pieces; the demo above uses the same geometry):</p>
+  <h3>1. The markup, beside the menu button</h3>
+  <pre class="ds-pre"><code>&lt;div class="menu-signal"&gt;&lt;/div&gt;</code></pre>
+  <h3>2. The CSS</h3>
+  <pre class="ds-pre"><code>.menu-signal {
+    width: 150px; height: 150px;
+    transform: scale(0, 0) translateX(-25%) translateY(-25%);
+    background-color: var(--mint);
+    border-radius: 50%;
+    position: fixed;
+    opacity: 1;
+    z-index: 50;
+}
+.signal {
+    transform-origin: 30% 30%;
+    animation-name: callout;
+    animation-duration: 1500ms;
+    animation-iteration-count: 3;
+}
+@keyframes callout {
+    0%   { opacity: 0;   transform: scale(0, 0) translateX(-25%) translateY(-25%); }
+    60%  { opacity: 0.7; transform: scale(1, 1) translateX(-25%) translateY(-25%); }
+    100% { opacity: 0;   transform: scale(1, 1) translateX(-25%) translateY(-25%); }
+}
+@media (prefers-reduced-motion: reduce) { .signal { animation: none; } } /* add this: the old version had no reduced-motion rule */</code></pre>
+  <h3>3. The trigger (a Waypoints script at the foot of the home page)</h3>
+  <pre class="ds-pre"><code>var waypoint = new Waypoint({
+  element: document.getElementById('waypointSignal'), // the hero container's id; plain JavaScript, not jQuery
+  handler: function () { $('.menu-signal').addClass('signal'); }
+});</code></pre>
+  <h3>4. The returning-visitor rule (so it plays once per visit)</h3>
+  <p class="note">In <code>js/cookie_2.js</code> (loaded at the foot of the home page, with the js-cookie library): on first load it set a session cookie, <code>heroAssembled</code>; on any later load, if that cookie existed, it ran <code>$('.menu-signal').remove()</code>, so the pulse never repeated within a visit. Without it the pulse plays on every home-page load.</p>
+  <p class="note">It needs the Waypoints library (<code>js/noframework.waypoints.min.js</code>) and jQuery, both already on the home page. The original also logged <code>console.log('waypoint active')</code>; that was debug chatter and is left out. <b>Why it went:</b> the captain loved the effect but chose a quieter menu button; it is shelved, not rejected.</p>
 </main>
 
 <script>
@@ -548,6 +604,19 @@
   } else {
     status.innerHTML = 'Drift check passed: every design token in the stylesheet is documented on this page.';
   }
+})();
+</script>
+<script>
+/* the retired menu pulse demo: play once when it scrolls into view, and again on a press of the button */
+(function () {
+  var ring = document.getElementById('dsPulseRing'), btn = document.getElementById('dsPulseBtn'), stage = document.getElementById('dsPulseStage');
+  if (!ring || !btn) { return; }
+  function play() { ring.classList.remove('is-on'); void ring.offsetWidth; ring.classList.add('is-on'); }
+  btn.addEventListener('click', play);
+  if ('IntersectionObserver' in window) {
+    var io = new IntersectionObserver(function (entries) { if (entries[0].isIntersecting) { play(); io.disconnect(); } }, { threshold: 0.6 });
+    io.observe(stage);
+  } else { play(); }
 })();
 </script>
 </body>
