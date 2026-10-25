@@ -71,7 +71,7 @@
   .ab-shape { --shape-scale: 0.75; /* every shape is drawn at 75% of its box, centred in its column */ position: relative; height: clamp(90px, 12vw, 170px); border-bottom: 1px solid var(--paper); } /* the border is the floor the shape stands on */
   .ab-shape::before { content: ""; position: absolute; left: 50%; translate: -50% 0; bottom: 0; height: calc(100% * var(--shape-scale)); aspect-ratio: 1; background: var(--c); transition: transform var(--t-base) ease; }
   .s-circle { --c: var(--amber); }   .s-circle::before { border-radius: 50%; }
-  .s-tri { --c: var(--magenta); }    .s-tri::before { clip-path: polygon(0 100%, 100% 100%, 0 0); }
+  .s-tri { --c: var(--purple); }    .s-tri::before { clip-path: polygon(0 100%, 100% 100%, 0 0); }
   .s-half { --c: var(--orange); }    .s-half::before { height: calc(50% * var(--shape-scale)); aspect-ratio: 2 / 1; border-radius: 999px 999px 0 0; }
   .s-diamond { --c: var(--mint); }   .s-diamond::before { clip-path: polygon(50% 0, 100% 50%, 50% 100%, 0 50%); }
   .ab-shapes li:hover .ab-shape::before { transform: translateY(-10px); }
@@ -105,10 +105,12 @@
     55.9%        { transform: scaleY(0); animation-timing-function: ease-out; }
     57.2%, 100%  { transform: scaleY(1); }
   }
+  /* the springy easing the figures come out on (the Surprise and the Synthesis). The plain overshoot is the fallback; just under it is the real spring, a damped spring sampled from its equation: it overshoots about 28%, rings about 1.4 times a second, and has settled by the end. Browsers without linear() keep the plain overshoot. */
+  .ab-shapes { --pop: cubic-bezier(0.34, 1.56, 0.64, 1); }
+  @supports (transition-timing-function: linear(0, 1)) { .ab-shapes { --pop: linear(0, 0.032, 0.12, 0.247, 0.398, 0.559, 0.719, 0.868, 0.998, 1.104, 1.185, 1.239, 1.269, 1.276, 1.265, 1.239, 1.203, 1.16, 1.115, 1.071, 1.031, 0.996, 0.968, 0.946, 0.932, 0.925, 0.924, 0.928, 0.935, 0.946, 0.957, 0.97, 0.982, 0.993, 1.002, 1.01, 1); } }
   /* the surprise: on hover the orange half-circle (Surprise) tilts and a little figure pops out of it: the legs drop below the flat edge, the neck and head rise from behind the dome, the arms unfold, then wave. Same pattern as the eye: an inline SVG sits over the half-circle (same centre, same float, same hover lift) and is invisible until hover. The SVG draws its own half-circle exactly where the CSS one is, so nothing flickers when they swap; the CSS one is hidden while the figure is out and returns only once the figure has gone home (the 0.5s delays).
      The SVG's units: 884 = the half-circle's width, so 1 unit = (75% of the box height) / 884. The SVG is 1244 units tall (1244 / 884 = 1.4072 half-circle widths) and hangs 226.4 units (0.2561) below the half-circle's flat edge, which is where the feet end. The artwork's final pose is the resting half-circle tilted 8.456 degrees about the middle of its flat edge and slid 32.19 units right. */
-  .ab-surprise { --pop: cubic-bezier(0.34, 1.56, 0.64, 1); /* the way out is springy: this plain overshoot is the fallback, the real spring is just below */ position: absolute; left: 50%; bottom: calc(-100% * var(--shape-scale) * 0.2561); height: calc(100% * var(--shape-scale) * 1.4072); aspect-ratio: 940 / 1244; translate: -50% -20px; opacity: 0; overflow: visible; pointer-events: none; animation: ab-shape-float 7s ease-in-out infinite; transition: transform var(--t-base) ease, opacity 0s linear 0.5s; }
-  @supports (transition-timing-function: linear(0, 1)) { .ab-surprise { --pop: linear(0, 0.032, 0.12, 0.247, 0.398, 0.559, 0.719, 0.868, 0.998, 1.104, 1.185, 1.239, 1.269, 1.276, 1.265, 1.239, 1.203, 1.16, 1.115, 1.071, 1.031, 0.996, 0.968, 0.946, 0.932, 0.925, 0.924, 0.928, 0.935, 0.946, 0.957, 0.97, 0.982, 0.993, 1.002, 1.01, 1); } } /* a damped spring, sampled from its equation: overshoots about 28%, rings about 1.4 times a second, and has settled by the end. Browsers without linear() keep the plain overshoot above. */
+  .ab-surprise { position: absolute; left: 50%; bottom: calc(-100% * var(--shape-scale) * 0.2561); height: calc(100% * var(--shape-scale) * 1.4072); aspect-ratio: 940 / 1244; translate: -50% -20px; opacity: 0; overflow: visible; pointer-events: none; animation: ab-shape-float 7s ease-in-out infinite; transition: transform var(--t-base) ease, opacity 0s linear 0.5s; }
   .ab-shapes li:nth-child(3) .ab-surprise { animation-delay: -4.6s; } /* the half-circle's own beat */
   .ab-shapes li:hover .ab-surprise { opacity: 1; transform: translateY(-10px); transition: transform var(--t-base) ease, opacity 0s; }
   .s-half::before { transition: transform var(--t-base) ease, opacity 0s linear 0.5s; }
@@ -138,10 +140,39 @@
   .ab-shapes li:hover .sp-arm-l { animation: sp-wave 1.1s ease-in-out 1.68s infinite alternate backwards; } /* the wave starts once the arms have landed */
   .ab-shapes li:hover .sp-arm-r { animation: sp-wave 1.1s ease-in-out 1.68s infinite alternate-reverse backwards; } /* the other arm swings the other way */
   @keyframes sp-wave { from { rotate: -7deg; } to { rotate: 7deg; } } /* about each shoulder, so a hand travels about 5px at full size */
-  /* room for the figure: it stands taller than the shape, so on narrow screens its head would meet the kicker (4 columns) or the label above it (2 columns). A little extra air in those two layouts. */
-  @media (max-width: 1023px) { .ab-method .kicker { margin-bottom: 34px; } }
+  /* room for the figure: it stands taller than the shape, so on narrow screens its head would meet the kicker (4 columns) or the label above it (2 columns). The Synthesis head stands right under the kicker's own text, which is why the kicker's extra space runs up to 1199px. A little extra air in those two layouts. */
+  @media (max-width: 1199px) { .ab-method .kicker { margin-bottom: 34px; } }
   @media (max-width: 699px) { .ab-shapes { row-gap: 44px; } }
-  @media (prefers-reduced-motion: reduce) { .ab-surprise, .ab-surprise *, .s-half::before { animation: none !important; transition: none !important; } } /* the hover shows the final pose at once; !important because the hover rules above are more specific */
+  @media (prefers-reduced-motion: reduce) { .ab-surprise, .ab-surprise *, .s-half::before, .ab-synth, .ab-synth *, .s-tri::before { animation: none !important; transition: none !important; } } /* the hover shows the final pose at once (the Synthesis: the finished face, closed mouth, no sound lines); !important because the hover rules above are more specific */
+  /* ===== THE SYNTHESIS =====
+     On hover the purple triangle (Synthesis) grows a head of blue hair and an eye and starts to talk: the triangle is the FACE in profile, its notched edge is the mouth, and three grey bars are the sound.
+     Same pattern as the eye and the Surprise: an inline SVG over the triangle (same float, same hover lift), hidden until hover, with the CSS triangle hidden only while it is out.
+     The SVG's units: 436 = the triangle's width, so 1 unit = (75% of the box height) / 436. The SVG is 475 units tall (475 / 436 = 1.0894) and its triangle (x 185 to 621) sits 403 units from the SVG's left edge, which is why it is shifted left by 403 / 634 = 63.565% of its own width. */
+  .ab-synth { position: absolute; left: 50%; bottom: 0; height: calc(100% * var(--shape-scale) * 1.0894); aspect-ratio: 634 / 475; translate: -63.565% -20px; opacity: 0; overflow: visible; pointer-events: none; animation: ab-shape-float-sy 7s ease-in-out infinite; transition: transform var(--t-base) ease, opacity 0s linear 0.5s; }
+  @keyframes ab-shape-float-sy { 0%, 100% { translate: -63.565% -20px; } 50% { translate: -63.565% -30px; } } /* ab-shape-float, with this SVG's own sideways shift */
+  .ab-shapes li:nth-child(2) .ab-synth { animation-delay: -2.3s; } /* the triangle's own beat */
+  .ab-shapes li:hover .ab-synth { opacity: 1; transform: translateY(-10px); transition: transform var(--t-base) ease, opacity 0s; }
+  .s-tri::before { transition: transform var(--t-base) ease, opacity 0s linear 0.5s; }
+  .ab-shapes li:hover .s-tri::before { opacity: 0; transition: transform var(--t-base) ease, opacity 0s; }
+  .sy-face { fill: var(--purple); }
+  .sy-hair { fill: var(--blue); }
+  .sy-eye ellipse, .sy-line { fill: #d9d9d9; }
+  .sy-hair, .sy-eye { transform-box: fill-box; transition: transform 0.3s ease; } /* going home is quick and plain; the spring is for coming out */
+  /* the hair springs up from the base of the neck, then the eye pops in */
+  .sy-hair { transform-origin: 65.8% 99%; transform: scale(0); }
+  .ab-shapes li:hover .sy-hair { transform: none; transition: transform 0.8s var(--pop) 0.1s; }
+  .sy-eye { transform-origin: 50% 50%; transform: scale(0); }
+  .ab-shapes li:hover .sy-eye { transform: none; transition: transform 0.6s var(--pop) 0.4s; }
+  /* the mouth: a notch cut out of the face through a mask. It is a triangle (its tip inside the face, its base on the face's slanting edge) that scales from the middle of its base, so it opens and closes without ever leaving the edge. Closed = scale 0 = no cut. */
+  .sy-notch { fill: #000; transform-box: fill-box; transform-origin: 74.75% 59.2%; scale: 0; }
+  .ab-shapes li:hover .sy-notch { animation: sy-talk 3s linear 1.1s infinite; }
+  /* SYN - the - SIS, then a breath. 3s loop: the mouth opens for each syllable (the middle one is smaller). */
+  @keyframes sy-talk { 0% { scale: 0; animation-timing-function: ease-out; } 3.667% { scale: 1.0; animation-timing-function: linear; } 8.333% { scale: 1.0; animation-timing-function: ease-in; } 12.667% { scale: 0; } 17.333% { scale: 0; animation-timing-function: ease-out; } 21% { scale: 0.55; animation-timing-function: linear; } 23% { scale: 0.55; animation-timing-function: ease-in; } 27.333% { scale: 0; } 32% { scale: 0; animation-timing-function: ease-out; } 35.667% { scale: 1.0; animation-timing-function: linear; } 45% { scale: 1.0; animation-timing-function: ease-in; } 49.333% { scale: 0; } 100% { scale: 0; } }
+  /* the sound: three bars, drawn as stroked lines with round ends, so a bar can be a "dash" running along its line (inner end near the mouth, outer end far). pathLength="1" makes the dash lengths fractions of the line. Each syllable: the dash grows out from the mouth (to the full bar in your "speak" picture), then its tail catches up with the outer end and it shrinks away (your "speak end" picture). Every bar uses the same keyframes, a little later than the one before, so the three fan out. */
+  .sy-line { fill: none; stroke: #d9d9d9; stroke-width: 19.79; stroke-linecap: round; stroke-dasharray: 0.0001 2; opacity: 0; }
+  .ab-shapes li:hover .sy-line { animation: sy-line 3s linear calc(1.1s + var(--lag)) infinite; }
+  .sy-line-1 { --lag: 0ms; } .sy-line-2 { --lag: 45ms; } .sy-line-3 { --lag: 90ms; }
+  @keyframes sy-line { 0% { opacity: 1; stroke-dasharray: 0.0001 2; stroke-dashoffset: 0; animation-timing-function: ease-out; } 5.333% { opacity: 1; stroke-dasharray: 1 2; stroke-dashoffset: 0; animation-timing-function: linear; } 11.733% { opacity: 1; stroke-dasharray: 0.2 2; stroke-dashoffset: -0.8; animation-timing-function: linear; } 13.333% { opacity: 0; stroke-dasharray: 0.0001 2; stroke-dashoffset: -1; } 17.3% { opacity: 0; stroke-dasharray: 0.0001 2; stroke-dashoffset: 0; } 17.333% { opacity: 1; stroke-dasharray: 0.0001 2; stroke-dashoffset: 0; animation-timing-function: ease-out; } 22.667% { opacity: 1; stroke-dasharray: 1 2; stroke-dashoffset: 0; animation-timing-function: linear; } 29.067% { opacity: 1; stroke-dasharray: 0.2 2; stroke-dashoffset: -0.8; animation-timing-function: linear; } 30.667% { opacity: 0; stroke-dasharray: 0.0001 2; stroke-dashoffset: -1; } 31.967% { opacity: 0; stroke-dasharray: 0.0001 2; stroke-dashoffset: 0; } 32% { opacity: 1; stroke-dasharray: 0.0001 2; stroke-dashoffset: 0; animation-timing-function: ease-out; } 37.333% { opacity: 1; stroke-dasharray: 1 2; stroke-dashoffset: 0; animation-timing-function: linear; } 43.733% { opacity: 1; stroke-dasharray: 0.2 2; stroke-dashoffset: -0.8; animation-timing-function: linear; } 45.333% { opacity: 0; stroke-dasharray: 0.0001 2; stroke-dashoffset: -1; } 100% { opacity: 0; } }
   .ab-shape-label { font-family: var(--font-display); font-weight: 900; font-size: var(--fs-label-display); line-height: 0.9; text-transform: uppercase; text-align: center; }
 
   /* ---------- 04 SAID ABOUT ME: two tilted note cards ---------- */
