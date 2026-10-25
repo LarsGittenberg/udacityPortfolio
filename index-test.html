@@ -4,10 +4,14 @@
 <!-- Hi there! Thanks for peeking under the hood. I built a mode toggle that switches the site between a retro mode inspired by the '80s (Retro me, 1986) and a more pattern-centric design I did a while back (Old me, 2017). 🙌🏽
 PS: the toggle is in the navigation -->
 <head>
-  <!-- TEST COPY of index.html for the same-markup reskin scouting mission. The real Google Analytics tag is left out (gtag is a no-op). -->
-  <meta name="robots" content="noindex, nofollow">
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-2QV625FZN6"></script>
   <script>
-    function gtag() {}
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+
+    gtag('config', 'G-2QV625FZN6');
   </script>
 
   <!-- Pick one of two hero face fades at random; ?fade=shared or ?fade=stagger forces one (for testing) -->
