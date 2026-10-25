@@ -41,3 +41,12 @@ nav.gl-crumb a::after, nav.cs-crumb a::after { content: "\2192"; position: absol
 /* the old .flex-container-main recipe on the article, drawn on the new markup (that class itself cannot be used: blue has its own rules for it). Written once for both article types: .gl is the galleries' article, .csl the case studies' */
 .gl, .csl { display: flex; flex-wrap: wrap; max-width: 1280px; margin-top: 5px; line-height: 22px; border-radius: 0 0 var(--radius-xl) 0; }
 :where(.gl, .csl) :is(p, h1, h2, h3, h4) { width: 100%; padding: 5px 22px 5px 20px; } /* :where() gives it no weight, so the old, more specific rules (p.back-link, .caption and the like) still win, as they did under the old .flex-container-main */
+
+/* the menu overlay: the skin switch sits exactly where blue puts it, so flipping it changes the look and nothing jumps under the visitor's finger.
+   The menu (five links, the Settings heading, the switch) is centred on the screen, so where the switch lands depends on the menu's total height. Blue's link rows are 1.05 x its big type size + 8px of padding,
+   with the type at clamp(2.4rem, 8vw, 5.5rem) (1.6rem on short screens). The 2017 rows get the same height, and the 2017 type stays centred inside them, now 36px on phones growing to 52px on desktop, so it fills the taller rows (picked by eye, 2026-10-24, from three looks).
+   Also matched: no top margin (blue has none; ui.css adds 30px) and the same line height under the heading (the switch row's own line box was 3px shorter). */
+.overlay-content { margin-top: 0; }
+.overlay a { padding: 4px 8px; font-size: clamp(2.25rem, 4.5vw, 3.25rem); line-height: calc(1.05 * clamp(2.4rem, 8vw, 5.5rem)); }
+@media screen and (max-height: 520px) { .overlay a { font-size: 1.6rem; line-height: calc(1.05 * 1.6rem); } } /* short screens: the rows shrink to 35px, so the type shrinks with them, as blue's does */
+.skin-switch { line-height: 1.55; }
