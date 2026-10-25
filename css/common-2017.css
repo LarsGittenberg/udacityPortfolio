@@ -50,3 +50,4 @@ nav.gl-crumb a::after, nav.cs-crumb a::after { content: "\2192"; position: absol
 .overlay a { padding: 4px 8px; font-size: clamp(2.25rem, 4.5vw, 3.25rem); line-height: calc(1.05 * clamp(2.4rem, 8vw, 5.5rem)); }
 @media screen and (max-height: 520px) { .overlay a { font-size: 1.6rem; line-height: calc(1.05 * 1.6rem); } } /* short screens: the rows shrink to 35px, so the type shrinks with them, as blue's does */
 .skin-switch { line-height: 1.55; }
+@media (prefers-reduced-motion: reduce) { .overlay a { transition: none; } } /* ui.css makes the nav links animate everything (transition: 0.3s), including the size when the skin switches; visitors who asked for less motion get none. It sits below ui.css's rule on purpose: equal strength, so the later rule wins. */
