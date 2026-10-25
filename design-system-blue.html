@@ -232,7 +232,7 @@
   </div>
   <span class="ds-cap">on a light ground: ink text, same component</span>
 
-  <p class="note"><b>Card: <code>.quote--card</code>.</b> A panel with a Doto quote mark hanging over its top edge. Add <code>.panel</code> and a corner (<code>.panel--cut-tl</code> or <code>.panel--cut-tr</code>); the colours come from the panel variables (paper with a magenta shadow by default). <code>--qm-size</code> sets the size of the quote mark, which hangs 0.38em above the card, so leave that much room above it. Used on the About page (two cards, each with its own colours).</p>
+  <p class="note"><b>Card: <code>.quote--card</code>.</b> A panel with a Doto quote mark hanging over its top edge. Add <code>.panel</code> and a corner (<code>.panel--cut-tl</code> or <code>.panel--cut-tr</code>); the colours come from the panel variables (paper with a magenta shadow by default). <code>--qm-size</code> sets the size of the quote mark, which hangs 0.38em above the card, so leave that much room above it. Used on the About page (two cards). Each sets its own colours with three variables, <code>--panel-bg</code>, <code>--panel-ink</code> and <code>--panel-shadow</code> (set the ink too: the card's own text colour is ink): the <b>left</b> card is purple with cream text and a <b>mint</b> shadow, the <b>right</b> card is teal with cream text and an <b>orange</b> shadow. Both faces are dark, so the pair is told apart by hue and shadow, not by brightness (cream on purple 7.9:1, cream on teal 7.3:1).</p>
   <div class="ds-ground" style="padding-top:calc(clamp(7rem, 12vw, 12rem) * 0.38 + 18px)">
     <figure class="quote quote--card panel panel--cut-tl" style="max-width:560px">
       <blockquote><p>&ldquo;This first pass is so beautiful. It&rsquo;s pretty awesome. It&rsquo;s so clean, refreshing, navigable. I want to be on this website.&rdquo;</p></blockquote>
@@ -240,6 +240,17 @@
     </figure>
   </div>
   <span class="ds-cap">default colours: paper, magenta shadow, no tilt (a page sets <code>--tilt</code> and its own colours)</span>
+  <div class="ds-ground" style="padding-top:calc(clamp(7rem, 12vw, 12rem) * 0.38 + 18px);display:flex;flex-wrap:wrap;gap:36px">
+    <figure class="quote quote--card panel panel--cut-tl" style="flex:1 1 300px;max-width:440px;--panel-bg:var(--purple);--panel-ink:var(--cream-text);--panel-shadow:var(--mint);--tilt:-1.2deg">
+      <blockquote><p>&ldquo;This first pass is so beautiful. It&rsquo;s pretty awesome. It&rsquo;s so clean, refreshing, navigable.&rdquo;</p></blockquote>
+      <figcaption>&mdash; <strong>L.B.</strong>, public sector client</figcaption>
+    </figure>
+    <figure class="quote quote--card panel panel--cut-tr" style="flex:1 1 300px;max-width:440px;--panel-bg:var(--teal);--panel-ink:var(--cream-text);--panel-shadow:var(--orange);--tilt:1.1deg">
+      <blockquote><p>&ldquo;This test had a 5,000% lift...it was 50x better at increasing email subscriptions over the control...&rdquo;</p></blockquote>
+      <figcaption>&mdash; <strong>Yorkey Ng</strong>, Accenture Federal Services</figcaption>
+    </figure>
+  </div>
+  <span class="ds-cap">the About page's two cards: left purple + mint shadow, right teal + orange shadow, both with cream text</span>
 
   <h3>Panel: <code>.panel</code></h3>
   <p class="note">A block of colour with one cut corner, a slight tilt and a hard shadow. Set it with variables (<code>--panel-bg</code>, <code>--panel-ink</code>, <code>--panel-shadow</code>, <code>--tilt</code>, and <code>--panel-offset</code> for a bigger shadow); pick the corner with <code>.panel--cut-tr</code> or <code>.panel--cut-tl</code>. Padding and hover belong to the page. The project cards share the same rule (a card is a panel with a border, a hover lift and its own six-colour cycle), so the cycle below sets the same <code>--panel-bg</code>, <code>--panel-ink</code> and <code>--panel-shadow</code>.</p>
@@ -251,6 +262,8 @@
 
   <h3>Project card: <code>section.featured-project-card</code>, and its colour cycle</h3>
   <p class="note">Colour, ink, tilt and corner come from the card's position (<code>:nth-child(6n+N)</code>), so six cards show the whole cycle. The pill, dome and cut corners are real. Positions use the live page grid, so resize to see it stack.</p>
+  <p class="note"><b>Proportions (900px and wider).</b> Two dials set the card widths. The large cards (1 and 4) are 90% of their columns <i>minus</i> both dials; their narrow partners (2 and 3) are 100% <i>plus</i> both, so each pair trades width at its inner edge and the gutter between them never changes. <code>--nudge</code> is 30px at 1440 wide (it scales down at 2.08vw) and <code>--shave</code> is 20px (1.39vw). The narrow cards take the shave as <b>side padding</b> (<code>--card-pad</code> plus half the shave each side) rather than as plain width, so their text column, line wraps and height stay as they were. Plain extra width made them a line shorter, which pulled the row below up by as much as 26px. Set <code>--shave</code> to 0px to undo; <code>--card-pad</code> (<code>clamp(26px, 3vw, 44px)</code>) is the padding of every card.</p>
+  <p class="note"><b>Card copy.</b> A card says what the project is and what it achieved in <b>one sentence</b> (the TNECD card is the model), then <b>one</b> Tools line (a single bullet, <code>.gold-color-font</code> marker). A link may sit on its own line under the sentence (for example &ldquo;View project specs on GitHub&rdquo;, with its tracking kept). The title is the project's canonical name, and the card, the project page's tab title, its big title and the breadcrumb all use the same words (for example <b>TNECD.com Website Redesign</b> and <b>DR&Oslash;M Marketing and Print</b>). The home page and the category pages use the same sentence for the same project.</p>
   <div class="ds-cards">
     <div class="flex-container-main" id="dsCards"></div>
   </div>
@@ -325,6 +338,9 @@
     <tr><td>wave17-lh-ls-tokens</td><td>b75fffb</td><td>Nine tokens: <code>--lh-quote</code>, <code>--lh-compact</code>, <code>--lh-text</code>, <code>--lh-long</code> (text line-heights; the display type's stay literal) and <code>--ls-display</code>, <code>--ls-heading</code>, <code>--ls-label</code>, <code>--ls-caps</code>, <code>--ls-wide</code> (tracking). 61 uses; 16 snapped (line-height 1.3 and 1.45 to 1.4, 1.5 and 1.6 to 1.55; tracking 0.08 and 0.12 to 0.1, 0.18 and 0.2 to 0.22). Page heights moved from -26px (Web Design) to +32px (TNECD's small quotes, 1.3 to 1.4); nothing re-wrapped.</td><td><code>git revert b75fffb</code></td></tr>
     <tr><td>wave18-2017-shared-recipe</td><td>4317408</td><td>The 2017 skin's article recipe (the old <code>.flex-container-main</code> drawn on the new markup: <code>.gl</code> for the galleries, <code>.csl</code> for the case studies), once duplicated byte for byte in gallery-2017.css and case-study-2017.css, written once in common-2017.css. Geometry-measured on 12 pages: 0 elements moved.</td><td><code>git revert 4317408</code></td></tr>
     <tr><td>wave19-band-palettes</td><td>(see the tag)</td><td>The band's colours became four palette classes in card-pages.css (<code>.band--magenta</code>, <code>.band--mint</code>, <code>.band--blue</code>, <code>.band--orange</code>), chosen by a class on each page's band element. Six per-page css files (ads, cutouts, posed, print, retouch, webdesign) that held nothing else were deleted, and five inline style blocks removed. 32 before/after captures of band colours and page fingerprints identical. Bytes, plainly: each page ships 0.1 to 0.3 KB more gzipped (all four palettes); six pages make one request fewer.</td><td><code>git revert wave19-band-palettes</code></td></tr>
+    <tr><td>(card names and copy, 2026-10-24)</td><td>e29e011, d3a295e, 1c390ce, 9ad42b3</td><td>Canonical names &ldquo;TNECD.com Website Redesign&rdquo; and &ldquo;DR&Oslash;M Marketing and Print&rdquo; on cards, tab titles, headings and breadcrumbs. Twelve cards on the Web Design, Graphic Design and Photography pages now describe the project in one sentence plus a single Tools line (they were 2 to 4 action-verb bullets); the old &ldquo;X30 fold&rdquo; typo is gone. The 2017 skin's <code>desc-list</code> class (which drew a card's paragraphs as bullets) was dropped from those cards; its rules in category-2017.css are now unused and wait for the go-live sweep.</td><td><code>git revert 9ad42b3 1c390ce d3a295e e29e011</code></td></tr>
+    <tr><td>(card proportions, 2026-10-24)</td><td>b0c3d55</td><td><code>--shave</code>: a steady 20px taken off the large cards (1, 4) and given to the narrow cards (2, 3), as side padding so their height does not change; <code>--card-pad</code> names the card padding. Measured on four pages at 900 to 1920px: gutters unchanged, rows below move at most 6px (0px from 1200px up).</td><td><code>git revert b0c3d55</code></td></tr>
+    <tr><td>(About quote cards, 2026-10-25)</td><td>6d44f8e, 9fee7b2</td><td>The right-hand card turned teal (cream text, orange shadow) and the left-hand card purple (cream text, mint shadow), each chosen with a variant switcher. Both faces are now dark.</td><td><code>git revert 9fee7b2 6d44f8e</code></td></tr>
     <tr><td>pre-cleanup</td><td>(older)</td><td>Last commit with the old draft pages</td><td>checkout the tag to look</td></tr>
   </table></div>
 
@@ -351,14 +367,14 @@
     ['--orange', 'Orange card, the band on the about page'],
     ['--amber', 'The main brand colour: first card, hero, hard shadows on dark'],
     ['--gold', 'The bright yellow: link highlight, cream-link hover, pancake hover, markers on dark cards'],
-    ['--mint', 'Mint card, footer labels'],
-    ['--teal', 'Teal card (darkened on 2026-10-21 to #005e5e)'],
+    ['--mint', 'Mint card, footer labels, the shadow on the About page\'s purple quote card'],
+    ['--teal', 'Teal card (darkened on 2026-10-21 to #005e5e), the About page\'s right-hand quote card'],
     ['--blue', 'The hero slab, blue card, the about page number panel'],
-    ['--purple', 'Purple card, the keyboard focus ring'],
+    ['--purple', 'Purple card, the keyboard focus ring, the About page\'s left-hand quote card'],
     ['--magenta', 'Accent: link underlines, small markers']
   ];
   var NEUTRALS = [
-    ['--cream-text', 'Brighter cream: text on the teal, blue and purple cards'],
+    ['--cream-text', 'Brighter cream: text on the teal, blue and purple cards, and on both About quote cards'],
     ['--paper', 'Cream: card text on dark, panels, the main text colour on the dark ground']
   ];
   var DARKS = [
@@ -473,7 +489,7 @@
 
   /* ---- drift detector: compare every custom property the stylesheets declare with the lists above ---- */
   var documented = {};
-  [COLOURS, SCALE, TITLES, HEADINGS, SHADOWS, MOTION].forEach(function (L) { L.forEach(function (x) { documented[x[0]] = 1; }); });
+  [COLOURS, SCALE, TITLES, HEADINGS, SHADOWS, MOTION, LHS, LSS].forEach(function (L) { L.forEach(function (x) { documented[x[0]] = 1; }); });
   FONTS.concat(['--ease-soft', '--ease-swoop', '--cut', '--cut-tr', '--cut-tl']).forEach(function (n) { documented[n] = 1; });
   /* working variables the components set for themselves; they are plumbing, not design tokens */
   var PLUMBING = /^--(u|h2-scale|pad|gap|nudge|shave|card-pad|tilt|img-scale|mark|lg-size|i|fade-[\w-]+|stagger|band-[\w-]+|size|tag-[\w-]+|slab-[\w-]+|shape-scale|qm-[\w-]+|s[123]|c|slab-lift|kicker-mark|btn-shadow|panel-[\w-]+)$/;
