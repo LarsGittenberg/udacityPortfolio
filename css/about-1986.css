@@ -105,6 +105,43 @@
     55.9%        { transform: scaleY(0); animation-timing-function: ease-out; }
     57.2%, 100%  { transform: scaleY(1); }
   }
+  /* the surprise: on hover the orange half-circle (Surprise) tilts and a little figure pops out of it: the legs drop below the flat edge, the neck and head rise from behind the dome, the arms unfold, then wave. Same pattern as the eye: an inline SVG sits over the half-circle (same centre, same float, same hover lift) and is invisible until hover. The SVG draws its own half-circle exactly where the CSS one is, so nothing flickers when they swap; the CSS one is hidden while the figure is out and returns only once the figure has gone home (the 0.5s delays).
+     The SVG's units: 884 = the half-circle's width, so 1 unit = (75% of the box height) / 884. The SVG is 1244 units tall (1244 / 884 = 1.4072 half-circle widths) and hangs 226.4 units (0.2561) below the half-circle's flat edge, which is where the feet end. The artwork's final pose is the resting half-circle tilted 8.456 degrees about the middle of its flat edge and slid 32.19 units right. */
+  .ab-surprise { --pop: cubic-bezier(0.34, 1.56, 0.64, 1); /* the way out is springy: this plain overshoot is the fallback, the real spring is just below */ position: absolute; left: 50%; bottom: calc(-100% * var(--shape-scale) * 0.2561); height: calc(100% * var(--shape-scale) * 1.4072); aspect-ratio: 940 / 1244; translate: -50% -20px; opacity: 0; overflow: visible; pointer-events: none; animation: ab-shape-float 7s ease-in-out infinite; transition: transform var(--t-base) ease, opacity 0s linear 0.5s; }
+  @supports (transition-timing-function: linear(0, 1)) { .ab-surprise { --pop: linear(0, 0.032, 0.12, 0.247, 0.398, 0.559, 0.719, 0.868, 0.998, 1.104, 1.185, 1.239, 1.269, 1.276, 1.265, 1.239, 1.203, 1.16, 1.115, 1.071, 1.031, 0.996, 0.968, 0.946, 0.932, 0.925, 0.924, 0.928, 0.935, 0.946, 0.957, 0.97, 0.982, 0.993, 1.002, 1.01, 1); } } /* a damped spring, sampled from its equation: overshoots about 28%, rings about 1.4 times a second, and has settled by the end. Browsers without linear() keep the plain overshoot above. */
+  .ab-shapes li:nth-child(3) .ab-surprise { animation-delay: -4.6s; } /* the half-circle's own beat */
+  .ab-shapes li:hover .ab-surprise { opacity: 1; transform: translateY(-10px); transition: transform var(--t-base) ease, opacity 0s; }
+  .s-half::before { transition: transform var(--t-base) ease, opacity 0s linear 0.5s; }
+  .ab-shapes li:hover .s-half::before { opacity: 0; transition: transform var(--t-base) ease, opacity 0s; }
+  .sp-skin, .sp-arm, .sp-leg, .sp-neck { fill: var(--magenta); }
+  .sp-hair { fill: var(--paper); }
+  .sp-half { fill: var(--orange); }
+  .sp-eye { fill: #0a0c01; }
+  .sp-half, .sp-leg, .sp-neck, .sp-head, .sp-arm { transform-box: fill-box; transition: transform 0.3s ease, opacity 0.2s ease; } /* going home is quick and plain; the spring is for coming out */
+  .sp-half { transform-origin: 50% 100%; }
+  .ab-shapes li:hover .sp-half { transform: translate(32.19px, 0) rotate(-8.456deg); transition: transform 0.67s var(--pop); }
+  /* the legs hang from their tops and are squashed up out of sight behind the dome; they drop below the flat edge */
+  .sp-leg { transform-origin: 50% 0; transform: scaleY(0.45); }
+  .ab-shapes li:hover .sp-leg { transform: scaleY(1); transition: transform 0.72s var(--pop) 0.12s; }
+  .ab-shapes li:hover .sp-leg-r { transition-delay: 0.18s; }
+  /* the neck grows up from the shoulders, with the head */
+  .sp-neck { transform-origin: 50% 100%; transform: scaleY(0.2); }
+  .ab-shapes li:hover .sp-neck { transform: scaleY(1); transition: transform 0.72s var(--pop) 0.22s; }
+  /* the head is small and low (hidden behind the dome, which is why it comes before the half-circle in the SVG) and rises to full size */
+  .sp-head { transform-origin: 50% 100%; transform: translateY(380px) scale(0.25); }
+  .ab-shapes li:hover .sp-head { transform: none; transition: transform 0.8s var(--pop) 0.22s; }
+  /* the arms unfold from the shoulders (the right one behind the half-circle, the left one in front of it), then wave */
+  .sp-arm { opacity: 0; transform: scale(0.15); }
+  .sp-arm-l { transform-origin: 88% 88%; }
+  .sp-arm-r { transform-origin: 13% 90%; }
+  .ab-shapes li:hover .sp-arm { opacity: 1; transform: none; transition: transform 0.8s var(--pop) 0.38s, opacity 0.2s ease 0.38s; }
+  .ab-shapes li:hover .sp-arm-l { animation: sp-wave 1.1s ease-in-out 1.68s infinite alternate backwards; } /* the wave starts once the arms have landed */
+  .ab-shapes li:hover .sp-arm-r { animation: sp-wave 1.1s ease-in-out 1.68s infinite alternate-reverse backwards; } /* the other arm swings the other way */
+  @keyframes sp-wave { from { rotate: -7deg; } to { rotate: 7deg; } } /* about each shoulder, so a hand travels about 5px at full size */
+  /* room for the figure: it stands taller than the shape, so on narrow screens its head would meet the kicker (4 columns) or the label above it (2 columns). A little extra air in those two layouts. */
+  @media (max-width: 1023px) { .ab-method .kicker { margin-bottom: 34px; } }
+  @media (max-width: 699px) { .ab-shapes { row-gap: 44px; } }
+  @media (prefers-reduced-motion: reduce) { .ab-surprise, .ab-surprise *, .s-half::before { animation: none !important; transition: none !important; } } /* the hover shows the final pose at once; !important because the hover rules above are more specific */
   .ab-shape-label { font-family: var(--font-display); font-weight: 900; font-size: var(--fs-label-display); line-height: 0.9; text-transform: uppercase; text-align: center; }
 
   /* ---------- 04 SAID ABOUT ME: two tilted note cards ---------- */
