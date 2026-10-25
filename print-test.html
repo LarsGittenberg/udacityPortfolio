@@ -26,20 +26,17 @@ PS: the toggle is in the navigation -->
 	<link rel="apple-touch-icon" href="/apple-touch-icon.png">
 
   <!-- CSS -->
-  <!-- the skin switch picks the skin before paint and writes that skin's stylesheets (js/skin-switch.js).
-       2017 = ui.css + main.css + common-2017.css (what every page needs for blue's shared markup) + gallery-2017.css (the old gallery's look, drawn on the new gallery markup).
-       1986 = blue: reskin-blue.css + card-pages.css + gallery.css (the statement gallery: Column and Rail layouts) (this page's band colour is a class on its band element: band--*, defined in card-pages.css; it has no css file of its own).
-       transitions.css (the card-to-title morph between category pages and project pages) belongs to both -->
+  <!-- skin switch (js/skin-switch.js): picks the skin before paint; the two stylesheet lists are in data-2017 and data-1986 below -->
   <script src="js/skin-switch.js" data-2017="css/ui.css,css/main.css,css/transitions.css,css/common-2017.css,css/gallery-2017.css" data-1986="css/reskin-blue.css,css/card-pages.css,css/transitions.css,css/gallery.css"></script>
   <link rel="stylesheet" href="css/skin-switch.css"> <!-- the switch itself looks the same in both skins, so it has its own file, loaded after the skin -->
   <noscript><link rel="stylesheet" href="css/ui.css"><link rel="stylesheet" href="css/main.css"><link rel="stylesheet" href="css/transitions.css"><link rel="stylesheet" href="css/common-2017.css"><link rel="stylesheet" href="css/gallery-2017.css"></noscript> <!-- without JavaScript: the default skin (2017) -->
-  <script src="js/layout-switch.js"></script> <!-- picks the layout before paint and adds the Column | Rail pill (the 2017 skin hides the pill: css/gallery-2017.css) -->
+  <script src="js/layout-switch.js"></script> <!-- layout switch (js/layout-switch.js): picks the layout before paint and adds the Column | Rail pill -->
 
 	<!--fonts-->
   <link rel="preconnect" href="https://fonts.googleapis.com">
 	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 	<link href="https://fonts.googleapis.com/css2?family=Doto:wght@100..900&display=swap" rel="stylesheet">
-	<!--older font choices-->
+	<!-- body and mono fonts: Montserrat, Source Code Pro -->
 	<link href="https://fonts.googleapis.com/css?family=Montserrat:400,600|Source+Code+Pro:300,400" rel="stylesheet">
 
   <!-- JS libraries -->
