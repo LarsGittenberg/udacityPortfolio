@@ -111,28 +111,6 @@
   .badge-face { position: absolute; left: 12%; top: 13%; width: 76%; aspect-ratio: 876 / 893; }
   .badge-face img { position: absolute; inset: 0; width: 100%; }
 
-  /* the four decorative shapes, placed by their centres */
-  .deco { position: absolute; z-index: 1; pointer-events: none; display: none; /* hidden for now: delete this "display: none" to bring all four shapes back */ }
-  .deco-half {   /* orange half-disc, tipped 40 degrees */
-    width: calc(13.9 * var(--u)); aspect-ratio: 2 / 1; background: var(--orange);
-    border-radius: 999px 999px 0 0; rotate: 40deg; z-index: 2; /* over the magenta circle, as in the mockup */
-    left: calc(21 * var(--u) - 6.95 * var(--u)); top: calc(6.2 * var(--u) - 3.45 * var(--u));
-  }
-  .deco-dot {    /* magenta circle */
-    width: calc(6.5 * var(--u)); aspect-ratio: 1; background: var(--magenta); border-radius: 50%;
-    left: calc(17.3 * var(--u) - 3.25 * var(--u)); top: calc(7.8 * var(--u) - 3.25 * var(--u));
-  }
-  .deco-tri-amber {
-    width: calc(5.5 * var(--u)); aspect-ratio: 69 / 75; background: var(--amber);
-    clip-path: polygon(19% 0, 0 92%, 100% 100%);
-    left: calc(16.9 * var(--u) - 2.75 * var(--u)); top: calc(31.7 * var(--u) - 3 * var(--u));
-  }
-  .deco-tri-teal {
-    width: calc(5.4 * var(--u)); aspect-ratio: 68 / 80; background: var(--teal);
-    clip-path: polygon(0 50%, 100% 0, 100% 100%);
-    left: calc(40.9 * var(--u) - 2.7 * var(--u)); top: calc(31 * var(--u) - 3.2 * var(--u));
-  }
-
   /* the zip-up: slide up 40px while fading in, one piece after another (--i is each piece's place in line).
      It uses opacity and the separate "translate" property, so the browser can animate it on the graphics card
      and the shapes keep their own "rotate" */
