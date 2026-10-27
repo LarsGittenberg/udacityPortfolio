@@ -553,11 +553,8 @@ div.project-header-bar h2 {
 	border-radius: 0 0 var(--radius-xl) 0;
 }
 
-.flex-container-main p, 
-.flex-container-main h1, 
-.flex-container-main h2, 
-.flex-container-main h3,
-.flex-container-main h4 {
+.flex-container-main p,
+.flex-container-main h3 {
 	width: 100%;
 	padding: 5px 22px 5px 20px;
 

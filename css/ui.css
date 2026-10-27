@@ -168,8 +168,7 @@ section.featured-project-card .btn {
 }
 
 
-.btn:hover::before,
-html.toned-down .btn:hover::before {
+.btn:hover::before {
     color: var(--charcoal);
     background: linear-gradient(to top right, var(--mint), var(--gold));
     background-size: 200% 200%;
