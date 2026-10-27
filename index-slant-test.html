@@ -63,6 +63,8 @@ PS: the toggle is in the navigation -->
       clip-path: polygon(0 var(--yl), 100% var(--yr), 100% var(--slab-bottom), 0 var(--slab-bottom)); }
     html.look-b div.hero-container::before { --yl: calc(32.16 * var(--u)); --yr: calc(8.8 * var(--u)); }
     html.look-c div.hero-container::before { --yl: calc(24.24 * var(--u)); --yr: calc(24.24 * var(--u)); }
+    /* d  9 degrees: the old 9 degree try, back as a button (15.84u drop over the 100u width = 9.0 degrees, same pivot) */
+    html.look-d div.hero-container::before { --yl: calc(32.16 * var(--u)); --yr: calc(16.32 * var(--u)); }
 
     .look-switch { position: fixed; right: 16px; bottom: 16px; z-index: 50; display: flex; gap: 6px; padding: 8px; background: #1d1a16; border: 2px solid #f1e6cc; font-family: 'Source Code Pro', ui-monospace, monospace; }
     .look-switch button { font: inherit; font-size: 0.72rem; letter-spacing: 0.1em; text-transform: uppercase; padding: 6px 10px; border: 2px solid #f1e6cc; background: transparent; color: #f1e6cc; cursor: pointer; }
@@ -340,12 +342,13 @@ document.addEventListener("DOMContentLoaded", function() {
 
 <div class="look-switch" role="group" aria-label="Slant">
   <button type="button" data-look="a">5&deg; (now)</button>
+  <button type="button" data-look="d">9&deg;</button>
   <button type="button" data-look="b">13&deg; (E)</button>
   <button type="button" data-look="c">Flat</button>
 </div>
 <script>
 (function () {
-  var root = document.documentElement, buttons = document.querySelectorAll('.look-switch button'), looks = ['a', 'b', 'c'];
+  var root = document.documentElement, buttons = document.querySelectorAll('.look-switch button'), looks = ['a', 'b', 'c', 'd'];
   function show(look) {
     looks.forEach(function (l) { root.classList.remove('look-' + l); });
     if (look !== 'a') root.classList.add('look-' + look);
