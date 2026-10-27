@@ -1,0 +1,206 @@
+/* =====================================================================
+   LIQUIDLAB 2026: a revamp of the 2015 General Assembly project.
+   The idea: the ORIGINAL pattern tiles are the main motif. Everything else (type, shapes, motion)
+   is kept quiet so the weaves, the citrus mandala and the juice bottles do the talking.
+
+   THE TEXTURE TRICK: one green weave becomes any juice colour. A background colour sits UNDER the
+   tile and a blend mode mixes them:
+     luminosity = keep the tile's light and dark, take the colour's hue  (beet, berry)
+     overlay    = a brighter, sunnier tint                                (carrot)
+   No new artwork needed.
+   ===================================================================== */
+
+:root {
+	--leaf: #2c7522;        /* the green of the southwest weave tile */
+	--leaf-deep: #1b4a16;
+	--earth: #8a5a2e;       /* the brown weave */
+	--cream: #f7f0df;
+	--ink: #16261a;
+	--sun: #ffb300;
+	--carrot: #ff8a1f;
+	--berry: #c2185b;
+	--beet: #7a2a66;
+	--display: "Fraunces", Georgia, serif;
+	--body: "Lato", system-ui, sans-serif;
+	--wrap: 1120px;
+}
+
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; scroll-padding-top: 76px; }
+body { margin: 0; font-family: var(--body); font-size: 1.0625rem; line-height: 1.65; color: var(--ink); background: var(--cream); }
+img { display: block; max-width: 100%; height: auto; }
+a { color: inherit; }
+.sr { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
+.skip { position: absolute; left: 12px; top: -60px; z-index: 100; padding: 10px 16px; background: var(--sun); color: var(--ink); font-weight: 700; border-radius: 8px; }
+.skip:focus { top: 12px; }
+:focus-visible { outline: 3px solid var(--sun); outline-offset: 3px; }
+
+/* ---------- the textures (the original tiles) ---------- */
+.tex-leaf   { background: url(images/optimized-southwest-pattern-10.jpg) 0 0 / 250px; color: var(--cream); }
+.tex-earth  { background: url(images/optimized-southwest-pattern-11.jpg) 0 0 / 250px; color: var(--cream); }
+.tex-citrus { background: url(images/optimized-inca-8.jpg) 0 0 / 230px; color: var(--cream); }
+.tex-citrus-berry { background: url(images/optimized-inca-8.jpg) 0 0 / 190px, var(--berry); background-blend-mode: luminosity; }
+.tex-leaf-carrot  { background: url(images/optimized-southwest-pattern-10.jpg) 0 0 / 190px, var(--carrot); background-blend-mode: overlay; }
+.paper { background: var(--cream); color: var(--ink); }
+
+/* ---------- type ---------- */
+h1, h2, h3 { font-family: var(--display); font-optical-sizing: auto; margin: 0; }
+h2 { margin-bottom: 0.55em; font-size: clamp(2.2rem, 5vw, 3.9rem); font-weight: 600; line-height: 1.02; letter-spacing: -0.02em; text-wrap: balance; }
+h2 em { font-weight: 400; color: var(--berry); }
+.tex-leaf h2 em, .tex-earth h2 em, .tex-citrus h2 em { color: var(--sun); }
+h3 { font-size: 1.5rem; font-weight: 600; line-height: 1.15; }
+p { margin: 0 0 1.1em; }
+.lead { font-size: 1.2rem; }
+.center { text-align: center; }
+.eyebrow { margin: 0 0 18px; font-size: 0.8125rem; font-weight: 700; letter-spacing: 0.22em; text-transform: uppercase; color: var(--sun); }
+.drop-cap::first-letter { float: left; padding: 0.04em 0.12em 0 0; font-family: var(--display); font-weight: 800; font-size: 4.3em; line-height: 0.78; color: var(--berry); }
+.tex-leaf .drop-cap::first-letter, .tex-earth .drop-cap::first-letter { color: var(--sun); }
+
+/* ---------- layout ---------- */
+.wrap { max-width: var(--wrap); margin: 0 auto; padding: 0 24px; }
+.narrow { max-width: 62ch; margin: 0 auto; text-align: center; }
+section { padding: clamp(64px, 9vw, 120px) 0; }
+.split { display: grid; grid-template-columns: 1fr 1fr; gap: clamp(32px, 6vw, 88px); align-items: center; }
+@media (max-width: 820px) { .split { grid-template-columns: 1fr; } }
+
+/* ---------- buttons ---------- */
+.btn { display: inline-flex; align-items: center; padding: 0.85em 1.7em; border-radius: 999px; border: 2px solid transparent; font-family: var(--body); font-weight: 700; font-size: 1rem; letter-spacing: 0.04em; text-decoration: none; transition: transform 200ms ease, background 200ms ease, color 200ms ease; }
+.btn:hover { transform: translateY(-2px); }
+.btn-sun { background: var(--sun); color: var(--ink); }
+.btn-sun:hover { background: var(--carrot); }
+.btn-ghost { border-color: var(--cream); color: var(--cream); }
+.btn-ghost:hover { background: var(--cream); color: var(--ink); }
+.btn-ink { background: var(--ink); color: var(--cream); }
+.btn-ink:hover { background: var(--berry); }
+
+/* ---------- the little droplet (the logo's mark) ---------- */
+.drop { width: 18px; height: 24px; fill: currentColor; }
+.drop-big { width: 56px; height: 75px; margin-top: 28px; color: var(--berry); }
+
+/* =============== NAV =============== */
+.nav { position: sticky; top: 0; z-index: 50; display: flex; align-items: center; justify-content: space-between; padding: 12px 24px; background: color-mix(in srgb, var(--cream) 94%, transparent); backdrop-filter: blur(8px); border-bottom: 3px solid var(--ink); }
+.brand { display: inline-flex; align-items: center; gap: 10px; font-family: var(--display); font-weight: 800; font-size: 1.5rem; letter-spacing: -0.02em; text-decoration: none; color: var(--ink); }
+.brand .drop { color: var(--berry); }
+.menu { display: flex; align-items: center; gap: clamp(14px, 2.4vw, 32px); }
+.menu a { font-size: 0.9375rem; font-weight: 700; letter-spacing: 0.06em; text-decoration: none; padding: 6px 0; border-bottom: 3px solid transparent; transition: border-color 200ms ease; }
+.menu a:hover { border-bottom-color: var(--berry); }
+.menu .menu-cta { padding: 8px 20px; border: 2px solid var(--ink); border-radius: 999px; background: var(--sun); transition: background 200ms ease; }
+.menu .menu-cta:hover { background: var(--carrot); border-bottom-color: var(--ink); }
+.nav-toggle { display: none; width: 44px; height: 44px; padding: 10px; background: none; border: 2px solid var(--ink); border-radius: 10px; cursor: pointer; flex-direction: column; justify-content: space-between; }
+.nav-toggle i { display: block; height: 3px; background: var(--ink); border-radius: 2px; }
+@media (max-width: 860px) {
+	.nav-toggle { display: flex; }
+	.menu { position: absolute; left: 0; right: 0; top: 100%; flex-direction: column; align-items: stretch; gap: 0; padding: 8px 24px 20px; background: var(--cream); border-bottom: 3px solid var(--ink); display: none; }
+	.menu.open { display: flex; }
+	.menu a { padding: 14px 0; border-bottom: 1px solid color-mix(in srgb, var(--ink) 20%, transparent); }
+	.menu .menu-cta { margin-top: 14px; text-align: center; justify-content: center; }
+}
+
+/* =============== HERO =============== */
+.hero { position: relative; overflow: hidden; display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: clamp(24px, 5vw, 72px); align-items: center; padding: clamp(48px, 7vw, 96px) max(24px, calc((100vw - var(--wrap)) / 2 + 24px)); min-height: min(88svh, 780px); }
+.hero h1 { font-size: clamp(3.6rem, 10.5vw, 8.4rem); font-weight: 800; line-height: 0.88; letter-spacing: -0.04em; }
+.hero-sub { margin: 20px 0 30px; font-family: var(--display); font-style: italic; font-size: clamp(1.5rem, 3vw, 2.2rem); }
+.hero-actions { display: flex; flex-wrap: wrap; gap: 14px; }
+
+/* the rack: three tinted arches, each framing a bottle, with the ring of dots turning behind */
+.rack { position: relative; display: flex; align-items: flex-end; justify-content: center; gap: clamp(8px, 1.6vw, 18px); padding-bottom: 8px; }
+.ring { position: absolute; z-index: 0; top: 50%; left: 50%; width: 118%; max-width: none; margin: -59% 0 0 -59%; opacity: 0.55; animation: spin 90s linear infinite; }
+@keyframes spin { to { transform: rotate(360deg); } }
+.arch { position: relative; z-index: 1; margin: 0; flex: 1 1 0; padding: 10px 10px 0; border-radius: 999px 999px 18px 18px; box-shadow: 0 18px 30px -14px rgba(0, 0, 0, 0.55); }
+.arch img { width: 100%; height: 100%; object-fit: cover; border-radius: 999px 999px 10px 10px; }
+.arch-beet   { height: clamp(290px, 31vw, 440px); background: url(images/optimized-inca-8.jpg) 0 0 / 150px, var(--berry); background-blend-mode: luminosity; }
+.arch-leaf   { height: clamp(350px, 38vw, 540px); background: url(images/optimized-southwest-pattern-11.jpg) 0 0 / 150px; }
+.arch-carrot { height: clamp(250px, 26vw, 380px); background: url(images/optimized-southwest-pattern-10.jpg) 0 0 / 150px, var(--carrot); background-blend-mode: overlay; }
+@media (max-width: 820px) {
+	.hero { grid-template-columns: 1fr; min-height: 0; }
+	.rack { order: 2; }
+}
+
+/* =============== BANDS =============== */
+.weave { height: 70px; background: var(--earth) url(images/optimized-mega-tile-v3-07.jpg) center / auto 150px repeat-x; border-block: 3px solid var(--ink); }
+.weave-flip { transform: scaleY(-1); }
+.zig { height: 22px; background: linear-gradient(135deg, var(--cream) 25%, transparent 25%) -11px 0 / 22px 22px, linear-gradient(225deg, var(--cream) 25%, transparent 25%) -11px 0 / 22px 22px, var(--leaf); }
+
+.ticker { overflow: hidden; padding: 16px 0; border-bottom: 3px solid var(--ink); }
+.ticker-track { display: flex; width: max-content; animation: ticker 48s linear infinite; }
+.ticker span { display: inline-flex; align-items: center; gap: 22px; padding-right: 22px; font-family: var(--display); font-style: italic; font-size: 1.4rem; white-space: nowrap; }
+.ticker i { display: inline-block; width: 10px; height: 10px; background: var(--sun); border-radius: 50% 0 50% 50%; transform: rotate(-45deg); }
+@keyframes ticker { to { transform: translateX(-25%); } }
+
+/* =============== PHOTO FRAMES (an arch, with a tinted tile peeking out behind) =============== */
+.frame { position: relative; margin: 0 18px 18px 0; }
+.arch-photo { position: relative; z-index: 1; margin: 0; aspect-ratio: 4 / 5; overflow: hidden; border-radius: 999px 999px 24px 24px; border: 3px solid var(--ink); background: var(--ink); }
+.arch-photo img { width: 100%; height: 100%; object-fit: cover; }
+.frame-back { position: absolute; inset: 18px -18px -18px 18px; border: 3px solid var(--ink); border-radius: 999px 999px 24px 24px; }
+.frame .frame-back.tex-earth, .frame .frame-back.tex-leaf { color: inherit; }
+
+/* =============== PLANS =============== */
+.plans { border-block: 3px solid var(--ink); }
+.steps { list-style: none; margin: clamp(40px, 6vw, 72px) 0 0; padding: 0; display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; }
+.step { position: relative; padding: 32px 28px 30px; background: var(--cream); color: var(--ink); border: 3px solid var(--ink); border-radius: 22px; box-shadow: 8px 8px 0 var(--ink); }
+.step-no { position: absolute; top: 12px; right: 22px; font-family: var(--display); font-style: italic; font-weight: 800; font-size: 4.5rem; line-height: 1; color: var(--sun); -webkit-text-stroke: 2px var(--ink); paint-order: stroke fill; }
+.step-icon { display: block; width: 88px; height: 88px; margin-bottom: 20px; overflow: hidden; border-radius: 50%; background: var(--leaf-deep); border: 3px solid var(--ink); }
+.step-icon img { width: 100%; height: 100%; object-fit: cover; } /* the original icon PNGs carry a pale tile behind the drawing; clipped to a disc it reads as a lighter coin */
+.step h3 { margin-bottom: 8px; }
+.step p { margin: 0; }
+.plans-cta { margin-top: clamp(40px, 6vw, 64px); text-align: center; }
+.plans-cta .lead { max-width: 36ch; margin: 0 auto 24px; }
+@media (max-width: 820px) { .steps { grid-template-columns: 1fr; } }
+
+/* =============== QUOTE =============== */
+.quote { position: relative; display: grid; align-items: center; min-height: clamp(420px, 60vw, 620px); padding: 0; overflow: hidden; color: var(--cream); }
+.quote-photo { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: 70% 40%; }
+.quote-veil { position: absolute; inset: 0; background: linear-gradient(90deg, rgba(12, 28, 14, 0.82) 0%, rgba(12, 28, 14, 0.55) 45%, rgba(12, 28, 14, 0) 80%); }
+.quote blockquote { position: relative; max-width: 500px; margin: 0 24px 0 max(24px, calc((100vw - var(--wrap)) / 2 + 24px)); padding: 56px 0; }
+.quote blockquote p { font-family: var(--display); font-style: italic; font-size: clamp(1.5rem, 3.2vw, 2.4rem); line-height: 1.25; }
+.quote footer { font-size: 0.875rem; font-weight: 700; letter-spacing: 0.3em; color: var(--sun); }
+
+/* =============== SAMPLERS =============== */
+.samplers h2 { max-width: 18ch; margin: 0 auto; }
+.cards { display: grid; grid-template-columns: repeat(3, 1fr); gap: clamp(20px, 3vw, 36px); margin-top: clamp(40px, 6vw, 72px); }
+.card { display: flex; flex-direction: column; }
+.card-art { padding: 14px 14px 0; border: 3px solid var(--ink); border-radius: 999px 999px 24px 24px; margin-bottom: 26px; }
+.card-art img { width: 100%; aspect-ratio: 1 / 1.1; object-fit: cover; border-radius: 999px 999px 12px 12px; }
+.card h3 { margin-bottom: 10px; }
+.card p { flex: 1; }
+.card .btn { align-self: flex-start; }
+@media (max-width: 900px) { .cards { grid-template-columns: 1fr; max-width: 460px; margin-inline: auto; } }
+
+/* =============== GREEN =============== */
+.green { border-block: 3px solid var(--ink); }
+.green .frame-back { background-color: var(--earth); }
+.badge { position: absolute; z-index: 2; right: -22px; bottom: -22px; display: grid; place-items: center; align-content: center; width: clamp(130px, 18vw, 176px); aspect-ratio: 1; border-radius: 50%; background: var(--ink); border: 3px solid var(--cream); text-align: center; overflow: hidden; }
+.badge-ring { position: absolute; inset: -12%; width: 124%; max-width: none; opacity: 0.5; animation: spin 60s linear infinite reverse; }
+.badge-num { position: relative; font-family: var(--display); font-weight: 800; font-size: clamp(2.6rem, 6vw, 3.8rem); line-height: 0.9; color: var(--sun); }
+.badge-unit { position: relative; font-size: 0.75rem; font-weight: 700; letter-spacing: 0.18em; text-transform: uppercase; }
+
+/* =============== JOURNAL =============== */
+.journal .arch-photo { aspect-ratio: 5 / 6; }
+
+/* =============== ABOUT =============== */
+.about { border-top: 3px solid var(--ink); }
+.farmer { max-width: 440px; margin: 28px 0 0; }
+.farmer img { border: 3px solid var(--ink); border-radius: 22px; }
+.contact { padding: clamp(28px, 4vw, 44px); background: var(--cream); color: var(--ink); border: 3px solid var(--ink); border-radius: 26px; box-shadow: 10px 10px 0 var(--ink); }
+.contact h3 { margin-bottom: 6px; font-size: 0.8125rem; font-family: var(--body); font-weight: 700; letter-spacing: 0.22em; text-transform: uppercase; color: var(--berry); }
+.contact p { margin-bottom: 1.6em; font-family: var(--display); font-size: 1.6rem; line-height: 1.25; }
+
+/* =============== FOOTER =============== */
+.foot { padding: 44px 24px; text-align: center; border-top: 3px solid var(--ink); }
+.foot p { max-width: 60ch; margin: 0 auto 10px; font-size: 0.9375rem; }
+.foot-brand { display: flex; align-items: center; justify-content: center; gap: 10px; font-family: var(--display); font-weight: 800; font-size: 1.6rem; }
+.foot .drop { color: var(--sun); }
+.foot a { color: var(--sun); }
+
+/* =============== REVEAL ON SCROLL (only when JS is on) =============== */
+.js .reveal { opacity: 0; transform: translateY(28px); transition: opacity 700ms cubic-bezier(0.2, 0.8, 0.2, 1), transform 700ms cubic-bezier(0.2, 0.8, 0.2, 1); }
+.js .reveal.in { opacity: 1; transform: none; }
+.js .step.reveal:nth-child(2), .js .card.reveal:nth-child(2) { transition-delay: 120ms; }
+.js .step.reveal:nth-child(3), .js .card.reveal:nth-child(3) { transition-delay: 240ms; }
+
+@media (prefers-reduced-motion: reduce) {
+	html { scroll-behavior: auto; }
+	.ring, .badge-ring, .ticker-track { animation: none; }
+	.js .reveal { opacity: 1; transform: none; transition: none; }
+	.btn { transition: none; }
+}
