@@ -26,6 +26,7 @@
 	--orange: #ff7f00;
 	--gold: #ffcc00;
 	--mint: #66cdaa;
+	--mint-bright: #83FBD3; /* TEXT on --blue and --ink only, used rarely: 7.95:1 on --blue (AAA) where --mint is 5.18:1; also passes on --teal (6.05:1) where --mint fails (3.94:1). Never a fill */
 	--cream-text: #fffaf0;
 	--night: #171412;       /* the page ground */
 	--night-deep: #0c0a09;  /* the darkest ground: the page backdrop and the footer */
@@ -273,7 +274,7 @@ header {
 	font-size: var(--fs-m);
 	letter-spacing: var(--ls-wide);
 	text-transform: uppercase;
-	color: var(--amber);
+	color: var(--mint-bright);
 }
 
 /* =====================================================================
@@ -512,7 +513,7 @@ footer {
 	color: var(--paper);
 }
 footer br { display: none; }
-footer p { position: relative; z-index: 2; font-family: var(--font-mono); font-size: var(--fs-xs); letter-spacing: var(--ls-wide); text-transform: uppercase; color: var(--mint); }
+footer p { position: relative; z-index: 2; font-family: var(--font-mono); font-size: var(--fs-xs); letter-spacing: var(--ls-wide); text-transform: uppercase; color: var(--mint-bright); }
 footer p.footer { margin: 12px 0 0; font-family: var(--font-body); font-weight: 600; font-size: var(--fs-heading); letter-spacing: var(--ls-heading); text-transform: none; color: var(--paper); }
 
 /* =====================================================================
