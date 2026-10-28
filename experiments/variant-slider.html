@@ -1,0 +1,103 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="noindex, nofollow">
+<title>Variant slider (snippet)</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css?family=Source+Code+Pro:300,400" rel="stylesheet"> <!-- the same mono as the site, so the panel looks the way it did on the real page -->
+<!--
+  VARIANT SLIDER: the variant switcher's sibling. A throwaway tool for finding a NUMBER by eye, on the real page.
+  Born 2026-10-28 while placing the blue hero slab's slanted top edge. It is a snippet, not part of the site.
+
+  SWITCHER vs SLIDER: the switcher picks between a few named looks (A, B, C), like comparing conditions in an experiment.
+  The slider sweeps one value continuously, like a dose-response curve or an exposure dial: you drag, watch the picture
+  change, and stop where it looks right. Then you read the number off the panel and type it into the real CSS.
+
+  HOW IT WORKS (four parts):
+    1. CSS: the thing you are tuning reads one custom property (here --d, the shift) with a fallback of 0, so the page
+       looks normal until the slider moves it:  calc(var(--yl) + var(--d, 0px)).
+    2. HTML: a small fixed panel with an <input type="range">, a readout and a Reset button.
+    3. JS: every "input" event (every step of the drag) writes the value into --d on <html>, so the browser repaints at once.
+       Opening the page with ?shift=5.6 in the address starts at that value, so you can bookmark a position.
+    4. LIMITS (the lesson of this tool): do not hard-code the range. Measure it from the layout, so the slider physically cannot
+       reach an unsafe position (here: the edge sinking below the amber band), and measure again on resize. On the real home page
+       the safe range was different at 1440px (+22.8u) and 1000px (+25.0u).
+
+  RESULT, 2026-10-28: the captain chose d = +5.6u for the home page slab: left corner 32.16u -> 37.76u, right corner 8.8u -> 14.40u,
+  slant unchanged at 23.36u.
+
+  HOW TO REUSE: copy the marked blocks into a COPY of a page (never the real one), rename --d and the limits to what you are tuning,
+  and delete the copy when you have decided. Move both ends of a shape by the same amount and its angle is kept.
+  Nothing here should ever ship.
+-->
+<style>
+  /* demo page only */
+  :root { --u: min(1vw, 14.4px); --yl: calc(14 * var(--u)); --yr: calc(4 * var(--u)); } /* the two corner heights, measured down from the stage's top */
+  body { margin: 0; padding: 0 0 120px; font-family: system-ui, sans-serif; background: #1d1a16; color: #f1e6cc; }
+  .stage { position: relative; height: 420px; margin-top: 40px; overflow: hidden; }
+  .band { position: absolute; left: 0; right: 0; bottom: 60px; height: 40px; background: #f2a51d; z-index: 2; }
+
+  /* ===== 1. THE THING YOU ARE TUNING: the slab's top edge reads --d ===== */
+  .slab { position: absolute; inset: 0; background: #004282;
+    clip-path: polygon(0 calc(var(--yl) + var(--d, 0px)), 100% calc(var(--yr) + var(--d, 0px)), 100% calc(100% - 80px), 0 calc(100% - 80px)); } /* the bottom ends at the band's middle (band: 60px up + half its 40px), hidden behind the band, as on the real page */
+
+  /* ===== 2. THE SLIDER PANEL (styling) ===== */
+  .slider-dial { position: fixed; left: 16px; bottom: 16px; z-index: 50; width: min(340px, calc(100vw - 32px)); padding: 12px 14px; background: #1d1a16; border: 2px solid #f1e6cc; font: 0.72rem/1.5 'Source Code Pro', ui-monospace, monospace; letter-spacing: 0.06em; }
+  .slider-dial label { display: block; text-transform: uppercase; letter-spacing: 0.1em; margin-bottom: 6px; }
+  .slider-dial input[type=range] { width: 100%; margin: 4px 0 8px; accent-color: #83FBD3; }
+  .slider-dial output { display: block; }
+  .slider-dial .ends { display: flex; justify-content: space-between; opacity: 0.7; }
+  .slider-dial button { font: inherit; text-transform: uppercase; letter-spacing: 0.1em; padding: 4px 8px; margin-top: 8px; border: 2px solid #f1e6cc; background: transparent; color: #f1e6cc; cursor: pointer; }
+  .slider-dial button:hover { background: #f1e6cc; color: #1d1a16; }
+</style>
+</head>
+<body>
+
+<div class="stage"><div class="slab"></div><div class="band"></div></div>
+
+<!-- ===== 2. THE SLIDER PANEL (markup) ===== -->
+<div class="slider-dial" role="group" aria-label="Slab height">
+  <label for="dial">Slab edge: up / down</label>
+  <input id="dial" type="range" min="-4" max="10" step="0.1" value="0">
+  <div class="ends"><span id="dial-min"></span><span id="dial-max"></span></div>
+  <output id="dial-out" for="dial"></output>
+  <button type="button" id="dial-reset">Reset</button>
+</div>
+
+<!-- ===== 3. THE SCRIPT (with the limits measured from the layout) ===== -->
+<script>
+(function () {
+  var root = document.documentElement, input = document.getElementById('dial'), out = document.getElementById('dial-out');
+  var YL = 14, YR = 4; // today's corner heights in u: keep in step with --yl and --yr above
+  function u() { return Math.min(window.innerWidth / 100, 14.4); } // 1u = 1% of the window, capped, as on the site
+
+  function limits() { // ===== 4. LIMITS: measured, never typed =====
+    var stage = document.querySelector('.stage'), band = document.querySelector('.band');
+    // up: the right corner may rise to the top of the stage (0). Down: the left corner may fall to the band's top edge, no further.
+    var max = (band.getBoundingClientRect().top - stage.getBoundingClientRect().top) / u() - YL;
+    return { min: -YR, max: Math.floor(max * 10) / 10 };
+  }
+
+  function apply(v) {
+    var l = limits();
+    v = Math.max(l.min, Math.min(l.max, v));
+    input.min = l.min; input.max = l.max; input.value = v;
+    root.style.setProperty('--d', 'calc(' + v + ' * var(--u))');
+    document.getElementById('dial-min').textContent = 'up ' + l.min + 'u';
+    document.getElementById('dial-max').textContent = 'down +' + l.max + 'u';
+    out.textContent = 'd = ' + (v > 0 ? '+' : '') + v.toFixed(1) + 'u (' + Math.round(v * u()) + 'px) | left ' + (YL + v).toFixed(2) + 'u, right ' + (YR + v).toFixed(2) + 'u, slant ' + (YL - YR).toFixed(2) + 'u';
+  }
+
+  var asked = parseFloat(new URLSearchParams(location.search).get('shift')); // ?shift=5.6 starts at that value
+  var start = isNaN(asked) ? 0 : asked;
+  input.addEventListener('input', function () { apply(parseFloat(input.value)); });
+  document.getElementById('dial-reset').addEventListener('click', function () { apply(0); });
+  window.addEventListener('resize', function () { apply(parseFloat(input.value)); }); // the safe range changes with the window
+  apply(start);
+})();
+</script>
+</body>
+</html>
