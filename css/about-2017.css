@@ -32,7 +32,7 @@ div.project-header-bar .h2-descriptor { display: none; } /* written with div. so
 .ab-photo .photo-default, .ab-photo .photo-hover { height: auto; }
 
 /* SAID ABOUT ME: the heading and the first note are the old right-hand info box; the second note is the left-hand one */
-.ab-said > h3 { width: 100%; padding: 25px 0 0; border-right: 25px solid transparent; margin-right: var(--indent); font-family: var(--font-mono); font-size: var(--heading-20); font-weight: 400; text-align: left; }
+.ab-said > h3 { width: 100%; padding: 25px 22px 0 20px; /* the 20px / 22px beside the text below, so the heading's letters start where the note's start (as on 45 Parallel) */ border-right: 25px solid transparent; margin-right: var(--indent); font-family: var(--font-mono); font-size: var(--heading-20); font-weight: 400; text-align: left; }
 .ab-said > h3, .ab-note-1 > blockquote, .ab-note-1 > figcaption { max-width: var(--column-text); margin-left: auto; }
 .ab-said > h3 { max-width: min(calc(var(--column-text) + 25px), calc(100% - 25px)); } /* the transparent 25px border is the info box's right padding, so the heading lines up with the note below it; on phones both sides keep their 25px */
 .ab-note-1 { padding-top: 0; }

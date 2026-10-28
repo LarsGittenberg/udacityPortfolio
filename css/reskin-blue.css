@@ -378,9 +378,9 @@ section.featured-project-card {
 section.featured-project-card:hover { transform: rotate(0deg) translate(-4px, -4px); box-shadow: var(--shadow-xl) var(--shadow-xl) 0 var(--panel-shadow); }
 
 /* each card's paper colour, text colour and tilt */
-.flex-container-child-projects:nth-child(6n+1) section.featured-project-card { --panel-bg: var(--amber); --panel-ink: var(--ink); --panel-shadow: var(--paper); /* card 1 casts a cream shadow: amber on amber read as a thicker edge of the card itself. Delete --panel-shadow here to bring the amber back */ --tilt: -0.8deg; border-radius: var(--cut-tr); }
+.flex-container-child-projects:nth-child(6n+1) section.featured-project-card { --panel-bg: var(--teal); --panel-ink: var(--cream-text); --tilt: -0.8deg; border-radius: var(--cut-tr); }
 .flex-container-child-projects:nth-child(6n+2) section.featured-project-card { --panel-bg: var(--orange);  --panel-ink: var(--ink);        --tilt: 1.6deg; }
-.flex-container-child-projects:nth-child(6n+3) section.featured-project-card { --panel-bg: var(--teal);    --panel-ink: var(--cream-text); --tilt: 1deg; }
+.flex-container-child-projects:nth-child(6n+3) section.featured-project-card { --panel-bg: var(--amber);   --panel-ink: var(--ink);        --panel-shadow: var(--paper); /* card 3 (amber) casts a cream shadow: amber on amber read as a thicker edge of the card itself. Delete --panel-shadow here to bring the amber back */ --tilt: 1deg; }
 .flex-container-child-projects:nth-child(6n+4) section.featured-project-card { --panel-bg: var(--blue);    --panel-ink: var(--cream-text); --tilt: -1.4deg; border-radius: var(--cut-tr); }
 .flex-container-child-projects:nth-child(6n+5) section.featured-project-card { --panel-bg: var(--purple);  --panel-ink: var(--cream-text); --tilt: -0.5deg; border-radius: var(--cut-tl); }
 .flex-container-child-projects:nth-child(6n) section.featured-project-card { --panel-bg: var(--mint);    --panel-ink: var(--ink);        --tilt: 1.1deg; border-radius: var(--cut-tl); }
@@ -461,7 +461,7 @@ section.featured-project-card li strong { font-weight: 400; letter-spacing: var(
 .gold-color-font::before { content: "\25A0\00a0"; color: var(--mark); }
 /* the accent colour of the small square before "Tools:": magenta by default, but magenta vanishes on teal (1.1:1) and fades on blue and purple, so those three cards use gold. */
 section.featured-project-card { --mark: var(--magenta); }
-.flex-container-child-projects:nth-child(6n+3) section.featured-project-card,
+.flex-container-child-projects:nth-child(6n+1) section.featured-project-card,
 .flex-container-child-projects:nth-child(6n+4) section.featured-project-card,
 .flex-container-child-projects:nth-child(6n+5) section.featured-project-card { --mark: var(--gold); }
 
@@ -488,9 +488,9 @@ section.featured-project-card { --mark: var(--magenta); }
 .btn--on-dark:hover { background: var(--gold); }
 .btn-text { font-size: var(--fs-s); }
 section.featured-project-card .btn { position: relative; margin: 24px 0 0; } /* the button owns the space above it, so the gap is the same whatever sits above: a paragraph or the Tools list */
-/* orange would vanish against the amber and orange cards (1 and 2), and is faint against the mint card (6: 1.3:1 against 2.7:1 for magenta), so those three cards' buttons cast magenta shadows (were cream; to undo, change var(--magenta) back to var(--paper)).
+/* orange would vanish against the orange and amber cards (2 and 3), and is faint against the mint card (6: 1.3:1 against 2.7:1 for magenta), so those three cards' buttons cast magenta shadows (were cream; to undo, change var(--magenta) back to var(--paper)).
    :where() keeps this rule's priority at zero, so the .btn--orange / .btn--magenta modifiers below can still override it. */
-:where(.flex-container-child-projects:nth-child(6n+1), .flex-container-child-projects:nth-child(6n+2), .flex-container-child-projects:nth-child(6n)) .btn { --btn-shadow: var(--magenta); }
+:where(.flex-container-child-projects:nth-child(6n+3), .flex-container-child-projects:nth-child(6n+2), .flex-container-child-projects:nth-child(6n)) .btn { --btn-shadow: var(--magenta); }
 
 /* SHADOW MODIFIERS: a button's hard shadow is orange or magenta, on either face. Add one to a .btn (they come after the other button rules, so they win):
    ink face (light grounds):   .btn (orange)   or  .btn.btn--magenta
