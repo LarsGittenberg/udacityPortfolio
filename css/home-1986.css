@@ -33,8 +33,8 @@
        The box rises --slab-lift (24u) above the stage so even this steep edge has room. The edge pivots on the same middle point as the older, flatter slants, and the right corner is raised until the edge catches the last E of LAWRENCE.
        Picked from index-slant-test.html (look "E"), which keeps the 5, 9 and 0 degree looks for comparison */
     --slab-lift: calc(24 * var(--u));
-    --slab-yl: calc(32.16 * var(--u));
-    --slab-yr: calc(8.8 * var(--u));
+    --slab-yl: calc(37.76 * var(--u)); /* was 32.16u; both corners moved down 5.6u together, so the slant is the same 23.36u. Picked with experiments/variant-slider.html on 2026-10-28 */
+    --slab-yr: calc(14.4 * var(--u));   /* was 8.8u */
   }
 
   /* the name hangs from the right edge and the blurb stays beside it: that shared header (the right padding, flex-end, the gap, the right-aligned name nudged 10px up, the no-wrap blurb) lives at the end of css/reskin-blue.css.
