@@ -33,8 +33,9 @@
 .csl .cs-pain h4 { color: var(--orange); }
 .csl .quote { padding-bottom: 0; }
 .csl .quote figcaption { width: 100%; padding: 5px 22px 5px 20px; color: var(--gold); }
-/* the big client quote ("This first pass is so beautiful...") is new: the old page ended on the before/after pictures */
-.csl .pull-quote { display: none; }
+/* the big client quote ("This first pass is so beautiful...") is new: the old page ended on the before/after pictures. It is laid out like the "Make high-value content impossible to miss" paragraph above it: an info box (25px padding all round) holding a 620px text column, hung from the left indent, at 1.7 line height */
+.csl .pull-quote { max-width: calc(var(--column-text) + 50px); margin-left: var(--indent); padding: 25px; line-height: 1.7em; }
+.csl .pull-quote figcaption strong { font-weight: inherit; } /* the byline reads like the pain-point ones above: all gold, none bold (blue keeps the bold name) */
 
 /* SWISS POST. The callouts ("Framing Question", "Guiding Question"): blue boxes them with a gold bar and a mono label; the old page ran the label into the paragraph, bold italic gold, with a colon. */
 .csl .cs-callout b { font-style: italic; color: var(--gold); }
