@@ -29,9 +29,12 @@
     --band-rise: calc(0.02473 * 100vw);
     --band-base: calc(2.34 * var(--u) + 75px + var(--band-rise)); /* the band's distance from the stage's bottom edge (the 75px lifts it: 45px, then 30px more) */
     --slab-bottom: calc(100% - var(--band-base) - max(2.02 * var(--u), 20px)); /* the slab ends at the band's vertical middle (half its height), hidden behind the band, so the slab's bottom edge never shows */
-    /* THE SLAB LIFT: the slab's top-LEFT corner stays where it always was; the top-RIGHT corner rises by this much, steepening the slant from about 2.7 to about 5.1 degrees (4.2u = 60px at 1440px).
-       0 gives the original slant back; 5.5u (80px, about 5.9 degrees) was the steeper try */
-    --slab-lift: calc(4.2 * var(--u));
+    /* THE SLAB SLANT: the slab's top edge runs at about 13.2 degrees (was 5.1; before that 2.7). It is drawn from two heights, --slab-yl (left corner) and --slab-yr (right corner), measured down from the slab box's top.
+       The box rises --slab-lift (24u) above the stage so even this steep edge has room. The edge pivots on the same middle point as the older, flatter slants, and the right corner is raised until the edge catches the last E of LAWRENCE.
+       Picked from index-slant-test.html (look "E"), which keeps the 5, 9 and 0 degree looks for comparison */
+    --slab-lift: calc(24 * var(--u));
+    --slab-yl: calc(32.16 * var(--u));
+    --slab-yr: calc(8.8 * var(--u));
   }
 
   /* the name hangs from the right edge and the blurb stays beside it: that shared header (the right padding, flex-end, the gap, the right-aligned name nudged 10px up, the no-wrap blurb) lives at the end of css/reskin-blue.css.
@@ -68,12 +71,12 @@
     position: absolute;
     left: 0;
     right: 0;
-    top: calc(-1 * var(--slab-lift)); /* the slab's box grows upward by the lift, so there is room to draw the steeper slant */
+    top: calc(-1 * var(--slab-lift)); /* the slab's box grows upward by the lift, so there is room to draw the steep slant */
     height: calc(100% + var(--slab-lift));
     background: var(--blue);
-    /* the slant: the left corner sits (lift + 4.685u) down from the box's top, the right corner at the very top. 4.685u is tied to the window's width instead of the slab's height,
+    /* the slant: the left corner sits --slab-yl down from the box's top, the right corner --slab-yr. Both are tied to the window's width instead of the slab's height,
        so a taller slab keeps the SAME slant. The bottom is flat and hidden behind the flat band (see --slab-bottom in :root) */
-    clip-path: polygon(0 calc(var(--slab-lift) + 4.685 * var(--u)), 100% 0, 100% var(--slab-bottom), 0 var(--slab-bottom));
+    clip-path: polygon(0 var(--slab-yl), 100% var(--slab-yr), 100% var(--slab-bottom), 0 var(--slab-bottom));
   }
   /* the retro sun belongs to the 2017 hero: it is not part of blue */
   .central-shape { display: none; }
