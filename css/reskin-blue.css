@@ -1,15 +1,17 @@
 /* =====================================================================
-   RESKIN SCOUTING MISSION: "Cut Paper", DARK MODE, AMBER + BLUE
-   (a copy of reskin-amber-dark.css where the hero slab is blue #004282 instead of amber; the hero text and shapes are re-coloured to read on it), AMBER VERSION
-   (a copy of reskin.css, the magenta version, with amber #f2a51d as the main brand colour instead of magenta;
-   where text sat on the old magenta it is now ink, because cream on amber is too faint to read)
-   A complete restyle of the home page's markup.
-   Replaces main.css and ui.css for this page. Nothing else on the site loads it.
+   THE 1986 SKIN: BASE STYLESHEET ("Cut Paper", dark, amber + blue)
+   Every page loads this first when the visitor is in the 1986 ("Retro me") skin; the skin switch (js/skin-switch.js) picks it
+   through each page's data-1986 list. It holds the design tokens (colours, type scale, spacing), the header, the footer and
+   the card styles. The page-specific files stack on top of it (home-1986.css, about-1986.css, card-pages.css and so on) and
+   override it where they need to. The 2017 skin ("Old me") does not load it.
 
-   Idea: a print shop's cut-paper collage. Cream paper, hard offset shadows (like misregistered
-   ink), cards tilted a degree or two, outline numerals from CSS counters, a diagonal amber slab
-   for the hero, a vertical title down the side, and the brand palette used loudly.
-   Scouting, not finished: desktop and phone were checked, tablet and edge cases were not polished.
+   Idea: a print shop's cut-paper collage. Dark ground, cream paper, hard offset shadows (like misregistered ink),
+   cards tilted a degree or two, outline numerals from CSS counters, a diagonal blue slab for the hero, a vertical title
+   down the side, and the brand palette used loudly. Amber (#f2a51d) is the main brand colour; where text sits on amber
+   it is ink, because cream on amber is too faint to read.
+
+   History: born 2026-10-18 as a scouting copy of the home page's styles. It has since grown into the base of the whole skin.
+   The name is a fossil: rename it with the go-live naming audit, in one pass, never file by file.
    ===================================================================== */
 
 :root {
