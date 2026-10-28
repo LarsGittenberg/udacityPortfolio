@@ -273,7 +273,7 @@ header {
 	font-size: var(--fs-m);
 	letter-spacing: var(--ls-wide);
 	text-transform: uppercase;
-	color: var(--paper);
+	color: var(--amber);
 }
 
 /* =====================================================================
