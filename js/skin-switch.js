@@ -4,7 +4,7 @@
      1. Picks the skin BEFORE the page paints, so nobody sees the wrong one flash by. Order of choice:
           the address (?skin=2017 or ?skin=1986: that choice is saved and ?skin= is then removed from the address), then the visitor's saved choice, then DEFAULT (below).
      2. Writes that skin's <link> tags, and sets html[data-skin="2017"|"1986"] (the switch's own CSS, css/skin-switch.css, reads it).
-     3. Builds the switch inside the menu overlay (.overlay-content): a "Settings" heading, a label, a sliding button, a label.
+     3. Builds the switch inside the menu overlay (.overlay-content): a "Style settings" heading, a label, a sliding button, a label.
      4. On a click, swaps the stylesheets live (the new ones load first, then the old ones go, so the page never shows naked HTML), saves the choice and reports it to GA4.
    Each page says which stylesheets each skin uses (load it right where the stylesheet links used to be):
      <script src="js/skin-switch.js" data-2017="css/ui.css,css/main.css" data-1986="css/reskin-blue.css"></script>
@@ -48,7 +48,7 @@
     var wrap = document.createElement('div');
     wrap.className = 'skin-switch';
     wrap.innerHTML =
-      '<p class="skin-title">Settings</p>' +
+      '<p class="skin-title">Style settings</p>' +
       '<div class="skin-toggle" id="skinToggle">' +
         '<span class="skin-label" data-skin-label="2017">Old me,<br>2017</span>' +
         '<button type="button" class="skin-button" id="skinButton"><span class="skin-knob"></span></button>' +
