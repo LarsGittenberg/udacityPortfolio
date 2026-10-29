@@ -481,11 +481,12 @@ section.featured-project-card { --mark: var(--magenta); }
 	letter-spacing: var(--ls-label);
 	text-transform: uppercase;
 	box-shadow: var(--shadow-s) var(--shadow-s) 0 var(--btn-shadow, var(--orange)); /* the shadow colour is the variable --btn-shadow: orange unless something sets it (see the modifiers below) */
-	transition: transform var(--t-quick) ease, box-shadow var(--t-quick) ease, background var(--t-quick) ease, color var(--t-quick) ease;
+	transition: box-shadow var(--t-quick) ease, background var(--t-quick) ease, color var(--t-quick) ease;
 }
-.btn:hover { transform: translate(-2px, -2px); box-shadow: var(--shadow-m) var(--shadow-m) 0 var(--btn-shadow, var(--orange)); background: var(--paper); color: var(--ink); }
+/* no lift on hover (it used to be translate(-2px, -2px)): a moving button moves out from under a slow cursor that is grazing its lower edge, hover drops, the button settles, hover returns, and it flickers. Measured 2026-10-28: 92 hover toggles with the lift, 1 without. The hard shadow still grows. */
+.btn:hover { box-shadow: var(--shadow-m) var(--shadow-m) 0 var(--btn-shadow, var(--orange)); background: var(--paper); color: var(--ink); }
 /* BUTTON ON A DARK GROUND (.btn--on-dark): the ink button vanishes against night, night-deep and ink, so this one is paper with ink text and a magenta hard shadow.
-   Use it as  <a class="btn btn--on-dark">. On hover it turns gold (the link highlight's yellow) and lifts like the other button; the arrow draws itself as usual.
+   Use it as  <a class="btn btn--on-dark">. On hover it turns gold (the link highlight's yellow) and its shadow grows like the other button's; the arrow draws itself as usual.
    Its shadow is magenta by default; add .btn--orange for the orange one (see the shadow modifiers below). */
 .btn--on-dark { --btn-shadow: var(--magenta); background: var(--paper); color: var(--ink); }
 .btn--on-dark:hover { background: var(--gold); }
