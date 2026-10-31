@@ -103,7 +103,7 @@ h1 { font-size: clamp(2.6rem, 11vw, 5.4rem); font-weight: 800; letter-spacing: -
 	display: flex; flex-direction: column; justify-content: center;
 	padding: var(--pad);
 	background: var(--blue); color: var(--paper); /* paper on blue is 6.7:1; the old black (2.2:1) and red (1.7:1) would not read on it */
-	font-size: clamp(1.5rem, 5.4vw, 3.1rem); font-weight: 800; letter-spacing: -0.04em; line-height: 1; text-transform: lowercase;
+	font-size: clamp(1.5rem, 5.4vw, 3.1rem); font-weight: 800; letter-spacing: -0.04em; line-height: 1.1; text-transform: lowercase; /* 1.1, up from 1: the lines were nearly touching (descenders against the ascenders below) */
 }
 .hero-tagline .tl { display: block; white-space: nowrap; }
 .hero-tagline .tl:nth-child(3) { margin-left: 0.23em; } /* "playful by" steps right (0.23em = about 10px at 1440px) so the f's top clears the descender of the second p in "perspective" above it */
