@@ -106,7 +106,11 @@ h1 { font-size: clamp(2.6rem, 11vw, 5.4rem); font-weight: 800; letter-spacing: -
 	font-size: clamp(1.5rem, 5.4vw, 3.1rem); font-weight: 800; letter-spacing: -0.04em; line-height: 1.1; text-transform: lowercase; /* 1.1, up from 1: the lines were nearly touching (descenders against the ascenders below) */
 }
 .hero-tagline .tl { display: block; white-space: nowrap; }
-.hero-tagline .tl:nth-child(3) { margin-left: 0.23em; } /* "playful by" steps right (0.23em = about 10px at 1440px) so the f's top clears the descender of the second p in "perspective" above it */
+/* the four lines step right like a staircase, each further than the one above; the offsets were chosen by eye with a slider (tagline-slider-test.html, 2026-10-30) */
+.hero-tagline .tl:nth-child(1) { margin-left: 5px; }
+.hero-tagline .tl:nth-child(2) { margin-left: 24px; }
+.hero-tagline .tl:nth-child(3) { margin-left: calc(32px + 0.23em); } /* 0.23em (about 10px at 1440px) is the older nudge that makes the f's top clear the descender of the second p in "perspective" above it; the 32px is the slider's choice on top */
+.hero-tagline .tl:nth-child(4) { margin-left: 61px; }
 .hero-tagline .tl:nth-child(4) { color: var(--yellow); } /* the one accent: 4.5:1 on blue, and it is large type */
 .central-shape { grid-column: 2; grid-row: 1; background: var(--yellow); min-height: 14rem; } /* the field: a whole cell of pure colour */
 .badge {
