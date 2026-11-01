@@ -14,7 +14,7 @@
    The choice is kept in localStorage ('skinMode'), like the old Colorful / Toned Down toggle kept 'styleMode': it survives closing the window. Storage can be blocked, so it is wrapped in try/catch.
    ===================================================================== */
 (function () {
-  var DEFAULT = '2017'; /* what a first-time visitor sees: ONE value, ONE place. Change it here ('2017' or '1986'). */
+  var DEFAULT = '1986'; /* what a first-time visitor sees: ONE value, ONE place. Change it here ('2017' or '1986'). Retro since 2026-11-01 (git tag pre-retro-default was the 2017 default); visitors who already chose keep their saved choice. The <noscript> fallback links in each page stay 2017 on purpose. */
   var KEY = 'skinMode';
   var root = document.documentElement;
   var me = document.currentScript;
