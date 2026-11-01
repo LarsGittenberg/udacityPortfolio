@@ -33,8 +33,8 @@
        The box rises --slab-lift (24u) above the stage so even this steep edge has room. The edge pivots on the same middle point as the older, flatter slants, and the right corner is raised until the edge catches the last E of LAWRENCE.
        Picked from index-slant-test.html (look "E"), which keeps the 5, 9 and 0 degree looks for comparison */
     --slab-lift: calc(24 * var(--u));
-    --slab-yl: calc(37.76 * var(--u)); /* was 32.16u; both corners moved down 5.6u together, so the slant is the same 23.36u. Picked with experiments/variant-slider.html on 2026-10-28 */
-    --slab-yr: calc(14.4 * var(--u));   /* was 8.8u */
+    --slab-yl: calc(24.24 * var(--u) + 5px); /* FLAT edge since 2026-11-01 (was a slant, 37.76u left / 14.4u right: git tag pre-flat-teal-slab). Both corners are the same height: 24.24u from the box top, then 5px lower. Picked with index-flat-test.html (slab slider) */
+    --slab-yr: var(--slab-yl);          /* flat: the right corner equals the left */
   }
 
   /* the name hangs from the right edge and the blurb stays beside it: that shared header (the right padding, flex-end, the gap, the right-aligned name nudged 10px up, the no-wrap blurb) lives at the end of css/reskin-blue.css.
@@ -73,11 +73,20 @@
     right: 0;
     top: calc(-1 * var(--slab-lift)); /* the slab's box grows upward by the lift, so there is room to draw the steep slant */
     height: calc(100% + var(--slab-lift));
-    background: var(--blue);
-    /* the slant: the left corner sits --slab-yl down from the box's top, the right corner --slab-yr. Both are tied to the window's width instead of the slab's height,
+    /* THE TEAL GRID (look E of index-flat-test.html, 2026-11-01): squares in the page ground (--night, written out as #171412 inside the tile image, which cannot read CSS variables), the gaps are 1px lines
+       shaded deep blue > slate blue > dark teal by a gradient from bottom left to top right. The tiles are a FIXED 14.24px (the Doto cell of the name at 1440, 23.04px, divided by phi), centred, so a narrower window shows fewer squares instead of squashed ones.
+       Both layers are anchored at the visible top edge (--slab-yl), because the top of the box is clipped away; the grid starts half a line lower (+0.5px) so the first line gets its full 1px.
+       The old flat blue is git tag pre-flat-teal-slab */
+    background:
+      url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCA1MiA1MiIgcHJlc2VydmVBc3BlY3RSYXRpbz0ibm9uZSI+PHJlY3QgeD0iMS44MjU5IiB5PSIxLjgyNTkiIHdpZHRoPSI0OC4zNDgyIiBoZWlnaHQ9IjQ4LjM0ODIiIGZpbGw9IiMxNzE0MTIiLz48L3N2Zz4=") center calc(var(--slab-yl) + 0.5px) / 14.24px 14.24px repeat,
+      linear-gradient(to top right, #15233d 0%, #142f44 35%, #13383d 68%, #164540 100%) 0 var(--slab-yl) / 100% calc(100% - var(--slab-yl)) no-repeat,
+      var(--night);
+    /* the edge: the left corner sits --slab-yl down from the box's top, the right corner --slab-yr. Both are tied to the window's width instead of the slab's height,
        so a taller slab keeps the SAME slant. The bottom is flat and hidden behind the flat band (see --slab-bottom in :root) */
     clip-path: polygon(0 var(--slab-yl), 100% var(--slab-yr), 100% var(--slab-bottom), 0 var(--slab-bottom));
   }
+  /* the tagline under the name sits 4px higher than the shared header rule puts it (relative + top ignores the 180deg rotation in this skin) */
+  .header-container p { position: relative; top: -4px; }
   /* the retro sun belongs to the 2017 hero: it is not part of blue */
   .central-shape { display: none; }
 
