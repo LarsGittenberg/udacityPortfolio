@@ -85,6 +85,16 @@
        so a taller slab keeps the SAME slant. The bottom is flat and hidden behind the flat band (see --slab-bottom in :root) */
     clip-path: polygon(0 var(--slab-yl), 100% var(--slab-yr), 100% var(--slab-bottom), 0 var(--slab-bottom));
   }
+  /* CLICK THE SLAB: the hero cycles through three looks (teal grid > flat blue > purple grid > teal, see the small script at the bottom of index.html, which sets data-look on the hero). No data-look = the teal grid above, so the page starts on it.
+     blue = the slab as it was before the grid (plain --blue); purple = look C of index-flat-test.html: the same night squares on a FIXED 32.26px tile (the Doto cell 23.04px x 1.4, the winner of three blind rounds),
+     lines glazed 60% from --purple (bottom left) to --magenta (top right) with color-mix, no opacity. Anchored at the visible edge like the teal grid. Nothing is remembered: a reload starts on teal again. */
+  div.hero-container { cursor: pointer; }
+  div.hero-container a, div.hero-container button { cursor: auto; } /* real links keep their own pointer (the browser's default for a link is a hand) */
+  div.hero-container[data-look="blue"]::before { background: var(--blue); }
+  div.hero-container[data-look="purple"]::before { background:
+      url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCA1MiA1MiIgcHJlc2VydmVBc3BlY3RSYXRpbz0ibm9uZSI+PHJlY3QgeD0iMC44MDYwIiB5PSIwLjgwNjAiIHdpZHRoPSI1MC4zODgxIiBoZWlnaHQ9IjUwLjM4ODEiIGZpbGw9IiMxNzE0MTIiLz48L3N2Zz4=") center calc(var(--slab-yl) + 0.5px) / 32.26px 32.26px repeat,
+      linear-gradient(to top right, color-mix(in srgb, var(--purple) 60%, var(--night)) 0%, color-mix(in srgb, var(--magenta) 60%, var(--night)) 100%) 0 var(--slab-yl) / 100% calc(100% - var(--slab-yl)) no-repeat,
+      var(--night); }
   /* the tagline under the name sits 4px higher than the shared header rule puts it (relative + top ignores the 180deg rotation in this skin) */
   .header-container p { position: relative; top: -4px; }
   /* the retro sun belongs to the 2017 hero: it is not part of blue */

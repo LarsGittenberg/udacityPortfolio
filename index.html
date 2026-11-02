@@ -318,6 +318,22 @@ document.addEventListener("DOMContentLoaded", function() {
 });
 </script>
 
+<!-- Click the slab (retro skin only): the hero cycles teal grid > flat blue > purple grid > teal. The looks themselves live in css/home-1986.css (div.hero-container[data-look]). Not remembered on reload. -->
+<script>
+(function () {
+  var hero = document.querySelector('.hero-container');
+  if (!hero) { return; }
+  var order = ['', 'blue', 'purple']; // '' = no data-look = the teal grid, the starting look
+  var at = 0;
+  hero.addEventListener('click', function (e) {
+    if (document.documentElement.getAttribute('data-skin') !== '1986') { return; } // the 2017 hero has no slab
+    if (e.target.closest('a, button')) { return; } // a real link or button inside the hero keeps its own job
+    at = (at + 1) % order.length;
+    if (order[at]) { hero.setAttribute('data-look', order[at]); } else { hero.removeAttribute('data-look'); }
+  });
+})();
+</script>
+
 <script src="js/design.js"></script>
 
 
