@@ -117,10 +117,10 @@ h1 { font-size: clamp(2.6rem, 11vw, 5.4rem); font-weight: 800; letter-spacing: -
 	grid-column: 2; grid-row: 1; place-self: center; /* centred in its cell, both ways */
 	position: relative; width: calc(min(78%, 20rem) * var(--portrait)); aspect-ratio: 1;
 }
-.badge-circle { display: none; } /* the yellow disc behind the portrait: hidden, so the face stands straight on the blue field */
+.badge-circle { position: absolute; left: 7%; top: 8%; width: 86%; aspect-ratio: 1; border-radius: 50%; background: var(--paper); } /* the paper-coloured disc behind the portrait (red read as the Japanese flag; blue and ink were tried too, and ink made the head look like a hairstyle), sized like the about page's sun-disc (86% wide, 7% in) but sitting lower (8% down, up from 2%) so the shoulders break out past its edge */
 .badge-face { position: absolute; inset: 0; filter: grayscale(1) sepia(0.5) brightness(1); } /* the thumbnails' treatment (.project-image), set once on the wrapper so all five face layers get it; brightness is 1 here (the thumbnails use 0.95 to match the paper) because the face looked a little dark */
 .badge-face img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: contain; }
-.badge-face .zip { animation: rise 0.9s cubic-bezier(0.2, 0.7, 0.2, 1) calc(0.2s + var(--i) * 0.25s) both; } /* the five face layers rise one after another; with no disc to wait for, they start sooner (0.9s became 0.2s) */
+.badge-circle.zip, .badge-face .zip { animation: rise 0.9s cubic-bezier(0.2, 0.7, 0.2, 1) calc(1.2s + var(--i) * 0.25s) both; } /* the five face layers rise one after another, and the disc comes up last, like the retro skin (the disc is --i:9, so it starts 2.25s after the first face layer). The whole sequence waits 1.2s (was 0.2s: a one second delay, 2026-11-05); to undo, change 1.2s back to 0.2s */
 @keyframes rise { from { transform: translateY(6%); opacity: 0; } }
 
 /* ---------- the six tiles ---------- */
@@ -186,6 +186,17 @@ footer .text-link { color: var(--paper); font-size: 1rem; font-weight: 600; text
 footer .text-link:hover { color: var(--ink); }
 footer .copyright { order: -1; font-size: 0.75rem; opacity: 0.6; } /* the copyright goes first (left); the browser's link-address bubble pops up at the bottom left on hover and would cover the social links there */
 footer p:first-child { margin-left: auto; } /* "Find me in:" takes all the spare room on its left, which pushes it and the three links to the right edge */
+/* narrow screens: the social links never break into two rows. Below 760px the copyright takes a row of its own (so the links have the full width), and below 560px the "Find me in:" label steps aside (still read aloud) and the links shrink a little with the screen. The markup is untouched */
+@media (max-width: 759px) {
+	footer { flex-wrap: wrap; justify-content: flex-end; column-gap: clamp(0.8rem, 4vw, 1.8rem); }
+	footer .copyright { flex: 0 0 100%; }
+}
+@media (max-width: 559px) {
+	footer p:first-child { position: absolute; width: 1px; height: 1px; overflow: hidden; clip-path: inset(50%); }
+	footer { flex-wrap: wrap; padding-left: var(--pad-s); padding-right: var(--pad-s); }
+	footer .copyright { flex: 0 0 100%; }
+	footer .text-link { font-size: clamp(0.8125rem, 4vw, 1rem); white-space: nowrap; }
+}
 .statcounter { display: none; }
 
 /* ---------- tablets: three tiles across ---------- */
@@ -210,8 +221,16 @@ footer p:first-child { margin-left: auto; } /* "Find me in:" takes all the spare
 	.flex-container-child-projects:nth-child(4) { background: var(--yellow); }
 }
 
+/* ---------- tablets and laptops: more air around the button. The text area is only as tall as its words, so in a full tile the button sat right under the Tools line; the list now keeps a 21px gap above the button, and the bottom edge is 21px too (the pictures don't change) ---------- */
+@media (min-width: 700px) and (max-width: 1399px) {
+	.featured-project-card { padding-bottom: var(--pad); }
+	.featured-project-card ul { margin-bottom: var(--pad); }
+	.flex-container-child-projects:nth-child(3) .featured-project-card { padding-bottom: 0; } /* Swiss Post is turned over: its button's own margin is the bottom edge */
+	.flex-container-child-projects:nth-child(3) .btn { margin-bottom: var(--pad); }
+}
+
 /* ---------- desktop: the whole board fits the window. Column 1 is a narrow strip of colour; 12 columns follow ---------- */
-@media (min-width: 1240px) {
+@media (min-width: 1400px) {
 	body {
 		grid-template-columns: clamp(28px, 3vw, 44px) repeat(12, 1fr);
 		grid-template-rows: minmax(15.5rem, 0.9fr) minmax(0, 1.6fr) auto;
@@ -236,14 +255,11 @@ footer p:first-child { margin-left: auto; } /* "Find me in:" takes all the spare
 	.flex-container-child-projects:nth-child(1) { grid-column: 2 / 4; }
 	footer { grid-row: 3; }
 }
-@media (min-width: 1240px) and (max-width: 1399px) {
-	.btn { white-space: normal; } /* the tiles are narrower here than a one-line label needs, so it wraps instead of spilling over the line */
-}
-@media (min-width: 1240px) and (min-height: 1000px) {
+@media (min-width: 1400px) and (min-height: 1000px) {
 	.featured-project-card p { font-size: 0.875rem; }
 }
 
 @media (prefers-reduced-motion: reduce) {
-	.badge-face .zip { animation: none; }
+	.badge-circle.zip, .badge-face .zip { animation: none; }
 	.overlay, .btn-arrow { transition: none; }
 }
