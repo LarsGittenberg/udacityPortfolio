@@ -76,9 +76,10 @@
     /* THE TEAL GRID (look E of index-flat-test.html, 2026-11-01): squares in the page ground (--night, written out as #171412 inside the tile image, which cannot read CSS variables), the gaps are 1px lines
        shaded deep blue > slate blue > dark teal by a gradient from bottom left to top right. The tiles are a FIXED 14.24px (the Doto cell of the name at 1440, 23.04px, divided by phi), centred, so a narrower window shows fewer squares instead of squashed ones.
        Both layers are anchored at the visible top edge (--slab-yl), because the top of the box is clipped away; the grid starts half a line lower (+0.5px) so the first line gets its full 1px.
-       The old flat blue is git tag pre-flat-teal-slab */
+       The old flat blue is git tag pre-flat-teal-slab.
+       TILTED 20 DEGREES (2026-11-05, chosen by eye with index-tilt-test.html): the first layer is now an SVG pattern (same 14.24px tile, 1px gaps, night squares) rotated 20deg by patternTransform, stretched over the whole box. A background image cannot be rotated, which is why it is a pattern. To change the angle, edit rotate(20) in the SVG (decode the base64) or ask for a fresh slider; for the straight grid, git show 7fd2417:css/home-1986.css. The purple look below is not tilted. */
     background:
-      url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCA1MiA1MiIgcHJlc2VydmVBc3BlY3RSYXRpbz0ibm9uZSI+PHJlY3QgeD0iMS44MjU5IiB5PSIxLjgyNTkiIHdpZHRoPSI0OC4zNDgyIiBoZWlnaHQ9IjQ4LjM0ODIiIGZpbGw9IiMxNzE0MTIiLz48L3N2Zz4=") center calc(var(--slab-yl) + 0.5px) / 14.24px 14.24px repeat,
+      url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciPjxkZWZzPjxwYXR0ZXJuIGlkPSJnIiB3aWR0aD0iMTQuMjQiIGhlaWdodD0iMTQuMjQiIHBhdHRlcm5Vbml0cz0idXNlclNwYWNlT25Vc2UiIHBhdHRlcm5UcmFuc2Zvcm09InJvdGF0ZSgyMCkiPjxyZWN0IHg9IjAuNSIgeT0iMC41IiB3aWR0aD0iMTMuMjQiIGhlaWdodD0iMTMuMjQiIGZpbGw9IiMxNzE0MTIiLz48L3BhdHRlcm4+PC9kZWZzPjxyZWN0IHdpZHRoPSIxMDAlIiBoZWlnaHQ9IjEwMCUiIGZpbGw9InVybCgjZykiLz48L3N2Zz4=") 0 0 / 100% 100% no-repeat,
       linear-gradient(to top right, #15233d 0%, #142f44 35%, #13383d 68%, #164540 100%) 0 var(--slab-yl) / 100% calc(100% - var(--slab-yl)) no-repeat,
       var(--night);
     /* the edge: the left corner sits --slab-yl down from the box's top, the right corner --slab-yr. Both are tied to the window's width instead of the slab's height,
