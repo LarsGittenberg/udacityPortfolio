@@ -382,7 +382,7 @@ section.featured-project-card:hover { transform: rotate(0deg) translate(-4px, -4
 
 /* each card's paper colour, text colour and tilt */
 .flex-container-child-projects:nth-child(6n+1) section.featured-project-card { --panel-bg: var(--teal); --panel-ink: var(--cream-text); --tilt: -0.8deg; border-radius: var(--cut-tr); }
-.flex-container-child-projects:nth-child(6n+2) section.featured-project-card { --panel-bg: var(--orange);  --panel-ink: var(--ink);        --tilt: 1.6deg; }
+.flex-container-child-projects:nth-child(6n+2) section.featured-project-card { --panel-bg: var(--paper);   --panel-ink: var(--ink);        --panel-shadow: var(--orange); /* card 2: paper panel, orange shadow (was an orange panel with the default amber shadow; to undo, git revert tag card2-paper-orange-shadow) */ --tilt: 1.6deg; }
 .flex-container-child-projects:nth-child(6n+3) section.featured-project-card { --panel-bg: var(--amber);   --panel-ink: var(--ink);        --panel-shadow: var(--paper); /* card 3 (amber) casts a cream shadow: amber on amber read as a thicker edge of the card itself. Delete --panel-shadow here to bring the amber back */ --tilt: 1deg; }
 .flex-container-child-projects:nth-child(6n+4) section.featured-project-card { --panel-bg: var(--blue);    --panel-ink: var(--cream-text); --tilt: -1.4deg; border-radius: var(--cut-tr); }
 .flex-container-child-projects:nth-child(6n+5) section.featured-project-card { --panel-bg: var(--purple);  --panel-ink: var(--cream-text); --tilt: -0.5deg; border-radius: var(--cut-tl); }
