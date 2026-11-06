@@ -97,6 +97,7 @@
       var(--night); }
   /* the tagline under the name sits 4px higher than the shared header rule puts it (relative + top ignores the 180deg rotation in this skin) */
   .header-container p { position: relative; top: -4px; }
+  @media (max-width: 440px) { .header-container p { top: 4px; } } /* small phones: 8px lower than the rule above (the -4px lift cancelled, then 4px more); to undo, delete this line */
   /* the retro sun belongs to the 2017 hero: it is not part of blue */
   .central-shape { display: none; }
 
