@@ -501,6 +501,8 @@ section.featured-project-card .btn { position: relative; margin: 24px 0 0; } /* 
    paper face (dark grounds):  .btn.btn--on-dark (magenta)   or  .btn.btn--on-dark.btn--orange */
 .btn--orange { --btn-shadow: var(--orange); }
 .btn--magenta { --btn-shadow: var(--magenta); }
+/* GOLD HOVER (.btn--gold): for the ink button on a light ground. On hover the face turns gold instead of paper (text stays ink); the shadow grows as usual. Use it as  <a class="btn btn--gold">, and add .btn--magenta for the magenta shadow. It sits after .btn:hover and has the same priority, so it wins. */
+.btn--gold:hover { background: var(--gold); color: var(--ink); }
 
 /* =====================================================================
    FOOTER: an ink slab with the initials in amber, cropped
