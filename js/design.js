@@ -32,64 +32,6 @@ if (isTouchOnly && !prefersReducedMotion && 'IntersectionObserver' in window) {
 	});
 }
 
-// HERO COLLAPSE (proof of concept): once the intro has assembled, the hero's bottom edge
-// rises until the hero is gone, so the project cards come into view.
-// Plays once per browser session; skipped for reduced motion or if the visitor starts scrolling first.
-var hero = document.querySelector('.hero-container');
-var heroTagline = document.getElementById('tagline');
-
-if (hero && heroTagline && !prefersReducedMotion) {
-	var HERO_INTRO_MS = 6000; // roughly when the intro is done: the staggered face is solid by ~6.1s, the other fade by ~7.4s, the sun by 6s
-	var HERO_HOLD_MS = 3999;  // pause so the finished face and tagline can be enjoyed (was 2500)
-	var HERO_COLLAPSE_MS = 1200; // keep in step with the transition time in main.css
-
-	var collapseHero = function(animate) {
-		hero.style.height = hero.offsetHeight + 'px'; // height:auto can't animate, so pin the current height first
-		if (animate) {
-			hero.classList.add('hero-collapsing');
-			void hero.offsetHeight; // force the browser to register the pinned height before changing it
-		}
-		hero.style.height = '0px';
-		if (animate) { setTimeout(finishHeroCollapse, HERO_COLLAPSE_MS + 100); } // backup in case transitionend doesn't fire
-		if (!animate) { hideHeroIfGone(); } // (when animating, finishHeroCollapse does it once the hero has really shrunk)
-		try { sessionStorage.setItem('heroCollapsed', '1'); } catch (e) {}
-	};
-
-	// the hero now holds the tagline and the face, so it may only be hidden from screen readers if it really is gone: a skin can keep it open
-	// (the 1986 skin forces its height), and then its content is still on screen and must stay readable
-	var hideHeroIfGone = function() {
-		if (hero.offsetHeight === 0) { hero.setAttribute('aria-hidden', 'true'); } // nothing left to see, so hide it from screen readers too
-	};
-
-	// remove the transition class when done, so window resizes don't animate
-	var finishHeroCollapse = function() {
-		if (!hero.classList.contains('hero-collapsing')) { return; }
-		hideHeroIfGone();
-		hero.classList.remove('hero-collapsing');
-		if (window.Waypoint) { Waypoint.refreshAll(); } // hero is shorter now; recalculate waypoint positions
-	};
-	hero.addEventListener('transitionend', function(e) {
-		if (e.target === hero) { finishHeroCollapse(); }
-	});
-
-	var alreadySeen = false;
-	try { alreadySeen = sessionStorage.getItem('heroCollapsed') === '1'; } catch (e) {}
-
-	if (alreadySeen) {
-		collapseHero(false); // returning within this session: start collapsed, no animation
-	} else {
-		var heroTimer;
-		var cancelHeroCollapse = function() { clearTimeout(heroTimer); };
-		// if the visitor is already scrolling or tapping, don't move the cards under their finger
-		['scroll', 'wheel', 'touchstart', 'keydown', 'mousedown'].forEach(function(evt) {
-			window.addEventListener(evt, cancelHeroCollapse, { once: true, passive: true });
-		});
-		$(function() { // DOM ready, the same starting gun as the face and the sun, so the timing doesn't wait on slow downloads
-			heroTimer = setTimeout(function() { collapseHero(true); }, HERO_INTRO_MS + HERO_HOLD_MS);
-		});
-	}
-}
-
 // hero animation triggered as soon as the HTML is read (DOM ready), not when every image and script
 // has finished downloading ('load'). The tagline unscramble in index.html uses the same moment.
 $(assembleImgLayers);

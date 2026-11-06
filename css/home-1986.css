@@ -52,14 +52,14 @@
     margin-top: calc(-6.3 * var(--u));
     margin-bottom: calc(-2 * var(--band-rise)); /* the flat band sits higher than the old tilted band's low left end did; this pulls the cards up by that same amount so the gap below the band is unchanged */
   }
-  /* the hero container now HOLDS the tagline, the shapes and the face badge (in 2017 it is the old hero block, and design.js collapses it), so it can no longer be the clipped blue slab:
+  /* the hero container now HOLDS the tagline, the shapes and the face badge (in 2017 it is the old hero block), so it can no longer be the clipped blue slab:
      it would clip everything inside it. It is the stage's own box (everything inside is placed exactly as it was inside the stage), and the slab is drawn by its ::before */
   div.hero-container {
     position: absolute;
     inset: 0;
     display: block;
     min-height: 0;
-    height: 100% !important; /* the old rule said 100% !important, so this has to shout too (and it keeps design.js from collapsing the hero in this skin) */
+    height: 100% !important; /* the old rule said 100% !important, so this has to shout too */
     margin-top: 0;
     padding: 0;
     background: none;
