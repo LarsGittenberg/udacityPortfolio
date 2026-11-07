@@ -98,7 +98,6 @@
       var(--night); }
   /* the tagline under the name sits 4px higher than the shared header rule puts it (relative + top ignores the 180deg rotation in this skin) */
   .header-container p { position: relative; top: -4px; }
-  @media (max-width: 440px) { .header-container p { top: 4px; } } /* small phones: 8px lower than the rule above (the -4px lift cancelled, then 4px more); to undo, delete this line */
   /* the retro sun belongs to the 2017 hero: it is not part of blue */
   .central-shape { display: none; }
 
@@ -170,6 +169,7 @@
      The face badge leaves the tagline's side and moves to the top of the screen, centred, at its full 200px.
      The tagline slides right into the space it left, lined up with the right edge of the name. */
   @media (max-width: 899px) {
+    .header-container p { top: 4px; } /* stacked layout: the tagline sits 8px lower than on desktop (the -4px lift above cancelled, then 4px more), level with the bottom of the name. To undo, delete this line */
     .badge {
       --size: 200px; /* its widest size, instead of shrinking down to 140px */
       left: calc(50% - var(--size) / 2); /* centred left-to-right on the screen */
