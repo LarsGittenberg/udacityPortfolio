@@ -751,6 +751,33 @@ footer::after {
 @media (min-width: 900px) { .lay-switch { display: flex; } }
 
 /* =====================================================================
+   PROJECT PAGER (a site component): "Previous" and "Next" panels above the footer of every case study and gallery. The markup is the same on every page (a <nav class="project-pager">
+   in the HTML); each category loops (Web Design 5, Graphic Design 4, Photography 3), in its category page's card order. The 2017 skin hides it (common-2017.css).
+   Two cut panels, built only from the design system: the cut corner, the hard shadow, Doto numerals, mono labels, Montserrat titles. They mirror each other: the cut corner, the shadow, the arrow and the text alignment all flip.
+   The numeral is the project's place in its category (Pride365 is 1 of 5).
+   ===================================================================== */
+.project-pager { display: grid; grid-template-columns: 1fr 1fr; gap: var(--gap); padding: 0 var(--pad); margin: clamp(56px, 9vw, 110px) 0; }
+.project-pager a { display: grid; grid-template-columns: 1fr auto; grid-template-areas: "label num" "title title"; align-items: start; row-gap: 14px; padding: 20px 26px 26px; min-height: 130px; text-decoration: none; color: var(--paper); background: var(--night); border: 2px solid var(--paper); transition: box-shadow var(--t-quick) ease, background var(--t-quick) ease, color var(--t-quick) ease; }
+.pager-label { grid-area: label; font-family: var(--font-mono); font-size: var(--fs-xs); letter-spacing: var(--ls-wide); text-transform: uppercase; }
+.pager-num { grid-area: num; font-family: var(--font-display); font-weight: 900; font-size: clamp(1.8rem, 3.2vw, 2.8rem); line-height: 0.9; letter-spacing: var(--ls-display); color: var(--amber); }
+.pager-title { grid-area: title; font-family: var(--font-body); font-weight: 600; font-size: clamp(1.05rem, 2vw, 1.55rem); line-height: 1.15; letter-spacing: var(--ls-heading); align-self: end; }
+/* previous: the cut corner on the top left, the shadow to the lower left, the arrow before the label */
+.pager-prev { border-radius: var(--cut-tl); }
+.pager-prev a { border-radius: calc(var(--cut) * 0.7) 0 0 0; box-shadow: calc(var(--shadow-l) * -1) var(--shadow-l) 0 var(--magenta); }
+.pager-prev .pager-label::before { content: "\2190\00a0\00a0"; position: relative; top: -1px; } /* the arrow sits 1px high: optically centred on the capitals (an inline box ignores vertical padding, so relative + top does the lifting) */
+/* next: the mirror. Its face is amber, the brand colour, because it is the way forward */
+.project-pager .pager-next { text-align: right; }
+.pager-next a { grid-template-areas: "num label" "title title"; grid-template-columns: auto 1fr; border-radius: 0 calc(var(--cut) * 0.7) 0 0; background: var(--amber); color: var(--ink); border-color: var(--amber); box-shadow: var(--shadow-l) var(--shadow-l) 0 var(--magenta); }
+.pager-next .pager-num { color: var(--ink); }
+.pager-next .pager-label::after { content: "\00a0\00a0\2192"; position: relative; top: -1px; } /* same 1px lift as the left arrow */
+/* hover: the shadow grows (the system's card rule) and the face changes colour. No lift: a moving thing under the cursor flickers. */
+.pager-prev a:hover { background: var(--paper); color: var(--ink); box-shadow: calc(var(--shadow-xl) * -1) var(--shadow-xl) 0 var(--magenta); }
+.pager-prev a:hover .pager-num { color: var(--ink); }
+.pager-next a:hover { background: var(--gold); border-color: var(--gold); box-shadow: var(--shadow-xl) var(--shadow-xl) 0 var(--magenta); }
+.project-pager a:focus-visible { outline: 3px solid var(--mint-bright); outline-offset: 4px; }
+@media (max-width: 559px) { .project-pager { grid-template-columns: 1fr; row-gap: calc(var(--gap) + 8px); } }
+
+/* =====================================================================
    THE PAGE HEADER AND THE PAGE TITLE: shared by every blue page, the home page included (formerly the first layer of css/card-pages.css, with an identical copy in css/home-1986.css).
    It sits at the END of this file on purpose: it used to load as the next file after this one, so it must still win over everything above it. The home page keeps only its own extras on top.
    ===================================================================== */
