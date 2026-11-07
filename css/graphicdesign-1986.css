@@ -1,6 +1,6 @@
 /* =====================================================================
    GRAPHIC DESIGN, 1986 (blue): this page's own CSS, formerly an inline <style> in graphicdesign-test.html. It only exists in the 1986 skin (data-1986 in the skin-switch script),
-   so it cannot leak into 2017. It loads after reskin-blue.css, card-pages.css and transitions.css, as the inline block always did.
+   so it cannot leak into 2017. It loads after base-1986.css, card-pages.css and transitions.css, as the inline block always did.
    ===================================================================== */
 
   /* CARD 3 (DRØM): the dome frame is 4:3 and the picture is 5:3, so "cover" cropped the sides and the curve clipped the D and M. "contain" shows the whole picture at 80%;

@@ -65,7 +65,7 @@ Why uploading whole folders is safe: of the 27 files in `css/` and `js/`, **23 a
 | 12 | `css/home-2017.css` | 1.2 KB | new |
 | 13 | `css/icons-1986.css` | 1.1 KB | new |
 | 14 | `css/photography-1986.css` | 0.7 KB | new |
-| 15 | `css/reskin-blue.css` | 49.1 KB | new |
+| 15 | `css/base-1986.css` | 49.1 KB | new |
 | 16 | `css/skin-switch.css` | 2.4 KB | new |
 | 17 | `css/transitions.css` | 4.1 KB | new |
 | 18 | `css/main.css` | 26.5 KB | changed (overwrites the live copy) |
@@ -75,7 +75,7 @@ Why uploading whole folders is safe: of the 27 files in `css/` and `js/`, **23 a
 | 22 | `js/skin-switch.js` | 5.9 KB | new |
 | 23 | `js/design.js` | 6.8 KB | changed (overwrites the live copy) |
 
-- [ ] Step 1 uploaded. Spot-check in the browser: `https://www.lawrencegetubig.com/css/reskin-blue.css` shows CSS, and `https://www.lawrencegetubig.com/js/before-after.js` shows code, not a 404.
+- [ ] Step 1 uploaded. Spot-check in the browser: `https://www.lawrencegetubig.com/css/base-1986.css` shows CSS, and `https://www.lawrencegetubig.com/js/before-after.js` shows code, not a 404.
 
 ### Step 2: the 17 pages: the swap. Upload them together, without a pause between.
 
@@ -139,7 +139,7 @@ Wait at least a day, so no visitor still holds the old pages' cache. Then:
 - StatCounter stays (your decision of 2026-10-25).
 - The illustration colour palette (`--yellow` and the browns) stays in `main.css`.
 - The menu pulse is retired but kept: tag `retired-menu-pulse`, and a live demo in the design-system guide, section 11.
-- `design-system-blue.html`, the parked workbench pages and `experiments/` are **not** uploaded.
+- `design-system-1986.html`, the parked workbench pages and `experiments/` are **not** uploaded.
 - The favicon files exist on the host but not in this repository (`favicon.svg`, `favicon.png`, `apple-touch-icon.png`). They are safe, just unversioned: add them to the repo when convenient.
 - Only the live site's HTML could not be read by the audit (the host refuses scripted requests for pages), so the HTML caching rules are unknown: check once in your browser's Network tab.
 

@@ -1,12 +1,12 @@
 /* =====================================================================
    ABOUT, 1986 (blue): this page's own CSS, formerly an inline <style> in about-test.html. It only exists in the 1986 skin (data-1986 in the skin-switch script),
-   so it cannot leak into 2017. It loads after reskin-blue.css and card-pages.css, as the inline block always did.
+   so it cannot leak into 2017. It loads after base-1986.css and card-pages.css, as the inline block always did.
    ===================================================================== */
 
   /* =====================================================================
      ABOUT PAGE: an exhibit-panel spread. Mid-century moves: extreme scale contrast (giant display type beside tiny mono captions),
      a vocabulary of pure shapes (circle, triangle, half-circle, diamond), flat colour blocks, and one element that breaks its frame.
-     Everything here is prefixed ab- so it cannot collide with the card styles in reskin-blue.css.
+     Everything here is prefixed ab- so it cannot collide with the card styles in base-1986.css.
      ===================================================================== */
   .about-grid { --row-gap: clamp(64px, 9vw, 130px); grid-template-columns: minmax(0, 1fr); row-gap: var(--row-gap); }
   /* the pull quote is the last thing in its section, so the grid's row gap is added to its bottom margin. It keeps only the remainder, so the space below the attribution (margin + gap) equals the space above the quote (--quote-space) at every window size */
@@ -211,8 +211,8 @@
     .ab-said h3 { margin-bottom: calc(var(--qm-over) + 40px); font-size: var(--fs-title-sm); letter-spacing: var(--ls-heading); } /* below 900px the title follows the About h2's exact size formula (card-pages.css) and its letter spacing, so the two headings are twins */
     .ab-notes { gap: calc(var(--qm-over) + 56px); }
   }
-  /* the card itself (padding, the quote mark, text, hover) is .quote--card in reskin-blue.css; this page adds its two colours and where they sit */
-  /* THE ATTRIBUTION ("— Name, role"): one style for every quote on the page, now the shared ".quote figcaption" in reskin-blue.css. The colour is inherited (cream on the purple and teal cards and on the blue panel), so only the background decides it.
+  /* the card itself (padding, the quote mark, text, hover) is .quote--card in base-1986.css; this page adds its two colours and where they sit */
+  /* THE ATTRIBUTION ("— Name, role"): one style for every quote on the page, now the shared ".quote figcaption" in base-1986.css. The colour is inherited (cream on the purple and teal cards and on the blue panel), so only the background decides it.
      The rule below is only for the blue stat panel, whose attribution is still a paragraph: it has to beat the panel's own caption rule (.ab-figure-note p), which is why it is written with the extra class. */
   .ab-figure-note p.ab-by { margin: 18px 0 0; font-size: var(--fs-xs); letter-spacing: var(--ls-label); line-height: var(--lh-text); text-transform: uppercase; }
   .ab-by strong { font-weight: 600; }

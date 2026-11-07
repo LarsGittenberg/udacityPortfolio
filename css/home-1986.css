@@ -2,15 +2,15 @@
    HOME PAGE, 1986 (blue): the hero + body meld. This is the page's own CSS, formerly an inline <style> in index-test.html.
    It is blue-specific (the slab, the badge, the band, the corner shapes, the vertical title), so it loads ONLY in the 1986 skin (index-test.html: data-1986 in the skin-switch script).
    Inline, it applied in both skins and left vestiges of blue on the 2017 look; as a file in one skin's list, it cannot.
-   It must load AFTER reskin-blue.css and transitions.css (it was inline, below them), so it keeps the same precedence it always had.
+   It must load AFTER base-1986.css and transitions.css (it was inline, below them), so it keeps the same precedence it always had.
    ===================================================================== */
   /* =====================================================================
-     HERO + BODY MELD: the hero test's hero, set on top of the blue page's cards. Everything here overrides css/reskin-blue.css,
+     HERO + BODY MELD: the hero test's hero, set on top of the blue page's cards. Everything here overrides css/base-1986.css,
      which is left untouched. Layout numbers come from the Figma PNG (1263px wide, 1:1),
      expressed in --u so the whole composition scales with the screen (1 --u = 1% of the width, capped at the 1440px body).
      ===================================================================== */
   :root {
-    /* --u (1% of the width, capped at 14.4px) and --h2-scale are defined once, in css/reskin-blue.css */
+    /* --u (1% of the width, capped at 14.4px) and --h2-scale are defined once, in css/base-1986.css */
     /* the zip-up dials: one set of numbers tunes the whole entrance */
     --zip-start: 1200ms;  /* wait before the first piece moves (was 200ms, then 700ms; each +0.5s so the face doesn't start the instant the page loads) */
     --zip-stagger: 250ms; /* gap between one piece and the next */
@@ -37,7 +37,7 @@
     --slab-yr: var(--slab-yl);          /* flat: the right corner equals the left */
   }
 
-  /* the name hangs from the right edge and the blurb stays beside it: that shared header (the right padding, flex-end, the gap, the right-aligned name nudged 10px up, the no-wrap blurb) lives at the end of css/reskin-blue.css.
+  /* the name hangs from the right edge and the blurb stays beside it: that shared header (the right padding, flex-end, the gap, the right-aligned name nudged 10px up, the no-wrap blurb) lives at the end of css/base-1986.css.
      Only what is special to the home page stays here */
   .header-container { align-items: flex-end; } /* the blue page's pillar: the blurb is the tallest item, so it sets the row's height and the name rests at its foot */
   .header-container h1 { font-size: clamp(3.8rem, 16vw, 16.5rem); } /* the home page's own, bigger name */
@@ -162,7 +162,7 @@
     white-space: nowrap;
     background: var(--amber);
     color: var(--ink);
-    --s1: var(--magenta); --s2: var(--teal); --s3: var(--blue); /* the three shape colours; the moving text itself (.band-track) is written once, in css/reskin-blue.css */
+    --s1: var(--magenta); --s2: var(--teal); --s3: var(--blue); /* the three shape colours; the moving text itself (.band-track) is written once, in css/base-1986.css */
   }
 
   /* ===== STACKED LAYOUT: 899px and below (was 699px; moved to match the cards' breakpoint. To undo, change 899 back to 699) =====
@@ -183,7 +183,7 @@
 
   /* PAGE TITLE, as chosen on the graphic design test page: a large pillar ("Home", no colon: turned sideways, a Doto colon's dots land side by side and read as "++") with a small descriptor beside it ("Featured Projects"), both hung from the top of the column.
      On desktop the pair is sticky: it rides along as you scroll and lets go 40px above the footer. Below 900px it is an ordinary heading with the descriptor flat underneath. */
-  /* The pillar itself (its size, the sticky pair, the descriptor beside it and its flat form below 900px) is shared with the card pages and lives at the end of css/reskin-blue.css. Only the distance below the band is the home page's own: */
+  /* The pillar itself (its size, the sticky pair, the descriptor beside it and its flat form below 900px) is shared with the card pages and lives at the end of css/base-1986.css. Only the distance below the band is the home page's own: */
   @media (min-width: 900px) {
     .project-header-bar { padding-top: calc(var(--band-rise) - 2.34 * var(--u)); } /* band to title = 75px, same as the graphic design page. The hero stage already leaves (2.34u + 75px - band-rise) below the band, so this tops it up to exactly 75px. If the band's spacing changes, this formula must follow */
   }

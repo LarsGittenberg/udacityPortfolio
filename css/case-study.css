@@ -2,8 +2,8 @@
    CASE STUDY LAYOUT: one story, two ways to read it.
    COLUMN (the base styles below): one calm reading column, wide figures.
    RAIL (html.look-rail, switched on by js/layout-switch.js): the same story, with a sticky section index on the left (from 900px up).
-   The reader chooses with the Column | Rail pill at the bottom right (its styles live in css/reskin-blue.css, with the other site components). Phones (below 900px) always read the column.
-   Uses the real design-system tokens from css/reskin-blue.css (colours, type scale, shadows, --pad).
+   The reader chooses with the Column | Rail pill at the bottom right (its styles live in css/base-1986.css, with the other site components). Phones (below 900px) always read the column.
+   Uses the real design-system tokens from css/base-1986.css (colours, type scale, shadows, --pad).
    ===================================================================== */
 
 /* ---------- COLUMN: the base ---------- */
@@ -26,9 +26,9 @@
 .cs-fig--tall img { max-width: min(100%, 640px); }
 .cs-back { margin: 60px 0 0; }
 
-/* the chapter kicker (the big numeral with the label under it) lives in reskin-blue.css, shared with the gallery sets */
+/* the chapter kicker (the big numeral with the label under it) lives in base-1986.css, shared with the gallery sets */
 
-/* the small quote (.quote--small) lives in reskin-blue.css, with the other quotes */
+/* the small quote (.quote--small) lives in base-1986.css, with the other quotes */
 
 /* lists with small square markers */
 .cs-list { margin: 0 0 1em; }

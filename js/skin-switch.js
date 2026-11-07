@@ -7,7 +7,7 @@
      3. Builds the switch inside the menu overlay (.overlay-content): a "Style settings" heading, a label, a sliding button, a label.
      4. On a click, swaps the stylesheets live (the new ones load first, then the old ones go, so the page never shows naked HTML), saves the choice and reports it to GA4.
    Each page says which stylesheets each skin uses (load it right where the stylesheet links used to be):
-     <script src="js/skin-switch.js" data-2017="css/ui.css,css/main.css" data-1986="css/reskin-blue.css"></script>
+     <script src="js/skin-switch.js" data-2017="css/ui.css,css/main.css" data-1986="css/base-1986.css"></script>
      <link rel="stylesheet" href="css/skin-switch.css">    <!-- the switch looks the same in both skins, so it has its own file, loaded after the skin -->
      <noscript> ...the DEFAULT skin's <link> tags... </noscript>
    A stylesheet that both skins need goes in BOTH lists. The one to remember is css/transitions.css (the card-to-title morph between a category page and a project page): BOTH pages of a transition must link it, so the home page, the category pages, the galleries and the case studies list it in both skins. (The About page takes no part in a transition, so it leaves it out.)

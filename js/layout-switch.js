@@ -12,7 +12,7 @@
      3. Adds the Column | Rail pill, and remembers the reader's choice (browser storage, which can be blocked, so it is wrapped in try/catch).
      4. Keeps the reader's place when the layout changes: the line of text at the reading line stays where it was in the window, so the screen never jumps.
      5. Marks the current section in the rail ("you are here"), and sends a GA4 event when the reader switches.
-   Styles: css/case-study.css or css/gallery.css for the layouts; the pill itself is in css/reskin-blue.css.
+   Styles: css/case-study.css or css/gallery.css for the layouts; the pill itself is in css/base-1986.css.
    On a gallery the statement IS the rail (the CSS pins it), so there is nothing to build here.
    A gallery with several sets (Icons) has a hand-written <nav class="gl-index"> in its aside: the script only marks the current set in it (the .gl-cat sections), in step 5.
    ===================================================================== */

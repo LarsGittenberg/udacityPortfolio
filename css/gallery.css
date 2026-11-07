@@ -2,7 +2,7 @@
    STATEMENT GALLERY: a statement (or role + description) and the work. One body of work, two ways to read it.
    COLUMN (the base styles below, the "photo essay"): the statement first, then a contact sheet of the work, three across.
    RAIL (html.look-rail, switched on by js/layout-switch.js): the statement stays pinned on the left while you scroll the work, two across (from 900px up).
-   The reader chooses with the Column | Rail pill at the bottom right (its styles live in css/reskin-blue.css, with the other site components). Phones always read the column.
+   The reader chooses with the Column | Rail pill at the bottom right (its styles live in css/base-1986.css, with the other site components). Phones always read the column.
    Markup:  <article class="gl"> .gl-crumb, <aside class="gl-side">, <div class="gl-grid"> of <figure>s.
    Used by the Cutout Figures, Posed Encounters and DRØM print pages, and (with SETS, below) the Web Icon and Ads pages; BEFORE / AFTER (below) is the Photoshop Retouching page. Photographs get NO decoration (no frame, no shadow): they speak for themselves.
    ===================================================================== */

@@ -1,6 +1,6 @@
 /* =====================================================================
    ICONS, 1986 (blue): this page's own CSS, formerly an inline <style> in icons-test.html. It only exists in the 1986 skin (data-1986 in the skin-switch script),
-   so it cannot leak into 2017. It loads after reskin-blue.css, card-pages.css, transitions.css and gallery.css, as the inline block always did.
+   so it cannot leak into 2017. It loads after base-1986.css, card-pages.css, transitions.css and gallery.css, as the inline block always did.
    ===================================================================== */
 
   /* ICON SIZE: the four sets were exported with different amounts of transparent margin, so the same box shows circles of different size.

@@ -11,7 +11,7 @@
    ===================================================================== */
 
 :root {
-	--paper: #f1e6cc; /* the 1986 skin's paper (css/reskin-blue.css), for the white panels AND the light text on the colour panels: 5.9:1 on the red, 6.7:1 on the blue */
+	--paper: #f1e6cc; /* the 1986 skin's paper (css/base-1986.css), for the white panels AND the light text on the colour panels: 5.9:1 on the red, 6.7:1 on the blue */
 	--ink: #141414;
 	--red: #a91d21; /* sampled from the red backrest of a Mondrian-inspired armchair (median of about 2,260 pixels): darker and calmer than the old #d9291c. Paper text on it is 6.6:1 */
 	--yellow: #f4b400;
